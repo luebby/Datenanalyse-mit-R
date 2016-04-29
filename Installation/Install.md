@@ -96,3 +96,5 @@ meineDaten <- read.csv2(file.choose()) # Datei auswählen
 ```
 
 erfolgen.
+
+[Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen. Das R Paket `datasets`, aber auch die optional zu installierenden Pakete `AER, mosaicData, Ecdat` enthalten ökonomisch interessante Beispieldaten.
