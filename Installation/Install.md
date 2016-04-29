@@ -60,6 +60,8 @@ install.packages("mosaic")
 
 eingeben und `Enter` oder `Return` drüken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evt. eine Weile dauern.
 
+[Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in Mosaic.
+
 #### R Commander
 
 Optional: Zu Verwendung der grafischen Oberfläche [R Commander](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) bitte den Befehl eingeben:
