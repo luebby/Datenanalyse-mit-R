@@ -45,7 +45,7 @@ entsprechend für Ihr Betriebssystem herunterladen und anschließend installiere
 
 ### Installation von Zusatzpaketen
 
-#### Mosaic
+#### mosaic
 Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.)
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
@@ -57,7 +57,7 @@ install.packages("mosaic")
 ```
 eingeben und `Enter` oder `Return` drüken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evt. eine Weile dauern.
 
-[Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in Mosaic.
+[Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in mosaic.
 
 #### R Commander
 Optional: Zu Verwendung der grafischen Oberfläche [R Commander](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) bitte den Befehl eingeben:
