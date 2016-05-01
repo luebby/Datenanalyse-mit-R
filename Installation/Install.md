@@ -51,11 +51,11 @@ entsprechend für Ihr Betriebssystem herunterladen und anschließend installiere
 
 ### Installation von Zusatzpaketen
 
-#### mosaic
-
 Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen klicken Sie entsprechend auf das R Logo.
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein: ![](RStudio-Screenshot.png)
+
+#### mosaic
 
 Für die Vorlesung werden wir das Zusatzpaket mosaic verwenden. Installieren Sie dies, in dem Sie in der Console den Befehl
 
@@ -85,6 +85,8 @@ library(Rcmdr)
 
 gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimmen.
 
+[Hier](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html) gibt es weitere Hinweise zur Installation des R Commanders.
+
 **Hinweis:** Um die Grafikfunktionalität des R Commanders innerhalb von R Studio nutzen zu können bitte *vor* dem Start des R Commanders einmal eine Grafik erzeugen, z. B. mit:
 
 ``` r
@@ -92,6 +94,33 @@ plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 ```
 
 *Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
+
+Pakete verwenden
+----------------
+
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. damit diese verwendet werden können müssen sie zunächst über
+
+``` r
+library(mosaic)
+```
+
+bzw.
+
+``` r
+library(Rcmdr)
+```
+
+gestartet werden.
+
+**Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert
+
+``` r
+library(RCmdr)
+```
+
+    ## Error in library(RCmdr): there is no package called 'RCmdr'
+
+entsprechend in einem Fehler.
 
 Daten importieren
 -----------------
@@ -105,3 +134,16 @@ meineDaten <- read.csv2(file.choose()) # Datei auswählen
 erfolgen.
 
 [Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen. Das R Paket `datasets`, aber auch die optional zu installierenden Pakete `AER, mosaicData, Ecdat` enthalten ökonomisch interessante Beispieldaten.
+
+Generell können in R über die Zuweisung `<-` Daten, Ergebnisse, aber auch Funktionen zugewiesen und somit wieder abrufbar gemacht werden. So können Sie z. B. über
+
+``` r
+str(meineDaten)
+head(meineDaten)
+```
+
+die Struktur (`str`, z. B. die Dimension des Datensatzes und die Variablentypen) erkennen oder auch sich über `head` die ersten Beobachtungen anzeigen lassen. Zu allen R Befehlen erhalten Sie über das `?` ensprechende Hilfe, z. B.
+
+``` r
+?read.csv2
+```
