@@ -12,7 +12,7 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
 * [**R Studio**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
-* [**mosaic**]((https://cran.r-project.org/web/packages/mosaic/)) ist ein Zusatzpaket, welches u. a. eine vereinheitlichte R Syntax bietet
+* [**mosaic**](https://cran.r-project.org/web/packages/mosaic/) ist ein Zusatzpaket, welches u. a. eine vereinheitlichte R Syntax bietet
 * [**R Commander**](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt
 
 
