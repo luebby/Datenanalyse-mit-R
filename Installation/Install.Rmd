@@ -26,6 +26,8 @@ Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies mus
 2.  Neustart Computer
 3.  Fortfahren mit der Installation von R und R Studio
 
+### Linux
+Keine besonderen Vorbereitungen nötig. 
 
 ## Installation 
 Installieren Sie zunächst R und anschließend R Studio.
@@ -88,7 +90,7 @@ plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 *Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
 
 ## Pakete verwenden
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. damit diese verwendet werden können müssen sie zunächst über
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Damit diese verwendet werden können müssen sie zunächst über
 ```{r eval=FALSE}
 library(mosaic)
 ```
@@ -103,6 +105,7 @@ gestartet werden.
 library(RCmdr)
 ```
 entsprechend in einem Fehler.
+
 
 ## Daten importieren
 Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das`csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als Dezimaltrennzeichen das Komma `,` und als Datentrennzeichen das Semikolon `;` verwendet. In der ersten Zeile müssen die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über

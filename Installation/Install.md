@@ -23,6 +23,10 @@ Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies mus
 2.  Neustart Computer
 3.  Fortfahren mit der Installation von R und R Studio
 
+### Linux
+
+Keine besonderen Vorbereitungen nötig.
+
 Installation
 ------------
 
@@ -98,7 +102,7 @@ plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 Pakete verwenden
 ----------------
 
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. damit diese verwendet werden können müssen sie zunächst über
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Damit diese verwendet werden können müssen sie zunächst über
 
 ``` r
 library(mosaic)
