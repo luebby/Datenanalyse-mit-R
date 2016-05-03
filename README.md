@@ -1,2 +1,2 @@
-# Datenanalyse-mit-R
-Materialen zur Hilfe bei der Datenanalyse mit R.
+# Statistik und R
+Materialien zur Hilfe bei der Datenanalyse mit R.
