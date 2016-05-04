@@ -85,14 +85,14 @@ tips <- read.csv2("tips.csv")
 
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten. ![](tips-Enviroment.png)
 
-Analyse des tips Datensatzes
-----------------------------
+Erste Analyse des tips Datensatzes
+----------------------------------
 
 Dieser Datensatz aus
 
 > Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing
 
-enthlät Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl `str()` ein:
+enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl `str()` ein:
 
 ``` r
 str(tips)
@@ -134,9 +134,13 @@ gibt die Variablennamen zurück. Mit Hilfe des`$` Operators kann auf einzelne Va
 tips$sex
 ```
 
-erhalten Sie bspl. das Geschlecht des Rechnungszahlers.
+erhalten Sie bspw. das Geschlecht des Rechnungszahlers.
+
+------------------------------------------------------------------------
 
 **Übung:** Lassen Sie sich die Rechnungshöhe `total_bill` anzeigen.
+
+------------------------------------------------------------------------
 
 ### mosaic
 
@@ -160,7 +164,11 @@ xyplot(tip ~ total_bill, data=tips)
 
 Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt Rechts unten im *Plots* Fenster zu sehen.
 
+------------------------------------------------------------------------
+
 **Übung:** Wie würden Sie den Trend beschreiben?
+
+------------------------------------------------------------------------
 
 Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h.
 
@@ -176,11 +184,15 @@ gibt für jede Beobachtung die relative Trinkgeldhöhe bezogen auf die Rechnungs
 
 erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch das "=". Hierfür werden in R gleich zwei Gleichheitszeichen verwendet, also `==`.
 
+------------------------------------------------------------------------
+
 **Übung:** Was gibt folgender der Befehl zurück?
 
 ``` r
 tips$sex=="Female" 
 ```
+
+------------------------------------------------------------------------
 
 Logische Vektoren können mit und `&` oder oder `|` verknüpft werden:
 
@@ -208,7 +220,26 @@ dass bei 33 Tischgesellschaften bei denen geraucht wurde eine Frau die Rechnung 
 sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")
 ```
 
+------------------------------------------------------------------------
+
 **Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte häufiger geraucht?
+
+------------------------------------------------------------------------
+
+Übung: Teaching Rating
+----------------------
+
+Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis.
+
+> Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.
+
+Sie können ihn von `https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R/master/Daten/TeachingRatings.csv` herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung.
+
+1.  Lesen Sie den Datensatz in R ein.
+2.  Wie viele Zeilen, wie viele Spalten liegen vor?
+3.  Wie heißen die Variablen?
+4.  Betrachten Sie visuell den Zusammenhang von dem Evaluierungsergebnis `eval` und Schönheit `beauty`. Was können Sie erkennen?
+5.  Sind relativ mehr Frauen oder mehr Männer (`gender`) auf einen Tenure Track (`tenure`)?
 
 ------------------------------------------------------------------------
 
