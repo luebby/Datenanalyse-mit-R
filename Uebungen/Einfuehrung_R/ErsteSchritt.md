@@ -58,6 +58,33 @@ x/4
 
 Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet vektororientiert, und die `[1]` zeigt an, dass es sich um das erste (und hier auch letzte) Element des Vektors handelt.
 
+R zur Datenanalyse
+------------------
+
+Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen. Zunächst laden wir die Daten herunter
+
+``` r
+download.file("https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R/master/Daten/tips.csv", destfile = "tips.csv")
+```
+
+R hat die Datei jetzt im lokalen Verzeichnis unter den Namen `tips.csv` gespeichert.
+
+[Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/tips-help.pdf) können Sie mehr über die Daten erfahren.
+
+Wo das lokale Verzeichnis ist, können Sie über
+
+``` r
+getwd()
+```
+
+erfahren. Das Einlesen von `csv` Dateien erfolgt über
+
+``` r
+tips <- read.csv2("tips.csv")
+```
+
+Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten. ![](tips-Enviroment.png)
+
 ------------------------------------------------------------------------
 
 Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray und Mine Çetinkaya-Rundel unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).
