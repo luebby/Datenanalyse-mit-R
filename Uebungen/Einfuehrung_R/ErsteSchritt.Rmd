@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Hinweise
-**R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine konfortable Entwicklungsumgebung für R.
+**R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine komfortable Entwicklungsumgebung für R.
 
 Nach dem Start von R Studio erscheint folgender Bildschirm
 ![](../../Installation/RStudio-Screenshot.png)
@@ -22,13 +22,13 @@ Ein paar Anmerkungen vorweg:
 * R verwendet den Punkt `.` als Dezimaltrennzeichen
 * Kommentare werden mit dem Rautezeichen `#` eingeleitet
 * R wendet Befehle direkt an
-* R ist objektorientiert, d. h. derselbe Befehl hat evt. unterschiedliche Rückgabewerte
+* R ist objektorientiert, d. h. derselbe Befehl hat evtl. unterschiedliche Rückgabewerte
 * Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
-* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggfs. zunächst vorher installiert werden
+* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst vorher installiert werden
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen
 
 ## R als Taschenrechner
-Auch wenn Statistik nicht Mathe ist, so kann man mit R auch rechnen. Geben Sie zum Üben die Befehle in der R Konsole hinter der Eingabauforderung `>` ein und beenden Sie die Eingabe mit `Return` bzw. `Enter`.
+Auch wenn Statistik nicht Mathe ist, so kann man mit R auch rechnen. Geben Sie zum Üben die Befehle in der R Konsole hinter der Eingabeaufforderung `>` ein und beenden Sie die Eingabe mit `Return` bzw. `Enter`.
 ```{r}
 4+2
 ```
