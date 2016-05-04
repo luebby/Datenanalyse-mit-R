@@ -5,7 +5,10 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "/home/karsten/Temp/")
 ```
+
+
 
 ## Hinweise
 **R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine komfortable Entwicklungsumgebung für R.
@@ -54,7 +57,7 @@ Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet v
 ## R zur Datenanalyse
 Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen.
 Zunächst laden wir die Daten herunter
-```{r eval=FALSE}
+```{r}
 download.file("https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R/master/Daten/tips.csv", destfile = "tips.csv")
 ```
 R hat die Datei jetzt im lokalen Verzeichnis unter den Namen `tips.csv` gespeichert. 
@@ -67,11 +70,111 @@ getwd()
 ```
 erfahren.
 Das Einlesen von `csv` Dateien erfolgt über
-```{r eval=FALSE}
+```{r}
 tips <- read.csv2("tips.csv")
 ```
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten.
 ![](tips-Enviroment.png)
+
+## Analyse des tips Datensatzes
+
+Dieser Datensatz aus 
+
+> Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing
+
+enthlät Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl 
+`str()` ein:
+```{r}
+str(tips)
+```
+Dieser enthält also `r dim(tips)[1]` Zeilen (Beobachtungen) und `r dim(tips)[2]` Spalten (Variablen). Alternativ kann man diese Information auch über 
+```{r eval=FALSE}
+dim(tips)
+```
+erhalten.
+
+Metrische Variablen sind in R in der Regel vom Typ `numeric`, kategorielle Variablen vom Typ `factor`. `str` und `dim` sind erste Befehle, d. h. Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+```{r eval=FALSE}
+head(tips) # Obere Zeilen
+tail(tips) # Untere Zeilen 
+```
+Ermöglichen ebenfalls einen Einblick über die Daten. Der Befehl
+```{r eval=FALSE}
+names(tips)
+```
+gibt die Variablennamen zurück.
+Mit Hilfe des`$` Operators kann auf einzelne Variablen zugegriffen werden:
+```{r eval=FALSE}
+tips$sex
+```
+erhalten Sie bspl. das Geschlecht des Rechnungszahlers.
+
+**Übung:** Lassen Sie sich die Rechnungshöhe `total_bill` anzeigen.
+
+### mosaic
+`mosaic` ist ein Zusatzpaket, welches die Analyse mit R erleichtert. Sofern noch nicht geschehen muss es *einmalig* über
+```{r eval=FALSE}
+install.packages("mosaic")
+```
+installiert werden.
+
+Um es verwenden zu können muss es für *jede* neue R Sitzung über
+```{r echo=FALSE, message=FALSE}
+require(mosaic)
+```
+geladen werden.
+
+Der Grundgedanke von `mosaic` ist die *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` und Rechnungshöhe `total_bill` zu erhalten muss in R der Befehl eingegeben werden:
+```{r eval=FALSE}
+xyplot(tip ~ total_bill, data=tips)
+```
+Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt Rechts unten im *Plots* Fenster zu sehen.
+
+**Übung:** Wie würden Sie den Trend beschreiben?
+
+Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h. 
+```{r eval=FALSE}
+tips$tip/tips$total_bill
+```
+gibt für jede Beobachtung die relative Trinkgeldhöhe bezogen auf die Rechnungshöhe an. Über 
+```{r eval=FALSE}
+(tips$tip/tips$total_bill)<0.10
+```
+erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch das "=". Hierfür werden in R gleich zwei Gleichheitszeichen verwendet, also `==`.
+
+**Übung:** Was gibt folgender der Befehl zurück?
+```{r eval=FALSE}
+tips$sex=="Female" 
+```
+
+Logische Vektoren können mit und `&` oder oder `|` verknüpft werden:
+```{r eval=FALSE}
+tips$sex=="Female" & tips$smoker=="Yes"
+```
+gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *und* geraucht wurde,
+```{r eval=FALSE}
+tips$sex=="Female" | tips$smoker=="Yes"
+```
+gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *oder* geraucht wurde.
+
+Intern wird `TRUE` mit der Zahl 1 hinterlegt, `FALSE` mit 0. Der Befehl `sum()` summiert einen Vektor, also erfahren wir über 
+```{r eval=FALSE}
+sum(tips$sex=="Female" & tips$smoker=="Yes")
+```
+dass bei `r sum(tips$sex=="Female" & tips$smoker=="Yes")` Tischgesellschaften bei denen geraucht wurde eine Frau die Rechnung bezahlte. Im Verhältnis zu allen Tischgesellschaften, bei denen eine Frau zahlte liegt der Raucheranteil also bei `r sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")`:
+```{r eval=FALSE}
+sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")
+```
+
+**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte häufiger geraucht?
+
+
+
+
+
+
+
+
 
 
 ***

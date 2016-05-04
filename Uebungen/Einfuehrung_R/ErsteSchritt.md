@@ -4,7 +4,7 @@ Erste Schritte in R
 Hinweise
 --------
 
-**R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine konfortable Entwicklungsumgebung für R.
+**R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine komfortable Entwicklungsumgebung für R.
 
 Nach dem Start von R Studio erscheint folgender Bildschirm ![](../../Installation/RStudio-Screenshot.png) Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
@@ -16,15 +16,15 @@ Ein paar Anmerkungen vorweg:
 -   R verwendet den Punkt `.` als Dezimaltrennzeichen
 -   Kommentare werden mit dem Rautezeichen `#` eingeleitet
 -   R wendet Befehle direkt an
--   R ist objektorientiert, d. h. derselbe Befehl hat evt. unterschiedliche Rückgabewerte
+-   R ist objektorientiert, d. h. derselbe Befehl hat evtl. unterschiedliche Rückgabewerte
 -   Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
--   Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggfs. zunächst vorher installiert werden
+-   Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst vorher installiert werden
 -   Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen
 
 R als Taschenrechner
 --------------------
 
-Auch wenn Statistik nicht Mathe ist, so kann man mit R auch rechnen. Geben Sie zum Üben die Befehle in der R Konsole hinter der Eingabauforderung `>` ein und beenden Sie die Eingabe mit `Return` bzw. `Enter`.
+Auch wenn Statistik nicht Mathe ist, so kann man mit R auch rechnen. Geben Sie zum Üben die Befehle in der R Konsole hinter der Eingabeaufforderung `>` ein und beenden Sie die Eingabe mit `Return` bzw. `Enter`.
 
 ``` r
 4+2
@@ -84,6 +84,131 @@ tips <- read.csv2("tips.csv")
 ```
 
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten. ![](tips-Enviroment.png)
+
+Analyse des tips Datensatzes
+----------------------------
+
+Dieser Datensatz aus
+
+> Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing
+
+enthlät Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl `str()` ein:
+
+``` r
+str(tips)
+```
+
+    ## 'data.frame':    244 obs. of  7 variables:
+    ##  $ total_bill: num  17 10.3 21 23.7 24.6 ...
+    ##  $ tip       : num  1.01 1.66 3.5 3.31 3.61 4.71 2 3.12 1.96 3.23 ...
+    ##  $ sex       : Factor w/ 2 levels "Female","Male": 1 2 2 2 1 2 2 2 2 2 ...
+    ##  $ smoker    : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ day       : Factor w/ 4 levels "Fri","Sat","Sun",..: 3 3 3 3 3 3 3 3 3 3 ...
+    ##  $ time      : Factor w/ 2 levels "Dinner","Lunch": 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ size      : int  2 3 3 2 4 4 2 4 2 2 ...
+
+Dieser enthält also 244 Zeilen (Beobachtungen) und 7 Spalten (Variablen). Alternativ kann man diese Information auch über
+
+``` r
+dim(tips)
+```
+
+erhalten.
+
+Metrische Variablen sind in R in der Regel vom Typ `numeric`, kategorielle Variablen vom Typ `factor`. `str` und `dim` sind erste Befehle, d. h. Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+
+``` r
+head(tips) # Obere Zeilen
+tail(tips) # Untere Zeilen 
+```
+
+Ermöglichen ebenfalls einen Einblick über die Daten. Der Befehl
+
+``` r
+names(tips)
+```
+
+gibt die Variablennamen zurück. Mit Hilfe des`$` Operators kann auf einzelne Variablen zugegriffen werden:
+
+``` r
+tips$sex
+```
+
+erhalten Sie bspl. das Geschlecht des Rechnungszahlers.
+
+**Übung:** Lassen Sie sich die Rechnungshöhe `total_bill` anzeigen.
+
+### mosaic
+
+`mosaic` ist ein Zusatzpaket, welches die Analyse mit R erleichtert. Sofern noch nicht geschehen muss es *einmalig* über
+
+``` r
+install.packages("mosaic")
+```
+
+installiert werden.
+
+Um es verwenden zu können muss es für *jede* neue R Sitzung über
+
+geladen werden.
+
+Der Grundgedanke von `mosaic` ist die *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` und Rechnungshöhe `total_bill` zu erhalten muss in R der Befehl eingegeben werden:
+
+``` r
+xyplot(tip ~ total_bill, data=tips)
+```
+
+Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt Rechts unten im *Plots* Fenster zu sehen.
+
+**Übung:** Wie würden Sie den Trend beschreiben?
+
+Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h.
+
+``` r
+tips$tip/tips$total_bill
+```
+
+gibt für jede Beobachtung die relative Trinkgeldhöhe bezogen auf die Rechnungshöhe an. Über
+
+``` r
+(tips$tip/tips$total_bill)<0.10
+```
+
+erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch das "=". Hierfür werden in R gleich zwei Gleichheitszeichen verwendet, also `==`.
+
+**Übung:** Was gibt folgender der Befehl zurück?
+
+``` r
+tips$sex=="Female" 
+```
+
+Logische Vektoren können mit und `&` oder oder `|` verknüpft werden:
+
+``` r
+tips$sex=="Female" & tips$smoker=="Yes"
+```
+
+gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *und* geraucht wurde,
+
+``` r
+tips$sex=="Female" | tips$smoker=="Yes"
+```
+
+gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *oder* geraucht wurde.
+
+Intern wird `TRUE` mit der Zahl 1 hinterlegt, `FALSE` mit 0. Der Befehl `sum()` summiert einen Vektor, also erfahren wir über
+
+``` r
+sum(tips$sex=="Female" & tips$smoker=="Yes")
+```
+
+dass bei 33 Tischgesellschaften bei denen geraucht wurde eine Frau die Rechnung bezahlte. Im Verhältnis zu allen Tischgesellschaften, bei denen eine Frau zahlte liegt der Raucheranteil also bei 0.3793103:
+
+``` r
+sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")
+```
+
+**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte häufiger geraucht?
 
 ------------------------------------------------------------------------
 
