@@ -6,7 +6,11 @@ Hinweise
 
 **R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine komfortable Entwicklungsumgebung für R.
 
-Nach dem Start von R Studio erscheint folgender Bildschirm ![](../../Installation/RStudio-Screenshot.png) Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
+Nach dem Start von R Studio erscheint folgender Bildschirm
+
+![](../../Installation/RStudio-Screenshot.png)<!-- -->
+
+Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
 Wir werden zunächst in der Konsole arbeiten.
 
@@ -14,9 +18,10 @@ Ein paar Anmerkungen vorweg:
 
 -   R unterscheidet zwischen Groß- und Kleinbuchstaben
 -   R verwendet den Punkt `.` als Dezimaltrennzeichen
+-   Fehlende Werte werden in R durch `NA` kodiert
 -   Kommentare werden mit dem Rautezeichen `#` eingeleitet
 -   R wendet Befehle direkt an
--   R ist objektorientiert, d. h. derselbe Befehl hat evtl. unterschiedliche Rückgabewerte
+-   R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 -   Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
 -   Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst vorher installiert werden
 -   Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen
@@ -83,7 +88,9 @@ erfahren. Das Einlesen von `csv` Dateien erfolgt über
 tips <- read.csv2("tips.csv")
 ```
 
-Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten. ![](tips-Enviroment.png)
+Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten.
+
+![](tips-Enviroment.png)<!-- -->
 
 Erste Analyse des tips Datensatzes
 ----------------------------------
