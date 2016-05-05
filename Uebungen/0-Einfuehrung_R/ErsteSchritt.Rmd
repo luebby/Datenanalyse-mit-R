@@ -197,6 +197,17 @@ Sie können ihn von  `https://raw.githubusercontent.com/luebby/Datenanalyse-mit-
 4.  Betrachten Sie visuell den Zusammenhang von dem Evaluierungsergebnis `eval` und Schönheit `beauty`. Was können Sie erkennen?
 5.  Sind relativ mehr Frauen oder mehr Männer (`gender`) auf einen Tenure Track (`tenure`)?
 
+## Daten importieren
+
+Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das`csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als Dezimaltrennzeichen das Komma `,` und als Datentrennzeichen das Semikolon `;` verwendet. In der ersten Zeile müssen die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über
+```{r eval=FALSE}
+meineDaten <- read.csv2(file.choose()) # Datei auswählen
+```
+erfolgen.
+
+Der Befehl `file.choose()` öffnet dabei den Dateiordner.
+
+[Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen. 
 
 ***
 Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray und Mine &Ccedil;etinkaya-Rundel unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 

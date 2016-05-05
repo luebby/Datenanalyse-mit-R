@@ -57,7 +57,9 @@ entsprechend für Ihr Betriebssystem herunterladen und anschließend installiere
 
 Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen klicken Sie entsprechend auf das R Logo.
 
-Auf ihren Bildschirm sollte folgendes Bild zu sehen sein: ![](RStudio-Screenshot.png)
+Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
+
+![](RStudio-Screenshot.png)<!-- -->
 
 #### mosaic
 
@@ -73,7 +75,7 @@ eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige 
 
 #### R Commander
 
-Optional: Zu Verwendung der grafischen Oberfläche R Commander bitte den Befehl eingeben:
+Zu Verwendung der grafischen Oberfläche R Commander bitte zunächst zur Installation den Befehl eingeben:
 
 ``` r
 install.packages("Rcmdr")
@@ -125,29 +127,3 @@ library(RCmdr)
     ## Error in library(RCmdr): there is no package called 'RCmdr'
 
 entsprechend in einem Fehler.
-
-Daten importieren
------------------
-
-Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das`csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als Dezimaltrennzeichen das Komma `,` und als Datentrennzeichen das Semikolon `;` verwendet. In der ersten Zeile müssen die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über
-
-``` r
-meineDaten <- read.csv2(file.choose()) # Datei auswählen
-```
-
-erfolgen.
-
-[Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen. Das R Paket `datasets`, aber auch die optional zu installierenden Pakete `AER, mosaicData, Ecdat` enthalten ökonomisch interessante Beispieldaten.
-
-Generell können in R über die Zuweisung `<-` Daten, Ergebnisse, aber auch Funktionen zugewiesen und somit wieder abrufbar gemacht werden. So können Sie z. B. über
-
-``` r
-str(meineDaten)
-head(meineDaten)
-```
-
-die Struktur (`str`, z. B. die Dimension des Datensatzes und die Variablentypen) erkennen oder auch sich über `head` die ersten Beobachtungen anzeigen lassen. Zu allen R Befehlen erhalten Sie über das `?` ensprechende Hilfe, z. B.
-
-``` r
-?read.csv2
-```
