@@ -26,6 +26,8 @@ Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies mus
 2.  Neustart Computer
 3.  Fortfahren mit der Installation von R und R Studio
 
+*Hinweis:* Bei der Verwendung des R Commanders unter Mac kann es ggf. nötig sein nach der Installation dort eine Einstellung zu ändern: es kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
+
 ### Linux
 Keine besonderen Vorbereitungen nötig. 
 
@@ -90,6 +92,8 @@ gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimme
 ```{r eval=FALSE}
 plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 ```
+Unter **Mac OS X** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
+
 *Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
 
 ## Pakete verwenden
