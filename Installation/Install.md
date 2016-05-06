@@ -40,14 +40,14 @@ Installieren Sie die für Ihr System aktuelle Version von R von der Seite
 
 <https://www.r-project.org/>.
 
-Welchen Mirror Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
+Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
 
 1.  Windows: <https://cran.rstudio.com/bin/windows/base/>
 2.  Mac OS X: <https://cran.rstudio.com/bin/macosx/>
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
-### Installation von R Studio
+### Installation von R Studio (Desktop)
 
 Sie können R Studio von der Seite
 
@@ -57,7 +57,7 @@ entsprechend für Ihr Betriebssystem herunterladen und anschließend installiere
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen klicken Sie entsprechend auf das R Logo.
+Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das R Logo.
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
@@ -65,7 +65,7 @@ Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
 #### mosaic
 
-Für die Vorlesung werden wir das Zusatzpaket mosaic verwenden. Installieren Sie dies, in dem Sie in der Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
 
 ``` r
 install.packages("mosaic")
@@ -77,7 +77,7 @@ eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige 
 
 #### R Commander
 
-Zu Verwendung der grafischen Oberfläche R Commander bitte zunächst zur Installation den Befehl eingeben:
+Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Installation den Befehl eingeben:
 
 ``` r
 install.packages("Rcmdr")
@@ -103,12 +103,12 @@ plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 
 Unter **Mac OS X** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
 
-*Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
+*Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R-Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
 
 Pakete verwenden
 ----------------
 
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Damit diese verwendet werden können müssen sie zunächst über
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Jeses Zusatzpaket wird über den Befehle `library()` gestartet. Starten Sie also `mosaic` und `Rcmdr` also zunächst mit den folgenden Befehlen
 
 ``` r
 library(mosaic)
@@ -119,8 +119,6 @@ bzw.
 ``` r
 library(Rcmdr)
 ```
-
-gestartet werden.
 
 **Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert
 
