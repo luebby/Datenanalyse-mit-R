@@ -1,4 +1,4 @@
-Installation von R und R Studio
+Installation von R und R-Studio
 ================
 
 Vorbereitungen und Hinweise

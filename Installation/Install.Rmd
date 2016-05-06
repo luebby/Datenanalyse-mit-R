@@ -1,5 +1,5 @@
 ---
-title: "Installation von R und R Studio"
+title: "Installation von R und R-Studio"
 output: github_document
 ---
 
@@ -32,7 +32,7 @@ Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies mus
 Keine besonderen Vorbereitungen nötig. 
 
 ## Installation 
-Installieren Sie zunächst R und anschließend R Studio.
+Installieren Sie zunächst R und anschließend R-Studio.
 
 ### Installation von R
 Installieren Sie die für Ihr System aktuelle Version von R von der Seite 
@@ -46,16 +46,16 @@ Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror v
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
-### Installation von R Studio (Desktop)
-Sie können R Studio von der Seite
+### Installation von R-Studio (Desktop)
+Sie können R-Studio (Desktop-Version) von der Seite
 
 https://www.rstudio.com/products/rstudio/download/
 
-entsprechend für Ihr Betriebssystem herunterladen und anschließend installieren.
+entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das R Logo. 
+Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von R-Studio  starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
@@ -64,7 +64,7 @@ knitr::include_graphics("RStudio-Screenshot.png")
 ```
 
 #### mosaic
-Für die Vorlesung werden wir das Zusatzpaket `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket ("Package"") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
 ```{r eval=FALSE}
 install.packages("mosaic")
 ```
