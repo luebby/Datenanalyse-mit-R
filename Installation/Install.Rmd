@@ -19,7 +19,7 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 ### Windows
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
-### Mac OS X {#anchor}
+### Mac OS X
 Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden.
 
 1.  Installation [XQuartz](http://www.xquartz.org/)
