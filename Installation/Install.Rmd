@@ -1,5 +1,5 @@
 ---
-title: "Installation von R und R Studio"
+title: "Installation von R und R-Studio"
 output: github_document
 ---
 
@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Vorbereitungen und Hinweise
-Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an R@fom.de wenden.
+Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
 * [**R Studio**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
@@ -19,7 +19,7 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 ### Windows
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
-### Mac OS X {#anchor}
+### Mac OS X
 Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden.
 
 1.  Installation [XQuartz](http://www.xquartz.org/)
@@ -32,30 +32,30 @@ Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies mus
 Keine besonderen Vorbereitungen nötig. 
 
 ## Installation 
-Installieren Sie zunächst R und anschließend R Studio.
+Installieren Sie zunächst R und anschließend R-Studio.
 
 ### Installation von R
 Installieren Sie die für Ihr System aktuelle Version von R von der Seite 
 
 https://www.r-project.org/. 
 
-Welchen Mirror Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
+Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
 
 1.  Windows: https://cran.rstudio.com/bin/windows/base/
 2.  Mac OS X: https://cran.rstudio.com/bin/macosx/
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
-### Installation von R Studio
-Sie können R Studio von der Seite
+### Installation von R-Studio (Desktop)
+Sie können R-Studio (Desktop-Version) von der Seite
 
 https://www.rstudio.com/products/rstudio/download/
 
-entsprechend für Ihr Betriebssystem herunterladen und anschließend installieren.
+entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen klicken Sie entsprechend auf das R Logo. 
+Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von R-Studio  starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
@@ -64,7 +64,7 @@ knitr::include_graphics("RStudio-Screenshot.png")
 ```
 
 #### mosaic
-Für die Vorlesung werden wir das Zusatzpaket mosaic verwenden. Installieren Sie dies, in dem Sie in der Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket ("Package"") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
 ```{r eval=FALSE}
 install.packages("mosaic")
 ```
@@ -73,7 +73,7 @@ eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige 
 [Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
 #### R Commander
-Zu Verwendung der grafischen Oberfläche R Commander bitte zunächst zur Installation den Befehl eingeben:
+Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Installation den Befehl eingeben:
 ```{r eval=FALSE}
 install.packages("Rcmdr")
 ```
@@ -94,10 +94,10 @@ plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 ```
 Unter **Mac OS X** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
 
-*Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
+*Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R-Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
 
 ## Pakete verwenden
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Damit diese verwendet werden können müssen sie zunächst über
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Jeses Zusatzpaket wird über den Befehle `library()` gestartet. Starten Sie also `mosaic` und `Rcmdr` also zunächst mit den folgenden Befehlen
 ```{r eval=FALSE}
 library(mosaic)
 ```
@@ -105,7 +105,7 @@ bzw.
 ```{r eval=FALSE}
 library(Rcmdr)
 ```
-gestartet werden.
+
 
 **Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert
 ```{r error=TRUE}
