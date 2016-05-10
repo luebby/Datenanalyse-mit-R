@@ -17,7 +17,7 @@ Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installiere
 
 ### Mac OS X
 
-Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite <http://www.xquartz.org/> installiert werden. Nach der Installation muss der Computer neu gestartet werden.
+Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite <http://www.xquartz.org/> installiert werden. Nach der Installation muss der Computer neu gestartet werden. Neuere Versionen von R werden nur noch für OS X ab Version 10.9 (Mavericks) oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. ein Update.
 
 1.  Installation [XQuartz](http://www.xquartz.org/)
 2.  Neustart Computer
@@ -32,7 +32,7 @@ Keine besonderen Vorbereitungen nötig.
 Installation
 ------------
 
-Installieren Sie zunächst R und anschließend R Studio.
+Installieren Sie zunächst R und anschließend R-Studio.
 
 ### Installation von R
 
@@ -47,17 +47,17 @@ Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror v
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
-### Installation von R Studio (Desktop)
+### Installation von R-Studio (Desktop)
 
-Sie können R Studio von der Seite
+Sie können R-Studio (Desktop-Version) von der Seite
 
 <https://www.rstudio.com/products/rstudio/download/>
 
-entsprechend für Ihr Betriebssystem herunterladen und anschließend installieren.
+entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. R Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das R Studio Logo starten. (Die ausführbare Datei finden Sie dabei im `bin` Ordner des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das R Logo.
+Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von R-Studio starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo.
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
@@ -65,7 +65,7 @@ Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
 #### mosaic
 
-Für die Vorlesung werden wir das Zusatzpaket `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket ("Package") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
 
 ``` r
 install.packages("mosaic")

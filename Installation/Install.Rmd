@@ -20,7 +20,7 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
 ### Mac OS X
-Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden.
+Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden. Neuere Versionen von R werden nur noch für OS X ab Version 10.9 (Mavericks) oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. ein Update. 
 
 1.  Installation [XQuartz](http://www.xquartz.org/)
 2.  Neustart Computer
@@ -64,7 +64,7 @@ knitr::include_graphics("RStudio-Screenshot.png")
 ```
 
 #### mosaic
-Für die Vorlesung werden wir das Zusatzpaket ("Package"") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket ("Package") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
 ```{r eval=FALSE}
 install.packages("mosaic")
 ```
