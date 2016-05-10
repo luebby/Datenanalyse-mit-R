@@ -3,15 +3,18 @@ title: "Installation von R und R-Studio"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
     fig_height: 3
     fig_width: 5
+    
+documentclass: article
+classoption: a4paper
 ---
 
 ```{r setup, include=FALSE}

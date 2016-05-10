@@ -3,15 +3,18 @@ title: "Erste Schritte in R"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
     fig_height: 3
     fig_width: 5
+    
+documentclass: article
+classoption: a4paper
 ---
 
 ```{r setup, include=FALSE}
@@ -192,7 +195,7 @@ sum(tips$sex=="Female" & tips$smoker=="Yes")
 ```
 dass bei `r sum(tips$sex=="Female" & tips$smoker=="Yes")` Tischgesellschaften bei denen geraucht wurde eine Frau die Rechnung bezahlte. Im Verhältnis zu allen Tischgesellschaften, bei denen eine Frau zahlte liegt der Raucheranteil also bei `r sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")`:
 ```{r eval=FALSE}
-sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")
+sum(tips$sex=="Female" & tips$smoker=="Yes") / sum(tips$sex=="Female")
 ```
 
 ***
