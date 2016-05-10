@@ -1,11 +1,26 @@
 ---
 title: "Erste Schritte in R"
-output: github_document
+author: "Karsten Lübke"
+date: ''
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = "/home/karsten/Temp/")
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small"    # slightly smaller font for code
+)
 ```
 
 
@@ -213,3 +228,8 @@ In R Studio gibt es im Reiter `Environment` im Fenster Rechts oben einen Menüpu
 
 ***
 Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray und Mine &Ccedil;etinkaya-Rundel unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+
+### Versionshinweise:
+* Datum erstellt: `r Sys.Date()`
+* R Version: `r getRversion()`
+* `mosaic` Version: `r packageVersion("mosaic")`
