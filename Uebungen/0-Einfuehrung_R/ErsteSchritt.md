@@ -1,5 +1,6 @@
 Erste Schritte in R
 ================
+Karsten Lübke
 
 Hinweise
 --------
@@ -8,7 +9,7 @@ Hinweise
 
 Nach dem Start von R Studio erscheint folgender Bildschirm
 
-![](../../Installation/RStudio-Screenshot.png)<!-- -->
+![](../../Installation/RStudio-Screenshot.png)
 
 Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
@@ -66,10 +67,10 @@ Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet v
 R zur Datenanalyse
 ------------------
 
-Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen. Zunächst laden wir die Daten herunter
+Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen. Zunächst laden wir die Daten als `csv` Datei herunter
 
 ``` r
-download.file("https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R/master/Daten/tips.csv", destfile = "tips.csv")
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
 R hat die Datei jetzt im lokalen Verzeichnis unter den Namen `tips.csv` gespeichert.
@@ -82,7 +83,9 @@ Wo das lokale Verzeichnis ist, können Sie über
 getwd()
 ```
 
-erfahren. Das Einlesen von `csv` Dateien erfolgt über
+erfahren.
+
+Das Einlesen von `csv` Dateien in R erfolgt über
 
 ``` r
 tips <- read.csv2("tips.csv")
@@ -90,14 +93,14 @@ tips <- read.csv2("tips.csv")
 
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten.
 
-![](tips-Enviroment.png)<!-- -->
+![](tips-Enviroment.png)
 
 Erste Analyse des tips Datensatzes
 ----------------------------------
 
 Dieser Datensatz aus
 
-> Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing
+*Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing*
 
 enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl `str()` ein:
 
@@ -160,6 +163,10 @@ install.packages("mosaic")
 installiert werden.
 
 Um es verwenden zu können muss es für *jede* neue R Sitzung über
+
+``` r
+require(mosaic)
+```
 
 geladen werden.
 
@@ -224,23 +231,23 @@ sum(tips$sex=="Female" & tips$smoker=="Yes")
 dass bei 33 Tischgesellschaften bei denen geraucht wurde eine Frau die Rechnung bezahlte. Im Verhältnis zu allen Tischgesellschaften, bei denen eine Frau zahlte liegt der Raucheranteil also bei 0.3793103:
 
 ``` r
-sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")
+sum(tips$sex=="Female" & tips$smoker=="Yes") / sum(tips$sex=="Female")
 ```
 
 ------------------------------------------------------------------------
 
-**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte häufiger geraucht?
+**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte relativ häufiger geraucht als bei den Frauen?
 
 ------------------------------------------------------------------------
 
 Übung: Teaching Rating
 ----------------------
 
-Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis.
+Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis:
 
-> Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.
+*Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
-Sie können ihn von `https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R/master/Daten/TeachingRatings.csv` herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung.
+Sie können ihn von `https://goo.gl/6Y3KoK` herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung.
 
 1.  Lesen Sie den Datensatz in R ein.
 2.  Wie viele Zeilen, wie viele Spalten liegen vor?
@@ -251,7 +258,7 @@ Sie können ihn von `https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R
 Daten importieren
 -----------------
 
-Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das`csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als Dezimaltrennzeichen das Komma `,` und als Datentrennzeichen das Semikolon `;` verwendet. In der ersten Zeile müssen die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über
+Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das `csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als Dezimaltrennzeichen das Komma `,` und als Datentrennzeichen das Semikolon `;` verwendet. In der ersten Zeile müssen die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über
 
 ``` r
 meineDaten <- read.csv2(file.choose()) # Datei auswählen
@@ -259,10 +266,18 @@ meineDaten <- read.csv2(file.choose()) # Datei auswählen
 
 erfolgen.
 
-Der Befehl `file.choose()` öffnet dabei den Dateiordner.
+Der Befehl `file.choose()` öffnet dabei den Dateiordner. Bei "internationalen" `csv` Dateien ist das Datentrennzeichen i. d. R. ein Komma `,`, das Dezimaltrennzeichen ein Punkt `.`. Hier funktioniert der Import in R dann über den Befehl `read.csv`.
+
+In R Studio gibt es im Reiter `Environment` im Fenster Rechts oben einen Menüpunkt `Import Dataset` der mehr Einstellmöglichkeiten bietet.
 
 [Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen.
 
 ------------------------------------------------------------------------
 
 Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray und Mine Çetinkaya-Rundel unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).
+
+### Versionshinweise:
+
+-   Datum erstellt: 2016-05-12
+-   R Version: 3.3.0
+-   `mosaic` Version: 0.13.0
