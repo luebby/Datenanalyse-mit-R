@@ -9,7 +9,7 @@ Hinweise
 
 Nach dem Start von R Studio erscheint folgender Bildschirm
 
-![](../../Installation/RStudio-Screenshot.png)
+![](../../Installation/RStudio-Screenshot.png)<!-- -->
 
 Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
@@ -93,7 +93,7 @@ tips <- read.csv2("tips.csv")
 
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten.
 
-![](tips-Enviroment.png)
+![](tips-Enviroment.png)<!-- -->
 
 Erste Analyse des tips Datensatzes
 ----------------------------------
