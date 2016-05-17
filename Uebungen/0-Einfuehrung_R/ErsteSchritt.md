@@ -9,7 +9,7 @@ Hinweise
 
 Nach dem Start von R Studio erscheint folgender Bildschirm
 
-![](../../Installation/RStudio-Screenshot.png)<!-- -->
+![](../../Installation/RStudio-Screenshot.png)
 
 Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
@@ -67,17 +67,17 @@ Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet v
 R zur Datenanalyse
 ------------------
 
-Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen. Zunächst laden wir die Daten als `csv` Datei herunter
+Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen. Zunächst laden wir die Daten als `csv` Datei von einer URL herunter
 
 ``` r
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
-R hat die Datei jetzt im lokalen Verzeichnis unter den Namen `tips.csv` gespeichert.
+R hat die Datei jetzt im aktuellen Verzeichnis unter den Namen `tips.csv` gespeichert.
 
 [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/tips-help.pdf) können Sie mehr über die Daten erfahren.
 
-Wo das lokale Verzeichnis ist, können Sie über
+Wo das lokale Verzeichnis ("working directory") ist, können Sie über
 
 ``` r
 getwd()
@@ -85,7 +85,7 @@ getwd()
 
 erfahren.
 
-Das Einlesen von `csv` Dateien in R erfolgt über
+Das Einlesen von `csv` Dateien in R kann erfolgen über
 
 ``` r
 tips <- read.csv2("tips.csv")
@@ -93,7 +93,9 @@ tips <- read.csv2("tips.csv")
 
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten.
 
-![](tips-Enviroment.png)<!-- -->
+![](tips-Enviroment.png)
+
+Alternativ können Sie Daten in RStudio komfortabel mit dem Button `Import Dataset` (im Fenster `Environment` oder über das Menü `File` und `Open File...`) öffnen.
 
 Erste Analyse des tips Datensatzes
 ----------------------------------
@@ -122,6 +124,8 @@ Dieser enthält also 244 Zeilen (Beobachtungen) und 7 Spalten (Variablen). Alter
 ``` r
 dim(tips)
 ```
+
+    ## [1] 244   7
 
 erhalten.
 
@@ -162,7 +166,7 @@ install.packages("mosaic")
 
 installiert werden.
 
-Um es verwenden zu können muss es für *jede* neue R Sitzung über
+Um es verwenden zu können muss es für *jede* neue R-Sitzung über
 
 ``` r
 require(mosaic)
@@ -170,13 +174,13 @@ require(mosaic)
 
 geladen werden.
 
-Der Grundgedanke von `mosaic` ist die *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` und Rechnungshöhe `total_bill` zu erhalten muss in R der Befehl eingegeben werden:
+Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten kann man in R folgenden Befehl eingegeben:
 
 ``` r
 xyplot(tip ~ total_bill, data=tips)
 ```
 
-Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt Rechts unten im *Plots* Fenster zu sehen.
+Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt rechts unten im *Plots* Fenster zu sehen.
 
 ------------------------------------------------------------------------
 
@@ -196,7 +200,7 @@ gibt für jede Beobachtung die relative Trinkgeldhöhe bezogen auf die Rechnungs
 (tips$tip/tips$total_bill)<0.10
 ```
 
-erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch das "=". Hierfür werden in R gleich zwei Gleichheitszeichen verwendet, also `==`.
+erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`, je nach dem ob der jeweilige Wert kleiner als 0.10 ist oder nicht. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch die Prüfung auf Gleichheit "=". Hierfür werden in R gleich *zwei* Gleichheitszeichen verwendet, also `==`.
 
 ------------------------------------------------------------------------
 
@@ -278,6 +282,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-05-12
+-   Datum erstellt: 2016-05-17
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
