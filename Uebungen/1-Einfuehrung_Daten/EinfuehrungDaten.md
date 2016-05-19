@@ -13,7 +13,7 @@ Sofern noch nicht geschehen, können Sie in als `csv` Datei herunterladen:
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
-Das Einlesen erfolgt, sofern die Daten im aktuellen Verzeichnis liegen über:
+Das Einlesen erfolgt, sofern die Daten im aktuellen Verzeichnis liegen, über:
 
 ``` r
 tips <- read.csv2("tips.csv")
@@ -92,7 +92,7 @@ Hier wurden zusätzliche Parameter der Funktion `dotPlot` übergeben, `nint=6` u
 
 ### Boxplots
 
-Boxplots zeigen nicht nur den Median (50%-Quantil), sondern auch das obere (75%) und untere (25%) Quantil - und damit den Interquartilsabstand - sondern geben auch Hinweise auf potentielle Ausreißer:
+Boxplots zeigen nicht nur den Median (50%-Quantil), sondern auch das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand - sondern geben auch Hinweise auf potentielle Ausreißer:
 
 ``` r
 bwplot(total_bill ~ sex, data=tips)
@@ -116,7 +116,7 @@ bwplot(total_bill ~ sex | time, data=tips)
 
 ### Scatterplot
 
-Streudiagramme sind besonders gut geeignet um einen ersten Blick auf den Zusammenhang zweier metrischer Merkmale zu erhalten. Beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren\*
+Streudiagramme sind besonders gut geeignet um einen ersten Blick auf den Zusammenhang zweier metrischer Merkmale zu erhalten. Beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren.
 
 ``` r
 xyplot(tip ~ total_bill, data=tips)
@@ -134,7 +134,7 @@ Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Tri
 
 ------------------------------------------------------------------------
 
-**Übung:** Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe und der Rechnungshöhe aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
+**Übung:** Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
 
 ------------------------------------------------------------------------
 
@@ -271,7 +271,7 @@ mean(total_bill ~ sex + time, data=tips)
 
 ------------------------------------------------------------------------
 
-**Übung:** Bestimmen Sie den Median der Trinkgeld höhe anhand der Anzahl Personen in der Tischgesellschaft.
+**Übung:** Bestimmen Sie den Median der Trinkgeldhöhe anhand der Anzahl Personen in der Tischgesellschaft.
 
 ------------------------------------------------------------------------
 
@@ -299,7 +299,7 @@ tally(~day, format="proportion", data=tips)
 
 Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
 
-Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IWR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
+Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQsR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
 
 ``` r
 IQR(~total_bill, data=tips)
@@ -328,7 +328,7 @@ sd(~total_bill | size, data=tips)
     ##        1        2        3        4        5        6 
     ## 3.010729 6.043729 9.407065 8.608603 7.340396 9.382000
 
-Bei 4 Personen lag die Standardabweichung als bei `sd(~total_bill|size, data=tips)["4"]`$.
+Bei 4 Personen lag die Standardabweichung als bei 8.6086027$.
 
 Um jetzt z. B. den Variationskoeffizienten zu berechnen wird
 
@@ -413,6 +413,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-05-16
+-   Datum erstellt: 2016-05-19
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0

@@ -22,7 +22,7 @@ Sofern noch nicht geschehen, können Sie in als `csv` Datei herunterladen:
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
-Das Einlesen erfolgt, sofern die Daten im aktuellen Verzeichnis liegen über:
+Das Einlesen erfolgt, sofern die Daten im aktuellen Verzeichnis liegen, über:
 ```{r}
 tips <- read.csv2("tips.csv")
 ```
@@ -81,7 +81,7 @@ dotPlot(~ size, nint=6, data=tips)
 Hier wurden zusätzliche Parameter der Funktion `dotPlot` übergeben, `nint=6` u. Diese wurden verwendet um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten kann man in R häufig einfach über die Hilfe, hier also `?dotPlot` erfahren.
 
 ### Boxplots
-Boxplots zeigen nicht nur den Median (50%-Quantil), sondern auch das obere (75%) und untere (25%) Quantil - und damit den Interquartilsabstand - sondern geben auch Hinweise auf potentielle Ausreißer:
+Boxplots zeigen nicht nur den Median (50%-Quantil), sondern auch das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand - sondern geben auch Hinweise auf potentielle Ausreißer:
 ```{r}
 bwplot(total_bill ~ sex, data=tips)
 ```
@@ -98,7 +98,7 @@ bwplot(total_bill ~ sex | time, data=tips)
 
 
 ### Scatterplot
-Streudiagramme sind besonders gut geeignet um einen ersten Blick auf den Zusammenhang zweier metrischer Merkmale zu erhalten. Beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren*
+Streudiagramme sind besonders gut geeignet um einen ersten Blick auf den Zusammenhang zweier metrischer Merkmale zu erhalten. Beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren.
 ```{r}
 xyplot(tip ~ total_bill, data=tips)
 ```
@@ -111,7 +111,7 @@ tips$tip_relativ <- tips$tip / tips$total_bill
 Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Trinkgeld und Rechnungshöhe zugewiesen.
 
 ***
-**Übung:** Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe und der Rechnungshöhe aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
+**Übung:** Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
 
 ***
 
@@ -121,6 +121,7 @@ Mosaicplots eignen sich, um den Zusammenhang zwischen kategoriellen Variablen da
 ```{r}
 tab_smoke_time <- tally(smoker ~ time, data=tips)
 ```
+
 Dem (neuen) R Objekt `tab_smoke_time` wird also das Ergebnis des `tally` Befehls zugewiesen. Wie das Ergebnis aussieht, und welchen Typ es hat erfahren wir über
 ```{r}
 print(tab_smoke_time)
@@ -195,7 +196,7 @@ mean(total_bill ~ sex + time, data=tips)
 ```
 
 ***
-**Übung:** Bestimmen Sie den Median der Trinkgeld höhe anhand der Anzahl Personen in der Tischgesellschaft.
+**Übung:** Bestimmen Sie den Median der Trinkgeldhöhe anhand der Anzahl Personen in der Tischgesellschaft.
 
 ***
 
@@ -211,7 +212,7 @@ tally(~day, format="proportion", data=tips)
 ### Streuungsmaße
 Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
 
-Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IWR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
+Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQsR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
 ```{r}
 IQR(~total_bill, data=tips)
 var(~total_bill, data=tips)
@@ -222,7 +223,7 @@ Um die Standardabweichung in Abhängigkeit der Gruppengröße zu berechnen genü
 ```{r}
 sd(~total_bill | size, data=tips)
 ```
-Bei 4 Personen lag die Standardabweichung als bei `sd(~total_bill|size, data=tips)["4"]`$.
+Bei 4 Personen lag die Standardabweichung als bei `r sd(~total_bill|size, data=tips)["4"]`$.
 
 Um jetzt z. B. den Variationskoeffizienten zu berechnen wird 
 ```{r}
