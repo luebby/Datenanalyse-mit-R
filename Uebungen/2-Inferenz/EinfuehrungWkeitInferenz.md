@@ -173,6 +173,8 @@ Im Paper *Hose, C., Lübke, K., Nolte, T., und Obermeier, T. (2012): Ratingproze
 
 Zeigt das unterschiedliche Verhältnis: Typ A: 79/151=52.32% zu Typ B: 79/143=55.24%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?
 
+Das Chancenverhältnis, das **Odds Ratio** liegt demnach bei (79/(151-79))/(79/(143-78))=0.9027778, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
+
 Wir können die Randomisierung simulieren, um herauszufinden ob das Zufall ist: Wir wissen, dass es 79+79=158 positive Einschätzungen bei insgesamt 151+143=294 Entscheidungen gibt und mit einer Wahrscheinlichkeit von 151/(151+143)=0.5136 eine Entscheidung alleine gefällt wurde:
 
 ``` r
@@ -194,7 +196,7 @@ sum(typsim$B>=79)/length(typsim$B)
 
     ## [1] 0.366
 
-Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in 36.6% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
+Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in 36.6% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell. *Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthält und sich nicht nur auf einen Anteilswert beziehen.
 
 Über
 

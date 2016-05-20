@@ -401,8 +401,8 @@ Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evalu
 
 Sie können ihn von `https://goo.gl/6Y3KoK` herunterladen.
 
-1.  Erstellen Sie ein Balkendiagramm der Variable `native` in Abhängigkeit von der Variable `minority`.
-2.  Erstellen Sie ein Histogramm der Variable `beauty` in Abhängigkeit der Variable `gender`.
+1.  Erstellen Sie ein Balkendiagramm der Variable `native` gruppiert nach der Variable `minority`.
+2.  Erstellen Sie ein Histogramm der Variable `beauty` gruppiert nach der Variable `gender`.
 3.  Vergleichen Sie das Evaluationsergebnis `eval` in Abhängigkeit ob es sich um einen Single-Credit Kurs `credits` handelt mit Hilfe eines Boxplots.
 4.  Zeichnen Sie ein Scatterplot der Variable `eval` in Abhängigkeit der zu definierenden Variable "Evaluierungsquote": `students/allstudents`.
 5.  Berechnen Sie deskriptive Kennzahlen der Variable `eval` in Abhängigkeit ob es sich um einen Single-Credit Kurs `credits` handelt.
@@ -413,6 +413,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-05-19
+-   Datum erstellt: 2016-05-20
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
