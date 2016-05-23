@@ -232,16 +232,16 @@ histogram(~typAboot$Positiv, v=79/151) # 79/151: Anteil der Originalstichprobe
 In 95% der Fälle liegt diese zufällige Stichprobenanteil hier zwischen
 
 ``` r
-c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
+ki <- c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
+ki
 ```
 
     ## [1] 0.4437086 0.5960265
 
-`sort` sortiert den Vektor aufsteigend, und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 0.975%-Quantil zugegriffen:
+`sort` sortiert den Vektor aufsteigend, und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 0.975%-Quantil zugegriffen. *Anmerkung*: Sollte z. B. das 2.5%-Quantil nicht auf eine konkrete Beobachtung fallen, so würde gerundet werden: runden `round`, abrunden `floor()` bzw. aufrunden `ceiling()`.
 
 ``` r
-histogram(~typAboot$Positiv, 
-          v=c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)]))
+histogram(~typAboot$Positiv, v=ki)
 ```
 
 ![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-21-1.png)
@@ -362,7 +362,15 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 Übung:
 ------
 
-Folgt.
+In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmern der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels steigern.
+
+1.  Kann diese Verbesserung von fast 90% zufällig sein? Bestimmen Sie die Wahrscheinlichkeit, dass zufällig mindestens 34 von 38 Personen eine Verbesserung erzielen mit Hilfe einer Simulation.
+2.  Bestimmen Sie ein nicht-paramatrisches Bootstrap-Konfindenzintervall, dass den Anteilswert der Verbesserung in 95% der Fälle überdeckt.
+
+Der IQ hat nach Konstruktion einen arithmetischen Mittelwert von 100 bei einer Standardabweichung von 15.
+
+1.  Wie hoch ist der Anteil der Personen mit einem IQ von 130 oder größer?
+2.  Welchen IQ sollte eine Person mindestens haben, wenn Sie zu den 1% Personen mit dem höchsten IQ gehören will?
 
 ------------------------------------------------------------------------
 
@@ -370,6 +378,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-05-20
+-   Datum erstellt: 2016-05-23
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0

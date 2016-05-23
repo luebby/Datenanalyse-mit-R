@@ -148,15 +148,17 @@ histogram(~typAboot$Positiv, v=79/151) # 79/151: Anteil der Originalstichprobe
 
 In 95% der Fälle liegt diese zufällige Stichprobenanteil hier zwischen 
 ```{r}
-c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
+ki <- c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
+ki
 ```
-`sort` sortiert den Vektor aufsteigend, und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 0.975%-Quantil zugegriffen:
+`sort` sortiert den Vektor aufsteigend, und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 0.975%-Quantil zugegriffen. *Anmerkung*: Sollte z. B. das 2.5%-Quantil nicht auf eine konkrete Beobachtung fallen, so würde gerundet werden: runden `round`, abrunden `floor()` bzw. aufrunden `ceiling()`.
+
 ```{r}
-histogram(~typAboot$Positiv, 
-          v=c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)]))
+histogram(~typAboot$Positiv, v=ki)
 ```
 
 Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
+
 
 ***
 **Übung:** Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese p=0.6 zum Signifikanzniveau 10% verworfen?
@@ -230,8 +232,15 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ***
 
 ## Übung: 
-Folgt.
+In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmern der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels steigern.
 
+1.  Kann diese Verbesserung von fast 90% zufällig sein? Bestimmen Sie die Wahrscheinlichkeit, dass zufällig mindestens 34 von 38 Personen eine Verbesserung erzielen mit Hilfe einer Simulation.
+2.  Bestimmen Sie ein nicht-paramatrisches Bootstrap-Konfindenzintervall, dass den Anteilswert der Verbesserung in 95% der Fälle überdeckt.    
+
+Der IQ hat nach Konstruktion einen arithmetischen Mittelwert von 100 bei einer Standardabweichung von 15.
+
+3.  Wie hoch ist der Anteil der Personen mit einem IQ von 130 oder größer?
+4.  Welchen IQ sollte eine Person mindestens haben, wenn Sie zu den 1% Personen mit dem höchsten IQ gehören will?
 
 
 
