@@ -5,7 +5,7 @@ Karsten Lübke
 Zufall und Wahrscheinlichkeit
 -----------------------------
 
-In dieser Übung werden wir ein wenig programmieren, daher bietet es sich an die Befehle in einem Skript zu speichern. Gehen Sie dazu in R Studio in das Menü `File` und dort auf `New File` und wählen `R Script` aus. Dies können Sie dann am Ende über `File` und `Save` bzw. `Safe as` speichern -- und über `Open File` später auch wieder öffnen. Um die Befehle an die Konsole zu übergeben klicken Sie entweder auf `Run` (nur ausgewählte Zeile) oder `Source` (ganze Programm).
+In dieser Übung werden wir ein wenig programmieren, daher bietet es sich an die Befehle in einem Skript zu speichern. Gehen Sie dazu in R Studio in das Menü `File` und dort auf `New File` und wählen `R Script` aus. Dies können Sie dann am Ende über `File` und `Save` bzw. `Safe as` speichern -- und über `Open File` später auch wieder öffnen. Um die Befehle an die Konsole zu übergeben klicken Sie entweder auf `Run` (nur ausgewählte Zeile, Tastenkürzel `Strg+Enter`) oder `Source` (ganze Programm).
 
 Zunächst laden wir wieder das Zusatzpaket mosaic:
 
@@ -108,6 +108,8 @@ Bei bestimmten Spielstrategien, z. B. bei der sogenannten Martingale oder Verdop
 farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)), format="proportion")
 ```
 
+`farbspiele` ist jetzt ein Datensatz (`data.frame`) mit 1000 Zeilen (=Simulationen) und den relativen Häufigkeiten für Gewinn und Verlust in den 8 Spielen in den Spalten.
+
 Das Histogramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten, aber doch vorkommt alle 8 Spiele zu verlieren (`nint = 8`, da es jeweils 8 Spiele waren).
 
 ``` r
@@ -122,7 +124,7 @@ Wir haben also bei 1000 Simulationen von jeweils 8 Spielen
 sum(farbspiele$Verlust==1)
 ```
 
-4-mal nur verloren.
+4-mal nur verloren, d. h. 8 von 8 Spielen.
 
 ------------------------------------------------------------------------
 
@@ -378,6 +380,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-05-23
+-   Datum erstellt: 2016-05-24
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
