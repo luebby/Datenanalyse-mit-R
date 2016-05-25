@@ -177,28 +177,41 @@ Zeigt das unterschiedliche Verhältnis: Typ A: 79/151=52.32% zu Typ B: 79/143=55
 
 Das Chancenverhältnis, das **Odds Ratio** liegt demnach bei (79/(151-79))/(79/(143-78))=0.9027778, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
 
-Wir können die Randomisierung simulieren, um herauszufinden ob das Zufall ist: Wir wissen, dass es 79+79=158 positive Einschätzungen bei insgesamt 151+143=294 Entscheidungen gibt und mit einer Wahrscheinlichkeit von 151/(151+143)=0.5136 eine Entscheidung alleine gefällt wurde:
+Zunächst erzeugen wir einen Vektor der Entscheidungstypen, aus dem wir simulieren können:
 
 ``` r
 typ <- factor(c("A", "B"))
-tally(~resample(typ, size=158, prob=c(151/294, 143/294)))
+entscheider <- rep(typ, c(151,143))
+tally(~entscheider)
+```
+
+    ## 
+    ##   A   B 
+    ## 151 143
+
+Aus diesem Vektor ziehen wir eine zufällige Stichprobe von 158 positiven Entscheidungen:
+
+``` r
+simentscheidung <- sample(entscheider, size=158)
+tally(~simentscheidung)
 ```
 
     ## 
     ##  A  B 
-    ## 78 80
+    ## 80 78
 
-Wir oft kommt also *zufällig* heraus, dass mindestens 79 der 158 positiven Entscheidungen den Typ B zugeordnet werden?
+Hier wären also zufällig 80 der 158 positiven Entscheidungen den Typ A zugeordnet geworden.
+
+Wir oft kommt also zufällig heraus, dass mindestens 79 der 158 positiven Entscheidungen den Typ B zugeordnet werden? Simulieren wir das z. B. 1000-mal:
 
 ``` r
-typsim <- do(1000)*tally(~resample(typ, size=158, 
-                                   prob=c(151/294, 143/294)))
+typsim <- do(1000)*tally(~sample(entscheider, size=158))
 sum(typsim$B>=79)/length(typsim$B)
 ```
 
-    ## [1] 0.366
+    ## [1] 0.345
 
-Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in 36.6% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell. *Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthält und sich nicht nur auf einen Anteilswert beziehen.
+Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in 34.5% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell. *Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthält und sich nicht nur auf einen Anteilswert beziehen.
 
 Über
 
@@ -229,7 +242,7 @@ Erhalten wir 1000 (resampelte) Stichproben, die jeweils einen zufälligen Stichp
 histogram(~typAboot$Positiv, v=79/151) # 79/151: Anteil der Originalstichprobe
 ```
 
-![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 In 95% der Fälle liegt diese zufällige Stichprobenanteil hier zwischen
 
@@ -246,7 +259,7 @@ ki
 histogram(~typAboot$Positiv, v=ki)
 ```
 
-![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 
@@ -280,7 +293,7 @@ xpnorm(0, mean=-0.08, sd=1.69 )
     ##  P(X <= 0) = P(Z <= 0.047) = 0.5189
     ##  P(X >  0) = P(Z >  0.047) = 0.4811
 
-![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
     ## [1] 0.5188778
 
@@ -298,7 +311,7 @@ xpnorm(0, mean=0.11, sd=1.62, lower.tail = FALSE)
     ##  P(X <= 0) = P(Z <= -0.068) = 0.4729
     ##  P(X >  0) = P(Z >  -0.068) = 0.5271
 
-![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
     ## [1] 0.5270679
 
@@ -343,7 +356,7 @@ xqnorm(0.05, mean=-0.08, sd=1.69 )
     ##  P(X <= -2.85980262954799) = 0.05
     ##  P(X >  -2.85980262954799) = 0.95
 
-![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-26-1.png)
+![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-27-1.png)
 
     ## [1] -2.859803
 
@@ -380,6 +393,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-05-24
+-   Datum erstellt: 2016-05-25
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
