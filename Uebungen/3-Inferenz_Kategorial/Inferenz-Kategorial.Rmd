@@ -3,7 +3,7 @@ title: "Einführung Inferenz kategoriale Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  github_document
+  slidy_presentation
 documentclass: article
 classoption: a4paper
 ---
@@ -84,7 +84,8 @@ Da der Populationsparameter unbekannt aber nicht zufällig ist, spricht man bei 
 
 Um für Deutschland die Nullhypothese: "Der Anteil der Atheisten liegt nicht über 10%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10%" können entweder wieder Simulations- und Resamplingtechniken verwendet werden, oder die Approximation durch die Normalverteilung:
 ```{r}
-z <- (pdach - 0.10) / se
+se0 <- sqrt( (0.1 * (1-0.1)) /n)
+z <- (pdach - 0.10) / se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
@@ -105,7 +106,7 @@ Der Aneil lag also bei unter 10% -- in der *Stichprobe*! Können wir daraus auf 
 a12 <- tally(~response, data=de12)["atheist"]
 n12 <- nrow(de12)
 p12 <- a12/n12
-# 2015 
+# 2005 
 a05 <- tally(~response, data=de05)["atheist"]
 n05 <- nrow(de05)
 p05 <- a05/n05
@@ -124,7 +125,7 @@ z <- (pdiff - 0)/se
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist kein, die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also sehr, d. h. es wird auf eine *signifikante* Änderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein, die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering, d. h. es wird auf eine *signifikante* Änderung des Anteilswertes in der *Population* geschlossen.
 
 *Exkurs:*
 Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird:
@@ -165,7 +166,7 @@ G7atheist
 ```
 (Der Befehl `droplevels` sorgt dafür, dass die nicht mehr benötigten Ausprägungen der kategoriellen Variablen (`factor`) eingestellt werden.)
 
-Der Test selber erfolgt in mosaic über `xchisq.test', d. h.:
+Der Test selber erfolgt in mosaic über `xchisq.test`, d. h.:
 ```{r}
 xchisq.test(G7atheist)
 ```
