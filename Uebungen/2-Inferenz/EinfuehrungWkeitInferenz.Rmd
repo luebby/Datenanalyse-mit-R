@@ -3,7 +3,7 @@ title: "Einführung Wahrscheinlichkeit und Inferenz"
 author: "Karsten Lübke"
 date: ''
 output:
-  github_document
+  pdf_document
 documentclass: article
 classoption: a4paper
 ---
@@ -61,7 +61,8 @@ Die theoretische Wahrscheinlichkeit eines Gewinns liegt bei 18/37=`r 18/37`: Ach
 
 Bei bestimmten Spielstrategien, z. B. bei der sogenannten Martingale oder Verdoppelungsstrategie, ist man interessiert daran wie wahrscheinlich es ist, z. B. 8-mal in Folge zu verlieren. Natürlich kann man das mit Hilfe der *Binomialverteilung* ausrechnen, wir können es aber auch simulieren: `do()` ist eine einfache Schleifenfunktion in mosaic. Um z. B. 1000-mal jeweils 8 Roulettspiele zu spielen - und das Ergebnis zu speichern - genügt:
 ```{r}
-farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)), format="proportion")
+farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)), 
+                             format="proportion")
 ```
 `farbspiele` ist jetzt ein Datensatz (`data.frame`) mit 1000 Zeilen (=Simulationen) und den relativen Häufigkeiten für Gewinn und Verlust in den 8 Spielen in den Spalten.
 

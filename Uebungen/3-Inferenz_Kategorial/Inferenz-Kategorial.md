@@ -122,25 +122,26 @@ Da der Populationsparameter unbekannt aber nicht zufällig ist, spricht man bei 
 
 ------------------------------------------------------------------------
 
-Um für Deutschland die Nullhypothese: "Der Anteil der Atheisten liegt nicht über 10%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10%" können entweder wieder Simulations- und Resamplingtechniken verwendet werden, oder die Approximation durch die Normalverteilung:
+Um für Deutschland die Nullhypothese: "Der Anteil der Atheisten liegt nicht über 10%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10%" können entweder wieder Simulations- und Resamplingtechniken verwendet werden, oder die Approximation durch die Normalverteilung :
 
 ``` r
-z <- (pdach - 0.10) / se
+se0 <- sqrt( (0.1 * (1-0.1)) /n)
+z <- (pdach - 0.10) / se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
     ## 
     ## If X ~ N(0,1), then 
     ## 
-    ##  P(X <= 3.10498116589993) = P(Z <= 3.105) = 0.999
-    ##  P(X >  3.10498116589993) = P(Z >  3.105) = 0.001
+    ##  P(X <= 3.68959389946693) = P(Z <= 3.69) = 0.9999
+    ##  P(X >  3.68959389946693) = P(Z >  3.69) = 1e-04
 
 ![](Inferenz-Kategorial_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
     ##      atheist 
-    ## 0.0009514557
+    ## 0.0001123062
 
-Der *p-Wert* liegt also bei 0.0951%, die Nullhypothese wird also zum Signifikanzniveau von 5% verworfen.
+Der *p-Wert* liegt also bei 0.0112%, die Nullhypothese wird also zum Signifikanzniveau von 5% verworfen.
 
 Differenz zweier Anteilswerte
 -----------------------------
@@ -165,14 +166,14 @@ Der Aneil lag also bei unter 10% -- in der *Stichprobe*! Können wir daraus auf 
 
 ``` r
 # 2012
-a12 <- tally(~response, data=de12)["atheist"]
-n12 <- nrow(de12)
-p12 <- a12/n12
-# 2015 
-a05 <- tally(~response, data=de05)["atheist"]
-n05 <- nrow(de05)
-p05 <- a05/n05
-# Schätzer Differenz
+a12 <- tally(~response, data=de12)["atheist"] # Anzahl Atheisten 2012
+n12 <- nrow(de12) # Anzahl Studienteilnehmer 2012
+p12 <- a12/n12 # Anteil Atheisten 2012
+# 2005 
+a05 <- tally(~response, data=de05)["atheist"] # Anzahl Atheisten 2005
+n05 <- nrow(de05) # Anzahl Studienteilnehmer 2005
+p05 <- a05/n05 # Anteil Atheisten 2005
+# Punktschätzer Differenz Population
 pdiff <- p12-p05
 pdiff
 ```
@@ -181,7 +182,7 @@ pdiff
     ## 0.0498008
 
 ``` r
-# Pooling
+# Pooling zur Berechnen Standardfehler unter H_0
 ppool <- (a12 + a05)/(n12+n05)
 ppool
 ```
@@ -190,17 +191,17 @@ ppool
     ## 0.124502
 
 ``` r
-# se
-se <- sqrt( (ppool * (1-ppool) / n12) + (ppool * (1-ppool) / n05) )
-se
+# Standardfehler se
+se0 <- sqrt( (ppool * (1-ppool) / n12) + (ppool * (1-ppool) / n05) )
+se0
 ```
 
     ##   atheist 
     ## 0.0208391
 
 ``` r
-# z
-z <- (pdiff - 0)/se
+# z-Wert z
+z <- (pdiff - 0)/se0
 # p-Wert
 xpnorm(z, lower.tail = FALSE)
 ```
@@ -216,7 +217,7 @@ xpnorm(z, lower.tail = FALSE)
     ##     atheist 
     ## 0.008429297
 
-Der p-Wert ist kein, die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also sehr, d. h. es wird auf eine *signifikante* Änderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein, die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering, d. h. es wird auf eine *signifikante* Änderung des Anteilswertes in der *Population* geschlossen.
 
 *Exkurs:* Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird:
 
@@ -272,7 +273,7 @@ G7atheist
 
 (Der Befehl `droplevels` sorgt dafür, dass die nicht mehr benötigten Ausprägungen der kategoriellen Variablen (`factor`) eingestellt werden.)
 
-Der Test selber erfolgt in mosaic über \`xchisq.test', d. h.:
+Der Test selber erfolgt in mosaic über `xchisq.test`, d. h.:
 
 ``` r
 xchisq.test(G7atheist)
@@ -310,10 +311,38 @@ pchisq(504, 5, lower.tail = FALSE)
 
     ## [1] 1.093548e-106
 
+------------------------------------------------------------------------
+
+**Übung:**
+
+1.  Gibt es einen Zusammenhang zwischen der Verteilung des Atheismus und der Nationalität im Jahr 2012 innerhalb der afrikanischen Länder `c("Nigeria","Kenya", "Tunisia", "Ghana", "Cameroon", "South Sudan")`?
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
 Übung:
 ------
 
-folgt
+Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* weiter analysieren.
+
+Sofern noch nicht geschehen, können Sie diesen als `csv` Datei herunterladen:
+
+``` r
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
+```
+
+Das Einlesen erfolgt, sofern die Daten im aktuellen Verzeichnis liegen, über:
+
+``` r
+tips <- read.csv2("tips.csv")
+```
+
+*Tipp:* Wenn Sie nicht mehr wissen wo die Daten liegen: statt `tips.csv` den Befehl `file.choose()` als Argument für die Funktion `read.csv2` verwenden.
+
+1.  Bestimmen Sie ein 90% Konfidenzintervall für den Anteil der Raucher (`smoker`) in der Population.
+2.  Testen Sie zum Niveau 5%, ob sich der Anteil der Raucher in der Population beim Lunch von dem beim Dinner (`time`) unterscheidet.
+3.  Gibt es einen Zusammenhang zwischen Rauchen und Wochentag (`day`)?
 
 ------------------------------------------------------------------------
 
@@ -321,6 +350,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-01
+-   Datum erstellt: 2016-06-02
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
