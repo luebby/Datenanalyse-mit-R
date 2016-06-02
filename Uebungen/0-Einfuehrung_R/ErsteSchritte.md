@@ -69,7 +69,7 @@ R zur Datenanalyse
 
 Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen.
 
-Zunächst laden wir die Daten als `csv` Datei von einer URL herunter
+Zunächst laden wir die Daten als `csv` Datei von [dieser URL](https://goo.gl/whKjnl) herunter
 
 ``` r
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
@@ -181,19 +181,14 @@ xyplot(tip ~ total_bill, data=tips)
 ```
 
 Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist im RStudio jetzt rechts unten im Reiter *Plots* zu sehen.
-=============================================================================================================================================================
-
-Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten kann man in R folgenden Befehl eingegeben:
-
-``` r
-xyplot(tip ~ total_bill, data=tips)
-```
-
-Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt rechts unten im *Plots* Fenster zu sehen. &gt;&gt;&gt;&gt;&gt;&gt;&gt; master:Uebungen/0-Einfuehrung\_R/ErsteSchritt.Rmd
 
 ------------------------------------------------------------------------
 
-**Übung:** Wie würden Sie den Trend beschreiben? \*\*\* Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h.
+**Übung:** Wie würden Sie den Trend beschreiben?
+
+------------------------------------------------------------------------
+
+Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h.
 
 ``` r
 tips$tip/tips$total_bill
@@ -245,7 +240,9 @@ sum(tips$sex=="Female" & tips$smoker=="Yes") / sum(tips$sex=="Female")
 
 ------------------------------------------------------------------------
 
-**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte relativ häufiger geraucht als bei den Frauen? \*\*\*
+**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte relativ häufiger geraucht als bei den Frauen?
+
+------------------------------------------------------------------------
 
 Übung: Teaching Rating
 ----------------------
