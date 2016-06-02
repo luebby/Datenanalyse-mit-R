@@ -2,7 +2,12 @@
 title: "Erste Schritte in R"
 author: "Karsten Lübke"
 date: ''
-output: github_document
+output:
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+documentclass: article
+classoption: a4paper
 ---
 
 ```{r setup, include=FALSE}
