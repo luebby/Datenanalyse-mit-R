@@ -2,8 +2,7 @@
 title: "Erste Schritte in R"
 author: "Karsten Lübke"
 date: ''
-output:
-  github_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -14,28 +13,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Hinweise
-**R** ist der Name der Programmiersprache für Statistik und Datenanalyse, **R Studio** ist eine komfortable Entwicklungsumgebung für R.
+[R](https://cran.r-project.org) ist der Name eines Programms für Statistik und Datenanalyse, [RStudio](https://www.rstudio.com) ist eine komfortable Entwicklungsumgebung für R.
 
-Nach dem Start von R Studio erscheint folgender Bildschirm
+Nach dem Start von R Studio erscheint folgender Bildschirm:
+
 
 ```{r echo=FALSE}
-knitr::include_graphics("../../Installation/RStudio-Screenshot.png")
+knitr::include_graphics("../../Installation/RStudio-Screenshot.png",
+dpi = 300)
 ```
 
-Links, in der *Console* werden die Befehle eingegeben, Rechts oben können Sie z. B. die Daten, aber auch andere Objekte mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
+Links, in der *Console* werden die Befehle eingegeben. Rechts oben können Sie z. B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
 Wir werden zunächst in der Konsole arbeiten.
 
 Ein paar Anmerkungen vorweg:
 
-* R unterscheidet zwischen Groß- und Kleinbuchstaben
+* R unterscheidet zwischen Groß- und Kleinbuchstaben, d.h. `Oma` und `oma` sind zwei verschiedene Dinge für R!
 * R verwendet den Punkt `.` als Dezimaltrennzeichen
 * Fehlende Werte werden in R durch `NA` kodiert
-* Kommentare werden mit dem Rautezeichen `#` eingeleitet
+* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
 * R wendet Befehle direkt an
 * R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 * Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
-* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst vorher installiert werden
+* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen
 
 
@@ -53,7 +54,7 @@ erscheint zunächst kein Ergebnis. Über `<-` wird der Variable `x` der Wert `4+
 ```{r eval=FALSE}
 x
 ```
-eingeben wird Ergebnis
+eingeben, wird das Ergebnis
 ```{r echo=FALSE}
 x
 ```
@@ -61,13 +62,13 @@ angezeigt. Sie können jetzt auch mit `x` weiterrechnen.
 ```{r}
 x/4
 ```
-Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet vektororientiert, und die `[1]` zeigt an, dass es sich um das erste (und hier auch letzte) Element des Vektors handelt.
+Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet vektororientiert, und die `[1]` zeigt an, dass es sich um das erste (und hier auch letzte) Element des Vektors handelt. 
 
 ## R zur Datenanalyse
 Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen.
-Zunächst laden wir die Daten als `csv` Datei von der richtigen Adresse (ÙRL`) herunter:
-```{r eval = FALSE}
-tips <- read.csv2(url("https://raw.githubusercontent.com/luebby/Datenanalyse-mit-R/master/Daten/tips.csv"))
+Zunächst laden wir die Daten als `csv` Datei von der richtigen Adresse (`URL`) herunter:
+```{r eval=FALSE}
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 R hat die Datei jetzt im aktuellen Verzeichnis unter den Namen `tips.csv` gespeichert. 
 
@@ -79,13 +80,18 @@ getwd()
 ```
 erfahren.
 
-Das Einlesen von `csv` Dateien in R kann erfolgen über
+```{r, echo = FALSE}
+tips <- read.csv2("../../Daten/tips.csv")
+```
+
+
+Das Einlesen von `csv` Dateien aus dem Arbeitsverzeichnis in R kann erfolgen über
 ```{r, eval = FALSE}
 tips <- read.csv2("tips.csv")
 ```
-Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster Rechts oben in R Studio auf. Durch Klicken auf den Namen können Sie diese betrachten.
+Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster rechts oben in RStudio auf. Durch Klicken auf den Namen können Sie diese betrachten.
 
-```{r echo=FALSE}
+```{r echo=FALSE, eval=FALSE}
 knitr::include_graphics("tips-Enviroment.png")
 ```
 
@@ -104,7 +110,8 @@ enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. ü
 str(tips)
 ```
 Dieser enthält also `r dim(tips)[1]` Zeilen (Beobachtungen) und `r dim(tips)[2]` Spalten (Variablen). Alternativ kann man diese Information auch über 
-```{r }
+
+```{r}
 dim(tips)
 ```
 erhalten.
@@ -119,57 +126,58 @@ Ermöglichen ebenfalls einen Einblick über die Daten. Der Befehl
 names(tips)
 ```
 gibt die Variablennamen zurück.
-Mit Hilfe des`$` Operators kann auf einzelne Variablen zugegriffen werden:
+Mit Hilfe des `$` Operators kann auf einzelne Variablen eines Dataframes zugegriffen werden:
 ```{r eval=FALSE}
 tips$sex
 ```
 erhalten Sie bspw. das Geschlecht des Rechnungszahlers.
 
 ***
-**Übung:** Lassen Sie sich die Rechnungshöhe `total_bill` anzeigen.
+**Übung:** Lassen Sie sich die Variable Rechnungshöhe (`total_bill`) anzeigen.
 
 ***
 ### mosaic
-`mosaic` ist ein Zusatzpaket, welches die Analyse mit R erleichtert. Sofern noch nicht geschehen muss es *einmalig* über
+`mosaic` ist ein Zusatzpaket, welches die Analyse mit R erleichtert. Sofern noch nicht geschehen, muss es *einmalig* über
 ```{r eval=FALSE}
 install.packages("mosaic")
 ```
 installiert werden.
 
-Um es verwenden zu können, muss es für *jede* neue R-Sitzung über
+Um es verwenden zu können, muss es - wie jedes Paket - für *jede* neue R-Sitzung über
 ```{r message=FALSE}
 require(mosaic)
 ```
 geladen werden.
 
 Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten, kann man in R folgenden Befehl eingeben:
+
 ```{r eval=FALSE}
 xyplot(tip ~ total_bill, data=tips)
 ```
-Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt rechts unten im *Plots* Fenster zu sehen.
+Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist im RStudio jetzt rechts unten im Reiter *Plots*  zu sehen.
 
 ***
 **Übung:** Wie würden Sie den Trend beschreiben?
-
 ***
 Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h. 
 ```{r eval=FALSE}
 tips$tip/tips$total_bill
 ```
-gibt für jede Beobachtung die relative Trinkgeldhöhe bezogen auf die Rechnungshöhe an. Über 
+gibt für *jede Beobachtung* die relative Trinkgeldhöhe bezogen auf die Rechnungshöhe an. Über 
 ```{r eval=FALSE}
 (tips$tip/tips$total_bill)<0.10
 ```
 erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`, je nach dem ob der jeweilige Wert kleiner als 0.10 ist oder nicht. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch die Prüfung auf Gleichheit. Hierfür werden in R gleich *zwei* Gleichheitszeichen verwendet, also `==`.
+
 
 ***
 **Übung:** Was gibt folgender der Befehl zurück?
 ```{r eval=FALSE}
 tips$sex=="Female" 
 ```
-
 ***
-Logische Vektoren können mit und `&` oder oder `|` verknüpft werden:
+
+Logische Vektoren können z.B. mit "und" `&` oder "oder" `|` verknüpft werden:
 ```{r eval=FALSE}
 tips$sex=="Female" & tips$smoker=="Yes"
 ```
@@ -179,25 +187,25 @@ tips$sex=="Female" | tips$smoker=="Yes"
 ```
 gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *oder* geraucht wurde.
 
-Intern wird `TRUE` mit der Zahl 1 hinterlegt, `FALSE` mit 0. Der Befehl `sum()` summiert einen Vektor, also erfahren wir über 
+Intern wird `TRUE` in R mit der Zahl 1 hinterlegt, `FALSE` mit 0. Mit dem Befehl `sum()` kann man daher die Elemente eines Vektor aufsummieren, also erfahren wir über 
 ```{r eval=FALSE}
 sum(tips$sex=="Female" & tips$smoker=="Yes")
 ```
-dass bei `r sum(tips$sex=="Female" & tips$smoker=="Yes")` Tischgesellschaften bei denen geraucht wurde eine Frau die Rechnung bezahlte. Im Verhältnis zu allen Tischgesellschaften, bei denen eine Frau zahlte liegt der Raucheranteil also bei `r sum(tips$sex=="Female" & tips$smoker=="Yes") /sum(tips$sex=="Female")`:
+dass bei `r sum(tips$sex=="Female" & tips$smoker=="Yes")` Tischgesellschaften bei denen geraucht wurde, eine Frau die Rechnung bezahlte. Im Verhältnis zu allen Tischgesellschaften, bei denen eine Frau zahlte, liegt der Raucheranteil also bei `r round(sum(tips$sex=="Female" & tips$smoker=="Yes"), 2) /sum(tips$sex=="Female")`:
 ```{r eval=FALSE}
 sum(tips$sex=="Female" & tips$smoker=="Yes") / sum(tips$sex=="Female")
 ```
 
 ***
 **Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte relativ häufiger geraucht als bei den Frauen?
-
 ***
+
 ## Übung: Teaching Rating
 Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis:
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
-Sie können ihn von  `https://goo.gl/6Y3KoK`  herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung.
+Sie können ihn von  [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK)  herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung.
 
 1.  Lesen Sie den Datensatz in R ein.
 2.  Wie viele Zeilen, wie viele Spalten liegen vor?
@@ -207,7 +215,7 @@ Sie können ihn von  `https://goo.gl/6Y3KoK`  herunterladen. [Hier](https://gith
 
 ## Daten importieren
 
-Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das `csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als Dezimaltrennzeichen das Komma `,` und als Datentrennzeichen das Semikolon `;` verwendet. In der ersten Zeile müssen die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über
+Der Datenimport in R ist in vielen unterschiedlichen Dateiformaten möglich. Das `csv` Format eignet sich besonders zum Übertragen von Datendateien. Im deutschsprachigen Raum wird dabei als *Dezimaltrennzeichen* das Komma `,` und als *Datentrennzeichen* das Semikolon `;` verwendet. In der ersten Zeile sollten die Variablennamen stehen. Das Einlesen in einen R Data-Frame (hier `meineDaten`) kann dann über
 ```{r eval=FALSE}
 meineDaten <- read.csv2(file.choose()) # Datei auswählen
 ```
