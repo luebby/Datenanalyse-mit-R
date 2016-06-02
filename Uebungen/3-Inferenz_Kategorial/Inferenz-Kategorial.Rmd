@@ -125,7 +125,7 @@ z <- (pdiff - 0)/se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist klein, die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering, d. h. es wird auf eine *signifikante* Änderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikantz*. Die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering (wenn die H0 gilt), d. h. es wird auf eine Änderung des Anteilswertes in der *Population* geschlossen.
 
 *Exkurs:*
 Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird:
@@ -154,7 +154,7 @@ histogram(~ X2012, groups=(X2012 >= pdiff), data=pdiff.null)
 
 ## Chi-Quadrat Unabhängigkeitstest
 
-Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi² Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit, gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
+Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi²-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit, gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
 ```{r}
 G7 <- c("United States", "Canada", "Germany", "France", "Italy", "Japan")
 G7.12 <- subset(atheism, nationality %in% G7 & year == 2012)
@@ -171,7 +171,7 @@ xchisq.test(G7atheist)
 ```{r, include=FALSE}
 G7chi <- xchisq.test(G7atheist)
 ```
-Der Wert der Teststatistik Chi² liegt bei `r G7chi$statistic`, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei `r G7chi$parameter`, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
+Der Wert der Teststatistik Chi² liegt bei `r round(G7chi$statistic, 2)`, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei `r G7chi$parameter`, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
 
 Mit diesen Daten kann auch über den Befehl `pchisq` der p-Wert berechnet werden:
 ```{r}
