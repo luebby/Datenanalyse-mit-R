@@ -67,7 +67,9 @@ Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet v
 R zur Datenanalyse
 ------------------
 
-Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen. Zunächst laden wir die Daten als `csv` Datei von der richtigen Adresse (`URL`) herunter:
+Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen.
+
+Zunächst laden wir die Daten als `csv` Datei von einer URL herunter
 
 ``` r
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
@@ -179,6 +181,15 @@ xyplot(tip ~ total_bill, data=tips)
 ```
 
 Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist im RStudio jetzt rechts unten im Reiter *Plots* zu sehen.
+=============================================================================================================================================================
+
+Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten kann man in R folgenden Befehl eingegeben:
+
+``` r
+xyplot(tip ~ total_bill, data=tips)
+```
+
+Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt rechts unten im *Plots* Fenster zu sehen. &gt;&gt;&gt;&gt;&gt;&gt;&gt; master:Uebungen/0-Einfuehrung\_R/ErsteSchritt.Rmd
 
 ------------------------------------------------------------------------
 

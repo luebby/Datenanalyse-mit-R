@@ -7,19 +7,31 @@ Datensatz
 
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
 
+<<<<<<< HEAD
 Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:
+=======
+Sofern noch nicht geschehen, können Sie in als `csv` Datei herunterladen:
+>>>>>>> master
 
 ``` r
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
+<<<<<<< HEAD
 Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
+=======
+Das Einlesen erfolgt, sofern die Daten im aktuellen Verzeichnis liegen, über:
+>>>>>>> master
 
 ``` r
 tips <- read.csv2("tips.csv")
 ```
 
+<<<<<<< HEAD
 *Tipp:* Wenn Sie nicht mehr wissen, wo die Daten liegen: statt `"tips.csv"` den Befehl `file.choose()` als Argument für die Funktion `read.csv2` verwenden.
+=======
+*Tipp:* Wenn Sie nicht mehr wissen wo die Daten liegen: statt `tips.csv` den Befehl `file.choose()` als Argument für die Funktion `read.csv2` verwenden.
+>>>>>>> master
 
 Inwieweit das Einlesen wie gewünscht geklappt hat, kann über
 
@@ -27,7 +39,11 @@ Inwieweit das Einlesen wie gewünscht geklappt hat, kann über
 str(tips)
 ```
 
+<<<<<<< HEAD
 überprüft werden: Der Datensatz hat also 244 Zeilen (=Beobachtungen) und 7 Spalten (=Merkmale/ Variablen).
+=======
+überprüft werden. Der Datensatz hat also 244 Zeilen (=Beobachtungen) und 7 Spalten (=Merkmale/ Variablen).
+>>>>>>> master
 
 Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
 
@@ -42,13 +58,21 @@ Bevor evtl. wichtige Information in zusammenfassenden Kennzahlen verloren geht, 
 
 ### Balkendiagramm
 
+<<<<<<< HEAD
 Balkendiagramme eignen sich am besten um Häufigkeiten darzustellen, also für kategorielle Variablen (`factor`) oder für metrische Variablen (`numeric`) mit wenigen Merkmalsausprägungen. Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die Funktion `bargraph` aus dem Paket `mosaic` verwendet werden:
+=======
+Balkendiagramme eignen sich für kategorielle Variablen (`factor`) oder für metrische Variablen (`numeric`) mit wenigen Merkmalsausprägungen. Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die Funktion `bargraph` aus dem Paket `mosaic` verwendet werden:
+>>>>>>> master
 
 ``` r
 bargraph(~ sex, data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-6-1.png)
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-5-1.png)
+>>>>>>> master
 
 In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` wird modelliert durch `x` in Abhängigkeit der Werte von `z`, wobei einzelne Teile fehlen können, so wie im Beispiel `y` und `z`. Aber um z. B. die Verteilung des Geschlechts des Zahlenden je Tageszeit `time` darzustellen muss hier eingegeben werden:
 
@@ -56,7 +80,11 @@ In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` wir
 bargraph(~ sex | time, data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-7-1.png)
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-6-1.png)
+>>>>>>> master
 
 ------------------------------------------------------------------------
 
@@ -80,12 +108,17 @@ erzeugt?
 
 ------------------------------------------------------------------------
 
+<<<<<<< HEAD
 **Punktdiagramme** sind eine Variante von Histogrammen, die besonders für metrische Variablen mit wenigen Merkmalsausprägungen geeignet sind.
+=======
+**Punkdiagramme** sind eine Variante von Histogrammen, die besonders für metrische Variablen mit wenigen Merkmalsausprägungen geeignet sind.
+>>>>>>> master
 
 ``` r
 dotPlot(~ size, nint=6, data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 Hier wurde ein zusätzliche Parameter der Funktion `dotPlot` übergeben: `nint=6`. Dieser Parameter wurde wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?dotPlot`, erfahren.
@@ -93,12 +126,25 @@ Hier wurde ein zusätzliche Parameter der Funktion `dotPlot` übergeben: `nint=6
 ### Boxplots
 
 Boxplots zeigen nicht nur den Median (50%-Quantil) sowie das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand -, sondern geben auch Hinweise auf potentielle Ausreißer:
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
+Hier wurden zusätzliche Parameter der Funktion `dotPlot` übergeben, `nint=6` u. Diese wurden verwendet um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten kann man in R häufig einfach über die Hilfe, hier also `?dotPlot` erfahren.
+
+### Boxplots
+
+Boxplots zeigen nicht nur den Median (50%-Quantil), sondern auch das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand - sondern geben auch Hinweise auf potentielle Ausreißer:
+>>>>>>> master
 
 ``` r
 bwplot(total_bill ~ sex, data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-10-1.png)
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-9-1.png)
+>>>>>>> master
 
 und gruppiert nach Tageszeit:
 
@@ -106,7 +152,11 @@ und gruppiert nach Tageszeit:
 bwplot(total_bill ~ sex | time, data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-11-1.png)
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-10-1.png)
+>>>>>>> master
 
 ------------------------------------------------------------------------
 
@@ -114,15 +164,25 @@ bwplot(total_bill ~ sex | time, data=tips)
 
 ------------------------------------------------------------------------
 
+<<<<<<< HEAD
 ### Scatterplot (Streudiagramme)
 
 Streudiagramme sind besonders gut geeignet, um einen Überblick auf den Zusammenhang zweier metrischer Merkmale zu erhalten; beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren.
+=======
+### Scatterplot
+
+Streudiagramme sind besonders gut geeignet um einen ersten Blick auf den Zusammenhang zweier metrischer Merkmale zu erhalten. Beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren.
+>>>>>>> master
 
 ``` r
 xyplot(tip ~ total_bill, data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-12-1.png)
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-11-1.png)
+>>>>>>> master
 
 Wenig überraschend steigt die Trinkgeldhöhe mit der Rechnung. Wie sieht es relativ aus? Dazu müssen wir zunächst ein neues Merkmal im Datensatz erzeugen, z. B.:
 
@@ -140,7 +200,11 @@ Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Tri
 
 ### Mosaicplot
 
+<<<<<<< HEAD
 Mosaicplots eignen sich, um den Zusammenhang zwischen kategoriellen Variablen darzustellen. Zunächst müssen wir dazu eine Kreuztabelle erstellen. Das geht in `mosaic` über den Befehl `tally`. Dieser Befehl ist recht mächtig -- dazu später mehr. Wir erzeugen eine solche Kreuztabelle zwischen Tageszeit und Rauchen über
+=======
+Mosaicplots eignen sich, um den Zusammenhang zwischen kategoriellen Variablen darzustellen. Zunächst müssen wir dazu eine Kreuztabelle erstellen. Die geht in `mosaic` über den Befehl `tally`. Dieser ist recht mächtig -- dazu später mehr. Wir erzeugen eine solche Kreuztabelle zwischen Tageszeit und Rauchen über
+>>>>>>> master
 
 ``` r
 tab_smoke_time <- tally(smoker ~ time, data=tips)
@@ -174,17 +238,29 @@ Der Befehl für einen Mosaicplot lautet `mosaicplot`:
 mosaicplot(tab_smoke_time)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 ### Korrelationsplot
 
 Mit Hilfe des Zusatzpakets `corrgram` lassen sich Korrelationen besonders einfach visualisieren. Das Paket muss wie jedes Paket *einmalig* über
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-15-1.png)
+
+### Korrelationsplot
+
+Mit Hilfe des Zusatzpakets `corrgram` lassen sich Korrelationen besonders einfach visualisieren. Die muss *einmalig* über
+>>>>>>> master
 
 ``` r
 install.packages("corrgram")
 ```
 
+<<<<<<< HEAD
 installiert werden -- wiederum werden weitere benötigte Pakete mit-installiert. Nach dem Laden des Pakets über
+=======
+installiert werden -- wiederum werden weitere Pakete mit-installiert. Nach dem Laden des Pakets über
+>>>>>>> master
 
 ``` r
 require(corrgram)
@@ -196,9 +272,15 @@ kann dies über
 corrgram(tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 gezeichnet werden. Je intensiver die Farbe, desto höher die Korrelation. Hier gibt es unzählige Einstellmöglichkeiten, siehe `?corrgram` bzw. für Beispiele:
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-18-1.png)
+
+gezeichnet werden. Je intensiver die Farbe, desto höher die Korrelation. Hier gibt es unzählige Einstellmöglichkeiten: `?corrgram`, bzw. für Beispiele:
+>>>>>>> master
 
 ``` r
 vignette("corrgram_examples")
@@ -207,7 +289,11 @@ vignette("corrgram_examples")
 Kennzahlen der Datenanalyse
 ---------------------------
 
+<<<<<<< HEAD
 Nachdem wir einen ersten visuellen Eindruck gewonnen haben wollen, wir uns jetzt Kennzahlen widmen.
+=======
+Nachdem wir einen ersten visuellen Eindruck gewonnen haben wollen wir uns jetzt Kennzahlen widmen.
+>>>>>>> master
 
 ### Lagemaße
 
@@ -224,11 +310,19 @@ gibt also das Minimum der Rechnungshöhe, getrennt nach Raucher und Nichtraucher
 
 ------------------------------------------------------------------------
 
+<<<<<<< HEAD
 **Übung:** Bestimmen Sie das Maximum der Trinkgeldhöhe je
 
 ------------------------------------------------------------------------
 
 Lagemaße sollen die zentrale Tendenz der Daten beschreiben. Gebräuchlich sind in der Regel der arithmetische Mittelwert `mean`
+=======
+**Übung:** Bestimmen Sie das Maximum der Trinkgeldhöhe je Geschlecht.
+
+------------------------------------------------------------------------
+
+Die Meisten Lagemaße sollen die zentrale Tendenz der Daten beschreiben. Gebräuchlich sind in der Regel der arithmetische Mittelwert `mean`
+>>>>>>> master
 
 ``` r
 mean(~ total_bill, data=tips)
@@ -252,7 +346,11 @@ mediantb <- median(~ total_bill, data=tips) # Median
 histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
 ```
 
+<<<<<<< HEAD
 ![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-24-1.png)
+=======
+![](EinfuehrungDaten_files/figure-markdown_github/unnamed-chunk-23-1.png)
+>>>>>>> master
 
 ------------------------------------------------------------------------
 
@@ -260,7 +358,11 @@ histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
 
 ------------------------------------------------------------------------
 
+<<<<<<< HEAD
 Auch Lagemaße zu berechnen in Abhängigkeit der Gruppenzugehörigkeit ist einfach. So berechnet man den arithmetischen Mittelwert in Abhängigkeit von Geschlecht und Tageszeit:
+=======
+Auch Lagemaße in Abhängigkeit von Gruppen ist einfach. Bestimme den arithmetischen Mittelwert in Abhängigkeit von Geschlecht und Tageszeit:
+>>>>>>> master
 
 ``` r
 mean(total_bill ~ sex + time, data=tips)
@@ -285,7 +387,11 @@ tally(~day, data=tips)
     ##  Fri  Sat  Sun Thur 
     ##   19   87   76   62
 
+<<<<<<< HEAD
 Relative Häufigkeiten werden bei `mosaic` mit der zusätzlichen Option `format="proportion"` angefordert:
+=======
+Reaktive Häufigkeiten mit der zusätzlichen Option `format="proportion"`, de. H.:
+>>>>>>> master
 
 ``` r
 tally(~day, format="proportion", data=tips)
@@ -299,7 +405,11 @@ tally(~day, format="proportion", data=tips)
 
 Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
 
+<<<<<<< HEAD
 Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
+=======
+Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQsR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
+>>>>>>> master
 
 ``` r
 IQR(~total_bill, data=tips)
@@ -328,7 +438,11 @@ sd(~total_bill | size, data=tips)
     ##        1        2        3        4        5        6 
     ## 3.010729 6.043729 9.407065 8.608603 7.340396 9.382000
 
+<<<<<<< HEAD
 Bei 4 Personen lag die Standardabweichung als bei 8.61$.
+=======
+Bei 4 Personen lag die Standardabweichung als bei 8.6086027$.
+>>>>>>> master
 
 Um jetzt z. B. den Variationskoeffizienten zu berechnen wird
 
@@ -395,11 +509,19 @@ tally(smoker~sex, format="proportion", data=tips)
 Übung: Teaching Rating
 ----------------------
 
+<<<<<<< HEAD
 Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
 Sie können ihn von <https://goo.gl/6Y3KoK> herunterladen.
+=======
+Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis:
+
+*Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
+
+Sie können ihn von `https://goo.gl/6Y3KoK` herunterladen.
+>>>>>>> master
 
 1.  Erstellen Sie ein Balkendiagramm der Variable `native` gruppiert nach der Variable `minority`.
 2.  Erstellen Sie ein Histogramm der Variable `beauty` gruppiert nach der Variable `gender`.
@@ -413,6 +535,10 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
+<<<<<<< HEAD
 -   Datum erstellt: 2016-06-02
+=======
+-   Datum erstellt: 2016-05-20
+>>>>>>> master
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0

@@ -66,7 +66,8 @@ Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet v
 
 ## R zur Datenanalyse
 Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen.
-Zunächst laden wir die Daten als `csv` Datei von der richtigen Adresse (`URL`) herunter:
+
+Zunächst laden wir die Daten als `csv` Datei von einer URL herunter
 ```{r eval=FALSE}
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
@@ -95,9 +96,7 @@ Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster rechts oben in RStudio
 knitr::include_graphics("tips-Enviroment.png")
 ```
 
-
 Alternativ können Sie Daten in RStudio komfortabel mit dem Button `Import Dataset` (im Fenster `Environment` oder über das Menü `File` und `Open File...`) öffnen.
-
 
 ## Erste Analyse des tips Datensatzes
 Dieser Datensatz aus 
@@ -144,6 +143,7 @@ install.packages("mosaic")
 installiert werden.
 
 Um es verwenden zu können, muss es - wie jedes Paket - für *jede* neue R-Sitzung über
+
 ```{r message=FALSE}
 require(mosaic)
 ```
@@ -155,6 +155,13 @@ Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosai
 xyplot(tip ~ total_bill, data=tips)
 ```
 Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist im RStudio jetzt rechts unten im Reiter *Plots*  zu sehen.
+=======
+Der Grundgedanke von `mosaic` ist  *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten kann man in R folgenden Befehl eingegeben:
+```{r eval=FALSE}
+xyplot(tip ~ total_bill, data=tips)
+```
+Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist jetzt rechts unten im *Plots* Fenster zu sehen.
+>>>>>>> master:Uebungen/0-Einfuehrung_R/ErsteSchritt.Rmd
 
 ***
 **Übung:** Wie würden Sie den Trend beschreiben?
@@ -168,7 +175,6 @@ gibt für *jede Beobachtung* die relative Trinkgeldhöhe bezogen auf die Rechnun
 (tips$tip/tips$total_bill)<0.10
 ```
 erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`, je nach dem ob der jeweilige Wert kleiner als 0.10 ist oder nicht. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch die Prüfung auf Gleichheit. Hierfür werden in R gleich *zwei* Gleichheitszeichen verwendet, also `==`.
-
 
 ***
 **Übung:** Was gibt folgender der Befehl zurück?
