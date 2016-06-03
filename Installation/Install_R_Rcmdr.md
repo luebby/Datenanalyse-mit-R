@@ -5,7 +5,7 @@ Karsten Lübke
 Vorbereitungen und Hinweise
 ---------------------------
 
-Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
+Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand fällt aber nur einmal an! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
 
 -   [**R**](https://www.r-project.org/) ist das Basisprogramm
 -   [**R Commander**](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt
@@ -52,7 +52,7 @@ Da der R Commander stabiler im sogenannten "single-document interface" (sdi) Mod
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. Und Sie können R durch klicken auf das Programm bzw. das Icon mit dem Logo starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R installiert haben. Unter Linux können Sie R im Terminal durch den Befehl `R` starten.) Auf ihren Bildschirm sollte folgendes Bild zu sehen sein (Windows):
+Die Grundinstallation ist jetzt abgeschlossen. Und Sie können R durch klicken auf das Programm bzw. das Icon mit dem Logo starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R installiert haben. Unter Linux können Sie R im Terminal durch den Befehl `R` starten.) Auf Ihrem Bildschirm sollte folgendes Bild zu sehen sein (Windows):
 
 ![](R.jpg)
 
@@ -62,13 +62,13 @@ Bzw. Mac OS X:
 
 #### R Commander
 
+**Hinweis:** Bei der Verwendung von MAC OS X bitte unbedingt *vorher* die Hinweise zur [Vorbereitung der Installation](#anchor) beachten.
+
 Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Installation den Befehl eingeben:
 
 ``` r
 install.packages("Rcmdr")
 ```
-
-**Hinweis:** Bei der Verwendung von MAC OS X bitte unbedingt *vorher* die Hinweise zur [Vorbereitung der Installation](#anchor) beachten.
 
 Hier werden einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über
 
@@ -103,15 +103,15 @@ In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `Rcmdr`. Jedes Zusatz
 library(Rcmdr)
 ```
 
-**Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert
+**Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert aus
 
 ``` r
 library(RCmdr)
 ```
 
-    ## Error in library(RCmdr): there is no package called 'RCmdr'
+entsprechend der Fehler:
 
-entsprechend in einem Fehler.
+    ## Error in library(RCmdr): there is no package called 'RCmdr'
 
 ### Versionshinweise:
 
