@@ -464,10 +464,17 @@ Die Nullhypothese der Gleichheit wird hier also verworfen. Interessanterweise un
 
 ------------------------------------------------------------------------
 
-Übung:
-------
+Übung: Teaching Rating
+----------------------
 
-folgt.
+Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
+
+*Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
+
+Sie können ihn, sofern noch nicht geschehen, von <https://goo.gl/6Y3KoK> als `csv`herunterladen.
+
+1.  Ist das arithmetische Mittel der Evaluierung `eval` nicht zufällig größer als befriedigend (3)?
+2.  Gibt es einen nicht zufälligen Unterschied im Lagemaß der Evaluation `eval` zwischen mönnlichen und weiblichen Dozent/innen (`gender`)?
 
 ------------------------------------------------------------------------
 
@@ -475,6 +482,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-03
+-   Datum erstellt: 2016-06-06
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
