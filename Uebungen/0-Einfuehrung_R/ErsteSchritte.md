@@ -9,7 +9,7 @@ Hinweise
 
 Nach dem Start von R Studio erscheint folgender Bildschirm:
 
-<img src="../../Installation/RStudio-Screenshot.png" width="437" />
+![](../../Installation/RStudio-Screenshot.png)
 
 Links, in der *Console* werden die Befehle eingegeben. Rechts oben können Sie z. B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 

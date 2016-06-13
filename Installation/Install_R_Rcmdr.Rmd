@@ -3,7 +3,7 @@ title: "Installation von R und R Commander"
 author: "Karsten Lübke"
 date: ''
 output:
-  github_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   pdf_document:
@@ -79,6 +79,8 @@ Auf Ihrem Bildschirm sollte folgendes Bild zu sehen sein (Windows):
 knitr::include_graphics("R.jpg")
 ```
 
+
+\newpage
 Bzw. Mac OS X:
 
 ```{r echo=FALSE}
@@ -111,6 +113,8 @@ Windows:
 knitr::include_graphics("Rcmdr.jpg")
 ```
 
+
+\newpage
 Mac OS X:
 
 ```{r echo=FALSE}

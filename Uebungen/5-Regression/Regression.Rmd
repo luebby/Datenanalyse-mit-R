@@ -1,0 +1,192 @@
+---
+title: "Einführung Lineare Regression"
+author: "Karsten Lübke"
+date: ''
+output:
+  github_document:
+    fig_height: 3
+    fig_width: 5
+documentclass: article
+classoption: a4paper
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Einfache Regression
+Wir werden weiter den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* analysieren.
+
+Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:
+```{r }
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
+```
+
+Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
+```{r}
+tips <- read.csv2("tips.csv")
+```
+
+Zur Unterstützung der Analyse wird (wieder) mosaic verwendet:
+```{r, message = FALSE}
+require(mosaic)
+```
+
+Wie hängen Trinkgeldhöhe `tip` und Rechnungshöhe `total_bill` zusammen? Kann die Höhe des Trinkgeldes als *lineare* Funktion der Rechnungshöhe modelliert werden?
+
+Zunächst eine visuelle Analyse mi Hilfe eines Scatterplots.
+```{r}
+xyplot(tip ~ total_bill, data=tips)
+```
+
+Es scheint einen postiven Zusammenhang zu geben. Modelllieren wir die Abhängige Variable `tip` (inhaltliche Entscheidung!) als lineare Funktion der Unabhängigen Variable `total_bill`:
+```{r}
+LinMod.1 <- lm(tip ~ total_bill, data=tips)
+summary(LinMod.1)
+```
+Der Achsenabschnitt (`intercept`) wird mit `r round(coef(LinMod.1)[1],2)` geschätzt, die Steigung in Richtung `total_bill` mit `r round(coef(LinMod.1)[2],2)`: steigt `total_bill` um einen Dollar, steigt im *Durchschnitt* `tip` um `r round(coef(LinMod.1)[2], 2)`. Die Prognose für `tip` lautet also
+
+`tip` = `r round(coef(LinMod.1)[1],2)` + `r round(coef(LinMod.1)[2],2)` * `total_bill`
+
+In mosaic kann ein solches Modell einfach als neue Funktion definiert werden:
+```{r}
+LinMod.1Fun <- makeFun(LinMod.1)
+```
+Die (Punkt-)Prognose für die Trinkgeldhöhe, bsplw. für eine Rechnung von 30$ kann dann berechnet werden
+```{r}
+LinMod.1Fun(total_bill=30)
+```
+also `r round(LinMod.1Fun(total_bill=30),2)`$.
+
+In mosaic kann die Modellgerade über 
+```{r}
+plotModel(LinMod.1)
+```
+
+betrachtet werden. Das Bestimmtheitsmaß R² ist mit `r round(summary(LinMod.1)$r.squared,2)` ok: `r round(summary(LinMod.1)$r.squared*100)`-% der Variation des Trinkgeldes wird im Modell erklärt.
+
+Aber wie sieht es mit den Annahmen aus?
+
+* Die Linearität des Zusammenhangs haben wir zu Beginn mit Hilfe des Scatterplots "überprüft"
+* Zur Überprüfung der Normalverteilung der Residuen zeichnen wir ein Histogramm. Die Residuen können über den Befehl `resid()` aus einem Linearen Modell extrahiert werden. Hier scheint es zu passen:
+```{r}
+histogram( ~ resid(LinMod.1))
+```
+
+* Konstante Varianz: Dies kann z. B. mit einem Scatterplot der Residuen auf der y-Achse und den angepassten Werten auf der x-Achse überprüft werden. Die angepassten Werte werden über den Befehl `fitted()` extrahiert. Diese Annahme scheint verletzt zu sein (siehe unten): je größer die Prognose des Trinkgeldes, desto größer wirkt die Streuung der Residuen. Dieses Phänomen ließ sich schon aus dem ursprünglichen Scatterplot `xyplot(tip ~ total_bill, data=tips)` erahnen. Das ist auch inhaltich plausibel: je höher die Rechnung, desto höher die Varianz beim Trinkgeld. Die Verletzung dieser Annahme beeinflusst *nicht* die Schätzung der Steigung, sondern die Schätzung des Standardfehlers, also des p-Wertes des Hypothesentests, z. B. "Steigung=0".
+
+```{r}
+xyplot(resid(LinMod.1) ~ fitted(LinMod.1))
+```
+
+* Extreme Ausreißer: Wie am Plot der Linearen Regression `plotModel(LinMod.1)` erkennbar gibt es vereinzelt Ausreißer nach oben, allerdings ohne einen extremen Hebel.
+
+## Regression mit kategorialen Werten
+Der Wochentag `day` ist eine kategoriale Variable. Wie sieht eine Regression des Trinkgeldes darauf aus?
+
+Zunächst grafisch:
+```{r}
+xyplot(tip ~ day, data=tips)
+```
+
+Und als Lineares Modell:
+```{r}
+LinMod.2 <- lm(tip ~ day, data=tips)
+summary(LinMod.2)
+```
+
+Die im Modell angegebenen Schätzwerte sind die Änderung der Trinkgeldprognose, wenn z. B. der Tag ein Samstag (`daySat`) im Vergleich zu einer Refernzkategorie. Dies ist in R das erste Element des Vektors der Faktorlevel. Welcher dies ist ist über den Befehl `levels()` zu erfahren
+```{r}
+levels(tips$day)
+```
+hier also `r levels(tips$day)[1]` (aufgrund der standardmäßig aufsteigenden alphanumerischen Sortierung). Dies kann über `relevel()` geändert werden. Soll z. B. die Referenz der Donnerstag, `Thur` sein:
+```{r}
+tips$day <- relevel(tips$day, ref = "Thur")
+levels(tips$day)
+```
+Das Modell ändert sich entsprechend:
+```{r}
+LinMod.3 <- lm(tip ~ day, data=tips)
+summary(LinMod.3)
+```
+sowie als Plot:
+```{r}
+plotModel(LinMod.3)
+```
+
+
+Die (Punkt-)Prognose für die Trinkgeldhöhe, bsplw. an einen Freitag kann dann berechnet werden
+```{r}
+LinMod.3Fun <- makeFun(LinMod.3)
+LinMod.3Fun(day="Fri")
+```
+
+
+## Multivariate Regression
+Aber wie wirken sich die Einflußgrößen *zusammen* auf das Trinkgeld aus?
+```{r}
+LinMod.4 <- lm(tip ~ total_bill + size + sex  + smoker + day + time, data=tips)
+summary(LinMod.4)
+```
+Interessant sind die negativen Vorzeichen vor den Schätzwerten für `sexMale` und `smokerYes` -- anscheinend geben Männer und Raucher weniger Trinkgeld, wenn alle anderen Faktoren konstant bleiben. Bei einer rein univariaten Betrachtung wäre etwas anderes herausgekommen.
+```{r}
+summary(lm(tip ~ sex, data=tips))
+summary(lm(tip ~ smoker, data=tips))
+```
+Diese *Umkehrung* des modellierten Effektes liegt daran, dass es auch einen positiven Zusammenhang zur Rechnungshöhe gibt:
+```{r}
+summary(lm(total_bill ~ sex, data=tips))
+summary(lm(total_bill ~ smoker, data=tips))
+```
+
+Im vollem Modell `LinMod.4` sind alle unabhängigen Variablen berücksichtigt, die Koeffizienten beziehen sich dann immer auf: gegeben die anderen Variablen bleiben konstant.
+
+Vergleichen wir mal zwei Modelle:
+```{r}
+LinMod.5a <- lm(tip ~  sex, data=tips)
+coef(LinMod.5a) # Koeffizienten extrahieren
+LinMod.5b <- lm(tip ~  sex + total_bill, data=tips)
+coef(LinMod.5b) # Koeffizienten extrahieren
+```
+Ohne die Berücksichtigung der **Kovariable** Rechnungshöhe geben `r levels(tips$sex)[2]` ein um im Durchschnitt `r round(coef(LinMod.5a)[2],2)`$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um `r abs(round(coef(LinMod.5b)[2],2))`$ *niedrigeres* Trinkgeld als die Referenzklasse `r levels(tips$sex)[1]` (`levels(tips$sex)[1]`). 
+
+## Inferenz in der linearen Regression
+Kehren wir noch einmal zur multivariaten Regression (`LinMod.4`) zurück. 
+```{r}
+summary(LinMod.4)
+```
+
+In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgeraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1%. `**` entsprechend 1%, `*` 5% und `.` 10%. Zum Signifikanzniveau von 10% sind hier also zwei Faktoren und der Achsenabschnit (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 
+`r round(summary(LinMod.4)$r.squared,2)`, also `r round(summary(LinMod.4)$r.squared*100)`-% der Variation des Trinkgeldes wird im Modell erklärt.
+
+
+## Modellwahl
+Das Modell mit allen Variablen des Datensatzes, d. h. mit 6 unabhänigen (`LinMod.4`) erklärt `r round(summary(LinMod.4)$r.squared*100,2)`-% der Variation, das Modell *nur* mit der Rechnungshöhe als erklärende Variable (`LinMod.1`) schon `r round(summary(LinMod.1)$r.squared*100,2)`%, der Erklärungszuwachs liegt also gerade einmal bei `r round(summary(LinMod.4)$r.squared*100,2) - round(summary(LinMod.1)$r.squared*100,2)` Prozentpunkten. In der Statistik ist die Wahl des *richtigen* Modell eine der größten Herausforderungen, auch deshalb weil man der wahre Modell in der Regel nicht kennt und es schwer ist die richtige Balance zwischen Einfachheit und Komplexität zu finden. Aufgrund des Zufalls kann es immer passieren, dass das Modell sich zu sehr an die *zufälligen* Daten anpasst (Stichwort: Overfitting). Es gibt unzählige Modellwahlmethoden, und leider garantiert keine, dass man immer das beste Modell findet. Eine Möglichkeit ist die sogenannte Schrittweise-Rückwärtsselektion auf Basis des Akaike-Informationskriteriums (AIC). Diese ist nicht nur recht weit verbreitet - und liefert unter bestimmten Annahmen das "richtige" Modell - sondern in R durch den Befehl `step()` einfach umsetzbar:
+```{r}
+step(LinMod.4)
+```
+In den letzten Zeilen der Ausgabe steht das beste Modell, dass diese Methode (schrittweise, rückwärts) mit diesem Kriterium (AIC) bei diesen Daten findet:
+
+`tip =  0.66894 +  0.09271 * total_bill + 0.19260 * size`
+
+Der Ausgabe kann man auch entnehmen, welche Variablen in welcher Reihenfolge *entfernt* wurden: Zunächst `day`, dann `time`, danach `sex` und schließlich `smoker`. Hier sind also dieselben Variablen noch im Modell, die auch in `LinMod.4` signifikant zum Niveau 10% waren, eine Auswahl der dort signifikanten Variablen hätte also dasselbe Modell ergeben. Das ist häufig so, aber nicht immer!
+
+***
+
+## Übung: Teaching Rating
+Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
+
+*Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
+
+Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) als `csv`herunterladen.
+
+
+
+
+***
+Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray und Mine &Ccedil;etinkaya-Rundel unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+
+### Versionshinweise:
+* Datum erstellt: `r Sys.Date()`
+* R Version: `r getRversion()`
+* `mosaic` Version: `r packageVersion("mosaic")`

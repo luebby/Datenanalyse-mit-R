@@ -3,7 +3,7 @@ title: "Einführung Inferenz kategoriale Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  pdf_document:
+  slidy_presentation:
     fig_height: 3
     fig_width: 5
 documentclass: article

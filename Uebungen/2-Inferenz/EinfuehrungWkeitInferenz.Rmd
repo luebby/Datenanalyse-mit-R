@@ -198,7 +198,7 @@ Hier drei Kennzahlen der logarithmierten Tagesrenditen von Aktienunternehmen in 
 Anlage | AAPL | FB | GOOGL |
 -------|------|----|-------|
 Mittelwert|-0.08|0.11|0.15|
-Standardabweichung|1.69|1.62|1,77|
+Standardabweichung|1.69|1.62|1.77|
 
 Unter der Annahme der Normalverteilung der logarithmierten Renditen können wir jetzt die Wahrscheinlichkeit eines Tagesverlustes der Apple Aktie (AAPL) berechnen über
 ```{r}
