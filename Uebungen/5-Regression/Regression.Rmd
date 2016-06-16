@@ -81,6 +81,19 @@ xyplot(resid(LinMod.1) ~ fitted(LinMod.1))
 
 * Extreme Ausreißer: Wie am Plot der Linearen Regression `plotModel(LinMod.1)` erkennbar gibt es vereinzelt Ausreißer nach oben, allerdings ohne einen extremen Hebel.
 
+
+Hängt die Rechnungshöhe von der Anzahl der Personen ab? Bestimmt, aber wie?
+```{r}
+xyplot(total_bill ~ size, data=tips)
+```
+
+Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinanderliegen können, sollte man "jittern", d. h. eine (kleine) Zufallszahl addieren:
+```{r}
+set.seed(1896) # Zufallszahlengenerater setzen
+xyplot(total_bill ~ jitter(size), data=tips)
+```
+
+
 ## Regression mit kategorialen Werten
 Der Wochentag `day` ist eine kategoriale Variable. Wie sieht eine Regression des Trinkgeldes darauf aus?
 

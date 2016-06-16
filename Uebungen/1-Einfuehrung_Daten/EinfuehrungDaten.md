@@ -42,7 +42,7 @@ Bevor evtl. wichtige Information in zusammenfassenden Kennzahlen verloren geht, 
 
 ### Balkendiagramm
 
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Balkendiagramme eignen sich am besten um Häufigkeiten darzustellen, also für kategorielle Variablen (`factor`) oder für metrische Variablen (`numeric`) mit wenigen Merkmalsausprägungen.
+Balkendiagramme eignen sich am besten um Häufigkeiten darzustellen, also für kategorielle Variablen (`factor`) oder für metrische Variablen (`numeric`) mit wenigen Merkmalsausprägungen.
 
 Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die Funktion `bargraph` aus dem Paket `mosaic` verwendet werden:
 
@@ -415,6 +415,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-02
+-   Datum erstellt: 2016-06-16
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0

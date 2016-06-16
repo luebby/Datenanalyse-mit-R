@@ -113,6 +113,23 @@ xyplot(resid(LinMod.1) ~ fitted(LinMod.1))
 
 -   Extreme Ausreißer: Wie am Plot der Linearen Regression `plotModel(LinMod.1)` erkennbar gibt es vereinzelt Ausreißer nach oben, allerdings ohne einen extremen Hebel.
 
+Hängt die Rechnungshöhe von der Anzahl der Personen ab? Bestimmt, aber wie?
+
+``` r
+xyplot(total_bill ~ size, data=tips)
+```
+
+![](Regression_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
+Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinanderliegen können, sollte man "jittern", d. h. eine (kleine) Zufallszahl addieren:
+
+``` r
+set.seed(1896) # Zufallszahlengenerater setzen
+xyplot(total_bill ~ jitter(size), data=tips)
+```
+
+![](Regression_files/figure-markdown_github/unnamed-chunk-12-1.png)
+
 Regression mit kategorialen Werten
 ----------------------------------
 
@@ -124,7 +141,7 @@ Zunächst grafisch:
 xyplot(tip ~ day, data=tips)
 ```
 
-![](Regression_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](Regression_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 Und als Lineares Modell:
 
@@ -205,7 +222,7 @@ sowie als Plot:
 plotModel(LinMod.3)
 ```
 
-![](Regression_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](Regression_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 Die (Punkt-)Prognose für die Trinkgeldhöhe, bspw. an einen Freitag kann dann berechnet werden
 
@@ -502,6 +519,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-13
+-   Datum erstellt: 2016-06-14
 -   R Version: 3.3.0
 -   `mosaic` Version: 0.13.0
