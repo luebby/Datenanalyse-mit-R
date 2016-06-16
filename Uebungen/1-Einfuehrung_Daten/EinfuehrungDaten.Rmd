@@ -269,8 +269,8 @@ favstats(tip~day, data=tips)
 ### Zusammenhangsmaße
 Kennzahlen für den linearen Zusammenhang von metrischen Variablen sind Kovarianz `cov` und der Korrelationskoeffizient `cor`:
 ```{r}
-cov(tip, total_bill, data=tips)
-cor(tip, total_bill, data=tips)
+cov(tip ~ total_bill, data=tips)
+cor(tip ~ total_bill, data=tips)
 ```
 
 Für kategorielle Variablen wird in diesen Abschnitt zunächst nur die Kreuztabelle verwendet:

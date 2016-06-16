@@ -131,10 +131,10 @@ xpnorm(z, lower.tail = FALSE)
 ```
 
     ## 
-    ## If X ~ N(0,1), then 
+    ## If X ~ N(0, 1), then 
     ## 
-    ##  P(X <= 3.68959389946693) = P(Z <= 3.69) = 0.9999
-    ##  P(X >  3.68959389946693) = P(Z >  3.69) = 1e-04
+    ##  P(X <= 3.689594) = P(Z <= 3.689594) = 0.9998877
+    ##  P(X >  3.689594) = P(Z >  3.689594) = 0.0001123062
 
 ![](Inferenz-Kategorial_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
@@ -207,17 +207,17 @@ xpnorm(z, lower.tail = FALSE)
 ```
 
     ## 
-    ## If X ~ N(0,1), then 
+    ## If X ~ N(0, 1), then 
     ## 
-    ##  P(X <= 2.38977724220256) = P(Z <= 2.39) = 0.9916
-    ##  P(X >  2.38977724220256) = P(Z >  2.39) = 0.0084
+    ##  P(X <= 2.389777) = P(Z <= 2.389777) = 0.9915707
+    ##  P(X >  2.389777) = P(Z >  2.389777) = 0.008429297
 
 ![](Inferenz-Kategorial_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
     ##     atheist 
     ## 0.008429297
 
-Der p-Wert ist klein, die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering, d. h. es wird auf eine *signifikante* Änderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikantz*. Die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering (wenn die H0 gilt), d. h. es wird auf eine Änderung des Anteilswertes in der *Population* geschlossen.
 
 *Exkurs:* Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird:
 
@@ -230,7 +230,7 @@ pdiff
 ```
 
     ##      2012 
-    ## 0.0498008
+    ## 0.0249004
 
 ``` r
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
@@ -256,7 +256,7 @@ histogram(~ X2012, groups=(X2012 >= pdiff), data=pdiff.null)
 Chi-Quadrat Unabhängigkeitstest
 -------------------------------
 
-Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi² Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit, gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
+Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi²-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit, gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
 
 ``` r
 G7 <- c("United States", "Canada", "Germany", "France", "Italy", "Japan")
@@ -299,9 +299,9 @@ xchisq.test(G7atheist)
     ##  observed
     ##  (expected)
     ##  [contribution to X-squared]
-    ##  <residual>
+    ##  <Pearson residual>
 
-Der Wert der Teststatistik Chi² liegt bei 504.043463, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei 5, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
+Der Wert der Teststatistik Chi² liegt bei 504.04, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei 5, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
 
 Mit diesen Daten kann auch über den Befehl `pchisq` der p-Wert berechnet werden:
 
@@ -316,8 +316,6 @@ pchisq(504, 5, lower.tail = FALSE)
 **Übung:**
 
 1.  Gibt es einen Zusammenhang zwischen der Verteilung des Atheismus und der Nationalität im Jahr 2012 innerhalb der afrikanischen Länder `c("Nigeria","Kenya", "Tunisia", "Ghana", "Cameroon", "South Sudan")`?
-
-------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
@@ -350,6 +348,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-02
+-   Datum erstellt: 2016-06-16
 -   R Version: 3.3.0
--   `mosaic` Version: 0.13.0
+-   `mosaic` Version: 0.14

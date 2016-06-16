@@ -286,10 +286,10 @@ xpnorm(0, mean=-0.08, sd=1.69 )
 ```
 
     ## 
-    ## If X ~ N(-0.08,1.69), then 
+    ## If X ~ N(-0.08, 1.69), then 
     ## 
-    ##  P(X <= 0) = P(Z <= 0.047) = 0.5189
-    ##  P(X >  0) = P(Z >  0.047) = 0.4811
+    ##  P(X <= 0) = P(Z <= 0.04733728) = 0.5188778
+    ##  P(X >  0) = P(Z >  0.04733728) = 0.4811222
 
 ![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
@@ -304,10 +304,10 @@ xpnorm(0, mean=0.11, sd=1.62, lower.tail = FALSE)
 ```
 
     ## 
-    ## If X ~ N(0.11,1.62), then 
+    ## If X ~ N(0.11, 1.62), then 
     ## 
-    ##  P(X <= 0) = P(Z <= -0.068) = 0.4729
-    ##  P(X >  0) = P(Z >  -0.068) = 0.5271
+    ##  P(X <= 0) = P(Z <= -0.06790123) = 0.4729321
+    ##  P(X >  0) = P(Z >  -0.06790123) = 0.5270679
 
 ![](EinfuehrungWkeitInferenz_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
@@ -391,6 +391,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-13
+-   Datum erstellt: 2016-06-16
 -   R Version: 3.3.0
--   `mosaic` Version: 0.13.0
+-   `mosaic` Version: 0.14

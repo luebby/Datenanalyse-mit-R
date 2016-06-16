@@ -28,10 +28,10 @@ xpnorm(z0, lower.tail = FALSE) # p-Wert
 ```
 
     ## 
-    ## If X ~ N(0,1), then 
+    ## If X ~ N(0, 1), then 
     ## 
-    ##  P(X <= 1.07575786848953) = P(Z <= 1.076) = 0.859
-    ##  P(X >  1.07575786848953) = P(Z >  1.076) = 0.141
+    ##  P(X <= 1.075758) = P(Z <= 1.075758) = 0.8589822
+    ##  P(X >  1.075758) = P(Z >  1.075758) = 0.1410178
 
 ![](Inferenz-Metrisch_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
@@ -197,7 +197,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
     ## 
     ##  One Sample t-test
     ## 
-    ## data:  data$(IB91JW - IAU91JW)
+    ## data:  B3$(IB91JW - IAU91JW)
     ## t = -1.9612, df = 156, p-value = 0.05164
     ## alternative hypothesis: true mean is not equal to 0
     ## 95 percent confidence interval:
@@ -482,6 +482,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-06
+-   Datum erstellt: 2016-06-16
 -   R Version: 3.3.0
--   `mosaic` Version: 0.13.0
+-   `mosaic` Version: 0.14

@@ -366,13 +366,13 @@ favstats(tip~day, data=tips)
 Kennzahlen für den linearen Zusammenhang von metrischen Variablen sind Kovarianz `cov` und der Korrelationskoeffizient `cor`:
 
 ``` r
-cov(tip, total_bill, data=tips)
+cov(tip ~ total_bill, data=tips)
 ```
 
     ## [1] 8.323502
 
 ``` r
-cor(tip, total_bill, data=tips)
+cor(tip ~ total_bill, data=tips)
 ```
 
     ## [1] 0.6757341
@@ -385,8 +385,8 @@ tally(smoker~sex, format="proportion", data=tips)
 
     ##       sex
     ## smoker    Female      Male
-    ##    No  0.6206897 0.6178344
-    ##    Yes 0.3793103 0.3821656
+    ##    No  0.2213115 0.3975410
+    ##    Yes 0.1352459 0.2459016
 
 ------------------------------------------------------------------------
 
@@ -417,4 +417,4 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 -   Datum erstellt: 2016-06-16
 -   R Version: 3.3.0
--   `mosaic` Version: 0.13.0
+-   `mosaic` Version: 0.14
