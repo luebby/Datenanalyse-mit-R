@@ -92,7 +92,13 @@ Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinanderliegen k
 set.seed(1896) # Zufallszahlengenerater setzen
 xyplot(total_bill ~ jitter(size), data=tips)
 ```
+***
+**Übung:** 
 
+1.  Um wie viel Dollar steigt im Durchschnitt das Trinkgeld, wenn eine Person mehr am Tisch sitzt.
+2.  Für wie Aussagekräftig halten Sie Ihr Ergebnis aus 1.?
+
+***
 
 ## Regression mit kategorialen Werten
 Der Wochentag `day` ist eine kategoriale Variable. Wie sieht eine Regression des Trinkgeldes darauf aus?
@@ -134,7 +140,13 @@ LinMod.3Fun <- makeFun(LinMod.3)
 LinMod.3Fun(day="Fri")
 ```
 
+***
+**Übung:** 
 
+3.  Wie verändert sich die Rechnungshöhe im Durchschnitt, wenn die Essenszeit Dinner statt Lunch ist?
+4.  Wie viel % der Variation der Rechnungshöhe können Sie durch die Essenszeit modellieren?
+
+***
 ## Multivariate Regression
 Aber wie wirken sich die Einflussgrößen *zusammen* auf das Trinkgeld aus?
 ```{r}
@@ -161,7 +173,7 @@ coef(LinMod.5a) # Koeffizienten extrahieren
 LinMod.5b <- lm(tip ~  sex + total_bill, data=tips)
 coef(LinMod.5b) # Koeffizienten extrahieren
 ```
-Ohne die Berücksichtigung der **Kovariable** Rechnungshöhe geben `r levels(tips$sex)[2]` ein um im Durchschnitt `r round(coef(LinMod.5a)[2],2)`$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um `r abs(round(coef(LinMod.5b)[2],2))`$ *niedrigeres* Trinkgeld als die Referenzklasse `r levels(tips$sex)[1]` (`levels(tips$sex)[1]`). 
+Ohne die Berücksichtigung der **Kovariable/ Störvariable** Rechnungshöhe geben `r levels(tips$sex)[2]` ein um im Durchschnitt `r round(coef(LinMod.5a)[2],2)`$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um `r abs(round(coef(LinMod.5b)[2],2))`$ *niedrigeres* Trinkgeld als die Referenzklasse `r levels(tips$sex)[1]` (`levels(tips$sex)[1]`). 
 
 ## Inferenz in der linearen Regression
 Kehren wir noch einmal zur multivariaten Regression (`LinMod.4`) zurück. 
@@ -170,7 +182,7 @@ summary(LinMod.4)
 ```
 
 In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1%. `**` entsprechend 1%, `*` 5% und `.` 10%. Zum Signifikanzniveau von 10% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 
-`r round(summary(LinMod.4)$r.squared,2)`, also `r round(summary(LinMod.4)$r.squared*100)`-% der Variation des Trinkgeldes wird im Modell erklärt.
+`r round(summary(LinMod.4)$r.squared,2)`, also `r round(summary(LinMod.4)$r.squared*100)`% der Variation des Trinkgeldes wird im Modell erklärt.
 
 
 ## Modellwahl
@@ -194,7 +206,7 @@ Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evalu
 Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) als `csv`herunterladen.
 
 
-*folgt*
+Versuchen Sie das Evaluierungsergebnis als abhängige Variable anhand geeigneter Variablen des Datensatzes zu erklären. Wie groß ist der Einfluss der Schönheit? Sind die Modellannahmen erfüllt und wie würden Sie die Modellgüte beurteilen.
 
 
 ***

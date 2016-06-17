@@ -128,7 +128,12 @@ set.seed(1896) # Zufallszahlengenerater setzen
 xyplot(total_bill ~ jitter(size), data=tips)
 ```
 
-![](Regression_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](Regression_files/figure-markdown_github/unnamed-chunk-12-1.png) \*** **Übung:\*\*
+
+1.  Um wie viel Dollar steigt im Durchschnitt das Trinkgeld, wenn eine Person mehr am Tisch sitzt.
+2.  Für wie Aussagekräftig halten Sie Ihr Ergebnis aus 1.?
+
+------------------------------------------------------------------------
 
 Regression mit kategorialen Werten
 ----------------------------------
@@ -233,6 +238,15 @@ LinMod.3Fun(day="Fri")
 
     ##        1 
     ## 2.734737
+
+------------------------------------------------------------------------
+
+**Übung:**
+
+1.  Wie verändert sich die Rechnungshöhe im Durchschnitt, wenn die Essenszeit Dinner statt Lunch ist?
+2.  Wie viel % der Variation der Rechnungshöhe können Sie durch die Essenszeit modellieren?
+
+------------------------------------------------------------------------
 
 Multivariate Regression
 -----------------------
@@ -387,7 +401,7 @@ coef(LinMod.5b) # Koeffizienten extrahieren
     ## (Intercept)     sexMale  total_bill 
     ##  0.93327849 -0.02660871  0.10523236
 
-Ohne die Berücksichtigung der **Kovariable** Rechnungshöhe geben Male ein um im Durchschnitt 0.26$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um 0.03$ *niedrigeres* Trinkgeld als die Referenzklasse Female (`levels(tips$sex)[1]`).
+Ohne die Berücksichtigung der **Kovariable/ Störvariable** Rechnungshöhe geben Male ein um im Durchschnitt 0.26$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um 0.03$ *niedrigeres* Trinkgeld als die Referenzklasse Female (`levels(tips$sex)[1]`).
 
 Inferenz in der linearen Regression
 -----------------------------------
@@ -425,7 +439,7 @@ summary(LinMod.4)
     ## Multiple R-squared:  0.4701, Adjusted R-squared:  0.452 
     ## F-statistic: 26.06 on 8 and 235 DF,  p-value: < 2.2e-16
 
-In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1%. `**` entsprechend 1%, `*` 5% und `.` 10%. Zum Signifikanzniveau von 10% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um 0.09 Dollar, mit jeder Person um 0.18 Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 0.47, also 47-% der Variation des Trinkgeldes wird im Modell erklärt.
+In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1%. `**` entsprechend 1%, `*` 5% und `.` 10%. Zum Signifikanzniveau von 10% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um 0.09 Dollar, mit jeder Person um 0.18 Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 0.47, also 47% der Variation des Trinkgeldes wird im Modell erklärt.
 
 Modellwahl
 ----------
@@ -511,7 +525,7 @@ Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evalu
 
 Sie können ihn, sofern noch nicht geschehen, von <https://goo.gl/6Y3KoK> als `csv`herunterladen.
 
-*folgt*
+Versuchen Sie das Evaluierungsergebnis als abhängige Variable anhand geeigneter Variablen des Datensatzes zu erklären. Wie groß ist der Einfluss der Schönheit? Sind die Modellannahmen erfüllt und wie würden Sie die Modellgüte beurteilen.
 
 ------------------------------------------------------------------------
 
@@ -519,6 +533,6 @@ Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.ope
 
 ### Versionshinweise:
 
--   Datum erstellt: 2016-06-14
+-   Datum erstellt: 2016-06-17
 -   R Version: 3.3.0
--   `mosaic` Version: 0.13.0
+-   `mosaic` Version: 0.14
