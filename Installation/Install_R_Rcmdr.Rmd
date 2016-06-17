@@ -3,10 +3,10 @@ title: "Installation von R und R Commander"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Vorbereitungen und Hinweise
-Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand fällt aber nur einmal an! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
+Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand fällt aber nur einmal an! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
 * [**R Commander**](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt
@@ -94,6 +94,7 @@ Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Install
 ```{r eval=FALSE}
 install.packages("Rcmdr")
 ```
+Welchen "Mirror" (Server, Repository) Sie dabei verwenden ist egal, z. B. den Cloud Mirror von R Studio, oder einen Nahe gelegenen. Evt. werden Sie gefragt, ob Sie eine neuere Version aus "Sourcen" im Vergleich zu "Binaries" erstellen wollen. Sie können gerne "Ja" versuchen, wenn es nicht klappt ist das aber auch kein Problem.
 
 Hier werden einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über
 ```{r eval=FALSE}
@@ -144,6 +145,5 @@ library(RCmdr)
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`
-* Rcmdr Version: `r packageVersion("Rcmdr")`
 
 
