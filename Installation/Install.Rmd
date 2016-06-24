@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Vorbereitungen und Hinweise
-Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
+Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
 * [**R Studio**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
@@ -70,6 +70,8 @@ https://www.rstudio.com/products/rstudio/download/
 
 entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
+*Tipp:* Falls Sie Dateien, Code etc. plattformübergreifend verwenden wollen, empfiehlt es sich unter `Tools... -> Global Options -> Code -> Saving -> Default text encodings:` `UTF-8` auszuwählen. 
+
 ### Installation von Zusatzpaketen
 
 Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von R-Studio  starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
@@ -109,12 +111,13 @@ gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimme
 ```{r eval=FALSE}
 plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
 ```
-Unter **Mac OS X** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
+
+*Tipp:* Unter **Mac OS X** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
 
 *Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R-Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
 
 ## Pakete verwenden
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Jeses Zusatzpaket wird über den Befehle `library()` gestartet. Starten Sie also `mosaic` und `Rcmdr` also zunächst mit den folgenden Befehlen
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Jedes Zusatzpaket wird über den Befehle `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde. Starten Sie also `mosaic` und `Rcmdr` also zunächst mit den folgenden Befehlen
 ```{r eval=FALSE}
 library(mosaic)
 ```
