@@ -21,6 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Vorbemerkungen
+Eine Übersicht von nützlichen R Funktionen innerhalb der Datenanalyse. 
+
 Diese Kurzreferenz beschreibt ein kleinen Teil der R Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert größtenteils auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
 
 Weitere Hilfe und Beispiele finden Sie, wenn Sie
@@ -90,8 +92,11 @@ log() # Logarithmusfunktion
 exp() # Exponentialfunktion
 sqrt() # Quadratwurzelfunktion
 abs() # Betragsfunktion
+cut() # Aufteilung numerischer Werte in Intervalle
+rowSums() # Zeilensumme
+rowMeans() # Zeilenmittelwert
+recode() # Umkodierung von Werten, paket car
 ```
-
 
 
 ## Grafische Verfahren
@@ -105,7 +110,9 @@ xyplot() # Streudiagrmm
 Nicht aus dem Paket mosaic sind:
 ```{r eval=FALSE}
 mosaicplot() # Mosaicplot
-corrgram() # Korrelationsplot, aus Paket corrgram
+corrgram() # Korrelationsplot, Paket corrgram
+ggpairs() # Matrixplot, GGally
+heatmap() # Heatmap
 ```
 
 ## Deskriptive Statistik
@@ -139,20 +146,16 @@ rnorm() # Normalverteilte Zufallszahlen
 ```
 
 ### Verteilungen
-Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=`, bzw. `df=` oder `size=`, `prob=` angepasst werden.
+Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=`, bzw. `df=` angepasst werden.
 ```{r, eval=FALSE}
-pbinom() # Verteilungsfunktion Binomialverteilung
-qbinom() # Quantilsfunktion Binomialverteilung
 pchisq() # Verteilungsfunktion Chi² Verteilung
 qchisq() # Quantilsfunktion Chi² Verteilung
 pnorm() # Verteilungsfunktion Normalverteilung
 qnorm() # Quantilsfunktion Normalverteilung
 pt() # Verteilungsfunktion t-Vverteilung
 qt() # Quantilsfunktion t-Vverteilung
-pf() # Verteilungsfunktion F-verteilung
-qf() # Quantilsfunktion F-verteilung
 ```
-
+Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
 
 ### Testverfahren
 Einige der Testverfahren wurden von `mosaic` angepasst.
