@@ -3,7 +3,7 @@ title: "Einführung Inferenz kategoriale Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  github_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
 documentclass: article
@@ -127,7 +127,7 @@ z <- (pdiff - 0)/se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist klein und das Ergebnis damit *statistisch signifikantz*. Die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering (wenn die H0 gilt), d. h. es wird auf eine Änderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering (wenn die H0 gilt), d. h. es wird auf eine Änderung des Anteilswertes in der *Population* geschlossen.
 
 *Exkurs:*
 Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird:
@@ -135,15 +135,17 @@ Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem
 # Gemeinsamer Datensatz
 de <- subset(atheism, nationality == "Germany")
 # Beobachtete Differenz
-pdiff <- diff(tally(response~year, data=de, format="proportion")["atheist",])
+pdiff <- diff(tally( ~ response | year, data=de, format="proportion")["atheist",])
 pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
 # 1000-mal das Jahr permutieren: Nullhypothese kein Unterschied
-pdiff.null <- do(1000) * diff(tally(response~sample(year), data=de, 
+pdiff.null <- do(1000) * diff(tally( ~ response | sample(year), data=de, 
                                     format="proportion")["atheist",])
 # Histogramm
 histogram(~ X2012, groups=(X2012 >= pdiff), data=pdiff.null)
+# p-Wert
+mean(pdiff.null$X2012 >= pdiff)
 ```
 
 ***

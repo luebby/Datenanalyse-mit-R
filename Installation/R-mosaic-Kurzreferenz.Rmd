@@ -85,17 +85,20 @@ Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Date
 ```{r eval=FALSE}
 as.factor() # Daten als Faktoren definieren
 relevel() # Faktorstufen umordnen
+recode() # Umkodierung von Werten, paket car
 as.numeric() # Faktorstufen als numerische Daten verwenden
+cut() # Aufteilung numerischer Werte in Intervalle
+
 subset() # Teilmenge der Daten auswählen
 na.omit() # Zeilen mit fehlenden Werten entfernen
+
 log() # Logarithmusfunktion
 exp() # Exponentialfunktion
 sqrt() # Quadratwurzelfunktion
 abs() # Betragsfunktion
-cut() # Aufteilung numerischer Werte in Intervalle
+
 rowSums() # Zeilensumme
 rowMeans() # Zeilenmittelwert
-recode() # Umkodierung von Werten, paket car
 ```
 
 
@@ -114,6 +117,8 @@ corrgram() # Korrelationsplot, Paket corrgram
 ggpairs() # Matrixplot, GGally
 heatmap() # Heatmap
 ```
+
+\pagebreak 
 
 ## Deskriptive Statistik
 Eine gute Zusammenfassung liefert der `mosaic` Befehl:

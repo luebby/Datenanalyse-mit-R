@@ -3,7 +3,7 @@ title: "Einführung Lineare Regression"
 author: "Karsten Lübke"
 date: ''
 output:
-  github_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
 documentclass: article
@@ -131,6 +131,11 @@ summary(LinMod.3)
 sowie als Plot:
 ```{r}
 plotModel(LinMod.3)
+```
+
+Eine Alternative zu `relevel()` zur Bestimmung der Referenzkategorie ist es, innerhalb von `factor()` die Option `levels=` direkt in der gewünschten Sortierung zu setzen.
+```{r, eval=FALSE}
+day <- factor(tips$day, levels=c("Thur", "Fri", "Sat",  "Sun"))
 ```
 
 

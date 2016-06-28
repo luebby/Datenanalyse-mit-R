@@ -3,9 +3,7 @@ title: "Einführung Inferenz metrische Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  github_document:
-    fig_height: 3
-    fig_width: 5
+  pdf_document:
 documentclass: article
 classoption: a4paper
 ---
@@ -159,7 +157,7 @@ t.test(ZINSK ~ PHASEN, data=B3AufAb)
 ```{r, echo=FALSE}
 tb3 <- t.test (ZINSK ~ PHASEN, data=B3AufAb)
 ```
-Der kleine p-Wert von `r tb3$p.value` zeigt, dass die Nullhypothese der Gleichheit der Lageparameter verworfen werden kann. Wir können der Funktion auch eine spezielle Alternativhypothese übergeben:
+Der kleine p-Wert von $`r tb3$p.value`$ zeigt, dass die Nullhypothese der Gleichheit der Lageparameter verworfen werden kann. Wir können der Funktion auch eine spezielle Alternativhypothese übergeben:
 ```{r}
 t.test(ZINSK ~ PHASEN, data=B3AufAb, alternative = "less")
 ```
