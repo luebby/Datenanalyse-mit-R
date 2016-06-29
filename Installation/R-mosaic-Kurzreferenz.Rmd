@@ -38,14 +38,14 @@ eingeben.
 * R wendet Befehle direkt an
 * R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
-* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen
+* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen
 * Eine Ergebniszuweiseung erfolgt über `<-`
 
 Innerhalb von `mosaic`:
 ```{r eval=FALSE} 
 analysiere(y ~ x | z , data=Daten)
 ```
-d. h., modelliere `y` in Abhängigkeit von `x` getrennt für jedes `z` aus dem Datensatz `Daten`. Dabei können Teile fehlen.
+d. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.
 
 Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und geladen werden:
 ```{r, eval=FALSE}
@@ -61,7 +61,7 @@ Daten einlesen und Datenvorverarbeitung sind häufig der (zeitlich) aufwendigste
 ### Daten einlesen
 ```{r eval=FALSE}
 read.table() # Allgemeinen Datensatz einlesen. Achtung: Optionen anpassen
-read.csv2() # (deutschen) csv Datensatz einlesen
+read.csv2() # csv Datensatz einlesen (aus deutschsprachigem Excel)
 file.choose() # Datei auswählen
 meineDaten <- read.csv2(file.choose())
 ```
@@ -81,11 +81,11 @@ rownames(); colnames() # Zeilennamen, Spaltennamen
 ```
 
 ### Daten transformieren
-Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i. Zeile und j. Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalten ausgewählt werden können. Über `c()` wird ein Vektor erzeugt.
+Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i. Zeile und j. Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt.
 ```{r eval=FALSE}
 as.factor() # Daten als Faktoren definieren
 relevel() # Faktorstufen umordnen
-recode() # Umkodierung von Werten, paket car
+recode() # Umkodierung von Werten, Paket car
 as.numeric() # Faktorstufen als numerische Daten verwenden
 cut() # Aufteilung numerischer Werte in Intervalle
 
@@ -114,7 +114,7 @@ Nicht aus dem Paket mosaic sind:
 ```{r eval=FALSE}
 mosaicplot() # Mosaicplot
 corrgram() # Korrelationsplot, Paket corrgram
-ggpairs() # Matrixplot, GGally
+ggpairs() # Matrixplot, Paket GGally
 heatmap() # Heatmap
 ```
 
