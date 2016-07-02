@@ -85,6 +85,7 @@ Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Date
 ```{r eval=FALSE}
 as.factor() # Daten als Faktoren definieren
 relevel() # Faktorstufen umordnen
+droplevels() # Ungenutzte Faktorstufen entfernen
 recode() # Umkodierung von Werten, Paket car
 as.numeric() # Faktorstufen als numerische Daten verwenden
 cut() # Aufteilung numerischer Werte in Intervalle
