@@ -126,12 +126,13 @@ Wenn wir die einzelnen `levels` des Faktors als numerische Werte verwenden wolle
 
 Um die Interpretation zu erleichtern können wir hier einfach die Faktorstufe umbenennen.
 ```{r}
-levels(B3$PHASEN) <- c("Aufschwung", "Oberer Wendepunkt", "Abschwung", "Unterer Wendepunkt")
+levels(B3$PHASEN) <- c("Aufschwung", "Oberer Wendepunkt", 
+                       "Abschwung", "Unterer Wendepunkt")
 ```
 
 Jetzt ist keine Verwechselung von kategoriellen und metrischen Variablen mehr möglich.
 
-Zunächst den Datensatz, der auch die konjunkturellen Wendepunkte enthält ein. 
+Zunächst wird der Datensatz, der auch die konjunkturellen Wendepunkte enthält, nur auf Auf- und Abschwung eingeschränkt. 
 ```{r}
 B3AufAb <- subset(B3, PHASEN %in% c("Aufschwung", "Abschwung")) 
 B3AufAb <- droplevels(B3AufAb)
