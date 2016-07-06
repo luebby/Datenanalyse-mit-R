@@ -191,11 +191,11 @@ Logische Vektoren können z.B. mit "und" `&` oder "oder" `|` verknüpft werden:
 ```{r eval=FALSE}
 tips$sex=="Female" & tips$smoker=="Yes"
 ```
-gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *und* geraucht wurde,
+gibt die Tischgesellschaften wieder, in denen die Rechnung von Frauen beglichen wurde *und* geraucht wurde,
 ```{r eval=FALSE}
 tips$sex=="Female" | tips$smoker=="Yes"
 ```
-gibt die Tischgesellschaften wieder, in denen die Rechnung von von Frauen beglichen wurde *oder* geraucht wurde.
+gibt die Tischgesellschaften wieder, in denen die Rechnung von Frauen beglichen wurde *oder* geraucht wurde.
 
 Intern wird `TRUE` in R mit der Zahl 1 hinterlegt, `FALSE` mit 0. Mit dem Befehl `sum()` kann man daher die Elemente eines Vektor aufsummieren, also erfahren wir über 
 ```{r eval=FALSE}
