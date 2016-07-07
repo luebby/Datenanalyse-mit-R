@@ -20,7 +20,7 @@ require(corrgram)
 
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
 
-Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:
+Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt aus R heraus herunterladen:
 ```{r eval=FALSE}
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```

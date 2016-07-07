@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Hinweise
 [R](https://cran.r-project.org) ist der Name eines Programms für Statistik und Datenanalyse, [RStudio](https://www.rstudio.com) ist eine komfortable Entwicklungsumgebung für R.
 
-Nach dem Start von R Studio erscheint folgender Bildschirm:
+Nach dem Start von R Studio erscheint folgender Bildschirm, wobei die Version natürlich neuer sein kann.
 
 
 ```{r echo=FALSE}
@@ -43,6 +43,7 @@ Ein paar Anmerkungen vorweg:
 * Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen
+* Sofern Sie das Skriptfenster verwenden: einzelne Befehle aus dem Skriptfenster in R Studio können Sie auch mit `Str` und `Enter` an die Console schicken
 
 
 ## R als Taschenrechner
