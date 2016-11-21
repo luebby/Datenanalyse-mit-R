@@ -130,29 +130,38 @@ typ <- factor(c("A", "B"))
 entscheider <- rep(typ, c(151,143))
 tally(~entscheider)
 ```
-Aus diesem Vektor ziehen wir eine zufällige Stichprobe von 158 positiven Entscheidungen:
+
+Sowie der Entscheidungen:
+
 ```{r}
-simentscheidung <- sample(entscheider, size=158)
+rating <- factor(c("Positiv", "Nicht Positiv"))
+entscheidungen <- rep(rating, c(79+79, (151+143)-(79+79)))
+tally(~entscheidungen)
+                      
+```
+
+Aus diesem Vektor ziehen wir eine zufällige Stichprobe von 151 Entscheidungen von Typ A.
+```{r}
+simentscheidung <- sample(entscheidungen, size=151)
 tally(~simentscheidung)
 ```
-Hier wären also zufällig `r tally(~simentscheidung)["A"]` der 158 positiven Entscheidungen den Typ A zugeordnet geworden.
+Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entscheidungen den Typ A Positiv gewesen -- wenn es keinen Zusammanhang zwischen Typ und Rating gibt.
 
-Wir oft kommt also zufällig heraus, dass mindestens 79 der 158 positiven Entscheidungen den Typ B zugeordnet werden? Simulieren wir das z. B. 1000-mal:
+Wir oft kommt also zufällig heraus, dass mindestens 79 der 151 Entscheidungen des Typs A positiv zugeordnet werden? Simulieren wir das z. B. 1000-mal:
 ```{r}
-typsim <- do(1000)*tally(~resample(entscheider, size=158))
-sum(typsim$B>=79)/length(typsim$B)
+entsim <- do(1000)*tally(~sample(entscheidungen, size=151))
+sum(entsim$"Positiv">=79)/length(entsim$"Positiv")
 ```
 
-Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in `r round(mean(typsim$B>=79)*100,2)`% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
+Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in `r round(mean(entsim$"Positiv">=79)*100,2)`% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
 *Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthält und sich nicht nur auf einen Anteilswert beziehen.
 
 
 Über
 ```{r}
-rating <- factor(c("Positiv", "Nicht Positiv"))
 typA <- rep(rating, c(79, 151-79))
 ```
-erzeugen wir uns einen Vektor, der die 79 positive und 151-79 nicht positiven Urteile enthält.
+erzeugen wir uns einen Vektor, der die 79 positive und 151-79 nicht positiven Urteile von Typ A (alleinige Entscheidung) enthält.
 ```{r}
 tally(~ typA)
 ```

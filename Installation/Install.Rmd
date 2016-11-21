@@ -36,8 +36,8 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 ### Windows
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
-### Mac OS X
-Einige Zusatzpakete wie z. B.`Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden. Neuere Versionen von R werden nur noch für OS X ab Version 10.9 (Mavericks) oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. ein Update. 
+### macOS
+Einige Zusatzpakete wie z. B. `Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden. Neuere Versionen von R werden nur noch für OS X ab Version 10.9 (Mavericks) oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. ein Update. 
 
 1.  Installation [XQuartz](http://www.xquartz.org/)
 2.  Neustart Computer
@@ -59,7 +59,7 @@ https://www.r-project.org/.
 Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
 
 1.  Windows: https://cran.rstudio.com/bin/windows/base/
-2.  Mac OS X: https://cran.rstudio.com/bin/macosx/
+2.  macOS: https://cran.rstudio.com/bin/macosx/
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
@@ -97,7 +97,7 @@ Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Install
 install.packages("Rcmdr")
 ```
 
-**Hinweis:** Bei der Verwendung von MAC OS X bitte unbedingt *vorher* die Hinweise zur [Vorbereitung der Installation](#anchor) beachten. 
+**Hinweis:** Bei der Verwendung von macOS bitte unbedingt *vorher* die Hinweise zur [Vorbereitung der Installation](#anchor) beachten. 
 
 Auch hier werden einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über
 ```{r eval=FALSE}
@@ -107,12 +107,8 @@ gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimme
 
 [Hier](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html) gibt es weitere Hinweise zur Installation des R Commanders.
 
-**Hinweis:** Um die Grafikfunktionalität des R Commanders innerhalb von R Studio nutzen zu können bitte *vor* dem Start des R Commanders einmal eine Grafik erzeugen, z. B. mit:
-```{r eval=FALSE}
-plot(airmiles) # Passenger Miles on Commercial US Airlines, 1937–1960
-```
 
-*Tipp:* Unter **Mac OS X** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
+*Tipp:* Unter **macOS** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
 
 *Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R-Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
 

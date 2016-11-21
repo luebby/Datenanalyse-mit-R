@@ -43,7 +43,7 @@ str(tips)
 ```
 überprüft werden: Der Datensatz hat also `r nrow(tips)` Zeilen (=Beobachtungen) und `r ncol(tips)` Spalten (=Merkmale/ Variablen).
 
-Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
+Zur folgenden Analyse muss zunächst das` Paket `mosaic` geladen werden:
 ```{r eval=FALSE, message=FALSE}
 require(mosaic)
 
@@ -183,7 +183,7 @@ min(~ total_bill | smoker, data=tips)
 gibt also das Minimum der Rechnungshöhe, getrennt nach Raucher und Nichtrauchern an, d. h. das Minimum bei den Rauchern lag bei `r min(~total_bill|smoker, data=tips)["Yes"]`$.
 
 ***
-**Übung:** Bestimmen Sie das Maximum der Trinkgeldhöhe je 
+**Übung:** Bestimmen Sie das Maximum der Trinkgeldhöhe je Wochentag (`day`)
 
 ***
 

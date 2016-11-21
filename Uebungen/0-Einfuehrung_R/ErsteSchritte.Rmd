@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Hinweise
 [R](https://cran.r-project.org) ist der Name eines Programms für Statistik und Datenanalyse, [RStudio](https://www.rstudio.com) ist eine komfortable Entwicklungsumgebung für R.
 
-Nach dem Start von R Studio erscheint folgender Bildschirm, wobei die Version natürlich neuer sein kann.
+Nach dem Start von R Studio erscheint folgender Bildschirm, wobei die Version neuer sein kann.
 
 
 ```{r echo=FALSE}
