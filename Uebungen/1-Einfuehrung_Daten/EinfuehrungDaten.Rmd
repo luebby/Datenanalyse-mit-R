@@ -43,7 +43,7 @@ str(tips)
 ```
 überprüft werden: Der Datensatz hat also `r nrow(tips)` Zeilen (=Beobachtungen) und `r ncol(tips)` Spalten (=Merkmale/ Variablen).
 
-Zur folgenden Analyse muss zunächst das` Paket `mosaic` geladen werden:
+Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
 ```{r eval=FALSE, message=FALSE}
 require(mosaic)
 
