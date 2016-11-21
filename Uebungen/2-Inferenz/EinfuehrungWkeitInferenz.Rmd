@@ -121,7 +121,7 @@ wird folgendes Experiment untersucht: unterscheidet sich die Einschätzung (Rati
 
 Zeigt das unterschiedliche Verhältnis: Typ A: 79/151=`r round(79/151*100,2)`% zu Typ B: 79/143=`r round(79/143*100,2)`%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?
 
-Das Chancenverhältnis, das **Odds Ratio** liegt bei (79/(151-79))/(79/(143-78))=`r round((79/(151-79))/(79/(143-78)), 2)`, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
+Das Chancenverhältnis, das **Odds Ratio** liegt bei (79/(151-79))/(79/(143-79))=`r round((79/(151-79))/(79/(143-79)), 2)`, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
 
 Zunächst erzeugen wir einen Vektor der Länge 2 mit den Entscheidungstypen, aus dem wir simulieren können:
 
@@ -174,7 +174,7 @@ Erhalten wir 1000 (resampelte) Stichproben, die jeweils einen zufälligen Stichp
 histogram(~typAboot$Positiv, v=79/151) # 79/151: Anteil der Originalstichprobe
 ```
 
-In 95% der Fälle liegt diese zufällige Stichprobenanteil hier zwischen 
+In 95% der Fälle liegt dieser zufällige Stichprobenanteil hier zwischen 
 ```{r}
 ki <- c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
 ki
@@ -238,7 +238,7 @@ Für Facebook lag die Tagesrendite bei -1.51, der z-Wert demnach bei:
 Der 26. Mai 2015 war also auch für Facebook-Anlegerinnen kein guter Tag, aber immer noch besser als bei Apple.
 
 ***
-**Übung:** Die Rendite von Google am 26.05.2016 betrug -1.33. Wie hoch ist der z-Wert und interpretieren Sie die Aussage des Ergebnisses.
+**Übung:** Die Rendite von Google am 26.05.2015 betrug -1.33. Wie hoch ist der z-Wert und interpretieren Sie die Aussage des Ergebnisses.
 
 ***
 
@@ -265,8 +265,8 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ## Übung: 
 In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmern der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels steigern.
 
-1.  Kann diese Verbesserung von fast 90% zufällig sein? Bestimmen Sie die Wahrscheinlichkeit, dass zufällig mindestens 34 von 38 Personen eine Verbesserung erzielen mit Hilfe einer Simulation.
-2.  Bestimmen Sie ein nicht-paramatrisches Bootstrap-Konfindenzintervall, dass den Anteilswert der Verbesserung in 95% der Fälle überdeckt.    
+1.  Kann diese Verbesserung bei fast 90% der Personen zufällig sein? Bestimmen Sie die Wahrscheinlichkeit, dass zufällig mindestens 34 von 38 Personen eine Verbesserung erzielen mit Hilfe einer Simulation.
+2.  Bestimmen Sie ein nicht-paramatrisches Bootstrap-Konfidenzintervall, dass den Anteilswert der Verbesserung in 95% der Fälle überdeckt.    
 
 Der IQ hat nach Konstruktion einen arithmetischen Mittelwert von 100 bei einer Standardabweichung von 15.
 
