@@ -3,13 +3,13 @@ title: "Installation von R und R Commander"
 author: "Karsten Lübke"
 date: ''
 output:
+  word_document:
+    fig_height: 3
+    fig_width: 5
   pdf_document:
     fig_height: 3
     fig_width: 5
   html_document:
-    fig_height: 3
-    fig_width: 5
-  word_document:
     fig_height: 3
     fig_width: 5
 documentclass: article

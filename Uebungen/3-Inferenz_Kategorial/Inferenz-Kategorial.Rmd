@@ -102,7 +102,7 @@ Im Jahre 2005 lag der Anteil der Atheisten in Deutschland bei
 ```{r}
 tally(~response, data=de05, format="proportion")
 ```
-Der Aneil lag also bei unter 10% -- in der *Stichprobe*! Können wir daraus auf eine Veränderung in der *Population* schließen? 
+Der Aneil lag also bei unter 10% -- in der *Stichprobe*! Können wir daraus auf eine Erhöhung des Anteils von 2005 zu 2012 in der *Population* schließen? 
 ```{r}
 # 2012
 a12 <- tally(~response, data=de12)["atheist"] # Anzahl Atheisten 2012
@@ -127,10 +127,10 @@ z <- (pdiff - 0)/se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Differenz der Anteilswerte zu beobachten also gering (wenn die H0 gilt), d. h. es wird auf eine Änderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten ist also gering -- wenn die H0 gilt! d. h. es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
 
 *Exkurs:*
-Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird:
+Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d. h. zweiseitig getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch ein Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
 ```{r}
 # Gemeinsamer Datensatz
 de <- subset(atheism, nationality == "Germany")
@@ -143,16 +143,16 @@ set.seed(1896)
 pdiff.null <- do(1000) * diff(tally( ~ response | sample(year), data=de, 
                                     format="proportion")["atheist",])
 # Histogramm
-histogram(~ X2012, groups=(X2012 >= pdiff), data=pdiff.null)
+histogram(~ X2012, data=pdiff.null, v=c(pdiff, -pdiff))
 # p-Wert
-mean(pdiff.null$X2012 >= pdiff)
+mean(abs(pdiff.null$X2012) >= abs(pdiff))
 ```
 
 ***
 **Übung:**
 
 5.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und den Niederlanden (`Netherlands`) in der Population gibt.
-6.  Überprüfen Sie für das Jahr 2016, ob es eine zum Niveau 5% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und Polen (`Poland`) in der Population gibt.
+6.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und Polen (`Poland`) in der Population gibt.
 
 ***
 
