@@ -82,7 +82,9 @@ Wir haben in `r sum(farbspiele$Verlust==1)` von 1000 Wiederholungen nur verloren
 
 
 ***
-**Übung:** Wenn Sie statt auf Farbe auf eine Zahl setzen, beträgt Ihre Gewinnwahrscheinlichkeit 1/37. Simulieren Sie 1000-mal 10 Spiele. Wie oft haben Sie mindestens 1-mal gewonnen?
+**Übung:** 
+
+1.  Wenn Sie statt auf Farbe auf eine Zahl setzen, beträgt Ihre Gewinnwahrscheinlichkeit 1/37. Simulieren Sie 1000-mal 10 Spiele. Wie oft haben Sie mindestens 1-mal gewonnen?
 
 ***
 
@@ -104,7 +106,9 @@ histogram(~Gewinn, data=zahlspiele2)
 Die Daten werden *normaler*, symmetrischer, d. h. die Verteilung des Gewinnanteilswertes nähert sich einer Normalverteilung an. Diese Phänomen ist der Hintergrund des **Zentralen Grenzwertsatzes**.
 
 ***
-**Übung:** Zurück zum Farbspiel (`farbspiele`): Wie hoch schätzen Sie die Wahrscheinlichkeit anhand der Simulation, dass Sie mindestens die Hälfte Ihrer 8 Spiele gewinnen? 
+**Übung:** 
+
+2.  Zurück zum Farbspiel (`farbspiele`): Wie hoch schätzen Sie die Wahrscheinlichkeit anhand der Simulation, dass Sie mindestens die Hälfte Ihrer 8 Spiele gewinnen? 
 
 ***
 Richtig: `r mean(farbspiele$Gewinn>=0.5)`, das ist also anscheinend recht wahrscheinlich, während der relative Anteil der Spiele, in denen Sie maximal 1 der 8 Spiele gewinnen recht klein ist:
@@ -190,7 +194,9 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 
 
 ***
-**Übung:** Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese p=0.6 zum Signifikanzniveau 10% verworfen?
+**Übung:** 
+
+3.  Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese p=0.6 zum Signifikanzniveau 10% verworfen?
 
 ***
 
@@ -220,7 +226,9 @@ xpnorm(0, mean=0.11, sd=1.62, lower.tail = FALSE)
 ```
 
 ***
-**Übung:** Welche der drei Aktien hat die höchste Wahrscheinlichkeit eine Tagesrendite über 2.5% zu erzielen?
+**Übung:** 
+
+4.  Welche der drei Aktien hat die höchste Wahrscheinlichkeit eine Tagesrendite über 2.5% zu erzielen?
 
 ***
 
@@ -238,7 +246,9 @@ Für Facebook lag die Tagesrendite bei -1.51, der z-Wert demnach bei:
 Der 26. Mai 2015 war also auch für Facebook-Anlegerinnen kein guter Tag, aber immer noch besser als bei Apple.
 
 ***
-**Übung:** Die Rendite von Google am 26.05.2015 betrug -1.33. Wie hoch ist der z-Wert und interpretieren Sie die Aussage des Ergebnisses.
+**Übung:** 
+
+5.  Die Rendite von Google am 26.05.2015 betrug -1.33. Wie hoch ist der z-Wert und interpretieren Sie die Aussage des Ergebnisses.
 
 ***
 
@@ -258,7 +268,9 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ```
 
 ***
-**Übung:** Sie wollen Ihre Google-Aktien absichern. Wie groß ist der Tagesverlust mindestens bei einer maximalen Eintretenswahrscheinlichkeit von 1%?
+**Übung:** 
+
+6.  Sie wollen Ihre Google-Aktien absichern. Wie groß ist der Tagesverlust mindestens bei einer maximalen Eintretenswahrscheinlichkeit von 1%?
 
 ***
 
