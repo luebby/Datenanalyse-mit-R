@@ -76,6 +76,14 @@ pdach + qnorm(c(0.025, 0.975)) * se
 ```
 Da der Populationsparameter unbekannt aber nicht zufällig ist, spricht man bei den 95% auch von einer *Überdeckungswahrscheinlichkeit*.
 
+In `mosaic` besteht die Möglichkeit Punkt- und Bereichsschätzung mit dem Befehl `prop.test` durchzuführen:
+```{r}
+prop.test(~response, data=de12)
+```
+
+
+
+
 ***
 **Übung:**
 
@@ -92,6 +100,16 @@ xpnorm(z, lower.tail = FALSE)
 ```
 
 Der *p-Wert* liegt also bei `r round(pnorm(z, lower.tail = FALSE)*100, 4)`%, die Nullhypothese wird also zum Signifikanzniveau von 5% verworfen.
+
+Auch hier direkt über `prop.test`:
+```{r}
+prop.test(~response, p=0.1, alternative="greater", data=de12)
+```
+Je nach Alternativhypothese ergeben sich unterschiedliche Tests:
+
+- `alternative="two.sided"`: ungerichtet, d. h. zweiseitig: $H_0: p=0.1$ gegen $H_A: p\neq0.1$
+- `alternative="less"`: gerichtet, d. h. einseitig:  $H_0: p\geq0.1$ gegen $H_A: p<0.1$
+- `alternative="greater"`: gerichtet, d. h. einseitig:  $H_0: p\leq0.1$ gegen $H_A: p>0.1$
 
 ## Differenz zweier Anteilswerte
 In den Daten liegen außerdem die Ergebnisse aus 2005 vor:
@@ -129,11 +147,23 @@ xpnorm(z, lower.tail = FALSE)
 
 Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten ist also gering -- wenn die H0 gilt! d. h. es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
 
+Auch dies kann direkt durch den Befehl `prop.test` gestestet werden. Dazu wird zunächst ein gemeinsamer Datensatz erzeugt:
+```{r}
+de <- subset(atheism, nationality == "Germany")
+```
+
+Und anschließend geteset:
+```{r}
+prop.test(response~year, alternative="less", data=de)
+```
+
+Hier wird die Alternativhypothese `less` verwendet: $H_0: p_1 \geq p_2$, gegen $H_A: p_1<p_2$.
+
+
+
 *Exkurs:*
 Mit dem Paket mosaic kann man das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d. h. zweiseitig getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch ein Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
 ```{r}
-# Gemeinsamer Datensatz
-de <- subset(atheism, nationality == "Germany")
 # Beobachtete Differenz
 pdiff <- diff(tally( ~ response | year, data=de, format="proportion")["atheist",])
 pdiff
