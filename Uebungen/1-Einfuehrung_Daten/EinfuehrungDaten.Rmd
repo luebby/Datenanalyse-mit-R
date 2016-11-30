@@ -67,7 +67,9 @@ bargraph(~ sex | time, data=tips)
 ```
 
 ***
-**Übung:** Zeichnen Sie ein Balkendiagramm des Rauchverhaltens `smoker` je Wochentag `day` und interpretieren Sie das Ergebnis.
+**Übung:** 
+
+1.  Zeichnen Sie ein Balkendiagramm des Rauchverhaltens `smoker` je Wochentag `day` und interpretieren Sie das Ergebnis.
 
 ***
 
@@ -75,7 +77,9 @@ bargraph(~ sex | time, data=tips)
 Histogramme werden für metrische Daten verwendet, der Befehl lautet `histogram`.
 
 ***
-**Übung:** Welche Abbildung wird über
+**Übung:** 
+
+2.  Welche Abbildung wird über
 ```{r eval=FALSE}
 histogram(~ total_bill | sex, data=tips)
 ```
@@ -105,7 +109,9 @@ bwplot(total_bill ~ sex | time, data=tips)
 ```
 
 ***
-**Übung:** Zeichen Sie einen Boxplot für die Trinkgeldhöhe `tip` in Abhängigkeit davon, ob geraucht wurde `smoker`. Gibt es Unterschiede in der Trinkgeldhöhe, und wenn ja in welchem Bereich?
+**Übung:** 
+
+3.  Zeichen Sie einen Boxplot für die Trinkgeldhöhe `tip` in Abhängigkeit davon, ob geraucht wurde `smoker`. Gibt es Unterschiede in der Trinkgeldhöhe, und wenn ja in welchem Bereich?
 
 ***
 
@@ -124,7 +130,9 @@ tips$tip_relativ <- tips$tip / tips$total_bill
 Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Trinkgeld und Rechnungshöhe zugewiesen.
 
 ***
-**Übung:** Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
+**Übung:** 
+
+4.  Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
 
 ***
 
@@ -183,7 +191,9 @@ min(~ total_bill | smoker, data=tips)
 gibt also das Minimum der Rechnungshöhe, getrennt nach Raucher und Nichtrauchern an, d. h. das Minimum bei den Rauchern lag bei `r min(~total_bill|smoker, data=tips)["Yes"]`$.
 
 ***
-**Übung:** Bestimmen Sie das Maximum der Trinkgeldhöhe je Wochentag (`day`)
+**Übung:** 
+
+5.  Bestimmen Sie das Maximum der Trinkgeldhöhe je Wochentag (`day`)
 
 ***
 
@@ -205,7 +215,9 @@ histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
 ```
 
 ***
-**Übung:** Begründen Sie anhand des Histogramms, warum hier der Median kleiner als der arithmetische Mittelwert ist.
+**Übung:** 
+
+6.  Begründen Sie anhand des Histogramms, warum hier der Median kleiner als der arithmetische Mittelwert ist.
 
 ***
 
@@ -216,7 +228,9 @@ mean(total_bill ~ sex + time, data=tips)
 ```
 
 ***
-**Übung:** Bestimmen Sie den Median der Trinkgeldhöhe anhand der Anzahl Personen in der Tischgesellschaft.
+**Übung:** 
+
+7.  Bestimmen Sie den Median der Trinkgeldhöhe anhand der Anzahl Personen in der Tischgesellschaft.
 
 ***
 
@@ -256,7 +270,9 @@ sd(~total_bill | size, data=tips) / mean(~total_bill | size, data=tips)
 gebildet.
 
 ***
-**Übung:** Zu welcher Tageszeit ist die Standardabweichung des Trinkgelds geringer? Zum Lunch oder zum Dinner?
+**Übung:** 
+
+8.  Zu welcher Tageszeit ist die Standardabweichung des Trinkgelds geringer? Zum Lunch oder zum Dinner?
 
 ***
 
@@ -279,7 +295,9 @@ tally(smoker~sex, format="proportion", data=tips)
 ```
 
 ***
-**Übung:** Zu welcher Tageszeit wurde relativ häufiger von einer Frau die Rechnung bezahlt?
+**Übung:** 
+
+9.  Zu welcher Tageszeit wurde relativ häufiger von einer Frau die Rechnung bezahlt?
 
 ***
 
