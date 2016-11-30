@@ -167,7 +167,7 @@ Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
 Einige der Testverfahren wurden von `mosaic` angepasst.
 ```{r eval=FALSE}
 t.test() # t-Test
-binom.test() # Binomialtest
+prop.test() # Binomialtest (approximativ)
 xchisq.test() # Chi²-Test
 aov() # Varianzanalyse
 ```
