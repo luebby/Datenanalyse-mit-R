@@ -81,9 +81,6 @@ In `mosaic` besteht die Möglichkeit Punkt- und Bereichsschätzung mit dem Befeh
 prop.test(~response, data=de12)
 ```
 
-
-
-
 ***
 **Übung:**
 
