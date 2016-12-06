@@ -104,7 +104,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
 ptb3 <- t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
 
-Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}}=\mu_{\text{IAU91JW}} \Leftrightarrow \mu_{\text{IB91JW}}-\mu_{\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5% liegt.
+Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW-IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5% liegt.
 
 ***
 **Übung:**
@@ -166,7 +166,9 @@ Der kleine p-Wert von $`r tb3$p.value`$ zeigt, dass die Nullhypothese der Gleich
 t.test(ZINSK ~ PHASEN, data=B3AufAb, alternative = "less")
 ```
 Jetzt haben wir die Nullhypothese "Das Lagemaß für die Zinskosten ist im Aufschwung *nicht* kleiner als im Abschwung" gegen die Alternativhypothese (Forschungshypothese) "Das Lagemaß für die Zinskosten ist im Aufschwung kleiner als im Abschwung" getestet:
-$$H_0: \mu_{\text{Aufschwung}} \geq \mu_{\text{Abschwung}} \quad vs. \quad H_0: \mu_{\text{Aufschwung}} < \mu_{\text{Abschwung}}$$
+$$H_0: \mu_{\text{Aufschwung}} \geq \mu_{\text{Abschwung}} \quad vs. \quad H_A: \mu_{\text{Aufschwung}} < \mu_{\text{Abschwung}}$$
+bzw. 
+$$H_0: \mu_{\text{Aufschwung}} - \mu_{\text{Abschwung}} \geq 0 \quad vs. \quad H_A: \mu_{\text{Aufschwung}} - \mu_{\text{Abschwung}} < 0 $$
 
 ***
 **Übung:**
