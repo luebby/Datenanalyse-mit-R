@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Random Walk
-Beim Glücksspiel ist es offensichtlich, aber auch an vielen, vielen anderen Stellen im Leben begegnen wir dem *Zufall*. Daten, Beobachtungen sind häufig Realisationen von sogenannten Zufallsvariablen. Das sind Variablen, deren Werte vom Zufall (und damit auch seinen Modellen und Gesetzen) abhängen. So werden Aktienkurse und -renditen häufig als Random Walk aufgefasst und modelliert - häufig unter der *Annahme* einer Normalverteilung.
+Beim Glücksspiel ist es offensichtlich, aber auch an vielen, vielen anderen Stellen im Leben begegnen wir dem *Zufall*. Daten, Beobachtungen sind häufig Realisationen von sogenannten Zufallsvariablen. Das sind Variablen, deren Werte vom Zufall (und damit auch seinen Modellen und Gesetzen) abhängen. So werden Aktienkurse und -renditen häufig als Random Walk aufgefasst und modelliert - häufig unter der *Annahme* einer Normalverteilung.^[Sowohl die Annahme einer Normalverteilung, als auch die Annahme, dass die Renditen unabhängig voneinander sind (d. h. keine *Autokorrelation* vorliegt) und einer identischen Verteilung folgen (hier gleiche Varianz) sind in der Praxis kritisch zu hinterfragen.]
 
 Zur Analyse wird wieder das Paket mosaic verwendet:
 ```{r, message=FALSE}
@@ -21,7 +21,7 @@ require(mosaic)
 ```
 
 ## t-Test für eine Stichprobe
-An den `n=251` Handelstagen des Jahres 2015 lag der arithmetische Mittelwert der (logarithmierten) Rendite der Facebook Aktie bei `0.11`, bei einer Standardabweichung (hier auch Volatilität genannt) von `1.62`. Zeigen diese Daten, dass die Rendite der Aktie nicht zufällig größer als Null ist, können wir aus dem Daten also auf die Alternativhypothese $H_A: \mu>0$ schließen?
+An den `n=251` Handelstagen des Jahres 2015 lag der arithmetische Mittelwert der (logarithmierten) Rendite der Facebook Aktie bei `0.11`, bei einer Standardabweichung (hier auch Volatilität genannt) von `1.62`. Zeigen diese Daten, dass die Rendite der Aktie nicht zufällig größer als Null ist, können wir aus dem Daten also auf die Alternativhypothese $H_A: \mu>0$ schließen? Dabei gehen wir von eine unabhängigen, identischen Normalverteilung der Beobachtungen aus.
 ```{r}
 mFB <- 0.11 # Mittelwert
 sdFB <- 1.62 # Standardabweichung
@@ -96,7 +96,7 @@ Hier interessieren besonders die (Veränderung) der Investitionen in Ausrüstung
 favstats( ~ IAU91JW, data=B3)
 favstats( ~ IB91JW, data=B3)
 ```
-dass im betrachteten Zeitraum die Investitionen in Ausrüstungsgüter mit im arithmetischen Mittelwert von `r round(mean(B3$IAU91JW),2)` stärker gestiegen sind als die in Bauten mit `r round(mean(B3$IB91JW),2)`. Da die Investitionen sicherlich in Zusammenhang mit der gesamten konjunkturellen Entwicklung stehen, ist davon auszugehen, dass es sich hier um vom jeweiligen Zeitpunkt abhängige Beobachtungen handelt. Daher wird hier die Differenz der Werte betrachtet: `IB91JW - IAU91JW`.  Der R Befehl für einen t-Test lautet `t.test`:
+dass im betrachteten Zeitraum die Investitionen in Ausrüstungsgüter mit im arithmetischen Mittelwert von `r round(mean(B3$IAU91JW),2)` im Mittel stärker gestiegen sind als die in Bauten mit `r round(mean(B3$IB91JW),2)`. Da die Investitionen sicherlich in Zusammenhang mit der gesamten konjunkturellen Entwicklung stehen, ist davon auszugehen, dass es sich hier um vom jeweiligen Zeitpunkt abhängige Beobachtungen handelt. Daher wird hier die Differenz der Werte betrachtet: `IB91JW - IAU91JW`.  Der R Befehl für einen t-Test lautet `t.test`:
 ```{r}
 t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
@@ -109,7 +109,7 @@ Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$sta
 ***
 **Übung:**
 
-3.  Testen Sie, ob es einen nicht zufälligen Lageunterschied zwischen der Veränderung des Preisindex des Bruttosozialproduktes `PBSPJW` und dem des privaten Verbrauchs `PCPJW` gibt.
+3.  Testen Sie, ob es einen nicht zufälligen mittleren Lageunterschied zwischen der Veränderung des Preisindex des Bruttosozialproduktes `PBSPJW` und dem des privaten Verbrauchs `PCPJW` gibt.
 
 ***
 
@@ -173,7 +173,7 @@ $$H_0: \mu_{\text{Aufschwung}} - \mu_{\text{Abschwung}} \geq 0 \quad vs. \quad H
 ***
 **Übung:**
 
-4.  Untersuchen Sie, ob sich die Entwicklung des privaten Verbrauchs `CP91JW` zwischen den Konjunkturphasen unterscheidet.
+4.  Untersuchen Sie, ob sich die mittlere Entwicklung des privaten Verbrauchs `CP91JW` zwischen den Konjunkturphasen unterscheidet.
 
 ***
 
@@ -234,7 +234,7 @@ bezeichnet.
 ## ANOVA
 Bei mehr als zwei Gruppen funktionieren die Techniken des t-Tests nicht mehr. Um Lagemaßunterschiede zu testen wird anstelle der Mittelwerte die Streuung verglichen: Ist die Streuung zwischen den Gruppen groß im Vergleich zur Streuung innerhalb der Gruppen?
 
-Unterscheidet sich der Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
+Unterscheidet sich der mittlere Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
 
 ```{r}
 bwplot( DEFRATE ~ PHASEN, data=B3)
