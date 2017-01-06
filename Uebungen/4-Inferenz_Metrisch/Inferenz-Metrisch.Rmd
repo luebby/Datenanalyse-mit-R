@@ -78,7 +78,7 @@ einen Mittelwert in der Jahresrendite unter 0.
 
 ***
 
-## t-Test für eine abhängige Stichprobe
+## t-Test für eine abhängige/ gepaarte Stichprobe
 Der B3 Datensatz *Heilemann, U. and Münch, H.J. (1996): West German Business Cycles 1963-1994: A Multivariate Discriminant Analysis. CIRET–Conference in Singapore, CIRET–Studien 50.* enthält Quartalsweise Konjunkturdaten aus (West-)Deutschland.
 
 Er kann von [https://goo.gl/0YCEHf](https://goo.gl/0YCEHf) heruntergeladen werden:
@@ -113,7 +113,7 @@ Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$sta
 
 ***
 
-## t-Test für eine unabhängige Stichprobe
+## t-Test für zwei unabhängige Stichprobe
 Untersuchen wir, ob sich makroökonomische Kennzahlen im Auf- und Abschwung unterscheiden. 
 Zunächst stellen wir fest, dass die eigentlich kategorielle Variable `PHASEN` hier numerisch kodiert wurde, was aber schnell verwirren würde.
 ```{r}
@@ -231,7 +231,7 @@ Häufig werden Werte
 bezeichnet.
 
 
-## ANOVA
+## Varianzanalyse (ANOVA)
 Bei mehr als zwei Gruppen funktionieren die Techniken des t-Tests nicht mehr. Um Lagemaßunterschiede zu testen wird anstelle der Mittelwerte die Streuung verglichen: Ist die Streuung zwischen den Gruppen groß im Vergleich zur Streuung innerhalb der Gruppen?
 
 Unterscheidet sich der mittlere Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
