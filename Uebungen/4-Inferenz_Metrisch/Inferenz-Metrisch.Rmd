@@ -262,7 +262,9 @@ Die Nullhypothese der Gleichheit wird hier also verworfen. Interessanterweise un
 
 Im Paket `effects` gibt es übrigens eine schöne Plotfunktion für die Effekte:
 ```{r}
-# install.packages(effects) Einmalig installieren
+# Einmalig installieren:
+# install.packages(effects)
+
 library(effects)
 plot(allEffects(LSTKaov))
 ```
