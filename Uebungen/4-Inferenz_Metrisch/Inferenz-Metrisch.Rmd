@@ -259,6 +259,14 @@ summary(LSTKaov)
 ```
 Die Nullhypothese der Gleichheit wird hier also verworfen. Interessanterweise unterscheiden sich insbesondere die Lagemaße von Auf- und Abschwung, die beiden Wendepunkte liegen dazwischen.
 
+
+Im Paket `effects` gibt es übrigens eine schöne Plotfunktion für die Effekte:
+```{r}
+# install.packages(effects) Einmalig installieren
+library(effects)
+plot(allEffects(LSTKaov))
+```
+
 ***
 **Übung:** 
 
@@ -281,10 +289,10 @@ tips <- read.csv2("tips.csv")
 
 Um zu gucken inwieweit das Trinkgeld vom Geschlecht *und* dem Rauchverhalten abhängt kann man folgende Analyse durchführen
 ```{r}
-bwplot(tip ~ sex | smoker, data=tips)
 favstats(tip ~ sex + smoker, data=tips)
 tipaov <- aov(tip ~ sex + smoker, data=tips)
 summary(tipaov)
+plot(allEffects(tipaov))
 ```
 Beide Faktoren sind zum Signifikanzniveau 5\% *nicht* signifikant, d. h. $H_0$, dass sich die Mittelwerte in der Population nicht unterscheiden, wird nicht verworfen.
 
@@ -292,6 +300,7 @@ Allerdings beobachten wir etwas anderes: Während der Mittelwert des Trinkgeldes
 ```{r}
 tipaovww <- aov(tip ~ sex + smoker + sex:smoker, data=tips)
 summary(tipaovww)
+plot(allEffects(tipaovww ))
 ```
 
 Auch hier gilt. Mit einem p-Wert von $0.564$ wird die Nullhypothese, dass in der Population keine Wechselwirkung von Geschlecht und Rauchverhalten für den Mittelwert vorliegt nicht verworfen.
