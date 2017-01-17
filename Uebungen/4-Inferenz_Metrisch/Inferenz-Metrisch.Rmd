@@ -73,7 +73,7 @@ einen Mittelwert in der Jahresrendite unter 0.
 ***
 **Übung:**
 
-1.  Berechnen (nicht simulieren!) Sie das 95% Konfidenzintervall unter der Annahme einer Normalverteilung.
+1.  Berechnen (nicht simulieren!) Sie das 95\% Konfidenzintervall unter der Annahme einer Normalverteilung.
 2.  Wie ändern sich Standardfehler und p-Werte, wenn die gleichen Punktschätzer nicht auf der Basis von einem sondern von 3 Jahren ermittelt wurden. 
 
 ***
@@ -104,7 +104,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
 ptb3 <- t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
 
-Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW-IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5% liegt.
+Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW-IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt.
 
 ***
 **Übung:**
@@ -266,15 +266,48 @@ Die Nullhypothese der Gleichheit wird hier also verworfen. Interessanterweise un
 
 ***
 
+### Erweiterung: Mehrfaktorielle Varianzanalyse mit Wechselwirkung
+Betrachten wir noch einmal den  *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing*.
+
+Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:
+```{r }
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
+```
+
+Das Einlesen der Daten in R erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
+```{r}
+tips <- read.csv2("tips.csv")
+```
+
+Um zu gucken inwieweit das Trinkgeld vom Geschlecht *und* dem Rauchverhalten abhängt kann man folgende Analyse durchführen
+```{r}
+bwplot(tip ~ sex | smoker, data=tips)
+favstats(tip ~ sex + smoker, data=tips)
+tipaov <- aov(tip ~ sex + smoker, data=tips)
+summary(tipaov)
+```
+Beide Faktoren sind zum Signifikanzniveau 5\% *nicht* signifikant, d. h. $H_0$, dass sich die Mittelwerte in der Population nicht unterscheiden, wird nicht verworfen.
+
+Allerdings beobachten wir etwas anderes: Während der Mittelwert des Trinkgeldes bei den Frauen bei den Rauchern größer ist, ist es bei den Männern umgekehrt. Hier könnte also eine Wechselwirkung, eine Interaktion vorliegen. Diese wird in R über ein `:` in der Formel eingefügt:
+```{r}
+tipaovww <- aov(tip ~ sex + smoker + sex:smoker, data=tips)
+summary(tipaovww)
+```
+
+Auch hier gilt. Mit einem p-Wert von $0.564$ wird die Nullhypothese, dass in der Population keine Wechselwirkung von Geschlecht und Rauchverhalten für den Mittelwert vorliegt nicht verworfen.
+
+
+
+
 ## Übung: Teaching Rating
 Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
-Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) als `csv`herunterladen.
+Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) als `csv` herunterladen.
 
 1.  Ist das arithmetische Mittel der Evaluierung `eval` nicht zufällig größer als befriedigend (3)?
-2.  Gibt es einen nicht zufälligen Unterschied im Lagemaß der Evaluation `eval` zwischen mönnlichen und weiblichen Dozent/innen (`gender`)?
+2.  Gibt es einen nicht zufälligen Unterschied im Lagemaß der Evaluation `eval` zwischen männlichen und weiblichen Dozent/innen (`gender`)?
 
 
 
