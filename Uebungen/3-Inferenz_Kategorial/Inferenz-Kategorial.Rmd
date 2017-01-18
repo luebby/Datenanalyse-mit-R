@@ -46,7 +46,7 @@ tail(atheism) # letzte Beobachtungen
 
 Zur Analyse wird wieder das Paket mosaic verwendet:
 ```{r, message=FALSE}
-require(mosaic)
+library(mosaic)
 ```
 
 ## Inferenz eines Anteilswerts
@@ -234,6 +234,15 @@ tips <- read.csv2("tips.csv")
 1.  Bestimmen Sie ein 90% Konfidenzintervall für den Anteil der Raucher (`smoker`) in der Population.
 2.  Testen Sie zum Niveau 5%, ob sich der Anteil der Raucher in der Population beim Lunch von dem beim Dinner (`time`) unterscheidet.
 3.  Gibt es einen Zusammenhang zwischen Rauchen und Wochentag (`day`)? 
+
+## Literatur
+
+
+- David M. Diez, Christopher D. Barr, Mine &Ccedil;etinkaya-Rundel (2014): *Introductory Statistics with Randomization and Simulation*, [https://www.openintro.org/stat/textbook.php?stat_book=isrs](https://www.openintro.org/stat/textbook.php?stat_book=isrs),  Kapitel 3
+- Nicholas J. Horton, Randall Pruim, Daniel T. Kaplan (2015): Project MOSAIC Little Books *A Student's Guide to R*,  [https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf](https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf), Kapitel 4.2, 4.3, 6.3
+- Maike Luhmann (2015): *R für Einsteiger*, Kapitel 18.1
+- Andreas Quatember (2010): *Statistik ohne Angst vor Formeln*, Kapitel 3.4, 3.6, 3.8
+- Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 10.2
 
 
 ***

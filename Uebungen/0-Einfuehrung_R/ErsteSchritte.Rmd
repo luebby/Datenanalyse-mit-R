@@ -149,11 +149,16 @@ install.packages("mosaic")
 installiert werden.
 
 Um es verwenden zu können, muss es - wie jedes Paket - für *jede* neue R-Sitzung über
-
 ```{r message=FALSE}
-require(mosaic)
+library(mosaic)
 ```
 geladen werden.
+
+Sollte beim Laden eines Paketes eine Meldung wie 
+```{r, error=TRUE}
+library(xyz)
+```
+erscheinen, muss das Paket `xyz` zunächst installiert werden (siehe oben).
 
 Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosaic wir dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Beispielsweise um eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten, kann man in R folgenden Befehl eingeben:
 
@@ -237,10 +242,23 @@ Der Befehl `file.choose()` öffnet dabei den Dateiordner. Bei "internationalen" 
 
 In R Studio gibt es im Reiter `Environment` im Fenster Rechts oben einen Menüpunkt `Import Dataset` der mehr Einstellmöglichkeiten bietet.
 
+Excel Dateien können unter anderem mit Hilfe des Zusatzpaketes `readxl` können eingelesen werden:
+```{r eval=FALSE}
+meineDaten <- read_excel(file.choose())  # Datei auswählen
+```
+
 [Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen. 
+
+## Literatur
+
+- Nicholas J. Horton, Randall Pruim, Daniel T. Kaplan (2015): Project MOSAIC Little Books *A Student's Guide to R* [https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf](https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf), Kapitel 1, 2, 13
+- Maike Luhmann (2015): *R für Einsteiger*, Kapitel 1-8
+- Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 1-4
+
 
 ***
 Diese Übung basiert teilweise auf Übungen zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray und Mine &Ccedil;etinkaya-Rundel unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+
 
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`
