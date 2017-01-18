@@ -157,24 +157,24 @@ mosaicplot(tab_smoke_time)
 
 
 ### Korrelationsplot
-Mit Hilfe des Zusatzpakets `corrgram` lassen sich Korrelationen besonders einfach visualisieren. Das Paket muss wie jedes Paket *einmalig* über
+Mit Hilfe des Zusatzpakets `corrplot` lassen sich Korrelationen besonders einfach visualisieren. Das Paket muss wie jedes Paket *einmalig* über
 ```{r eval=FALSE}
-install.packages("corrgram")
+install.packages("corrplot")
 ```
-installiert werden -- wiederum werden weitere benötigte Pakete mit-installiert.
+installiert werden -- wiederum werden evt. weitere benötigte Pakete mit-installiert.
 Nach dem Laden des Pakets über
 ```{r eval=TRUE, message=FALSE}
-require(corrgram)
+library(corrplot)
 ```
 kann dies über
 ```{r}
-corrgram(tips)
+corrplot(cor(tips[,c("total_bill", "tip", "size")]))
 ```
 
-gezeichnet werden. Je intensiver die Farbe, desto höher die Korrelation. Hier gibt es unzählige Einstellmöglichkeiten, siehe `?corrgram` bzw. für Beispiele:
+gezeichnet werden. Je intensiver die Farbe, desto höher die Korrelation. Hier gibt es unzählige Einstellmöglichkeiten, siehe `?corrplot` bzw. für Beispiele:
 
 ```{r eval=FALSE}
-vignette("corrgram_examples")
+vignette("corrplot-intro")
 ```
 
 
