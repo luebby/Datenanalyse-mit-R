@@ -6,6 +6,7 @@ output:
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -32,9 +33,8 @@ Die Befragten hatten dabei drei Antwortmöglichkeiten: Religiöser Mensch ("A re
 
 Ein Teil der Daten kann direkt von OpenIntro als R Datensatz heruntergeladen werden, und anschließend in R eingelesen:
 ```{r, message=FALSE}
-download.file("http://www.openintro.org/stat/data/atheism.RData", 
-              destfile = "atheism.RData") # Herunterladen
-load("atheism.RData") # Einlesen
+meine_url <- "http://www.openintro.org/stat/data/atheism.RData"
+load(url(meine_url)) # Einlesen
 ```
 
 Einen Überblick erhält man wie immer über:
@@ -52,9 +52,10 @@ require(mosaic)
 ## Inferenz eines Anteilswerts
 In Tabelle 6 der Pressemitteilung wird der Anteil der Atheisten für Deutschland mit 15% angegeben. Dies ist eine *Statistik* der Stichprobe, nicht der Parameter der *Population*. Es wird also die Frage beantwortet "Wie hoch ist der Anteil der Atheisten in der Stichprobe?". Um die Frage "Wie hoch ist der Anteil der Atheisten in der Population?" zu beantworten, muss von der Stichprobe auf die Population geschlossen werden, d. h. es wird z. B. der Anteilswert *geschätzt*. 
 
-Der folgende Befehl reduziert den Datensatz auf das Ergebnis für Deutschland im Jahr 2012:
+Der folgende Befehl filtert den Datensatz auf das Ergebnis für Deutschland im Jahr 2012, d.h. es werden nur die gewünschten Zeilen im Datensatz belassen:
 ```{r}
-de12 <- subset(atheism, nationality == "Germany" & year == "2012")
+library(dplyr)  # muss vorher installiert sein
+de12 <- filter(atheism, nationality == "Germany", year == "2012")
 ```
 
 Die *Punktschätzung* des Anteilswertes der Atheisten für Deutschland im Jahr 2012 liegt dann bei

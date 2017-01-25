@@ -3,6 +3,7 @@ title: "Einführung Inferenz metrische Werte"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
 documentclass: article
 classoption: a4paper

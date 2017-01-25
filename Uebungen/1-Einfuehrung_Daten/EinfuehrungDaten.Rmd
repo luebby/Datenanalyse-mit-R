@@ -2,17 +2,17 @@
 title: "Einführung in Daten"
 author: "Karsten Lübke"
 date: ''
-
 output:
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 require(mosaic)
 require(corrgram)
 ```
@@ -20,20 +20,21 @@ require(corrgram)
 
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
 
-Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt aus R heraus herunterladen:
-```{r eval=FALSE}
-download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
+Sofern noch nicht geschehen, können Sie z.B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
+```{r }
+tips <- read.csv("https://sebastiansauer.github.io/data/tips.csv")
 ```
 
-```{r, echo = FALSE}
-tips <- read.csv2("../../Daten/tips.csv")
-```
+Achtung: `read.csv` geht vom amerikanischen Format aus. Wenn es sich um eine "deutsche CSV-Datei" handelt, verwenden Sie `read.csv2`.
+
+Wenn sich die Daten auf Ihrem Computer gespeichert sind, können Sie sie auf die gleiche Art laden:
 
 
-Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
 ```{r, eval = FALSE}
 tips <- read.csv2("tips.csv")
 ```
+
+
 *Tipp:* Wenn Sie nicht mehr wissen, wo die Daten liegen: statt `"tips.csv"` den Befehl `file.choose()` als Argument für die Funktion `read.csv2` verwenden.
 
 
@@ -45,7 +46,7 @@ str(tips)
 
 Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
 ```{r eval=FALSE, message=FALSE}
-require(mosaic)
+library(mosaic)
 
 ```
 
@@ -66,6 +67,15 @@ In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` wir
 bargraph(~ sex | time, data=tips)
 ```
 
+
+Alternativ können Sie mit `qplot` arbeiten:
+```{r}
+library(ggplot2)
+qplot(x = sex, data = tips)
+qplot(x = sex, data = tips, facets = ~time)
+```
+
+
 ***
 **Übung:** 
 
@@ -82,6 +92,7 @@ Histogramme werden für metrische Daten verwendet, der Befehl lautet `histogram`
 2.  Welche Abbildung wird über
 ```{r eval=FALSE}
 histogram(~ total_bill | sex, data=tips)
+qplot(x = total_bill, facets = ~sex, data = tips)
 ```
 erzeugt?
 
@@ -91,7 +102,6 @@ erzeugt?
 
 ```{r}
 dotPlot(~ size, nint=6, data=tips)
-
 ```
 
 Hier wurde ein zusätzliche Parameter der Funktion `dotPlot` übergeben: `nint=6`. Dieser Parameter wurde wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?dotPlot`, erfahren.
@@ -106,6 +116,14 @@ bwplot(total_bill ~ sex, data=tips)
 und gruppiert nach Tageszeit:
 ```{r}
 bwplot(total_bill ~ sex | time, data=tips)
+```
+
+
+Mit `qplot` geht es ähnlich:
+
+```{r}
+qplot(y = total_bill, x = sex, data = tips, geom = "boxplot")
+qplot(y = total_bill, x = sex, facets = ~time, data = tips, geom = "boxplot")
 ```
 
 ***
@@ -212,6 +230,10 @@ Diese unterscheiden sich:
 meantb <- mean(~ total_bill, data=tips) # Mittelwert
 mediantb <- median(~ total_bill, data=tips) # Median
 histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
+```
+
+```{r}
+qplot(x = total_bill, data = tips, geom = "histogram")
 ```
 
 ***

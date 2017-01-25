@@ -6,6 +6,7 @@ output:
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -27,9 +28,10 @@ Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
 tips <- read.csv2("tips.csv")
 ```
 
-Zur Unterstützung der Analyse wird (wieder) mosaic verwendet:
+Zur Unterstützung der Analyse wird (wieder) `mosaic´ verwendet; außerdem laden wir `ggplot2` für `qplot`:
 ```{r, message = FALSE}
-require(mosaic)
+library(mosaic)
+library(ggplot2)
 ```
 
 Wie hängen Trinkgeldhöhe `tip` und Rechnungshöhe `total_bill` zusammen? Kann die Höhe des Trinkgeldes als *lineare* Funktion der Rechnungshöhe linear modelliert werden? 
@@ -38,6 +40,7 @@ $$tip_i=\beta_0+\beta_1\cdot total\_bill_i+\epsilon_i$$
 Zunächst eine visuelle Analyse mi Hilfe eines Scatterplots.
 ```{r}
 xyplot(tip ~ total_bill, data=tips)
+qplot(y = tip, x = total_bill, data = tips)
 ```
 
 Es scheint einen positiven Zusammenhang zu geben. Modellieren wir die Abhängige Variable `tip` (inhaltliche Entscheidung!) als lineare Funktion der Unabhängigen Variable `total_bill`:
@@ -72,6 +75,13 @@ Aber wie sieht es mit den Annahmen aus?
 - Zur Überprüfung der Normalverteilung der Residuen zeichnen wir ein Histogramm. Die Residuen können über den Befehl `resid()` aus einem Linearen Modell extrahiert werden. Hier scheint es zu passen:
 ```{r}
 histogram( ~ resid(LinMod.1))
+
+```
+
+Alternativ mit qplot:
+```{r}
+resid_df <- data.frame(resid(LinMod.1))
+qplot(x = resid.LinMod.1., data = resid_df)
 ```
 
 
