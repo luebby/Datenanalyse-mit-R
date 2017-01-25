@@ -50,7 +50,7 @@ d. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` au
 Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und geladen werden:
 ```{r, eval=FALSE}
 install.packages("Paket") # Einmalig installieren
-require(Paket) # Laden, einmalig in jeder Sitzung
+library(Paket) # Laden, einmalig in jeder Sitzung
 
 ```
 
@@ -114,7 +114,7 @@ xyplot() # Streudiagrmm
 Nicht aus dem Paket mosaic sind:
 ```{r eval=FALSE}
 mosaicplot() # Mosaicplot
-corrgram() # Korrelationsplot, Paket corrgram
+corrplot() # Korrelationsplot, Paket corrplot
 ggpairs() # Matrixplot, Paket GGally
 heatmap() # Heatmap
 ```
