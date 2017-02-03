@@ -53,6 +53,9 @@ Der Achsenabschnitt (`intercept`) wird mit `r round(coef(LinMod.1)[1],2)` gesch�
 
 `tip` = `r round(coef(LinMod.1)[1],2)` + `r round(coef(LinMod.1)[2],2)` * `total_bill`
 
+Die Koeffzienten werden dabei so geschätzt, dass $\sum \epsilon_i^2$ minimiert wird. Daher spricht man auch vom *Kleinste Quadrate* Kriterium. Eine robuste Regression ist z. B. mit der Funktion `rlm()` aus dem Paket `MASS` möglich.
+
+
 In mosaic kann ein solches Modell einfach als neue Funktion definiert werden:
 ```{r}
 LinMod.1Fun <- makeFun(LinMod.1)
@@ -199,9 +202,12 @@ Kehren wir noch einmal zur multivariaten Regression (`LinMod.4`) zurück.
 summary(LinMod.4)
 ```
 
-In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable: $H_0: \beta_i=0$. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1\%. `**` entsprechend 1\%, `*` 5\% und `.` 10\%. Zum Signifikanzniveau von 10\% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 
+In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable: $H_0: \beta_i=0$. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Ein einfacher t-Test! Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1\%. `**` entsprechend 1\%, `*` 5\% und `.` 10\%. Zum Signifikanzniveau von 10\% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 
 `r round(summary(LinMod.4)$r.squared,2)`, also `r round(summary(LinMod.4)$r.squared*100)`\% der Variation des Trinkgeldes wird im Modell erklärt.
 
+Außerdem kann man testen, ob alle Koeffizienten der der unabhängigen Variablen gleich Null sind:
+$$H_0: \beta_1=\beta_2=\cdots=\beta_k=0$$
+Das Ergebnis des zugrundeliegenden F-Tests (vlg. Varianzanalyse) wird in der letzten Zeile angegeben (`F-Statistic`). Hier wird $H_0$ also verworfen.
 
 ## Erweiterungen
 
