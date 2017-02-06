@@ -4,6 +4,7 @@ author: "Karsten Lübke"
 date: ''
 output:
   pdf_document:
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -130,6 +131,8 @@ segment.num <- segment %>%
   select(-Geschlecht, -Segment, -hc.clust)
 ```
 
+Über die Funktion `mutate()` werden Variablen im Datensatz erzeugt oder verändert. Über `select()` werden einzene Variablen ausgewählt. Die "Pfeife" `%>%` übergibt das Ergebnis der vorherigen Funktion an die folgende.
+
 Aufgrund von (1.) hängt das Ergebnis einer k-Means Clusteranalyse vom Zufall ab. Aus Gründen der Reproduzierbarkeit sollte daher der Zufallszahlengenerator gesetzt werden. Außerdem bietet es sich an verschiedene Startkonfigurationen zu versuchen. in der Funktion `kmeans()` erfolgt dies durch die Option `nstart=`. Hier mit `k=4` Clustern:
 
 ```{r}
@@ -140,7 +143,7 @@ seg.k
 ```
 Neben der Anzahl Beobachtungen im Cluster (z. B. `r seg.k$size[2]` in Cluster 2) werden auch die Clusterzentren ausgegeben. Diese können dann direkt verglichen werden. Z. B. sieht man, dass das Durchschnittsalter in Cluster `r which.min(seg.k$centers[,"Alter"])` mit `r round(min(seg.k$centers[,"Alter"]))` am geringsten ist. Der Anteil der Eigenheimbesitzer ist mit `r round(max(seg.k$centers[,"Eigenheim"]*100))` \% in Cluster `r which.max(seg.k$centers[,"Eigenheim"])` am höchsten.
 
-Einen Biplot des Ergebnisses kann über die Funktion `clusplot()` aus dem Paket `cluster` erhalten.
+Einen Plot der Scores auf den beiden ersten Hauptkomponenten können Sie über die Funktion `clusplot()` aus dem Paket `cluster` erhalten.
 ```{r}
 clusplot(segment.num, seg.k$cluster, 
          color = TRUE, shade = TRUE, labels = 4)

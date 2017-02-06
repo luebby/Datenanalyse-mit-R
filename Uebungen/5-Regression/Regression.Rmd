@@ -28,7 +28,7 @@ Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
 tips <- read.csv2("tips.csv")
 ```
 
-Zur Unterstützung der Analyse wird (wieder) `mosaic´ verwendet; außerdem laden wir `ggplot2` für `qplot`:
+Zur Unterstützung der Analyse wird (wieder) `mosaic` verwendet; außerdem laden wir `ggplot2` für `qplot`:
 ```{r, message = FALSE}
 library(mosaic)
 library(ggplot2)
@@ -108,6 +108,8 @@ Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinander liegen 
 set.seed(1896) # Zufallszahlengenerater setzen
 xyplot(total_bill ~ jitter(size), data=tips)
 ```
+
+
 ***
 **Übung:** 
 

@@ -3,8 +3,10 @@ title: "Einführung Inferenz metrische Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -136,7 +138,7 @@ Jetzt ist keine Verwechselung von kategoriellen und metrischen Variablen mehr m�
 
 Zunächst wird der Datensatz, der auch die konjunkturellen Wendepunkte enthält, nur auf Auf- und Abschwung eingeschränkt. 
 ```{r}
-B3AufAb <- subset(B3, PHASEN %in% c("Aufschwung", "Abschwung")) 
+B3AufAb <- filter(B3, PHASEN %in% c("Aufschwung", "Abschwung")) 
 B3AufAb <- droplevels(B3AufAb)
 ```
 
@@ -269,6 +271,8 @@ Im Paket `effects` gibt es übrigens eine schöne Plotfunktion für die Effekte:
 library(effects)
 plot(allEffects(LSTKaov))
 ```
+
+Neben den arithmetischen Mittelwert (Punktschätzer) wird das in der Standardeinstellung das 95\% Konfidenzintervall eingezeichnet.
 
 ***
 **Übung:** 

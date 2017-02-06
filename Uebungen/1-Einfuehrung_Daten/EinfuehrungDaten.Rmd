@@ -14,7 +14,7 @@ classoption: a4paper
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 require(mosaic)
-require(corrgram)
+require(corrplot)
 ```
 ## Datensatz
 
@@ -46,7 +46,7 @@ str(tips)
 
 Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
 ```{r eval=FALSE, message=FALSE}
-
+library(mosaic)
 ```
 
 
@@ -230,6 +230,8 @@ meantb <- mean(~ total_bill, data=tips) # Mittelwert
 mediantb <- median(~ total_bill, data=tips) # Median
 histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
 ```
+
+Über die Option `v=` werden vertikale Linien an den entsprechenden Stellen gezeichnet.
 
 ```{r}
 qplot(x = total_bill, data = tips, geom = "histogram")
