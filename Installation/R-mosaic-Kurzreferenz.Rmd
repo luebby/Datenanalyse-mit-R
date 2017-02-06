@@ -102,6 +102,15 @@ rowSums() # Zeilensumme
 rowMeans() # Zeilenmittelwert
 ```
 
+Innerhalb des Paketes `dplyr` (wird mit `mosaic` geladen) gibt es u. a. folgende Funktionen:
+```{r eval=FALSE}
+filter() # Filtert Beobachtungen eines Datensatzes
+select() # Wählt Variablen eines Datensatzes aus
+mutate() # Erzeugt neue Variable bzw. verändert bestehende
+rename() # Benennt Variablen um
+arrage() # Sortiert Beobachtungen eines Datensatzes
+```
+Dabei übergibt die "Pfeife" `%>%` das Ergebnis der vorhergehenden Funktion an die folgende.
 
 ## Grafische Verfahren
 Vor jeder mathematisch-statistischen Analyse sollte eine explorative, grafische Analyse erfolgen. Die folgenden Befehle sind aus dem Paket `mosaic`.
@@ -111,7 +120,7 @@ histogram() # Histogramm
 bwplot() # Boxplot
 xyplot() # Streudiagrmm
 ```
-Nicht aus dem Paket mosaic sind:
+Nicht aus dem Paket `mosaic` sind:
 ```{r eval=FALSE}
 mosaicplot() # Mosaicplot
 corrplot() # Korrelationsplot, Paket corrplot
@@ -138,7 +147,7 @@ cov() # Kovarianz
 cor() # Korrelationskoefizient
 ```
 
-## Induktive Statistik
+## Inferenzstatistik
 
 ### Randomisierung, Simulationen
 Größtenteils `mosaic`:
@@ -186,6 +195,7 @@ In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine
 
 Weitere Verfahren - nicht `mosaic`:
 ```{r eval=FALSE}
+hclust() # Hierachsiche Clusteranalyse
 kmeans() # k-Means Clusterverfahren
 prcomp() # Hauptkomponentenanalyse (PCA)
 rpart() # Klassifikations- und Regressionsbäume, Paket rpart
