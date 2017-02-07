@@ -121,7 +121,7 @@ dim(tips)
 ```
 erhalten.
 
-Metrische Variablen sind in R in der Regel vom Typ `numeric`, kategorielle Variablen vom Typ `factor` oder `str`. `str` und `dim` sind erste Befehle, d. h. Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+Metrische Variablen sind in R in der Regel vom Typ `numeric` oder `int`, kategorielle Variablen vom Typ `factor` oder `character`. `str` und `dim` sind erste Befehle, d. h., Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
 ```{r eval=FALSE}
 head(tips) # Obere Zeilen
 tail(tips) # Untere Zeilen 
@@ -222,7 +222,7 @@ sum(tips$sex=="Female" & tips$smoker=="Yes") / sum(tips$sex=="Female")
 ```
 
 ***
-**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte relativ häufiger geraucht als bei den Frauen?
+**Übung:** Wurde bei den Tischgesellschaften, bei denen ein Mann zahlte, relativ häufiger geraucht als bei den Frauen?
 
 ***
 
@@ -237,7 +237,7 @@ Sie können ihn von  [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK)  herunterlad
 2.  Wie viele Zeilen, wie viele Spalten liegen vor?
 3.  Wie heißen die Variablen?
 4.  Betrachten Sie visuell den Zusammenhang von dem Evaluierungsergebnis `eval` und Schönheit `beauty`. Was können Sie erkennen?
-5.  Sind relativ mehr Frauen oder mehr Männer (`gender`) auf einen Tenure Track (`tenure`)?
+5.  Sind relativ mehr Frauen oder mehr Männer (`gender`) in einem unbefristeten Arbeitsverhältnis (*Tenure Track*, `tenure`)?
 
 ## Daten importieren
 
