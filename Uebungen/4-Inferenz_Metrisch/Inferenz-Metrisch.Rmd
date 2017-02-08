@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Random Walk
-Beim Glücksspiel ist es offensichtlich, aber auch an vielen, vielen anderen Stellen im Leben begegnen wir dem *Zufall*. Daten, Beobachtungen sind häufig Realisationen von sogenannten Zufallsvariablen. Das sind Variablen, deren Werte vom Zufall (und damit auch seinen Modellen und Gesetzen) abhängen. So werden Aktienkurse und -renditen häufig als Random Walk aufgefasst und modelliert - häufig unter der *Annahme* einer Normalverteilung.^[Sowohl die Annahme einer Normalverteilung, als auch die Annahme, dass die Renditen unabhängig voneinander sind (d. h. keine *Autokorrelation* vorliegt) und einer identischen Verteilung folgen (hier gleiche Varianz) sind in der Praxis kritisch zu hinterfragen.]
+Beim Glücksspiel ist es offensichtlich, aber auch an vielen, vielen anderen Stellen im Leben begegnen wir dem *Zufall*. Daten, Beobachtungen sind häufig Realisationen von sogenannten Zufallsvariablen. Das sind Variablen, deren Werte vom Zufall (und damit auch seinen Modellen und Gesetzen) abhängen. So werden Aktienkurse und -renditen häufig als Random Walk aufgefasst und modelliert - häufig unter der *Annahme* einer Normalverteilung.^[Sowohl die Annahme einer Normalverteilung, als auch die Annahme, dass die Renditen unabhängig voneinander sind (d. h., dass keine *Autokorrelation* vorliegt) und einer identischen Verteilung folgen (hier gleiche Varianz) sind in der Praxis kritisch zu hinterfragen.]
 
 Zur Analyse wird wieder das Paket mosaic verwendet:
 ```{r, message=FALSE}
@@ -77,7 +77,7 @@ einen Mittelwert in der Jahresrendite unter 0.
 **Übung:**
 
 1.  Berechnen (nicht simulieren!) Sie das 95\% Konfidenzintervall unter der Annahme einer Normalverteilung.
-2.  Wie ändern sich Standardfehler und p-Werte, wenn die gleichen Punktschätzer nicht auf der Basis von einem sondern von 3 Jahren ermittelt wurden. 
+2.  Wie ändern sich Standardfehler und p-Werte, wenn die gleichen Punktschätzer nicht auf der Basis von einem sondern von 3 Jahren ermittelt wurden?
 
 ***
 
@@ -107,7 +107,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
 ptb3 <- t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
 
-Der (umfangreichen) Ausgabe kann man neben den z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW-IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt.
+Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt.
 
 ***
 **Übung:**
@@ -142,7 +142,7 @@ B3AufAb <- filter(B3, PHASEN %in% c("Aufschwung", "Abschwung"))
 B3AufAb <- droplevels(B3AufAb)
 ```
 
-In der politischen Diskussion werden immer niedrige Zinsen gefordert. Gucken wir mal wie die Zinsen in den Konjunkturphasen in der Vergangenheit (1955-1994) verteilt waren:
+In der politischen Diskussion werden immer niedrige Zinsen gefordert. Schauen wir mal, wie die Zinsen in den Konjunkturphasen in der Vergangenheit (1955-1994) verteilt waren:
 ```{r}
 bwplot(ZINSK ~ PHASEN, data=B3AufAb)
 ```
@@ -194,9 +194,9 @@ sum(mdiff.null >= mdiff)
 ```
 mal bei 1000 Permutationen vor!
 
-Da die statistische *Signifikanz* vom Standardfehler abhängt, welcher wiederum vom Stichprobenumfang abhängt wurde von Cohen ein Maß für die *Effektstärke*, **Cohen's d** vorgeschlagen:
+Da die statistische *Signifikanz* vom Standardfehler abhängt, welcher wiederum vom Stichprobenumfang abhängt, wurde von Cohen ein Maß für die *Effektstärke*, **Cohen's d** vorgeschlagen:
 $$d=\frac{\bar{x}_1-\bar{x}_2}{sd_{\text{pool}}}$$
-mit $$sd_{\text{pool}}=\sqrt{\frac{1}{n_1+n_2-2}\left((n_1-1)sd^2_1+(n_2-1)sd^2_2 \right)}$$
+mit $${sd_{\text{pool}}=\sqrt{\frac{1}{n_1+n_2-2}\Bigl((n_1-1)sd^2_1+(n_2-1)sd^2_2 \Bigr)}}$$
 
 ```{r}
 # Kennzahlen 1. Stichprobe
@@ -246,7 +246,7 @@ favstats( DEFRATE ~ PHASEN, data=B3)
 
 Vielleicht, vielleicht nicht.
 
-Um eine Varianzanalyse mit $$H_0: \mu_1=\mu_2=\ldots =\mu_k$$ gegen $$H_A: \text{Mindestens ein } \mu \text{ ist verschieden.}$$ durchzuführen kann in R u. a. der Befehl `aov` verwendet werden:
+Um eine Varianzanalyse (*Analysis of Variance, ANOVA*) mit $$H_0: \mu_1=\mu_2=\ldots =\mu_k$$ gegen $$H_A: \text{Mindestens ein } \mu \text{ ist verschieden.}$$ durchzuführen kann in R u. a. der Befehl `aov` verwendet werden:
 ```{r}
 DEFaov <- aov(DEFRATE ~ PHASEN, data=B3)
 summary(DEFaov)
@@ -272,7 +272,7 @@ library(effects)
 plot(allEffects(LSTKaov))
 ```
 
-Neben den arithmetischen Mittelwert (Punktschätzer) wird das in der Standardeinstellung das 95\% Konfidenzintervall eingezeichnet.
+Neben dem arithmetischen Mittelwert (Punktschätzer) wird in der Standardeinstellung das 95\% Konfidenzintervall eingezeichnet.
 
 ***
 **Übung:** 
@@ -294,14 +294,15 @@ Das Einlesen der Daten in R erfolgt, sofern die Daten im Arbeitsverzeichnis lieg
 tips <- read.csv2("tips.csv")
 ```
 
-Um zu gucken inwieweit das Trinkgeld vom Geschlecht *und* dem Rauchverhalten abhängt kann man folgende Analyse durchführen
+Um zu schauen, inwieweit das Trinkgeld vom Geschlecht *und* dem Rauchverhalten abhängt, kann folgende Analyse durchgeführt werden:
 ```{r}
 favstats(tip ~ sex + smoker, data=tips)
 tipaov <- aov(tip ~ sex + smoker, data=tips)
 summary(tipaov)
 plot(allEffects(tipaov))
 ```
-Beide Faktoren sind zum Signifikanzniveau 5\% *nicht* signifikant, d. h. $H_0$, dass sich die Mittelwerte in der Population nicht unterscheiden, wird nicht verworfen.
+
+Beide Faktoren sind zum Signifikanzniveau 5\% *nicht* signifikant, d. h., $H_0$, dass sich die Mittelwerte in der Population nicht unterscheiden, wird nicht verworfen.
 
 Allerdings beobachten wir etwas anderes: Während der Mittelwert des Trinkgeldes bei den Frauen bei den Rauchern größer ist, ist es bei den Männern umgekehrt. Hier könnte also eine Wechselwirkung, eine Interaktion vorliegen. Diese wird in R über ein `:` in der Formel eingefügt:
 ```{r}
@@ -310,7 +311,7 @@ summary(tipaovww)
 plot(allEffects(tipaovww ))
 ```
 
-Auch hier gilt. Mit einem p-Wert von $0.564$ wird die Nullhypothese, dass in der Population keine Wechselwirkung von Geschlecht und Rauchverhalten für den Mittelwert vorliegt nicht verworfen.
+Auch hier gilt: Mit einem p-Wert von $0.564$ wird die Nullhypothese, dass in der Population keine Wechselwirkung von Geschlecht und Rauchverhalten für den Mittelwert vorliegt, nicht verworfen.
 
 
 

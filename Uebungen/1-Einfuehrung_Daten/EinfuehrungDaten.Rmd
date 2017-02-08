@@ -20,7 +20,7 @@ require(corrplot)
 
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
 
-Sofern noch nicht geschehen, können Sie z.B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
+Sofern noch nicht geschehen, können Sie ihn z. B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
 ```{r }
 tips <- read.csv("https://sebastiansauer.github.io/data/tips.csv")
 ```
@@ -42,7 +42,7 @@ Inwieweit das Einlesen wie gewünscht geklappt hat, kann über
 ```{r eval=FALSE}
 str(tips)
 ```
-überprüft werden: Der Datensatz hat also `r nrow(tips)` Zeilen (=Beobachtungen) und `r ncol(tips)` Spalten (=Merkmale/ Variablen).
+überprüft werden: Der Datensatz hat also `r nrow(tips)` Zeilen (= Beobachtungen) und `r ncol(tips)` Spalten (= Merkmale/Variablen).
 
 Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
 ```{r eval=FALSE, message=FALSE}
@@ -128,7 +128,7 @@ qplot(y = total_bill, x = sex, facets = ~time, data = tips, geom = "boxplot")
 ***
 **Übung:** 
 
-3.  Zeichen Sie einen Boxplot für die Trinkgeldhöhe `tip` in Abhängigkeit davon, ob geraucht wurde `smoker`. Gibt es Unterschiede in der Trinkgeldhöhe, und wenn ja in welchem Bereich?
+3.  Zeichen Sie einen Boxplot für die Trinkgeldhöhe `tip` in Abhängigkeit davon, ob geraucht wurde (`smoker`). Gibt es Unterschiede in der Trinkgeldhöhe und, wenn ja, in welchem Bereich?
 
 ***
 
@@ -197,7 +197,7 @@ vignette("corrplot-intro")
 
 
 ## Kennzahlen der Datenanalyse
-Nachdem wir einen ersten visuellen Eindruck gewonnen haben, wollen, wir uns jetzt Kennzahlen widmen.
+Nachdem wir einen ersten visuellen Eindruck gewonnen haben, wollen wir uns jetzt Kennzahlen widmen.
 
 
 ### Lagemaße
@@ -231,7 +231,7 @@ mediantb <- median(~ total_bill, data=tips) # Median
 histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
 ```
 
-Über die Option `v=` werden vertikale Linien an den entsprechenden Stellen gezeichnet.
+Über die Option `v=` werden vertikale Linien an den entsprechenden Stellen gezeichnet. Mit `h=` können horizontale Linien gezeichnet werden.
 
 ```{r}
 qplot(x = total_bill, data = tips, geom = "histogram")
@@ -244,7 +244,7 @@ qplot(x = total_bill, data = tips, geom = "histogram")
 
 ***
 
-Auch Lagemaße zu berechnen in Abhängigkeit der Gruppenzugehörigkeit ist einfach. So berechnet man den arithmetischen Mittelwert in Abhängigkeit von Geschlecht und Tageszeit:
+Auch Lagemaße zu berechnen in Abhängigkeit der Gruppenzugehörigkeit ist einfach. So können Sie den arithmetischen Mittelwert in Abhängigkeit von Geschlecht und Tageszeit berechnen:
 
 ```{r}
 mean(total_bill ~ sex + time, data=tips)
@@ -299,7 +299,7 @@ gebildet.
 
 ***
 
-Die *üblichen* deskriptiven Kennzahlen sind in `mosaic` übrigens in einer Funktion zusammengefasst: `favstats`:
+Die *üblichen* deskriptiven Kennzahlen sind in `mosaic` übrigens in einer Funktion zusammengefasst: `favstats`.
 ```{r}
 favstats(tip~day, data=tips)
 ```

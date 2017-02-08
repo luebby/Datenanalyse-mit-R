@@ -3,10 +3,10 @@ title: "Erste Schritte in R"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -121,7 +121,7 @@ dim(tips)
 ```
 erhalten.
 
-Metrische Variablen sind in R in der Regel vom Typ `numeric` oder `int`, kategorielle Variablen vom Typ `factor` oder `character`. `str` und `dim` sind erste Befehle, d. h., Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+Metrische Variablen sind in R in der Regel vom Typ `numeric` oder `int`, kategorielle Variablen vom Typ `factor` oder `character`. `str()` und `dim()` sind erste Befehle, d. h., Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
 ```{r eval=FALSE}
 head(tips) # Obere Zeilen
 tail(tips) # Untere Zeilen 

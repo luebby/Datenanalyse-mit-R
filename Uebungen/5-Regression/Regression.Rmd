@@ -44,7 +44,7 @@ xyplot(tip ~ total_bill, data=tips)
 qplot(y = tip, x = total_bill, data = tips)
 ```
 
-Es scheint einen positiven Zusammenhang zu geben. Modellieren wir die Abhängige Variable `tip` (inhaltliche Entscheidung!) als lineare Funktion der Unabhängigen Variable `total_bill`:
+Es scheint einen positiven Zusammenhang zu geben. Modellieren wir die **abhängige** Variable `tip` (inhaltliche Entscheidung!) als lineare Funktion der **unabhängigen** Variable `total_bill`:
 ```{r}
 LinMod.1 <- lm(tip ~ total_bill, data=tips)
 summary(LinMod.1)
@@ -53,7 +53,7 @@ Der Achsenabschnitt (`intercept`) wird mit `r round(coef(LinMod.1)[1],2)` gesch�
 
 `tip` = `r round(coef(LinMod.1)[1],2)` + `r round(coef(LinMod.1)[2],2)` * `total_bill`
 
-Die Koeffzienten werden dabei so geschätzt, dass $\sum \epsilon_i^2$ minimiert wird. Daher spricht man auch vom *Kleinste Quadrate* Kriterium. Eine robuste Regression ist z. B. mit der Funktion `rlm()` aus dem Paket `MASS` möglich.
+Die Koeffzienten werden dabei so geschätzt, dass $\sum \epsilon_i^2$ minimiert wird. Dies wird auch als  *Kleinste Quadrate* (*Ordinary Least Squares*, *OLS*) Kriterium bezeichnet. Eine robuste Regression ist z. B. mit der Funktion `rlm()` aus dem Paket `MASS` möglich.
 
 
 In mosaic kann ein solches Modell einfach als neue Funktion definiert werden:
@@ -75,7 +75,7 @@ betrachtet werden. Das Bestimmtheitsmaß R² ist mit `r round(summary(LinMod.1)$
 
 Aber wie sieht es mit den Annahmen aus?
 
-- Die Linearität des Zusammenhangs haben wir zu Beginn mit Hilfe des Scatterplots "überprüft"
+- Die Linearität des Zusammenhangs haben wir zu Beginn mit Hilfe des Scatterplots "überprüft".
 - Zur Überprüfung der Normalverteilung der Residuen zeichnen wir ein Histogramm. Die Residuen können über den Befehl `resid()` aus einem Linearen Modell extrahiert werden. Hier scheint es zu passen:
 ```{r}
 histogram( ~ resid(LinMod.1))
@@ -89,13 +89,13 @@ qplot(x = resid.LinMod.1., data = resid_df)
 ```
 
 
-- Konstante Varianz: Dies kann z. B. mit einem Scatterplot der Residuen auf der y-Achse und den angepassten Werten auf der x-Achse überprüft werden. Die angepassten Werte werden über den Befehl `fitted()` extrahiert. Diese Annahme scheint verletzt zu sein (siehe unten): je größer die Prognose des Trinkgeldes, desto größer wirkt die Streuung der Residuen. Dieses Phänomen ließ sich schon aus dem ursprünglichen Scatterplot `xyplot(tip ~ total_bill, data=tips)` erahnen. Das ist auch inhaltlich plausibel: je höher die Rechnung, desto höher die Varianz beim Trinkgeld. Die Verletzung dieser Annahme beeinflusst *nicht* die Schätzung der Steigung, sondern die Schätzung des Standardfehlers, also des p-Wertes des Hypothesentests, d. h. $H_0:\beta_1=0$. 
+- Konstante Varianz: Dies kann z. B. mit einem Scatterplot der Residuen auf der y-Achse und den angepassten Werten auf der x-Achse überprüft werden. Die angepassten Werte werden über den Befehl `fitted()` extrahiert. Diese Annahme scheint verletzt zu sein (siehe unten): je größer die Prognose des Trinkgeldes, desto größer wirkt die Streuung der Residuen. Dieses Phänomen ließ sich schon aus dem ursprünglichen Scatterplot `xyplot(tip ~ total_bill, data=tips)` erahnen. Das ist auch inhaltlich plausibel: je höher die Rechnung, desto höher die Varianz beim Trinkgeld. Die Verletzung dieser Annahme beeinflusst *nicht* die Schätzung der Steigung, sondern die Schätzung des Standardfehlers, also des p-Wertes des Hypothesentests, d. h., $H_0:\beta_1=0$. 
 
 ```{r}
 xyplot(resid(LinMod.1) ~ fitted(LinMod.1))
 ```
 
-- Extreme Ausreißer: Wie am Plot der Linearen Regression `plotModel(LinMod.1)` erkennbar gibt es vereinzelt Ausreißer nach oben, allerdings ohne einen extremen Hebel.
+- Extreme Ausreißer: Wie am Plot der Linearen Regression `plotModel(LinMod.1)` erkennbar, gibt es vereinzelt Ausreißer nach oben, allerdings ohne einen extremen Hebel.
 
 
 Hängt die Rechnungshöhe von der Anzahl der Personen ab? Bestimmt, aber wie?
@@ -103,7 +103,7 @@ Hängt die Rechnungshöhe von der Anzahl der Personen ab? Bestimmt, aber wie?
 xyplot(total_bill ~ size, data=tips)
 ```
 
-Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinander liegen können, sollte man "jittern", d. h. eine (kleine) Zufallszahl addieren:
+Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinander liegen können, sollte man "jittern", d. h., eine (kleine) Zufallszahl addieren:
 ```{r}
 set.seed(1896) # Zufallszahlengenerater setzen
 xyplot(total_bill ~ jitter(size), data=tips)
@@ -113,8 +113,8 @@ xyplot(total_bill ~ jitter(size), data=tips)
 ***
 **Übung:** 
 
-1.  Um wie viel Dollar steigt im Durchschnitt das Trinkgeld, wenn eine Person mehr am Tisch sitzt.
-2.  Für wie Aussagekräftig halten Sie Ihr Ergebnis aus 1.?
+1.  Um wie viel Dollar steigt im Durchschnitt das Trinkgeld, wenn eine Person mehr am Tisch sitzt?
+2.  Für wie aussagekräftig halten Sie Ihr Ergebnis aus 1.?
 
 ***
 
@@ -187,7 +187,7 @@ summary(lm(total_bill ~ sex, data=tips))
 summary(lm(total_bill ~ smoker, data=tips))
 ```
 
-Im vollem Modell `LinMod.4` sind alle unabhängigen Variablen berücksichtigt, die Koeffizienten beziehen sich dann immer auf: gegeben die anderen Variablen bleiben konstant, d. h. ceteris paribus.
+Im vollem Modell `LinMod.4` sind alle unabhängigen Variablen berücksichtigt, die Koeffizienten beziehen sich dann immer auf: gegeben, die anderen Variablen bleiben konstant, d. h. ceteris paribus.
 
 Vergleichen wir mal zwei Modelle:
 ```{r}
@@ -196,7 +196,7 @@ coef(LinMod.5a) # Koeffizienten extrahieren
 LinMod.5b <- lm(tip ~  sex + total_bill, data=tips)
 coef(LinMod.5b) # Koeffizienten extrahieren
 ```
-Ohne die Berücksichtigung der **Kovariable/ Störvariable** Rechnungshöhe geben `r levels(tips$sex)[2]` ein um im Durchschnitt `r round(coef(LinMod.5a)[2],2)`$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um `r abs(round(coef(LinMod.5b)[2],2))`$ *niedrigeres* Trinkgeld als die Referenzklasse `r levels(tips$sex)[1]` (`levels(tips$sex)[1]`). 
+Ohne die Berücksichtigung der **Kovariable/Störvariable** Rechnungshöhe geben ` `r levels(tips$sex)[2]` ` ein um im Durchschnitt `r round(coef(LinMod.5a)[2],2)`$ *höheres* Trinkgeld, bei Kontrolle, d. h. gleicher Rechnungshöhe ein um `r abs(round(coef(LinMod.5b)[2],2))`$ *niedrigeres* Trinkgeld als die Referenzklasse ` `r levels(tips$sex)[1]` ` (`levels(tips$sex)[1]`). 
 
 ## Inferenz in der linearen Regression
 Kehren wir noch einmal zur multivariaten Regression (`LinMod.4`) zurück. 
@@ -204,36 +204,40 @@ Kehren wir noch einmal zur multivariaten Regression (`LinMod.4`) zurück.
 summary(LinMod.4)
 ```
 
-In der 4. Spalte der, mit Zeilennamen versehen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable: $H_0: \beta_i=0$. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Ein einfacher t-Test! Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1\%. `**` entsprechend 1\%, `*` 5\% und `.` 10\%. Zum Signifikanzniveau von 10\% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 
+In der 4. Spalte der, mit Zeilennamen versehenen Tabelle `Coefficients` stehen die p-Werte der Nullhypothese, die unabhängige Variable hat, gegeben alle anderen Variablen im Modell, keinen linearen Einfluss auf die abhängige Variable: $H_0: \beta_i=0$. Zur Bestimmung des p-Wertes wird der Schätzer (`Estimate`) durch den Standardfehler (`Std. Error`) dividiert. Der resultierende t-Wert (`t value`) wird dann, zusammen mit der Anzahl an Freiheitsgraden zur Berechnung des p-Wertes (`Pr(>|t|)`) verwendet. Ein einfacher t-Test! 
+
+Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1\%. `**` entsprechend 1\%, `*` 5\% und `.` 10\%. 
+
+Zum Signifikanzniveau von 10\% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R² (`Multiple R-squared:`) liegt bei 
 `r round(summary(LinMod.4)$r.squared,2)`, also `r round(summary(LinMod.4)$r.squared*100)`\% der Variation des Trinkgeldes wird im Modell erklärt.
 
-Außerdem kann man testen, ob alle Koeffizienten der der unabhängigen Variablen gleich Null sind:
+Außerdem wird getestet, ob alle Koeffizienten der unabhängigen Variablen gleich Null sind:
 $$H_0: \beta_1=\beta_2=\cdots=\beta_k=0$$
-Das Ergebnis des zugrundeliegenden F-Tests (vlg. Varianzanalyse) wird in der letzten Zeile angegeben (`F-Statistic`). Hier wird $H_0$ also verworfen.
+Das Ergebnis des zugrundeliegenden F-Tests (vgl. Varianzanalyse) wird in der letzten Zeile angegeben (`F-Statistic`). Hier wird $H_0$ also verworfen.
 
 ## Erweiterungen
 
 ### Modellwahl
-Das Modell mit allen Variablen des Datensatzes, d. h. mit 6 unabhängigen (`LinMod.4`) erklärt `r round(summary(LinMod.4)$r.squared*100,2)`-% der Variation, das Modell *nur* mit der Rechnungshöhe als erklärende Variable (`LinMod.1`) schon `r round(summary(LinMod.1)$r.squared*100,2)`%, der Erklärungszuwachs liegt also gerade einmal bei `r round(summary(LinMod.4)$r.squared*100,2) - round(summary(LinMod.1)$r.squared*100,2)` Prozentpunkten. In der Statistik ist die Wahl des *richtigen* Modell eine der größten Herausforderungen, auch deshalb weil man der wahre Modell in der Regel nicht kennt und es schwer ist die richtige Balance zwischen Einfachheit und Komplexität zu finden. Aufgrund des Zufalls kann es immer passieren, dass das Modell sich zu sehr an die *zufälligen* Daten anpasst (Stichwort: Overfitting). Es gibt unzählige Modellwahlmethoden, und leider garantiert keine, dass man immer das beste Modell findet. Eine Möglichkeit ist die sogenannte Schrittweise-Rückwärtsselektion auf Basis des Akaike-Informationskriteriums (AIC)^[siehe z. B. Rob J Hyndman & George Athanasopoulos, Forecasting: principles and practice, Kapitel 5.3: Selecting predictors,   [https://www.otexts.org/fpp/5/3](https://www.otexts.org/fpp/5/3)]. Diese ist nicht nur recht weit verbreitet - und liefert unter bestimmten Annahmen das "richtige" Modell - sondern in R durch den Befehl `step()` einfach umsetzbar:
+Das Modell mit allen Variablen des Datensatzes, d. h., mit 6 unabhängigen (`LinMod.4`) erklärt `r round(summary(LinMod.4)$r.squared*100,2)`% der Variation, das Modell *nur* mit der Rechnungshöhe als erklärende Variable (`LinMod.1`) schon `r round(summary(LinMod.1)$r.squared*100,2)`%, der Erklärungszuwachs liegt also gerade einmal bei `r round(summary(LinMod.4)$r.squared*100,2) - round(summary(LinMod.1)$r.squared*100,2)` Prozentpunkten. In der Statistik ist die Wahl des *richtigen* Modells eine der größten Herausforderungen, auch deshalb, weil das wahre Modell in der Regel nicht bekannt ist und es schwer ist, die richtige Balance zwischen Einfachheit und Komplexität zu finden. Aufgrund des Zufalls kann es immer passieren, dass das Modell sich zu sehr an die *zufälligen* Daten anpasst (Stichwort: Overfitting). Es gibt unzählige Modellwahlmethoden, und leider garantiert keine, dass immer das beste Modell gefunden wird. Eine Möglichkeit ist die sogenannte Schrittweise-Rückwärtsselektion auf Basis des Akaike-Informationskriteriums (AIC)^[siehe z. B. Rob J Hyndman & George Athanasopoulos, Forecasting: principles and practice, Kapitel 5.3: Selecting predictors,   [https://www.otexts.org/fpp/5/3](https://www.otexts.org/fpp/5/3)]. Diese ist nicht nur recht weit verbreitet - und liefert unter bestimmten Annahmen das "richtige" Modell - sondern in R durch den Befehl `step()` einfach umsetzbar:
 ```{r}
 step(LinMod.4)
 ```
-In den letzten Zeilen der Ausgabe steht das beste Modell, dass diese Methode (schrittweise, rückwärts) mit diesem Kriterium (AIC) bei diesen Daten findet (Punktprognose, d. h. ohne Residuum):
+In den letzten Zeilen der Ausgabe steht das beste Modell, das diese Methode (schrittweise, rückwärts) mit diesem Kriterium (AIC) bei diesen Daten findet (Punktprognose, d. h. ohne Residuum):
 
 `tip =  0.66894 +  0.09271 * total_bill + 0.19260 * size`
 
-Der Ausgabe kann man auch entnehmen, welche Variablen in welcher Reihenfolge *entfernt* wurden: Zunächst `day`, dann `time`, danach `sex` und schließlich `smoker`. Hier sind also dieselben Variablen noch im Modell, die auch in `LinMod.4` signifikant zum Niveau 10\% waren, eine Auswahl der dort signifikanten Variablen hätte also dasselbe Modell ergeben. Das ist häufig so, aber nicht immer!
+Der Ausgabe können Sie auch entnehmen, welche Variablen in welcher Reihenfolge *entfernt* wurden: Zunächst `day`, dann `time`, danach `sex` und schließlich `smoker`. Hier sind also dieselben Variablen noch im Modell, die auch in `LinMod.4` signifikant zum Niveau 10\% waren, eine Auswahl der dort signifikanten Variablen hätte also dasselbe Modell ergeben. Das ist häufig so, aber nicht immer!
 
 ### Interaktionen 
 
-Wir haben gesehen, dass es einen Zusammenhang zwischen der Trinkgeldhöhe und der Rechnungshöhe gibt. Vielleicht unterscheidet sich der Zusammenhang je nachdem, ob geraucht wurde, d. h. vielleicht gibt es eine Interaktion (Wechselwirkung). Die kann in `lm` einfach durch ein `*` zwischen den unabhängigen Variablen modelliert werden:
+Wir haben gesehen, dass es einen Zusammenhang zwischen der Trinkgeldhöhe und der Rechnungshöhe gibt. Vielleicht unterscheidet sich der Zusammenhang je nachdem, ob geraucht wurde, d. h., vielleicht gibt es eine Interaktion (Wechselwirkung). Die kann in `lm` einfach durch ein `*` zwischen den unabhängigen Variablen modelliert werden:
 
 ```{r}
 LinMod.6 <- lm(tip ~ smoker*total_bill, data = tips)
 summary(LinMod.6)
 ```
 
-Der Schätzwert für die Interaktion steht bei `:`. Hier also: Wenn geraucht wurde, ist die Steigung im Durchschnitt um 6,8 Cent geringer. Aber wenn geraucht wurde, ist die Rechnung im Achsenabschnitt erstmal um 1,20\$ höher (Effekt, ceteris paribus). Wer will kann ausrechnen ab welcher Rechnungshöhe Rauchertische im Mittelwert lukrativer sind... 
+Der Schätzwert für die Interaktion steht bei `:`. Hier also: Wenn geraucht wurde, ist die Steigung im Durchschnitt um 6,8 Cent geringer. Aber wenn geraucht wurde, ist die Rechnung im Achsenabschnitt erstmal um 1,20\$ höher (Effekt, ceteris paribus). Wer will, kann ausrechnen, ab welcher Rechnungshöhe Rauchertische im Mittelwert lukrativer sind... 
 
 Das gleiche Bild (höhere Achsenabschnitt, geringere Steigung) ergibt sich übrigens bei getrennten Regressionen:
 ```{r}
@@ -241,16 +245,19 @@ lm(tip~total_bill, data=tips, subset = smoker=="Yes")
 lm(tip~total_bill, data=tips, subset = smoker=="No")
 ```
 
+### Weitere Modellierungsmöglichkeiten
+
 Über das Formelinterface `y~x` können auch direkt z. B. Polynome modelliert werden. Hier eine quadratische Funktion:
 ```{r}
 summary(lm(tip~I(total_bill^2)+total_bill, data=tips))
 ```
-d.h. die geschätzte Funktion ist eine "umgedrehte Parabel" (negatives Vorzeichen bei `I(total_bill^2) `), d. h. die Funktion ist konkav, die Steigung nimmt ab. Allerdings ist der Effekt nicht signifikant.
+
+D. h., die geschätzte Funktion ist eine "umgedrehte Parabel" (negatives Vorzeichen bei `I(total_bill^2) `), bzw. die Funktion ist konkav, die Steigung nimmt ab. Allerdings ist der Effekt nicht signifikant. **Hinweis:** Um zu "rechnen" und nicht beispielsweise Interaktion zu modellieren, geben Sie die Variablen in der Formel in der Funktion `I()` (*As Is*) ein.
 
 
 ### Prognoseintervalle
 
-Insgesamt haben wir viel "Unsicherheit", u. a. aufgrund von Variabilität in den Beobachtungen und in den Schätzungen. Wie wirken sich diese auf die Prognose aus?
+Insgesamt haben wir viel "Unsicherheit" u. a. aufgrund von Variabilität in den Beobachtungen und in den Schätzungen. Wie wirken sich diese auf die Prognose aus?
 
 Dazu können wir über die Funktion `predict.lm` Prognoseintervalle berechnen -- hier für das einfache Modell `LinMod.1`:
 ```{r}
@@ -262,7 +269,7 @@ matplot(newdat$total_bill, preddat, lty = c(1,2,2), type="l" )
 points(x=tips$total_bill, y=tips$tip)
 ```
 
-Sie sehen, dass 95\% Prognoseintervall ist recht breit: über den gewählten Rechnungsberich von 0-75\$ im Mittelwert bei 4.11\$. 
+Sie sehen, dass 95\% Prognoseintervall ist recht breit: über den gewählten Rechnungsbereich von $0-75$\$ im Mittelwert bei 4.11\$. 
 
 ```{r}
 favstats((preddat[,3]-preddat[,2]))
@@ -277,10 +284,10 @@ Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evalu
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
-Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) als `csv`herunterladen.
+Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) als `csv` herunterladen.
 
 
-Versuchen Sie das Evaluierungsergebnis als abhängige Variable anhand geeigneter Variablen des Datensatzes zu erklären. Wie groß ist der Einfluss der Schönheit? Sind die Modellannahmen erfüllt und wie würden Sie die Modellgüte beurteilen.
+Versuchen Sie, das Evaluierungsergebnis als abhängige Variable anhand geeigneter Variablen des Datensatzes zu erklären. Wie groß ist der Einfluss der Schönheit? Sind die Modellannahmen erfüllt und wie beurteilen Sie die Modellgüte?
 
 ## Literatur
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 require(mosaic)
 ```
 ## Zufall und Wahrscheinlichkeit
-In dieser Übung werden wir ein wenig programmieren, daher bietet es sich an die Befehle in einem Skript zu speichern. Gehen Sie dazu in RStudio in das Menü `File` und dort auf `New File` und wählen `R Script` aus. Dies können Sie dann am Ende über `File` und `Save` bzw. `Safe as` speichern -- und über `Open File` später auch wieder öffnen. Um die Befehle an die Konsole zu übergeben klicken Sie entweder auf `Run` (nur ausgewählte Zeile, Tastenkürzel `Strg+Enter`) oder `Source` (ganze Programm).
+In dieser Übung werden wir ein wenig programmieren, daher bietet es sich an, die Befehle in einem Skript zu speichern. Gehen Sie dazu in RStudio in das Menü `File` und dort auf `New File` und wählen `R Script` aus. Dies können Sie dann am Ende über `File` und `Save` bzw. `Safe as` speichern -- und über `Open File` später auch wieder öffnen. Um die Befehle an die Konsole zu übergeben klicken Sie entweder auf `Run` (nur ausgewählte Zeile, Tastenkürzel `Strg+Enter`) oder `Source` (ganze Programm).
 
 Zunächst laden wir wieder das Zusatzpaket mosaic, falls noch nicht geschehen:
 ```{r eval=FALSE, message=FALSE}
@@ -65,7 +65,7 @@ tally(~resample(roulette, size=1000000, prob=c(18/37, 19/37)), format="proportio
 
 Die theoretische Wahrscheinlichkeit eines Gewinns liegt bei $\frac{18}{37} \approx `r round(18/37, 4)`$: Achtung, dass Gesetz der großen Zahl gilt für den Durchschnitt und auf lange Sicht, evtl. Ungleichgewichte, z. B. 5 Gewinne in Folge werden im Laufe der Zeit abgeschwächt, und nicht durch anschließende 5 Verluste ausgeglichen.
 
-Bei bestimmten Spielstrategien, z. B. bei der sogenannten Martingale oder Verdoppelungsstrategie, ist man interessiert daran wie wahrscheinlich es ist, z. B. 8-mal in Folge zu verlieren. Natürlich kann man das mit Hilfe der *Binomialverteilung* ausrechnen, wir können es aber auch simulieren: `do()` ist eine einfache Schleifenfunktion in mosaic. Um z. B. 1000-mal jeweils 8 Runden Roulette zu spielen - und das Ergebnis zu speichern - genügt:
+Bei bestimmten Spielstrategien, z. B. bei der sogenannten Martingale oder Verdoppelungsstrategie, ist man daran interessiert, wie wahrscheinlich es ist, z. B. 8-mal in Folge zu verlieren. Natürlich kann das mit Hilfe der *Binomialverteilung* ausgerechnet werden, wir können es aber auch simulieren: `do()` ist eine einfache Schleifenfunktion in mosaic. Um z. B. 1000-mal jeweils 8 Runden Roulette zu spielen - und das Ergebnis zu speichern - genügt:
 
 
 ```{r}
@@ -74,7 +74,7 @@ farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)),
 ```
 `farbspiele` ist jetzt ein Datensatz (`data.frame`) mit 1000 Zeilen (=Simulationen) und den relativen Häufigkeiten für Gewinn und Verlust in den 8 Spielen in den Spalten.
 
-Das Histogramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten, aber doch vorkommt alle 8 Spiele zu verlieren (`nint = 8`, da es jeweils 8 Spiele waren).
+Das Histogramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten, aber doch vorkommt, alle 8 Spiele zu verlieren (`nint = 8`, da es jeweils 8 Spiele waren).
 ```{r}
 histogram(~Verlust, data=farbspiele, nint = 8)
 ```
@@ -96,7 +96,7 @@ zahlspiele <- do(1000)*tally(~resample(roulette, size=10,
 histogram(~Gewinn, data=zahlspiele, nint = 10)
 ```
 
-stellen wir fest, dass diese Daten (leider) extrem rechtsschief sind, d. h. i. d. R. gewinnen wir in keiner der 10 Runden, Gewinn=0. Wenn wir  `size=10` durch `size=10000` ersetzen (d. h. bei jeden der 1000 Simulationen 10000 Runden spielen), passiert folgendes:
+stellen wir fest, dass diese Daten (leider) extrem rechtsschief sind, d. h., i. d. R. gewinnen wir in keiner der 10 Runden, Gewinn=0. Wenn wir  `size=10` durch `size=10000` ersetzen (d. h., bei jeden der 1000 Simulationen 10000 Runden spielen), passiert folgendes:
 
 ```{r}
 zahlspiele2 <- do(1000)*tally(~resample(roulette, size=10000, 
@@ -104,7 +104,7 @@ zahlspiele2 <- do(1000)*tally(~resample(roulette, size=10000,
 histogram(~Gewinn, data=zahlspiele2)
 ```
 
-Die Daten werden *normaler*, symmetrischer, d. h. die Verteilung des Gewinnanteilswertes nähert sich einer Normalverteilung an. Diese Phänomen ist der Hintergrund des **Zentralen Grenzwertsatzes**.
+Die Daten werden *normaler*, symmetrischer, d. h., die Verteilung des Gewinnanteilswertes nähert sich einer Normalverteilung an. Diese Phänomen ist der Hintergrund des **Zentralen Grenzwertsatzes**.
 
 ***
 **Übung:** 
@@ -112,7 +112,7 @@ Die Daten werden *normaler*, symmetrischer, d. h. die Verteilung des Gewinnantei
 2.  Zurück zum Farbspiel (`farbspiele`): Wie hoch schätzen Sie die Wahrscheinlichkeit anhand der Simulation, dass Sie mindestens die Hälfte Ihrer 8 Spiele gewinnen? 
 
 ***
-Richtig: `r mean(farbspiele$Gewinn>=0.5)`, das ist also anscheinend recht wahrscheinlich, während der relative Anteil der Spiele, in denen Sie maximal 1 der 8 Spiele gewinnen recht klein ist:
+Richtig: `r mean(farbspiele$Gewinn>=0.5)`, das ist also anscheinend recht wahrscheinlich, während der relative Anteil der Spiele, in denen Sie maximal 1 der 8 Spiele gewinnen, recht klein ist:
 ```{r, eval = FALSE}
 anteil <- sum(farbspiele$Gewinn <= 1/8)/length(farbspiele$Gewinn)
 anteil
@@ -122,7 +122,7 @@ Das kommt also eher selten vor. Pech. Vielleicht würden Ihnen aber auch Zweifel
 ## Hypothesentest, p-Wert und Konfidenzintervall
 Im Paper 
 *Hose, C., Lübke, K., Nolte, T., und Obermeier, T. (2012): Ratingprozess und Ratingergebnis: Ein Experiment bei qualitativen Ratingkriterien, Kredit & Rating Praxis (6), 12-14* 
-wird folgendes Experiment untersucht: unterscheidet sich die Einschätzung (Rating) eines Unternehmens, je nach dem, ob man alleiniger Entscheider (Typ A), oder derjenige ist, der die  Entscheidungsvorlage vorbereitet (Typ B). Im Rahmen des Experiments wurde die Studierenden zufällig den verschiedenen Typen A und B zugeordnet. Von 151 alleinigen Entscheidern (Typ A) beurteilten 79 das Beispielunternehmen überwiegend positiv (++, +), von 143 Entscheidungsvorlagenerstellern (Typ B) entschieden ebenfalls 79 überwiegend positiv. 
+wird folgendes Experiment untersucht: Unterscheidet sich die Einschätzung (Rating) eines Unternehmens, je nach dem, ob die Person alleiniger Entscheider (Typ A) oder derjenige ist, der die  Entscheidungsvorlage vorbereitet (Typ B). Im Rahmen des Experiments wurden die Studierenden zufällig den verschiedenen Typen A und B zugeordnet. Von 151 alleinigen Entscheidern (Typ A) beurteilten 79 das Beispielunternehmen überwiegend positiv (++, +), von 143 Entscheidungsvorlagenerstellern (Typ B) entschieden ebenfalls 79 überwiegend positiv. 
 
 Zeigt das unterschiedliche Verhältnis: Typ A: 79/151=`r round(79/151*100,2)`% zu Typ B: 79/143=`r round(79/143*100,2)`%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?
 
@@ -136,7 +136,7 @@ entscheider <- rep(typ, c(151,143))
 tally(~entscheider)
 ```
 
-Sowie der Entscheidungen:
+sowie einen Vektor der Entscheidungen:
 
 ```{r}
 rating <- factor(c("Positiv", "Nicht Positiv"))
@@ -166,7 +166,7 @@ Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simul
 ```{r}
 typA <- rep(rating, c(79, 151-79))
 ```
-erzeugen wir uns einen Vektor, der die 79 positive und 151-79 nicht positiven Urteile von Typ A (alleinige Entscheidung) enthält.
+erzeugen wir uns einen Vektor, der die $79$ positiven und $151-79$ nicht positiven Urteile von Typ A (alleinige Entscheidung) enthält.
 ```{r}
 tally(~ typA)
 ```
@@ -174,7 +174,7 @@ Wenn wir jetzt diesen Vektor z. B. 1000-mal resampeln:
 ```{r}
 typAboot <- do(1000)*tally(~resample(typA), format="proportion")
 ```
-Erhalten wir 1000 (resampelte) Stichproben, die jeweils einen zufälligen Stichprobenanteil haben:
+erhalten wir 1000 (resampelte) Stichproben, die jeweils einen zufälligen Stichprobenanteil haben:
 ```{r}
 histogram(~typAboot$Positiv, v=79/151) # 79/151: Anteil der Originalstichprobe
 ```
@@ -184,7 +184,7 @@ In 95% der Fälle liegt dieser zufällige Stichprobenanteil hier zwischen
 ki <- c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
 ki
 ```
-`sort` sortiert den Vektor aufsteigend, und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 0.975%-Quantil zugegriffen. *Anmerkung*: Sollte z. B. das 2.5%-Quantil nicht auf eine konkrete Beobachtung fallen, so müssten wir runden mit `round()`, abrunden `floor()` bzw. aufrunden `ceiling()`.
+`sort` sortiert den Vektor aufsteigend und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 97.5%-Quantil zugegriffen. *Anmerkung*: Sollte z. B. das 2.5%-Quantil nicht auf eine konkrete Beobachtung fallen, so müssten wir runden mit `round()`, abrunden `floor()` bzw. aufrunden `ceiling()`.
 
 
 ```{r}
@@ -197,7 +197,7 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 ***
 **Übung:** 
 
-3.  Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese p=0.6 zum Signifikanzniveau 10% verworfen?
+3.  Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $p=0.6$ zum Signifikanzniveau 10% verworfen?
 
 ***
 
@@ -234,13 +234,13 @@ xpnorm(0, mean=0.11, sd=1.62, lower.tail = FALSE)
 ***
 
 
-Dabei wird hier immer auch die Z-Transformation, die Standardisierung mit angegeben.
-Am 26.05.2015 (r=-2.23) betrug der z-Wert der Apple Aktie demnach bei
+Dabei wird hier immer auch die Z-Transformation, die Standardisierung, mit angegeben.
+Am 26.05.2015 ($r=-2.23$) betrug der $z$-Wert der Apple Aktie demnach bei
 ```{r}
 (-2.23 - (-0.08)) / 1.69
 ```
 Die Tagesrendite von Apple war also `r abs((-2.23 - (-0.08)) / 1.69)` Standardabweichungen *unter* dem Mittelwert. 
-Für Facebook lag die Tagesrendite bei -1.51, der z-Wert demnach bei:
+Für Facebook lag die Tagesrendite bei -1.51, der $z$-Wert demnach bei:
 ```{r}
 (-1.51 - (0.11)) / 1.62
 ```
@@ -249,7 +249,7 @@ Der 26. Mai 2015 war also auch für Facebook-Anlegerinnen kein guter Tag, aber i
 ***
 **Übung:** 
 
-5.  Die Rendite von Google am 26.05.2015 betrug -1.33. Wie hoch ist der z-Wert und interpretieren Sie die Aussage des Ergebnisses.
+5.  Die Rendite von Google am 26.05.2015 betrug -1.33. Wie hoch ist der $z$-Wert? Interpretieren Sie die Aussage des Ergebnisses.
 
 ***
 
@@ -261,7 +261,7 @@ Z. B. für die 5% schlechtesten Tage der Appleaktie
 ```{r}
 xqnorm(0.05, mean=-0.08, sd=1.69 )
 ```
-Die Wahrscheinlichkeit beträgt also 5%, dass die Tagesrendite unter`r round(qnorm(0.05, mean=-0.08, sd=1.69),2)` liegt.
+Die Wahrscheinlichkeit beträgt also 5%, dass die Tagesrendite unter `r round(qnorm(0.05, mean=-0.08, sd=1.69),2)` liegt.
 
 Für die Facebook Aktie gilt, dass Sie nur mit einer Wahrscheinlichkeit von 1% über `r xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)` lag:
 ```{r, eval=FALSE}
@@ -271,7 +271,7 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ***
 **Übung:** 
 
-6.  Sie wollen Ihre Google-Aktien absichern. Wie groß ist der Tagesverlust mindestens bei einer maximalen Eintretenswahrscheinlichkeit von 1%?
+6.  Sie wollen Ihre Google-Aktien absichern. Wie groß ist bei einer maximalen Eintretenswahrscheinlichkeit von 1% der Tagesverlust mindestens?
 
 ***
 
