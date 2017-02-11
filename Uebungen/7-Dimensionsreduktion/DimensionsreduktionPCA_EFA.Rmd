@@ -33,8 +33,8 @@ In diese Übung betrachten wir zwei gängige Methoden, um die Komplexität von m
 Pakete, die für die Datenanalyse benötigt werden, müssen vorher einmalig in R installiert werden.
 
 ```{r}
-install.packages("corrplot")
-# install.packages("gplot")
+# install.packages("corrplot")
+# install.packages("gplots")
 # install.packages("nFactors")
 ```
 
