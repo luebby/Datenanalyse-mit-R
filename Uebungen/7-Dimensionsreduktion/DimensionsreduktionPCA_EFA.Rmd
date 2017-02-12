@@ -36,6 +36,8 @@ Pakete, die für die Datenanalyse benötigt werden, müssen vorher einmalig in R
 # install.packages("corrplot")
 # install.packages("gplots")
 # install.packages("nFactors")
+# install.packages("scatterplot3d")
+
 ```
 
 
@@ -318,6 +320,20 @@ Mittels Heatmap kann dann sehr schnell analysiert werden, welche Marke auf welch
 heatmap.2(as.matrix(brand.fa.mean))
 ```
 
+Noch schöner lassen sich drei Dimensionen in einem dreidimensionalen Raum darstellen.
+```{r}
+library(scatterplot3d)
+
+attach(brand.fa.mean)
+scatterplot3d(Leader~Value+Latest)
+
+########## Hier wäre ein einfache Argument für die Positionsbeschriftung mit den Marken interessant !!!!!##########
+
+library(Rcmdr)
+
+
+```
+
 
 ## Interne Konsistenz der Skalen
 
@@ -345,7 +361,7 @@ alpha(brand.sc[, c("latest","trendy","fun")], check.keys=TRUE)
 
 ```
 
-Bis auf `latest` sind alle Konstrukte bezüglich ihrer internen Konsistenz akzeptabel. Bei dem Konstrukt `latest` können wir durch Elimination von `fun` das Cronbachs Alpha von einem fragwürdigen Wert auf einen akteptablen Wert von 0,77 erhöhen. 
+Bis auf `Latest` sind alle Konstrukte bezüglich ihrer internen Konsistenz akzeptabel. Bei dem Konstrukt `Latest` können wir durch Elimination von `fun` das Cronbachs Alpha von einem fragwürdigen Wert auf einen akteptablen Wert von 0,77 erhöhen. 
 
 Das Argument `check.keys=TRUE` gibt uns eine Warung aus, sollte die Ladung eines oder mehrerer Items negativ sein. Dies ist hier nicht der Fall, somit müssen auch keine Items recodiert werden. 
 
