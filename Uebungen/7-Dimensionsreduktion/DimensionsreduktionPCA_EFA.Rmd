@@ -320,18 +320,13 @@ Mittels Heatmap kann dann sehr schnell analysiert werden, welche Marke auf welch
 heatmap.2(as.matrix(brand.fa.mean))
 ```
 
-Noch schöner lassen sich drei Dimensionen in einem dreidimensionalen Raum darstellen.
+Es lassen sich auch drei Dimensionen direkt darstellen:
 ```{r}
 library(scatterplot3d)
 
-attach(brand.fa.mean)
-scatterplot3d(Leader~Value+Latest)
-
-########## Hier wäre ein einfache Argument für die Positionsbeschriftung mit den Marken interessant !!!!!##########
-
-library(Rcmdr)
-
-
+attach(brand.fa.mean) # Datensatz zum Suchpfad hinzügen
+scatterplot3d(Leader~Value+Latest, pch=row.names(brand.fa.mean))
+detach(brand.fa.mean) # Datensatz vom Suchpfad entfernen
 ```
 
 
