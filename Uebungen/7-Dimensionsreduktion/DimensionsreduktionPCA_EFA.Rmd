@@ -331,8 +331,8 @@ Alpha      |   Bedeutung
 -----------|--------------
 größer 0,9 |   excellent     
 größer 0,8 |   gut     
-größer 0,7 |   akzeptabler     
-größer 0,6 |   fragewürdig     
+größer 0,7 |   akzeptabel     
+größer 0,6 |   fragwürdig     
 größer 0,5 |   schlecht     
 
 
