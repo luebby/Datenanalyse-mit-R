@@ -329,9 +329,6 @@ scatterplot3d(Leader~Value+Latest)
 
 ########## Hier wäre ein einfache Argument für die Positionsbeschriftung mit den Marken interessant !!!!!##########
 
-library(Rcmdr)
-
-
 ```
 
 
