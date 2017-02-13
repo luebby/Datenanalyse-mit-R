@@ -3,10 +3,10 @@ title: "Einführung Inferenz metrische Werte"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -34,7 +34,7 @@ z0 <- (mFB - 0) / seFB # z-Wert
 xpnorm(z0, lower.tail = FALSE) # p-Wert
 ```
 
-Mit einem p-Wert von `r round(pnorm(z0, lower.tail = FALSE), 4)` kann die Nullhypothese, der Lageparameter der Rendite ist kleiner gleich 0 $H_0: \mu \leq 0$ *nicht* verworfen werden.
+Mit einem p-Wert von `r round(pnorm(z0, lower.tail = FALSE), 4)` kann die Nullhypothese, der Lageparameter der Rendite ist kleiner gleich 0 $H_0: \mu \leq 0$ *nicht* verworfen werden. (Teststatistik $T=\frac{\bar{x}-\mu_0}{\frac{sd}{\sqrt{n}}}$)
 
 Das zeigen auch Simulationen: Der Befehl `rnorm` erzeugt Zufallszahlen aus einer Normalverteilung:
 ```{r}
@@ -107,7 +107,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
 ptb3 <- t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
 
-Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt.
+Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) mit unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt.
 
 ***
 **Übung:**
@@ -155,9 +155,10 @@ favstats(ZINSK ~ PHASEN, data=B3AufAb)
 ```
 Alle Lagemaße für die Zinskosten sind in der Aufschwungphase niedriger. 
 
-Der t-Test der Zinskosten für $$H_0: \mu_{\text{Aufschwung}}=\mu_{\text{Abschwung}} \Leftrightarrow \mu_{\text{Aufschwung}}-\mu_{\text{Abschwung}}=0$$
+Der t-Test der Zinskosten für $$H_0: \mu_{\text{Aufschwung}}=\mu_{\text{Abschwung}} \Leftrightarrow \mu_{\text{Aufschwung}}-\mu_{\text{Abschwung}}=0$$ mit der Teststatistik $$T=\frac{\bar{x}_A-\bar{x}_B}{\sqrt{\frac{sd^2_A}{{n_A}}+\frac{sd^2_B}{{n_B}}}}$$
+hat dann den gleichen Aufbau des Syntax wie `bwplot` oder `favstats`: Teste die Zinskosten in Abhängigkeit der Konjunkturphase.
 
-hat dann den gleichen Aufbau des Syntax wie `bwplot` oder `favstats`: Teste die Zinskosten in Abhängigkeit der Konjunkturphase:
+Die Berechnung der Teststatistik 
 ```{r}
 t.test(ZINSK ~ PHASEN, data=B3AufAb)
 ```
@@ -195,8 +196,8 @@ sum(mdiff.null >= mdiff)
 mal bei 1000 Permutationen vor!
 
 Da die statistische *Signifikanz* vom Standardfehler abhängt, welcher wiederum vom Stichprobenumfang abhängt, wurde von Cohen ein Maß für die *Effektstärke*, **Cohen's d** vorgeschlagen:
-$$d=\frac{\bar{x}_1-\bar{x}_2}{sd_{\text{pool}}}$$
-mit $${sd_{\text{pool}}=\sqrt{\frac{1}{n_1+n_2-2}\Bigl((n_1-1)sd^2_1+(n_2-1)sd^2_2 \Bigr)}}$$
+$$d=\frac{\bar{x}_A-\bar{x}_B}{sd_{\text{pool}}}$$
+mit $${sd_{\text{pool}}=\sqrt{\frac{1}{n_A+n_B-2}\Bigl((n_1-1)sd^2_A+(n_2-1)sd^2_B \Bigr)}}$$
 
 ```{r}
 # Kennzahlen 1. Stichprobe
