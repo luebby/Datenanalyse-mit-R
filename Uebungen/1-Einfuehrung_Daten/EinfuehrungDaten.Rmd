@@ -3,10 +3,10 @@ title: "Einführung in Daten"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -214,15 +214,22 @@ gibt also das Minimum der Rechnungshöhe, getrennt nach Raucher und Nichtraucher
 
 ***
 
-Lagemaße sollen die zentrale Tendenz der Daten beschreiben. Gebräuchlich sind in der Regel der arithmetische Mittelwert `mean`
+Lagemaße sollen die zentrale Tendenz der Daten beschreiben. Gebräuchlich sind in der Regel der arithmetische Mittelwert  `mean`
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i=\frac{x_1+x_2+x_3+\cdots+x_n}{n}$$
 
 ```{r}
 mean(~ total_bill, data=tips)
 ```
-sowie der Median `median`:
+sowie der Median (Zentralwert) `median`:
 ```{r}
 median(~ total_bill, data=tips)
 ```
+
+Den jeweiligen Rang der Beonbachtungen erhalten Sie über 
+```{r}
+rank(tips$total_biltips)
+```
+
 
 Diese unterscheiden sich:
 ```{r}
@@ -270,7 +277,8 @@ tally(~day, format="proportion", data=tips)
 ### Streuungsmaße
 Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
 
-Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQR` sowie Varianz `var` bzw. Standardabweichung `sd` herangezogen:
+Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQR` sowie Varianz `var` bzw. Standardabweichung `sd` $$s=sd=\sqrt{x^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^2}$$
+herangezogen:
 
 ```{r}
 IQR(~total_bill, data=tips)
@@ -306,7 +314,8 @@ favstats(tip~day, data=tips)
 
 
 ### Zusammenhangsmaße
-Kennzahlen für den linearen Zusammenhang von metrischen Variablen sind Kovarianz `cov` und der Korrelationskoeffizient `cor`:
+Kennzahlen für den linearen Zusammenhang von metrischen Variablen sind Kovarianz `cov` $$s_{xy}=\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})(y_{i}-\bar{y})$$
+und der Korrelationskoeffizient `cor` $$r=\frac{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})(y_{i}-\bar{y})}{\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^2}\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(y_{i}-\bar{y})^2}}=\frac{s_{xy}}{s_{x}s_{y}}$$
 ```{r}
 cov(tip ~ total_bill, data=tips)
 cor(tip ~ total_bill, data=tips)
