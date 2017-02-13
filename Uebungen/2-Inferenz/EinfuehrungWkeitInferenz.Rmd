@@ -3,10 +3,10 @@ title: "Einführung Wahrscheinlichkeit und Inferenz"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -32,7 +32,7 @@ Dieser Befehl sorgt dafür, dass wir immer denselben "Zufall" haben.
 
 Beim Roulette gibt es 37 Zahlen und 3 Farben: 0-37, wobei 18 Zahlen Schwarz, 18 Zahlen Rot und die 0 Grün ist -- auf diese können Sie auch nicht setzen.
 
-Angenommen Sie setzen auf Farbe. Dann beträgt Ihre Gewinnwahrscheinlichkeit 18/37, da 18 von 37 Fächern "ihre" Farbe hat, die Wahrscheinlichkeit eines Verlustes liegt bei 19/37=1-18/37. 
+Angenommen Sie setzen auf Farbe. Dann beträgt Ihre Gewinnwahrscheinlichkeit $\frac{18}{37}$, da 18 von 37 Fächern "ihre" Farbe hat, die Wahrscheinlichkeit eines Verlustes liegt bei $\frac{19}{37}=1-\frac{18}{37}$. 
 
 Definieren wir in R einen `factor`-Vektor mit zwei Elementen für Gewinn und Verlust:
 ```{r}
@@ -85,7 +85,7 @@ Wir haben in `r sum(farbspiele$Verlust==1)` von 1000 Wiederholungen nur verloren
 ***
 **Übung:** 
 
-1.  Wenn Sie statt auf Farbe auf eine Zahl setzen, beträgt Ihre Gewinnwahrscheinlichkeit 1/37. Simulieren Sie 1000-mal 10 Spiele. Wie oft haben Sie mindestens 1-mal gewonnen?
+1.  Wenn Sie statt auf Farbe auf eine Zahl setzen, beträgt Ihre Gewinnwahrscheinlichkeit $\frac{1}{37}$. Simulieren Sie 1000-mal 10 Spiele. Wie oft haben Sie mindestens 1-mal gewonnen?
 
 ***
 
@@ -124,9 +124,9 @@ Im Paper
 *Hose, C., Lübke, K., Nolte, T., und Obermeier, T. (2012): Ratingprozess und Ratingergebnis: Ein Experiment bei qualitativen Ratingkriterien, Kredit & Rating Praxis (6), 12-14* 
 wird folgendes Experiment untersucht: Unterscheidet sich die Einschätzung (Rating) eines Unternehmens, je nach dem, ob die Person alleiniger Entscheider (Typ A) oder derjenige ist, der die  Entscheidungsvorlage vorbereitet (Typ B). Im Rahmen des Experiments wurden die Studierenden zufällig den verschiedenen Typen A und B zugeordnet. Von 151 alleinigen Entscheidern (Typ A) beurteilten 79 das Beispielunternehmen überwiegend positiv (++, +), von 143 Entscheidungsvorlagenerstellern (Typ B) entschieden ebenfalls 79 überwiegend positiv. 
 
-Zeigt das unterschiedliche Verhältnis: Typ A: 79/151=`r round(79/151*100,2)`% zu Typ B: 79/143=`r round(79/143*100,2)`%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?
+Zeigt das unterschiedliche Verhältnis: Typ A: $\frac{79}{151}=`r round(79/151*100,2)`$% zu Typ B: $\frac{79}{143}=`r round(79/143*100,2)`$%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?
 
-Das Chancenverhältnis, das **Odds Ratio** liegt bei (79/(151-79))/(79/(143-79))=`r round((79/(151-79))/(79/(143-79)), 2)`, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
+Das Chancenverhältnis, das **Odds Ratio** liegt bei $\frac{\frac{79}{151-79}}{\frac{79}{143-79}}=`r round((79/(151-79))/(79/(143-79)), 2)`$, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
 
 Zunächst erzeugen wir einen Vektor der Länge 2 mit den Entscheidungstypen, aus dem wir simulieren können:
 
@@ -253,7 +253,7 @@ Der 26. Mai 2015 war also auch für Facebook-Anlegerinnen kein guter Tag, aber i
 
 ***
 
-Wenn wir zu einen gegebenen Wert der Rendite den Wert der Verteilungsfunktion, d. h. den prozentualen Anteil kleiner oder gleich großer Werte suchen (P(X<=x)) verwenden wir `pnorm` bzw. `xpnorm`. Wenn die Überschreitungswahrscheinlichkeit (P(X>x)) gesucht ist, kann zusätzlich die Option `lower.tail = TRUE` gesetzt werden, oder `1-pnorm()` gerechnet werden.
+Wenn wir zu einen gegebenen Wert der Rendite den Wert der Verteilungsfunktion, d. h. den prozentualen Anteil kleiner oder gleich großer Werte suchen ($P(X \leq x)$) verwenden wir `pnorm` bzw. `xpnorm`. Wenn die Überschreitungswahrscheinlichkeit ($P(X>x)$) gesucht ist, kann zusätzlich die Option `lower.tail = TRUE` gesetzt werden, oder `1-pnorm()` gerechnet werden.
 
 Um zu einem gegebenen Anteil (Prozentwert) den zugehörigen Wert der Rendite zu finden, wir also das Quantil suchen, dann wird `p` durch `q` ersetzt, also `qnorm` bzw. `xqnorm`.
 
