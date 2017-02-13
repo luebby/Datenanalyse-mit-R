@@ -3,10 +3,10 @@ title: "Einführung Inferenz kategoriale Werte"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -203,6 +203,11 @@ xchisq.test(G7atheist)
 G7chi <- xchisq.test(G7atheist)
 ```
 Der Wert der Teststatistik Chi² liegt bei `r round(G7chi$statistic, 2)`, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei `r G7chi$parameter`, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
+
+Die Formel zur Berechnung der $\chi^2$ Teststatistik lautet:
+$$\chi^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{(h_{ij}-e_{ij})^{2}}{e_{ij}}$$
+mit $e_{ij}=\frac{h_{i\cdot}h_{\cdot j}}{n}$ wobei für die Zeilensumme $h_{i\cdot}=\sum_{j=1}^{m}h_{ij}$ und für die Spaltensumme $h_{\cdot j}=\sum_{i=1}^{k}h_{ij}$ gilt.
+
 
 Mit diesen Daten kann auch über den Befehl `pchisq` der p-Wert berechnet werden:
 ```{r}
