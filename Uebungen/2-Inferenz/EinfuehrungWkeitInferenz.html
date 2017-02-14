@@ -208,7 +208,7 @@ anteil</code></pre>
 <h2>Hypothesentest, p-Wert und Konfidenzintervall</h2>
 <p>Im Paper <em>Hose, C., Lübke, K., Nolte, T., und Obermeier, T. (2012): Ratingprozess und Ratingergebnis: Ein Experiment bei qualitativen Ratingkriterien, Kredit &amp; Rating Praxis (6), 12-14</em> wird folgendes Experiment untersucht: Unterscheidet sich die Einschätzung (Rating) eines Unternehmens, je nach dem, ob die Person alleiniger Entscheider (Typ A) oder derjenige ist, der die Entscheidungsvorlage vorbereitet (Typ B). Im Rahmen des Experiments wurden die Studierenden zufällig den verschiedenen Typen A und B zugeordnet. Von 151 alleinigen Entscheidern (Typ A) beurteilten 79 das Beispielunternehmen überwiegend positiv (++, +), von 143 Entscheidungsvorlagenerstellern (Typ B) entschieden ebenfalls 79 überwiegend positiv.</p>
 <p>Zeigt das unterschiedliche Verhältnis: Typ A: <span class="math inline">\(\frac{79}{151}=52.32\)</span>% zu Typ B: <span class="math inline">\(\frac{79}{143}=55.24\)</span>%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?</p>
-<p>Das Chancenverhältnis, das <strong>Odds Ratio</strong> liegt bei <span class="math inline">\(\frac{\frac{79}{151-79}}{\frac{79}{143-79}}=0.89\)</span>, dass ein alleinger Entscheider positiv einstuft – im Vergleich zum vorläufigen Entscheider.</p>
+<p>Das Chancenverhältnis, das <strong>Odds Ratio</strong> liegt bei <span class="math inline">\(\frac{\frac{79}{151-79}}{\frac{79}{143-79}}=0.89\)</span>, dass ein alleiniger Entscheider positiv einstuft – im Vergleich zum vorläufigen Entscheider.</p>
 <p>Zunächst erzeugen wir einen Vektor der Länge 2 mit den Entscheidungstypen, aus dem wir simulieren können:</p>
 <pre class="r"><code>typ &lt;- factor(c(&quot;A&quot;, &quot;B&quot;))
 entscheider &lt;- rep(typ, c(151,143))
@@ -234,7 +234,7 @@ tally(~simentscheidung)</code></pre>
 <pre class="r"><code>entsim &lt;- do(1000)*tally(~sample(entscheidungen, size=151))
 sum(entsim$&quot;Positiv&quot;&gt;=79)/length(entsim$&quot;Positiv&quot;)</code></pre>
 <pre><code>## [1] 0.72</code></pre>
-<p>Unter der <strong>Nullhyothese</strong>, dass das Ergebnis zufällig war, wurden in der Simulation in 72% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser <strong>p-Wert</strong> spricht also nicht wirklich gegen das Zufallsmodell. <em>Hinweis:</em> Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthält und sich nicht nur auf einen Anteilswert beziehen.</p>
+<p>Unter der <strong>Nullhyothese</strong>, dass das Ergebnis zufällig war, wurden in der Simulation in 72% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser <strong>p-Wert</strong> spricht also nicht wirklich gegen das Zufallsmodell. <em>Hinweis:</em> Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthalten und sich nicht nur auf einen Anteilswert beziehen.</p>
 <p>Über</p>
 <pre class="r"><code>typA &lt;- rep(rating, c(79, 151-79))</code></pre>
 <p>erzeugen wir uns einen Vektor, der die <span class="math inline">\(79\)</span> positiven und <span class="math inline">\(151-79\)</span> nicht positiven Urteile von Typ A (alleinige Entscheidung) enthält.</p>
@@ -373,7 +373,7 @@ ki</code></pre>
 <div id="versionshinweise" class="section level3">
 <h3>Versionshinweise:</h3>
 <ul>
-<li>Datum erstellt: 2017-02-13</li>
+<li>Datum erstellt: 2017-02-14</li>
 <li>R Version: 3.3.2</li>
 <li><code>mosaic</code> Version: 0.14.4</li>
 </ul>

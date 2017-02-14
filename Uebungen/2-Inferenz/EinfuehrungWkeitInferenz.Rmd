@@ -3,10 +3,10 @@ title: "Einführung Wahrscheinlichkeit und Inferenz"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -126,7 +126,7 @@ wird folgendes Experiment untersucht: Unterscheidet sich die Einschätzung (Rati
 
 Zeigt das unterschiedliche Verhältnis: Typ A: $\frac{79}{151}=`r round(79/151*100,2)`$% zu Typ B: $\frac{79}{143}=`r round(79/143*100,2)`$%, dass alleinige Entscheider die Bonität kritischer einstufen, oder könnte das Ergebnis Zufall sein?
 
-Das Chancenverhältnis, das **Odds Ratio** liegt bei $\frac{\frac{79}{151-79}}{\frac{79}{143-79}}=`r round((79/(151-79))/(79/(143-79)), 2)`$, dass ein alleinger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
+Das Chancenverhältnis, das **Odds Ratio** liegt bei $\frac{\frac{79}{151-79}}{\frac{79}{143-79}}=`r round((79/(151-79))/(79/(143-79)), 2)`$, dass ein alleiniger Entscheider positiv einstuft -- im Vergleich zum vorläufigen Entscheider.
 
 Zunächst erzeugen wir einen Vektor der Länge 2 mit den Entscheidungstypen, aus dem wir simulieren können:
 
@@ -159,7 +159,7 @@ sum(entsim$"Positiv">=79)/length(entsim$"Positiv")
 ```
 
 Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in `r round(mean(entsim$"Positiv">=79)*100,2)`% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
-*Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthält und sich nicht nur auf einen Anteilswert beziehen.
+*Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthalten und sich nicht nur auf einen Anteilswert beziehen.
 
 
 Über

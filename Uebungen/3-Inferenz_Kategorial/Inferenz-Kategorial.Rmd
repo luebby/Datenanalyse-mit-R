@@ -3,10 +3,10 @@ title: "Einführung Inferenz kategoriale Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -76,7 +76,7 @@ pdach + qnorm(c(0.025, 0.975)) * se
 ```
 Da der Populationsparameter unbekannt aber nicht zufällig ist, werden die 95% auch als *Überdeckungswahrscheinlichkeit* bezeichnet.
 
-In `mosaic` besteht die Möglichkeit, Punkt- und Bereichsschätzungen mit dem Befehl `prop.test` durchzuführen:
+In `mosaic` besteht die Möglichkeit, Punkt- und Bereichsschätzungen mit dem Befehl `prop.test` durchzuführen. Sofern kein Wert für `p` angegeben wird lautet die Nullyhpothese $H_0: p=0.5$.
 ```{r}
 prop.test(~response, data=de12)
 ```
@@ -105,8 +105,8 @@ prop.test(~response, p=0.1, alternative="greater", data=de12)
 Je nach Alternativhypothese ergeben sich unterschiedliche Tests:
 
 - `alternative="two.sided"`: ungerichtet, d. h. zweiseitig: $H_0: p=0.1$ gegen $H_A: p\neq0.1$
-- `alternative="less"`: gerichtet, d. h. einseitig:  $H_0: p\geq0.1$ gegen $H_A: p<0.1$
-- `alternative="greater"`: gerichtet, d. h. einseitig:  $H_0: p\leq0.1$ gegen $H_A: p>0.1$
+- `alternative="less"`: gerichtet, d. h. einseitig:  $H_0: p\geq 0.1$ gegen $H_A: p<0.1$
+- `alternative="greater"`: gerichtet, d. h. einseitig:  $H_0: p\leq 0.1$ gegen $H_A: p>0.1$
 
 ## Differenz zweier Anteilswerte
 In den Daten liegen außerdem die Ergebnisse aus 2005 vor:
@@ -142,7 +142,7 @@ z <- (pdiff - 0)/se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten ist also gering -- wenn die H0 gilt! d. h. es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten ist also gering -- wenn die $H_0$ gilt! d. h. es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
 
 Auch dies kann direkt durch den Befehl `prop.test` gestestet werden. Dazu wird zunächst ein gemeinsamer Datensatz erzeugt:
 ```{r}
