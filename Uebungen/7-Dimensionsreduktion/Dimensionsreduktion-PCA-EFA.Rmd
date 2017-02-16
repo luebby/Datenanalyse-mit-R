@@ -85,7 +85,6 @@ Die Daten wurden richtig skaliert, da Mittelwert aller Variablen über alle Beob
 
 Wir verwenden den Befehl `corrplot()` für die Erstinspektion von bivariaten Beziehungen zwischen den Variablen. Das Argument `order = "hclust"` ordnet die Zeilen und Spalten entsprechend der Ähnlichkeit der Variablen in einer hierarchischen Cluster-Lösung der Variablen (mehr dazu im Teil Clusteranalyse) neu an.
 
-
 ```{r}
 library(corrplot)
 corrplot(cor(brand.sc[, 1:9]), order="hclust")
@@ -97,6 +96,13 @@ Die Visualisierung der Korelation der Adjektive scheint drei allgemeine Cluster 
 * rebuy/bargain/value 
 * perform/leader/serious
 
+## Daten mit fehlende Werten
+
+Wenn in den Daten leere Zellen, also fehlende Werte, sind, dann kann es bei bestimmten Rechenoperationen zu Fehlermeldungen kommen. Dies betrifft zum Beispiel Korrelationen, PCA und EFA. Der Ansatz besteht besteht deshalb darin, NA-Werte explizit zu entfernen. Dies kann am einfachsten mit dem Befehl na.omit() geschehen:
+
+Bsp: corrplot(cor(na.omit((brand.sc[, 1:9]), order="hclust"))
+
+Da wir in unserem Datensatz simulierte Daten verwenden, gibt es auch keine Leerzellen. 
 
 ## Aggregation der durchschnittlichen Bewertungen nach Marke
 
