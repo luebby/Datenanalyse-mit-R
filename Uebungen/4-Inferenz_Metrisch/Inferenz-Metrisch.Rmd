@@ -3,10 +3,10 @@ title: "Einführung Inferenz metrische Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -267,7 +267,7 @@ Die Nullhypothese der Gleichheit wird hier also verworfen. Interessanterweise un
 Im Paket `effects` gibt es übrigens eine schöne Plotfunktion für die Effekte:
 ```{r}
 # Einmalig installieren:
-# install.packages(effects)
+# install.packages("effects")
 
 library(effects)
 plot(allEffects(LSTKaov))
