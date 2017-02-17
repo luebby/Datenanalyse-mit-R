@@ -3,10 +3,10 @@ title: "Einführung Wahrscheinlichkeit und Inferenz"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -74,9 +74,9 @@ farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)),
 ```
 `farbspiele` ist jetzt ein Datensatz (`data.frame`) mit 1000 Zeilen (=Simulationen) und den relativen Häufigkeiten für Gewinn und Verlust in den 8 Spielen in den Spalten.
 
-Das Histogramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten, aber doch vorkommt, alle 8 Spiele zu verlieren (`nint = 8`, da es jeweils 8 Spiele waren).
+Das Balkendiagramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten, aber doch vorkommt, alle 8 Spiele zu verlieren.
 ```{r}
-histogram(~Verlust, data=farbspiele, nint = 8)
+bargraph(~Verlust, data=farbspiele, nint = 8)
 ```
 
 Wir haben in `r sum(farbspiele$Verlust==1)` von 1000 Wiederholungen nur verloren, d. h. 8 von 8 Spielen.
@@ -93,10 +93,10 @@ Wenn wir uns die Verteilung der Daten der Übung angucken
 ```{r}
 zahlspiele <- do(1000)*tally(~resample(roulette, size=10, 
                                        prob=c(1/37, 36/37)), format="proportion")
-histogram(~Gewinn, data=zahlspiele, nint = 10)
+bargraph(~Gewinn, data=zahlspiele)
 ```
 
-stellen wir fest, dass diese Daten (leider) extrem rechtsschief sind, d. h., i. d. R. gewinnen wir in keiner der 10 Runden, Gewinn=0. Wenn wir  `size=10` durch `size=10000` ersetzen (d. h., bei jeden der 1000 Simulationen 10000 Runden spielen), passiert folgendes:
+stellen wir fest, dass diese Daten (leider) extrem rechtsschief sind, d. h., i. d. R. gewinnen wir in keiner der 10 Runden, Gewinn=0. Wenn wir  `size=10` durch `size=10000` ersetzen (d. h., bei jeden der 1000 Simulationen 10000 Runden spielen), passiert folgendes (Darstellung jetzt als Histogramm, da es zu sehr viele mögliche Ausprägungen für die Anzahl Gewinne gibt):
 
 ```{r}
 zahlspiele2 <- do(1000)*tally(~resample(roulette, size=10000, 
