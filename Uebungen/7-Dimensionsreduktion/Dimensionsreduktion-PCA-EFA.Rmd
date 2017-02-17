@@ -3,7 +3,8 @@ title: "Dimensionsreduktion mit PCA und EFA"
 author: "Oliver Gansser"
 date: ''
 output:
-  pdf_document:
+  html_document: default
+  pdf_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -98,9 +99,12 @@ Die Visualisierung der Korelation der Adjektive scheint drei allgemeine Cluster 
 
 ## Daten mit fehlende Werten
 
-Wenn in den Daten leere Zellen, also fehlende Werte, sind, dann kann es bei bestimmten Rechenoperationen zu Fehlermeldungen kommen. Dies betrifft zum Beispiel Korrelationen, PCA und EFA. Der Ansatz besteht besteht deshalb darin, NA-Werte explizit zu entfernen. Dies kann am einfachsten mit dem Befehl na.omit() geschehen:
+Wenn in den Daten leere Zellen, also fehlende Werte, sind, dann kann es bei bestimmten Rechenoperationen zu Fehlermeldungen kommen. Dies betrifft zum Beispiel Korrelationen, PCA und EFA. Der Ansatz besteht besteht deshalb darin, NA-Werte explizit zu entfernen. Dies kann am einfachsten mit dem Befehl `na.omit()` geschehen:
 
-Bsp: corrplot(cor(na.omit((brand.sc[, 1:9]), order="hclust"))
+Bsp: 
+```{r, eval=FALSE}
+corrplot(cor(na.omit((brand.sc[, 1:9]), order="hclust"))
+```
 
 Da wir in unserem Datensatz simulierte Daten verwenden, gibt es auch keine Leerzellen. 
 
@@ -176,7 +180,7 @@ Gesamtvarianz<-1.726^2+1.4479^2+ 1.0389^2+ 0.8528^2+ 0.79846^2+
 
 ### Scree-Plot
 
-Der Standard-Plot `plot()` für die PCA ist ein **Scree-Plot**, Dieser zeigt uns die Varianzen der Hauptkomponenten und die aufeinanderfolgende Varianzen, die von jeder Komponente berücksichtigt wird. Wir plotten ein Liniendiagramm mit dem Argument `typ = "l"` (l für Linie):
+Der Standard-Plot `plot()` für die PCA ist ein **Scree-Plot**, Dieser zeigt uns die Varianzen der Hauptkomponenten und die aufeinanderfolgende Varianzen, die von jeder Komponente berücksichtigt wird. Wir plotten ein Liniendiagramm mit dem Argument `type = "l"` (l für Linie):
 
 ```{r}
 plot(brand.pc, type="l")
@@ -371,7 +375,10 @@ Das Argument `check.keys=TRUE` gibt uns eine Warung aus, sollte die Ladung eines
 
 Führen Sie eine Dimensionsreduktion mit den nichtskalierten original Daten durch. Berechenn Sie zur Interpretaion keine Faktor-Scores, sondern berechnen Sie stattdessen den Mittelwert der Variablen, die hoch (mindestens 0,5) auf einen Faktor laden. Für die Berechnung verwenden Sie
 
+
+```{r, eval=FALSE}
 Datensatz$Neue_Variable <- apply(Datensatz[,c("Variable1","Variable2", "etc..")],1,mean,na.rm=TRUE)   
+```
 
 
 
