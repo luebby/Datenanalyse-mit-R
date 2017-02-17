@@ -3,10 +3,10 @@ title: "Einführung Logistische Regression"
 author: "Matthias Gehrke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---

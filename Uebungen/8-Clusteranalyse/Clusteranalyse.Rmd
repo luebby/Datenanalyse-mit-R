@@ -3,8 +3,8 @@ title: "Einführung Clusteranalyse"
 author: "Karsten Lübke"
 date: ''
 output:
-  pdf_document:
   html_document: null
+  pdf_document: null
 documentclass: article
 classoption: a4paper
 ---
