@@ -3,8 +3,8 @@ title: "Dimensionsreduktion mit PCA und EFA"
 author: "Oliver Gansser"
 date: ''
 output:
-  pdf_document: null
   html_document: default
+  pdf_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -176,6 +176,9 @@ summary(brand.pc)
 # Berechnung der Gesamtvarianz
 Gesamtvarianz <- sum(brand.pc$sdev^2)
 
+# Bei sum(brand.pc$sdev^2) wird berechnet:  
+# 1.726^2 + 1.4479^2 + 1.0389^2 + 0.8528^2 + 0.79846^2 + 0.73133^2 + 0.62458^2 + 0.55861^2 + 0.49310^2
+
 # Varianzanteil der ersten Hauptkomponente
 brand.pc$sdev[1]^2/Gesamtvarianz
 ```
@@ -191,18 +194,12 @@ plot(brand.pc, type="l")
 ```
 
 
-Wir sehen anhand des Scree-Plots, dass bei den Brand-Rating-Daten die zusätzlich erfasste Streuung nach der dritten Komponente nicht mehr wesentlich zunimmt. 
+Wir sehen anhand des Scree-Plots, dass bei den Brand-Rating-Daten der Anteil der Streuung nach der dritten Komponente nicht mehr wesentlich abnimmt. Es soll die Stelle gefunden werden, ab der die Varianzen der Hauptkomponenten deutlich kleiner sind. Je kleiner die Varianzen, desto weniger Streuung erklärt diese Hauptkomponente. 
 
 ### Elbow-Kriterium
 
-Nach diesem Kriterium werden alle Hauptkomponenten berücksichtigt, die links von der Knickstelle im Scree-Plot liegen. Gibt es mehrere Knicks, dann werden jene Hauptkomponenten ausgewählt, die links vom rechtesten Knick liegen. Gibt es keinen Knick, dann hilft der Scree-Plot nicht weiter. Bei den
-Brand-Rating-Daten tritt der Ellbogen, je nach Betrachtungsweise (ist bei 4 auch noch ein Knick?), entweder bei drei oder vier Komponenten auf. Dies deutet darauf hin, dass die ersten drei oder vier Komponenten die meiste Streuung in den Markendaten erklären.
+Nach diesem Kriterium werden alle Hauptkomponenten berücksichtigt, die links von der Knickstelle im Scree-Plot liegen. Gibt es mehrere Knicks, dann werden jene Hauptkomponenten ausgewählt, die links vom rechtesten Knick liegen. Gibt es keinen Knick, dann hilft der Scree-Plot nicht weiter. Bei den Brand-Rating-Daten tritt der Ellbogen, je nach Betrachtungsweise, entweder bei drei oder vier Komponenten auf. Dies deutet darauf hin, dass die ersten zwei oder drei Komponenten die meiste Streuung in den Brand-Rating-Daten erklären.
 
-### Eigenwert-Kriterium (oder Kaiser-Kriterium)
-
-Zusätzlich (oder alternativ) kann das Eigenwert-Kriterium genutzt werden: 
-   $$ \textrm{Eigenwert} (=\textrm{erfasste Varianz}) > 1. $$
-Dies spricht für drei Hauptkomponenten.
 
 ### Biplot
 
@@ -214,7 +211,7 @@ Dazu verwenden wir `biplot()`:
 biplot(brand.pc)
 ```
 
-Die Adjektiv-Gruppierungen auf den Variablen sind als rote Ladungspfeile sichbar. ZUsätzlich erhalten wir einen Einblick in die Bewertungscluster (als dichte Bereiche von Beobachtungspunkten). Der Biplot ist im Beispiel durch die große Anzahl an Beobachtung recht unübersichtlich. 
+Die Adjektiv-Gruppierungen auf den Variablen sind als rote Ladungspfeile sichbar. ZUsätzlich erhalten wir einen Einblick in die Bewertungscluster (als dichte Bereiche von Beobachtungspunkten). Der Biplot ist hier durch die große Anzahl an Beobachtung recht unübersichtlich. 
 
 Deshalb führen wir die PCA mit den aggregierten Daten durch:
 
@@ -250,7 +247,7 @@ Als erstes muss die Anzahl der zu schätzenden Faktoren bestimmt werden. Hierzu 
 
 __1. Das Elbow-Kriterium__
 
-Den Skreeplot haben wir bereits bei der PCA durchgeführt. Ein Knick konnten wir bei der dritte oder vierten Hauptkomponente feststellen. Somit zeigt der Skreeplot eine 2 oder 3 Faktorenlösung an. 
+Den Scree-plot haben wir bereits bei der PCA durchgeführt. Ein Knick konnten wir bei der dritte oder vierten Hauptkomponente feststellen. Somit zeigt der Skreeplot eine 2 oder 3 Faktorenlösung an. 
 
 Durch das Paket `nFactors` bekommen wir eine formalisierte Berechnung der Scree-Plot Lösung mit dem Befehl `nScree()`
 
