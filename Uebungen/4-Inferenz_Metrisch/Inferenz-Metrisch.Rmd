@@ -3,10 +3,8 @@ title: "Einführung Inferenz metrische Werte"
 author: "Karsten Lübke"
 date: ''
 output:
-  pdf_document:
-    fig_height: 3
-    fig_width: 5
   html_document: null
+  pdf_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -233,6 +231,14 @@ Häufig werden Werte
 * |d|>=0.8 als große Effekte 
 
 bezeichnet.
+
+Eine direkte Berechnung geht über das Paket `lsr`:
+```{r}
+# install.packages("lsr") Einmalig installieren
+library(lsr)
+cohensD(ZINSK ~ PHASEN, data=B3AufAb)
+
+```
 
 
 ## Varianzanalyse (ANOVA)

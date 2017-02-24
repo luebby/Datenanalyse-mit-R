@@ -352,6 +352,11 @@ d</code></pre>
 <li>|d|&gt;=0.8 als große Effekte</li>
 </ul>
 <p>bezeichnet.</p>
+<p>Eine direkte Berechnung geht über das Paket <code>lsr</code>:</p>
+<pre class="r"><code># install.packages(&quot;lsr&quot;) Einmalig installieren
+library(lsr)
+cohensD(ZINSK ~ PHASEN, data=B3AufAb)</code></pre>
+<pre><code>## [1] 1.347291</code></pre>
 </div>
 <div id="varianzanalyse-anova" class="section level2">
 <h2>Varianzanalyse (ANOVA)</h2>
@@ -474,7 +479,7 @@ summary(tipaovww)</code></pre>
 <div id="versionshinweise" class="section level3">
 <h3>Versionshinweise:</h3>
 <ul>
-<li>Datum erstellt: 2017-02-16</li>
+<li>Datum erstellt: 2017-02-24</li>
 <li>R Version: 3.3.2</li>
 <li><code>mosaic</code> Version: 0.14.4</li>
 </ul>
