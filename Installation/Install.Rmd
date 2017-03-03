@@ -3,10 +3,10 @@ title: "Installation von R und R-Studio"
 author: "Karsten Lübke"
 date: ''
 output:
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -176,7 +176,7 @@ In diesem Fall versuchen Sie bitte folgendes:
 
 Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können.
 
-Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie kurzfristig den Virenscanner deaktiviert haben. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen").
+Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben. Achten Sie darauf ihn wieder anzuschalten und keine weiteren Dateien o. ä. zu öffenen. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen").
 
 
 Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>. 
