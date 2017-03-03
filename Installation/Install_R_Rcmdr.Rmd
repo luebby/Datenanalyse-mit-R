@@ -3,10 +3,10 @@ title: "Installation von R und R Commander"
 author: "Karsten Lübke"
 date: ''
 output:
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -75,7 +75,7 @@ knitr::include_graphics("Startoption_anpassen-SDI.jpg")
 Die Grundinstallation ist jetzt abgeschlossen. Und Sie können R durch klicken auf das Programm bzw. das Icon mit dem Logo starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R installiert haben. Unter Linux können Sie R im Terminal durch den Befehl `R` starten.)
 Auf Ihrem Bildschirm sollte folgendes Bild zu sehen sein (Windows):
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("R.jpg")
 ```
 
@@ -83,7 +83,7 @@ knitr::include_graphics("R.jpg")
 \newpage
 Bzw. Mac OS X:
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("R-Mac.png")
 ```
 
@@ -92,7 +92,7 @@ knitr::include_graphics("R-Mac.png")
 
 Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Installation den Befehl eingeben:
 ```{r eval=FALSE}
-install.packages("Rcmdr")
+install.packages("Rcmdr", dependencies = TRUE)
 ```
 Welchen "Mirror" (Server, Repository) Sie dabei verwenden ist egal, z. B. den Cloud Mirror von R Studio, oder einen Nahe gelegenen. Evt. werden Sie gefragt, ob Sie eine neuere Version aus "Sourcen" im Vergleich zu "Binaries" erstellen wollen. Sie können gerne "Ja" versuchen, wenn es nicht klappt ist das aber auch kein Problem.
 
@@ -110,7 +110,7 @@ Wenn die Installation erfolgreich war erscheint der R Commander:
 
 Windows:
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("Rcmdr.jpg")
 ```
 
@@ -118,7 +118,7 @@ knitr::include_graphics("Rcmdr.jpg")
 \newpage
 macOS:
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("Rcmdr-Mac.png")
 ```
 
@@ -188,7 +188,7 @@ In diesem Fall versuchen Sie bitte folgendes:
 
 Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können.
 
-Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie kurzfristig den Virenscanner deaktiviert haben. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen").
+Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben. Achten Sie darauf ihn wieder anzuschalten und keine weiteren Dateien o. ä. zu öffenen. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen").
 
 
 Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>. 
