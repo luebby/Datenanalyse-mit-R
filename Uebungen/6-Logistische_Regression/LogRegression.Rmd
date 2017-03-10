@@ -314,6 +314,9 @@ Versuchen Sie anhand geeigneter Variablen, Rot- und Weißweine zu klassifizieren
 - Maike Luhmann (2015): *R für Einsteiger*, Kapitel 17.5
 - Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 8.1
 
+### Lizenz
+Diese Übung wurde von Matthias Gehrke entwickelt und steht unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).  
+
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`
