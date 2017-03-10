@@ -77,7 +77,7 @@ Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel aut
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("RStudio-Screenshot.png")
 ```
 
