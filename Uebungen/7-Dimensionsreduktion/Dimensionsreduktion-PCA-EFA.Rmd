@@ -383,7 +383,8 @@ Führen Sie eine Dimensionsreduktion mit den nichtskalierten original Daten durc
 
 
 ```{r, eval=FALSE}
-Datensatz$Neue_Variable <- apply(Datensatz[,c("Variable1","Variable2", "etc..")], 1, mean, na.rm=TRUE)   
+Datensatz$Neue_Variable <- apply(Datensatz[,c("Variable1","Variable2", "etc..")], 
+                                 1, mean, na.rm=TRUE)   
 ```
 
 
@@ -395,8 +396,9 @@ Datensatz$Neue_Variable <- apply(Datensatz[,c("Variable1","Variable2", "etc..")]
 - Reinhold Hatzinger, Kurt Hornik, Herbert Nagel (2011): *R -- Einführung durch angewandte Statistik*. Kapitel 11
 - Maike Luhmann (2015): R für Einsteiger, Kapitel 19
 
-***
-Diese Übung orientiert sich am Beispiel aus Kapitel 8 aus Chapman und Feit (2015) und steht unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). Der Code steht unter der [Apache Lizenz 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+### Lizenz
+Diese Übung wurde von Oliver Gansser entwickelt und orientiert sich am Beispiel aus Kapitel 8 aus Chapman und Feit (2015) und steht unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). Der Code steht unter der [Apache Lizenz 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
 
 
 ### Versionshinweise:
