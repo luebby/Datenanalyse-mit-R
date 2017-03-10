@@ -21,8 +21,8 @@ require(corrplot)
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
 
 Sofern noch nicht geschehen, können Sie ihn z. B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
-```{r }
-tips <- read.csv("https://sebastiansauer.github.io/data/tips.csv")
+```{r}
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
 Achtung: `read.csv` geht vom amerikanischen Format aus. Wenn es sich um eine "deutsche CSV-Datei" handelt, verwenden Sie `read.csv2`.
@@ -30,7 +30,7 @@ Achtung: `read.csv` geht vom amerikanischen Format aus. Wenn es sich um eine "de
 Wenn sich die Daten auf Ihrem Computer gespeichert sind, können Sie sie auf die gleiche Art laden:
 
 
-```{r, eval = FALSE}
+```{r}
 tips <- read.csv2("tips.csv")
 ```
 
@@ -67,12 +67,6 @@ bargraph(~ sex | time, data=tips)
 ```
 
 
-Alternativ können Sie mit `qplot` arbeiten:
-```{r}
-library(ggplot2)
-qplot(x = sex, data = tips)
-qplot(x = sex, data = tips, facets = ~time)
-```
 
 
 ***
@@ -91,7 +85,6 @@ Histogramme werden für metrische Daten verwendet, der Befehl lautet `histogram`
 2.  Welche Abbildung wird über
 ```{r eval=FALSE}
 histogram(~ total_bill | sex, data=tips)
-qplot(x = total_bill, facets = ~sex, data = tips)
 ```
 erzeugt?
 
@@ -117,13 +110,6 @@ und gruppiert nach Tageszeit:
 bwplot(total_bill ~ sex | time, data=tips)
 ```
 
-
-Mit `qplot` geht es ähnlich:
-
-```{r}
-qplot(y = total_bill, x = sex, data = tips, geom = "boxplot")
-qplot(y = total_bill, x = sex, facets = ~time, data = tips, geom = "boxplot")
-```
 
 ***
 **Übung:** 
@@ -240,9 +226,6 @@ histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
 
 Über die Option `v=` werden vertikale Linien an den entsprechenden Stellen gezeichnet. Mit `h=` können horizontale Linien gezeichnet werden.
 
-```{r}
-qplot(x = total_bill, data = tips, geom = "histogram")
-```
 
 ***
 **Übung:** 

@@ -3,10 +3,10 @@ title: "Erste Schritte in R"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Nach dem Start von R Studio erscheint folgender Bildschirm, wobei die Version neuer sein kann.
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("../../Installation/RStudio-Screenshot.png",
 dpi = 300)
 ```
@@ -76,7 +76,7 @@ Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunäch
 
 Zunächst laden wir die Daten als `csv` Datei herunter
 ```{r}
-tips <- read.csv("https://sebastiansauer.github.io/data/tips.csv")
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
 
 Der Inhalt der Datei ist jetzt als Tabelle `tips` in R verfügbar.
@@ -86,7 +86,7 @@ Der Inhalt der Datei ist jetzt als Tabelle `tips` in R verfügbar.
 
 
 Das Einlesen von `csv` Dateien aus dem Arbeitsverzeichnis in R kann erfolgen über
-```{r, eval = FALSE}
+```{r}
 tips <- read.csv2("tips.csv")
 ```
 
@@ -98,7 +98,7 @@ erfahren.
 
 Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster rechts oben in RStudio auf. Durch Klicken auf den Namen können Sie diese betrachten.
 
-```{r echo=FALSE, eval=FALSE}
+```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("tips-Enviroment.png")
 ```
 
@@ -165,14 +165,6 @@ Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosai
 ```{r}
 xyplot(tip ~ total_bill, data=tips)
 ```
-
-Alternativ können Sie den Befehl `qplot` (q wie "quick") verwenden (aus dem Paket `ggplot2`):
-```{r message = FALSE, echo = FALSE}
-#install.packages("ggplot2")
-library(ggplot2)
-qplot(x = total_bill, y = tip, data = tips)
-```
-
 
 
 Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen. Die Abbildung ist im RStudio jetzt rechts unten im Reiter *Plots*  zu sehen.

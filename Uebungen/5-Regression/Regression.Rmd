@@ -31,8 +31,6 @@ tips <- read.csv2("tips.csv")
 Zur Unterstützung der Analyse wird (wieder) `mosaic` verwendet; außerdem laden wir `ggplot2` für `qplot`:
 ```{r, message = FALSE}
 library(mosaic)
-library(ggplot2)
-
 ```
 
 Wie hängen Trinkgeldhöhe `tip` und Rechnungshöhe `total_bill` zusammen? Kann die Höhe des Trinkgeldes als *lineare* Funktion der Rechnungshöhe linear modelliert werden? 
@@ -41,7 +39,6 @@ $$tip_i=\beta_0+\beta_1\cdot total\_bill_i+\epsilon_i$$
 Zunächst eine visuelle Analyse mi Hilfe eines Scatterplots.
 ```{r}
 xyplot(tip ~ total_bill, data=tips)
-qplot(y = tip, x = total_bill, data = tips)
 ```
 
 Es scheint einen positiven Zusammenhang zu geben. Modellieren wir die **abhängige** Variable `tip` (inhaltliche Entscheidung!) als lineare Funktion der **unabhängigen** Variable `total_bill`:
@@ -85,7 +82,6 @@ histogram( ~ resid(LinMod.1))
 Alternativ mit qplot:
 ```{r}
 resid_df <- data.frame(resid(LinMod.1))
-qplot(x = resid.LinMod.1., data = resid_df)
 ```
 
 
