@@ -121,7 +121,7 @@ dim(tips)
 ```
 erhalten.
 
-Metrische Variablen sind in R in der Regel vom Typ `numeric` oder `int`, kategorielle Variablen vom Typ `factor` oder `character`. `str()` und `dim()` sind erste Befehle, d. h., Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+Numerische (metrische) Variablen sind in R in der Regel vom Typ `numeric` (stetig) oder `int` (Ganze Zahlen), kategorielle (nominale, ordinale) Variablen vom Typ `factor` (bei ordinal: Option `ordered = TRUE`) oder `character`. `str()` und `dim()` sind erste Befehle, d. h., Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
 ```{r eval=FALSE}
 head(tips) # Obere Zeilen
 tail(tips) # Untere Zeilen 
@@ -198,11 +198,11 @@ Logische Vektoren können z.B. mit "und" `&` oder "oder" `|` verknüpft werden:
 ```{r eval=FALSE}
 tips$sex=="Female" & tips$smoker=="Yes"
 ```
-gibt die Tischgesellschaften wieder, in denen die Rechnung von Frauen beglichen wurde *und* geraucht wurde,
+gibt die Tischgesellschaften als `TRUE` wieder, in denen die Rechnung von Frauen beglichen wurde *und* geraucht wurde,
 ```{r eval=FALSE}
 tips$sex=="Female" | tips$smoker=="Yes"
 ```
-gibt die Tischgesellschaften wieder, in denen die Rechnung von Frauen beglichen wurde *oder* geraucht wurde.
+gibt die Tischgesellschaften als `TRUE` wieder, in denen die Rechnung von Frauen beglichen wurde *oder* geraucht wurde.
 
 Intern wird `TRUE` in R mit der Zahl 1 hinterlegt, `FALSE` mit 0. Mit dem Befehl `sum()` kann man daher die Elemente eines Vektor aufsummieren, also erfahren wir über 
 ```{r eval=FALSE}
@@ -253,6 +253,7 @@ meineDaten <- read_excel(file.choose())  # Datei auswählen
 ## Literatur
 
 - Nicholas J. Horton, Randall Pruim, Daniel T. Kaplan (2015): Project MOSAIC Little Books *A Student's Guide to R* [https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf](https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf), Kapitel 1, 2, 13
+- Chester Ismay (2016): Getting used to R, RStudio, and R Markdown [https://ismayc.github.io/rbasics-book/](https://ismayc.github.io/rbasics-book/)
 - Maike Luhmann (2015): *R für Einsteiger*, Kapitel 1-8
 - Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 1-4
 
