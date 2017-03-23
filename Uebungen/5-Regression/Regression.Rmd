@@ -273,6 +273,39 @@ favstats((preddat[,3]-preddat[,2]))
 
 Zu den Rändern hin wird es breiter. Am schmalsten ist es übrigens beim Mittelwert der unabhängigen Beobachtungen, hier also bei `r round(mean(tips$total_bill),2)`\$.
 
+### Kreuzvalidierung
+
+Je komplexer und flexibler ein Modell ist, desto besser kann es sich an die *vorhandenen*, sogenannte Traininingsdaten anpassen, **aber** für *neue*, sogenannte Testdaten wird es nicht immer besser -- siehe z. B. Kapitel 2.2 aus [James et. al (2013)](http://www-bcf.usc.edu/~gareth/ISL/). 
+
+Allgemein können Modell mit Hilfe des Mean Squared Error verglichen werden:
+$$ MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{f}(x_i))^2$$
+Vorhandene Daten können aber genutzt werden um die Prognose für neue Daten $(x_0,y_0)$ zu simulieren: z. B. über Kreuzvalidierung. Im einfachen Fall einer Leave-One-Out Kreuzvalidierung werden alle Beobachtungen bis auf die $i-te, \quad i=1,2,\ldots n$ zum Schätzen oder Lernen des Modells verwendet, das Testen des Modells erfolgt dann anhand der Prognosegüte für die $i-te, \quad i=1,2,\ldots n$ Beobachtung. In R kann dies einfach über *Schleifen* erfolgen:
+```{r}
+n <- nrow(tips) # Anzahl Beobachtungen
+y <- tips$tip # "Wahre" Werte
+yprog <- numeric(n) # Vektor in dem die Prognosen geschrieben werden
+
+### Modellanpassung
+mod <- lm(tip ~ ., data=tips) # Modell mit allen Beobachtungen schätzen
+yfit <- mod$fitted.values # "Vorhersagen" für Trainingsdaten
+
+### Leave-One-Out Kreuzvalidierung
+for (i in 1:n) # i nehme nacheinander die Werte von 1 bis n an
+{
+  modloo <- lm(tip ~ ., data=tips[-i,]) # Modell schätzen ohne i-te Beobachtung
+  yprog[i] <- predict(modloo, newdata = tips[i,]) # Vorhsage von y_i anhand des Modells
+}
+
+### Vergleich:
+MSEfit <- mean((y-yfit)^2)
+MSEprog <- mean((y-yprog)^2)
+
+cat("MSE Modellanpassung: ", MSEfit, "\n")
+cat("MSE Kreuzvalidierung: ", MSEprog, "\n")
+```
+Der Mean Squared Error ist also bei der Leave-One-Out Kreuzvalidierung um `r round((MSEprog/MSEfit-1)*100)`\% schlechter als bei der Modellanpassung.
+
+
 ***
 
 ## Übung: Teaching Rating
