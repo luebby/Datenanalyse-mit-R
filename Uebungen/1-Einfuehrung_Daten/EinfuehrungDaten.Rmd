@@ -336,6 +336,7 @@ Sie können ihn von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) herunterladen
 
 - David M. Diez, Christopher D. Barr, Mine &Ccedil;etinkaya-Rundel (2014): *Introductory Statistics with Randomization and Simulation*, [https://www.openintro.org/stat/textbook.php?stat_book=isrs](https://www.openintro.org/stat/textbook.php?stat_book=isrs),  Kapitel 1
 - Nicholas J. Horton, Randall Pruim, Daniel T. Kaplan (2015): Project MOSAIC Little Books *A Student's Guide to R*,  [https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf](https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf), Kapitel 3.1, 3.2, 4.1, 5.1, 5.2, 6.1
+- Chester Ismay, Albert Y. Kim (2017): ModernDive -- An Introduction to Statistical and Data Sciences via R, [https://ismayc.github.io/moderndiver-book/](https://ismayc.github.io/moderndiver-book/)
 - Maike Luhmann (2015): *R für Einsteiger*, Kapitel 9-11
 - Andreas Quatember (2010): *Statistik ohne Angst vor Formeln*, Kapitel 1
 - Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 14
