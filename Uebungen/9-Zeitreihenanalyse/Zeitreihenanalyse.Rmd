@@ -31,10 +31,11 @@ Es handelt sich also um quartalsweise Daten von `r start(euretail)` bis `r end(e
 ```{r}
 class(euretail)
 ```
-`ts` steht dabei für ein Zeitreihenobjekt in R. Zeitreihen haben viele Besonderheiten, die zur Analyse genutzt werden können.
+`ts` steht dabei für ein Zeitreihenobjekt in R. Zeitreihen (d. h. eine Folge von Beobachtungen mit der Zeit -- der Wert variiert mit der Zeit) haben viele Besonderheiten, die zur Analyse genutzt werden können. 
+
 ```{r}
 start(euretail) # Startbeobachtung
-end(euretail) # Endbeobachtug
+end(euretail) # Endbeobachtung
 frequency(euretail) # Beobachtungen je Zeiteinheit
 ```
 Eine Abbildung kann wie üblich einfach über `plot()` erzeugt werden.

@@ -151,10 +151,10 @@ euretail</code></pre>
 <p>Es handelt sich also um quartalsweise Daten von 1996, 1 bis 2011, 4.</p>
 <pre class="r"><code>class(euretail)</code></pre>
 <pre><code>## [1] &quot;ts&quot;</code></pre>
-<p><code>ts</code> steht dabei für ein Zeitreihenobjekt in R. Zeitreihen haben viele Besonderheiten, die zur Analyse genutzt werden können.</p>
+<p><code>ts</code> steht dabei für ein Zeitreihenobjekt in R. Zeitreihen (d. h. eine Folge von Beobachtungen mit der Zeit – der Wert variiert mit der Zeit) haben viele Besonderheiten, die zur Analyse genutzt werden können.</p>
 <pre class="r"><code>start(euretail) # Startbeobachtung</code></pre>
 <pre><code>## [1] 1996    1</code></pre>
-<pre class="r"><code>end(euretail) # Endbeobachtug</code></pre>
+<pre class="r"><code>end(euretail) # Endbeobachtung</code></pre>
 <pre><code>## [1] 2011    4</code></pre>
 <pre class="r"><code>frequency(euretail) # Beobachtungen je Zeiteinheit</code></pre>
 <pre><code>## [1] 4</code></pre>
@@ -282,7 +282,7 @@ legend(&quot;topleft&quot;, legend=c(&quot;q=3&quot;, &quot;q=5&quot;, &quot;q=7
 <div id="versionshinweise" class="section level3">
 <h3>Versionshinweise:</h3>
 <ul>
-<li>Datum erstellt: 2017-03-24</li>
+<li>Datum erstellt: 2017-03-27</li>
 <li>R Version: 3.3.3</li>
 </ul>
 </div>
