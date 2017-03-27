@@ -3,10 +3,10 @@ title: "Einführung Lineare Regression"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -277,9 +277,9 @@ Zu den Rändern hin wird es breiter. Am schmalsten ist es übrigens beim Mittelw
 
 Je komplexer und flexibler ein Modell ist, desto besser kann es sich an die *vorhandenen*, sogenannte Traininingsdaten anpassen, **aber** für *neue*, sogenannte Testdaten wird es nicht immer besser -- siehe z. B. Kapitel 2.2 aus [James et. al (2013)](http://www-bcf.usc.edu/~gareth/ISL/). 
 
-Allgemein können Modell mit Hilfe des Mean Squared Error verglichen werden:
+Allgemein können Modelle mit Hilfe des Mean Squared Error verglichen werden:
 $$ MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{f}(x_i))^2$$
-Vorhandene Daten können aber genutzt werden um die Prognose für neue Daten $(x_0,y_0)$ zu simulieren: z. B. über Kreuzvalidierung. Im einfachen Fall einer Leave-One-Out Kreuzvalidierung werden alle Beobachtungen bis auf die $i-te, \quad i=1,2,\ldots n$ zum Schätzen oder Lernen des Modells verwendet, das Testen des Modells erfolgt dann anhand der Prognosegüte für die $i-te, \quad i=1,2,\ldots n$ Beobachtung. In R kann dies einfach über *Schleifen* erfolgen:
+Vorhandene Daten können aber genutzt werden um die Prognose für neue Daten $(x_0,y_0)$ zu simulieren: z. B. über Kreuzvalidierung. Im einfachen Fall einer Leave-One-Out Kreuzvalidierung werden alle Beobachtungen bis auf die $i\text{-}te, \quad i=1,2,\ldots n$ zum Schätzen oder Lernen des Modells verwendet, das Testen des Modells erfolgt dann anhand der Prognosegüte für die $i\text{-}te, \quad i=1,2,\ldots n$ Beobachtung. In R kann dies einfach über *Schleifen* durchgeführt werden:
 ```{r}
 n <- nrow(tips) # Anzahl Beobachtungen
 y <- tips$tip # "Wahre" Werte
