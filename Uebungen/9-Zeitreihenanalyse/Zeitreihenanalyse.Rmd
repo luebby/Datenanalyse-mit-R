@@ -31,7 +31,7 @@ Es handelt sich also um quartalsweise Daten von `r start(euretail)` bis `r end(e
 ```{r}
 class(euretail)
 ```
-`ts` steht dabei für ein Zeitreihenobjekt in R. Zeitreihen (d. h. eine Folge von Beobachtungen mit der Zeit -- der Wert variiert mit der Zeit) haben viele Besonderheiten, die zur Analyse genutzt werden können. 
+`ts` steht dabei für ein Zeitreihenobjekt in R. Zeitreihen (d. h. eine Folge von Beobachtungen über die Zeit -- der Wert variiert mit der Zeit) haben viele Besonderheiten, die zur Analyse genutzt werden können. 
 
 ```{r}
 start(euretail) # Startbeobachtung
@@ -43,7 +43,7 @@ Eine Abbildung kann wie üblich einfach über `plot()` erzeugt werden.
 plot(euretail)
 ```
 
-Man erkennt einen Anstieg bis ca. 2008 (Finanzkrise!), dann einen Abschwung und ab 2010/11 eine evt. Erholung -- aber auch saisonale Schwankungen.
+Man erkennt einen Anstieg bis ca. 2008 (Finanzkrise!), dann einen Abschwung und ab 2010/11 eine evtl. Erholung -- aber auch saisonale Schwankungen.
 
 ## Zeitreihenzerlegung
 
@@ -53,9 +53,9 @@ Eine Zeitreihe (`data`) $y_t$ kann in verschiedene Komponenten zerlegt werden:
 - Saisonkomponenten (`seasonal`)$S_t$
 - Rest-/ Fehlerkomponenten (`remainder`) $E_t$
 
-Das *additive* Modell lautet dann einfach:
+Das *additive* Modell lautet dann:
 $$ Y_t=M_t+S_t+E_t$$
-während das *multiplikative* Modell lautet
+und das *multiplikative* Modell lautet:
 $$ Y_t=M_t \cdot S_t \cdot E_t.$$
 Es gibt viele Möglichkeiten $m_t, s_t, z_t$ zu schätzen, eine gute Umsetzung findet sich in der Funktion `stl()` Hier muss die Option `s.window=` angegeben werden. (Eine Alternative ohne Option ist `decompose()`)
 ```{r}
@@ -83,9 +83,9 @@ mit $p=2q+1$.
 Je größer $q$ (`order`) ist, desto glatter wird die Zeitreihe:
 ```{r}
 plot(euretail)
-lines(ma(euretail, order=3), col="red")
-lines(ma(euretail, order=5), col="blue")
-lines(ma(euretail, order=7), col="green")
+lines(ma(euretail, order = 3), col = "red")
+lines(ma(euretail, order = 5), col = "blue")
+lines(ma(euretail, order = 7), col = "green")
 legend("topleft", legend=c("q=3", "q=5", "q=7"), text.col=c("red", "blue", "green"))
 ```
 
@@ -93,9 +93,9 @@ legend("topleft", legend=c("q=3", "q=5", "q=7"), text.col=c("red", "blue", "gree
 
 ***
 
-## Übung: Produktionsdaten
+## Übung: Produktionsdaten 
 
-Der Datensatz `elecequip` aus dem Paket `fpp` enthält monatliche Produktionsdaten von elektronischen Equipment (näheres siehe [hier](https://datamarket.com/data/set/19gk/industry-new-orders-index-monthly-data-2005100-nace-rev2#!display=line&ds=19gk!orw=1d:orx=4:ory=4.c.8.w.z.a.k.s.l.6.9.r.e.g.u.d.n.7.p.t.1.m.i.f.3.j.v.q.2)).
+Der Datensatz `elecequip` aus dem Paket `fpp` enthält monatliche Produktionsdaten von elektronischem Equipment (näheres siehe [hier](https://datamarket.com/data/set/19gk/industry-new-orders-index-monthly-data-2005100-nace-rev2#!display=line&ds=19gk!orw=1d:orx=4:ory=4.c.8.w.z.a.k.s.l.6.9.r.e.g.u.d.n.7.p.t.1.m.i.f.3.j.v.q.2)).
 
 Wie würden Sie die Zeitreihe beschreiben?
 
