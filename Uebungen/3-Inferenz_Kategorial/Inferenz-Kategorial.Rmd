@@ -81,6 +81,9 @@ In `mosaic` besteht die Möglichkeit, Punkt- und Bereichsschätzungen mit dem Be
 prop.test(~response, data=de12)
 ```
 
+Beachte, dass das Konfidenzintervall, anders als bei der *Approximation* über die Normalverteilung hier nicht symmetrisch um den Punktschätzer ist.
+
+
 ***
 **Übung:**
 
