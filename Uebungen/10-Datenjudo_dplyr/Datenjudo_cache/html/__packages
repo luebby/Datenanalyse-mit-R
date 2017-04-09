@@ -1,0 +1,14 @@
+base
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+corrr
+stringr
+car
+nycflights13
+knitr
+gridExtra
