@@ -76,7 +76,7 @@ farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)),
 
 Das Balkendiagramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten, aber doch vorkommt, alle 8 Spiele zu verlieren.
 ```{r}
-bargraph(~Verlust, data=farbspiele, nint = 8)
+bargraph(~Verlust, data=farbspiele)
 ```
 
 Wir haben in `r sum(farbspiele$Verlust==1)` von 1000 Wiederholungen nur verloren, d. h. 8 von 8 Spielen.
@@ -150,15 +150,15 @@ Aus diesem Vektor ziehen wir eine zufällige Stichprobe von 151 Entscheidungen v
 simentscheidung <- sample(entscheidungen, size=151)
 tally(~simentscheidung)
 ```
-Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entscheidungen den Typ A Positiv gewesen -- wenn es keinen Zusammanhang zwischen Typ und Rating gibt.
+Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entscheidungen des Typ A Positiv gewesen -- wenn es keinen Zusammanhang zwischen Entscheidugnstyp und Ratingentscheidung gibt.
 
-Wir oft kommt also zufällig heraus, dass mindestens 79 der 151 Entscheidungen des Typs A positiv zugeordnet werden? Simulieren wir das z. B. 1000-mal:
+Wir oft kommt also zufällig heraus, dass höchstens 79 der 151 Entscheidungen des Typs A (alleinige Entscheider) positiv zugeordnet werden? Simulieren wir das z. B. 1000-mal:
 ```{r}
 entsim <- do(1000)*tally(~sample(entscheidungen, size=151))
-sum(entsim$"Positiv">=79)/length(entsim$"Positiv")
+sum(entsim$Positiv<=79)/length(entsim$Positiv)
 ```
 
-Unter der **Nullhyothese**, dass das Ergebnis zufällig war, wurden in der Simulation in `r round(mean(entsim$"Positiv">=79)*100,2)`% der Fälle mindestens 79 dem Typ B zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
+Unter der **Nullhyothese**, dass das Ergebnis zufällig war (d. h. es gibt keinen Zusammenhang zwischen Typ und Rating), wurden in der Simulation in `r round(mean(entsim$Positiv<=79)*100,2)`% der Fälle höchstens 79 positive dem Typ A zufällig zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
 *Hinweis:* Wir werden in späteren Kapiteln bessere Methoden kennenlernen, insbesondere auch solche die alle Informationen aus den Daten enthalten und sich nicht nur auf einen Anteilswert beziehen.
 
 
@@ -197,7 +197,7 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 ***
 **Übung:** 
 
-3.  Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $p=0.5$ zum Signifikanzniveau 10% verworfen?
+3.  Bestimmen Sie das 90% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-Positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $p=0.5$ zum Signifikanzniveau 10% verworfen?
 
 ***
 
@@ -205,7 +205,7 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 
 
 ## Rechnen mit der Normalverteilung
-In der Finanzwissenschaft wird häutig die Annahme verwendet, dass die (logarithmierten) Renditen von Anlagen normalverteilt sind. 
+In der Finanzwissenschaft wird häutig die Annahme verwendet, dass die (logarithmierten) Renditen von Anlagen unabhängig, identisch normalverteilt sind. 
 
 Hier drei Kennzahlen der logarithmierten Tagesrenditen von Aktienunternehmen in 2015 in %.
 
