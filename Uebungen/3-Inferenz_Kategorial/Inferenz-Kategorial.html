@@ -327,7 +327,7 @@ mean(abs(pdiff.null$X2012) &gt;= abs(pdiff))</code></pre>
 </div>
 <div id="chi-quadrat-unabhangigkeitstest" class="section level2">
 <h2>Chi-Quadrat Unabhängigkeitstest</h2>
-<p>Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi<sup>2</sup>-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit, gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:</p>
+<p>Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi<sup>2</sup>-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:</p>
 <pre class="r"><code>G7 &lt;- c(&quot;United States&quot;, &quot;Canada&quot;, &quot;Germany&quot;, &quot;France&quot;, &quot;Italy&quot;, &quot;Japan&quot;)
 G7.12 &lt;- filter(atheism, nationality %in% G7 &amp; year == 2012)
 G7.12 &lt;- droplevels(G7.12)
