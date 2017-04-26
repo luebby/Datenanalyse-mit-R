@@ -281,13 +281,15 @@ plot(allEffects(LSTKaov))
 
 Neben dem arithmetischen Mittelwert (Punktschätzer) wird in der Standardeinstellung das 95\% Konfidenzintervall eingezeichnet.
 
-Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuführen (z. B.  welche der paarweisen Vergleiche sind signifikant?) kann die Funktion `TukeyHSD()` (Tukey's "Honest Significant Difference") verwendet werden. Aufgrund des multiplen Testproblems (Kummulierung Fehler 1. Art) müssen die p-Werte angepasst werden.
+Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuführen (z. B.  welche der paarweisen Vergleiche sind signifikant?) kann die Funktion `TukeyHSD()` (Tukey's "Honest Significant Difference") verwendet werden. Aufgrund des multiplen Testproblems (Kummulierung Fehler 1. Art) müssen die p-Werte angepasst werden. 
 
 ```{r}
 LSTKposthoc <- TukeyHSD(LSTKaov)
 LSTKposthoc
 plot(LSTKposthoc)
 ```
+
+Hinweis: Da die einzelnen Faktorstufen hier unbalanciert sind (d .h. unterschiedliche Stichprobenumfänge haben) ist das Ergebnis hier nicht exakt.
 
 ***
 **Übung:** 
