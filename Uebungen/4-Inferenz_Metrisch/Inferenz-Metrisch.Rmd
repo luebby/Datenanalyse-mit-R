@@ -56,19 +56,26 @@ FB1000 <- do(1000) *  mean( rnorm(n = nFB, mean = mFB, sd = sdFB) )
 histogram(~FB1000, v=mFB)
 ```
 
-Das *simulierte* 95% Konfidenzintervall geht also von
+Das *simulierte* einseitige 95% Konfidenzintervall geht also von
 ```{r}
-sort(FB1000$mean)[floor(1000*0.025)]
+sort(FB1000$mean)[floor(1000*0.05)]
 ```
 bis
 ```{r}
-sort(FB1000$mean)[ceiling(1000*0.975)]
+sort(FB1000$mean)[ceiling(1000*1)]
 ```
 und enthält damit die 0. Von den 1000 Simulationen haben 
 ```{r}
 sum(FB1000$mean <= 0)
 ```
 einen Mittelwert in der Jahresrendite unter 0. 
+
+Sie können in das Histogramm auch zusätzlich das Konfidenzintervall einzeichnen:
+```{r}
+ki <- c(sort(FB1000$mean)[floor(1000*0.05)],sort(FB1000$mean)[ceiling(1000*1)])
+histogram(~FB1000, v=c(mFB,ki))
+```
+
 
 
 ***
@@ -79,7 +86,7 @@ einen Mittelwert in der Jahresrendite unter 0.
 
 ***
 
-## t-Test für eine abhängige/ gepaarte Stichprobe
+## t-Test für eine abhängige/gepaarte Stichprobe
 Der B3 Datensatz *Heilemann, U. and Münch, H.J. (1996): West German Business Cycles 1963-1994: A Multivariate Discriminant Analysis. CIRET–Conference in Singapore, CIRET–Studien 50.* enthält Quartalsweise Konjunkturdaten aus (West-)Deutschland.
 
 Er kann von [https://goo.gl/0YCEHf](https://goo.gl/0YCEHf) heruntergeladen werden:
@@ -105,7 +112,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
 ptb3 <- t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
 
-Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) mit unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt.
+Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) mit unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt sowie der Wert der Nullhypothese, $\mu=0$, im Konfidenzintervall.
 
 ***
 **Übung:**
@@ -124,7 +131,7 @@ Typänderung zu `factor` geht einfach:
 ```{r}
 B3$PHASEN <- as.factor(B3$PHASEN)
 ```
-Wenn wir die einzelnen `levels` des Faktors als numerische Werte verwenden wollen würde man den Befehl `as.numeric()` verwenden. Aber sicherheitshalber vorher über `levels()` gucken, ob die Reihenfolge auch stimmt.
+Wenn wir die einzelnen `levels` des Faktors als numerische Werte verwenden wollen, würden wir den Befehl `as.numeric()` verwenden. Aber sicherheitshalber vorher über `levels()` schauen, ob die Reihenfolge auch stimmt.
 
 Um die Interpretation zu erleichtern können wir hier einfach die Faktorstufe umbenennen.
 ```{r}
@@ -179,7 +186,7 @@ $$H_0: \mu_{\text{Aufschwung}} - \mu_{\text{Abschwung}} \geq 0 \quad vs. \quad H
 
 ***
 
-Auch hier können wir, ohne eine Verteilungsannahme zu verwenden permutieren.
+Auch hier können wir, ohne eine Verteilungsannahme zu verwenden, permutieren.
 ```{r}
 mdiff <- diff(mean(ZINSK ~ PHASEN, data=B3AufAb))
 mdiff
@@ -219,22 +226,23 @@ Cohen's d ist ein Maß der Überlappung der Verteilungen:
 xd <- seq(0,15, by=0.1)
 d1 <- dnorm(xd, m1, sdpool)
 d2 <- dnorm(xd, m2, sdpool)
-plot(xd,d1, type="l", ylab="Dichte", xlab="Zinsk", col="blue", main="Dichte bei Normalverteilung", lwd=2, sub="(Gepoolte Standardabweichung)")
+plot(xd,d1, type="l", ylab="Dichte", xlab="ZINSK", col="blue", main="Dichte bei Normalverteilung", lwd=2, sub="(Gepoolte Standardabweichung)")
 lines(xd, d2, type="l", col="red", lwd=2)
 legend(10, 0.1625, legend=c("Aufschwung", "Abschwung"), col=c("blue", "red"), lwd=2)
 ```
 
 Häufig werden Werte 
 
-* |d|<=0.2 als kleine
-* |d|<=0.5 als mittlere 
-* |d|>=0.8 als große Effekte 
+* $|d|\leq 0.2$ als kleine
+* $|d|\leq 0.5$ als mittlere 
+* $|d|\geq 0.8$ als große Effekte 
 
 bezeichnet.
 
 Eine direkte Berechnung geht über das Paket `lsr`:
-```{r}
-# install.packages("lsr") Einmalig installieren
+```{r} 
+# Einmalig installieren:
+# install.packages("lsr")
 library(lsr)
 cohensD(ZINSK ~ PHASEN, data=B3AufAb)
 
@@ -242,7 +250,7 @@ cohensD(ZINSK ~ PHASEN, data=B3AufAb)
 
 
 ## Varianzanalyse (ANOVA)
-Bei mehr als zwei Gruppen funktionieren die Techniken des t-Tests nicht mehr. Um Lagemaßunterschiede zu testen wird anstelle der Mittelwerte die Streuung verglichen: Ist die Streuung zwischen den Gruppen groß im Vergleich zur Streuung innerhalb der Gruppen?
+Bei mehr als zwei Gruppen funktionieren die Techniken des t-Tests nicht mehr. Um Lagemaßunterschiede zu testen, wird anstelle der Mittelwerte die Streuung verglichen: Ist die Streuung zwischen den Gruppen groß im Vergleich zur Streuung innerhalb der Gruppen?
 
 Unterscheidet sich der mittlere Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
 
@@ -274,14 +282,13 @@ Im Paket `effects` gibt es übrigens eine schöne Plotfunktion für die Effekte:
 ```{r}
 # Einmalig installieren:
 # install.packages("effects")
-
 library(effects)
 plot(allEffects(LSTKaov))
 ```
 
 Neben dem arithmetischen Mittelwert (Punktschätzer) wird in der Standardeinstellung das 95\% Konfidenzintervall eingezeichnet.
 
-Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuführen (z. B.  welche der paarweisen Vergleiche sind signifikant?) kann die Funktion `TukeyHSD()` (Tukey's "Honest Significant Difference") verwendet werden. Aufgrund des multiplen Testproblems (Kummulierung Fehler 1. Art) müssen die p-Werte angepasst werden. 
+Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuführen (z. B.  welche der paarweisen Vergleiche sind signifikant?) kann die Funktion `TukeyHSD()` (Tukey's "Honest Significant Difference") verwendet werden. Aufgrund des multiplen Testproblems (Kumulierung Fehler 1. Art) müssen die p-Werte angepasst werden. 
 
 ```{r}
 LSTKposthoc <- TukeyHSD(LSTKaov)
@@ -289,7 +296,7 @@ LSTKposthoc
 plot(LSTKposthoc)
 ```
 
-Hinweis: Da die einzelnen Faktorstufen hier unbalanciert sind (d .h. unterschiedliche Stichprobenumfänge haben) ist das Ergebnis hier nicht exakt.
+Hinweis: Da die einzelnen Faktorstufen hier unbalanciert sind (d .h., unterschiedliche Stichprobenumfänge haben) ist das Ergebnis hier nicht exakt.
 
 ***
 **Übung:** 
