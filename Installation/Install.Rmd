@@ -1,5 +1,5 @@
 ---
-title: "Installation von R und R-Studio"
+title: "Installation von R und RStudio"
 author: "Karsten Lübke"
 date: ''
 output:
@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.) an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
-* [**R Studio (Desktop)**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
+* [**RStudio (Desktop)**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
 * [**mosaic**](https://cran.r-project.org/web/packages/mosaic/) ist ein Zusatzpaket, welches u. a. eine vereinheitlichte R Syntax bietet
 
 
@@ -64,7 +64,7 @@ Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror v
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
-### Installation von R-Studio (Desktop)
+### Installation von RStudio (Desktop)
 Sie können R-Studio (Desktop-Version) von der Seite
 
 [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
