@@ -28,44 +28,46 @@ knitr::opts_chunk$set(
 Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.) an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
-* [**R Studio**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
+* [**R Studio (Desktop)**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
 * [**mosaic**](https://cran.r-project.org/web/packages/mosaic/) ist ein Zusatzpaket, welches u. a. eine vereinheitlichte R Syntax bietet
-* [**R Commander**](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt
+
 
 
 ### Windows
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
 ### macOS
-Einige Zusatzpakete wie z. B. `Rcmdr` benötigen das X11 Windows System. Dies muss vorab - sofern noch nicht vorhanden - von der Seite http://www.xquartz.org/ installiert werden. Nach der Installation muss der Computer neu gestartet werden. Neuere Versionen von R werden nur noch für OS X ab Version 10.9 (Mavericks) oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. ein Update. 
+Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. eine Aktualisierung auf macOS Sierra: [https://www.apple.com/de/macos/how-to-upgrade/](https://www.apple.com/de/macos/how-to-upgrade/). 
 
-1.  Installation [XQuartz](http://www.xquartz.org/)
-2.  Neustart Computer
-3.  Fortfahren mit der Installation von R und R Studio
+Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. Nach der Installation muss der Computer neu gestartet werden.
+
+1. Installation XQuartz
+2. Neustart Computer
+3. Fortfahren mit der Installation von R
 
 
 ### Linux
 Keine besonderen Vorbereitungen nötig. 
 
 ## Installation 
-Installieren Sie zunächst R und anschließend R-Studio.
+Installieren Sie zunächst R und anschließend R-Studio Desktop.
 
 ### Installation von R
 Installieren Sie die für Ihr System aktuelle Version von R von der Seite 
 
-https://www.r-project.org/. 
+[https://www.r-project.org/](https://www.r-project.org/). 
 
 Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
 
-1.  Windows: https://cran.rstudio.com/bin/windows/base/
-2.  macOS: https://cran.rstudio.com/bin/macosx/
+1.  Windows: [https://cran.rstudio.com/bin/windows/base/](https://cran.rstudio.com/bin/windows/base/)
+2.  macOS: [https://cran.rstudio.com/bin/macosx/](https://cran.rstudio.com/bin/macosx/)
 
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
 ### Installation von R-Studio (Desktop)
 Sie können R-Studio (Desktop-Version) von der Seite
 
-https://www.rstudio.com/products/rstudio/download/
+[https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
 
 entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
@@ -78,10 +80,9 @@ Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel aut
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("RStudio-Screenshot.png")
+knitr::include_graphics("RStudio-Screenshot-3.4.png")
 ```
 
-Unter Windows kann es vereinzelt nötig sein, dass Sie R als Administrator ausführen müssen um Pakete zu installieren.
 
 #### mosaic
 Für die Vorlesung werden wir das Zusatzpaket ("package") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
@@ -92,41 +93,16 @@ eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige 
 
 [Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
-#### R Commander
-Zu Verwendung der grafischen Oberfläche R-Commander bitte zunächst zur Installation den Befehl eingeben:
-```{r eval=FALSE}
-install.packages("Rcmdr")
-```
-
-**Hinweis:** Bei der Verwendung von macOS bitte unbedingt *vorher* die Hinweise zur [Vorbereitung der Installation](#anchor) beachten.
-
-Auch hier werden einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über
-```{r eval=FALSE}
-library(Rcmdr)
-```
-gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimmen.
-
-[Hier](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html) gibt es weitere Hinweise zur Installation des R Commanders.
-
-
-*Tipp:* Unter **macOS** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
-
-*Tipp:* Bei ausschließlicher Verwendung der grafischen Oberfläche des R-Commanders diesen direkt aus R starten, ohne die Verwendung von R Studio.
-
 ## Pakete verwenden
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic` und `Rcmdr`. Jedes Zusatzpaket wird über den Befehle `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde. Starten Sie also `mosaic` und `Rcmdr` also zunächst mit den folgenden Befehlen
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic`. Jedes Zusatzpaket wird über den Befehle `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde. Starten Sie also `mosaic` und also zunächst mit den folgenden Befehlen
 ```{r eval=FALSE}
 library(mosaic)
-```
-bzw. 
-```{r eval=FALSE}
-library(Rcmdr)
 ```
 
 
 **Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert
 ```{r error=TRUE}
-library(RCmdr)
+library(Mosaic)
 ```
 entsprechend in einem Fehler.
 
@@ -134,13 +110,11 @@ entsprechend in einem Fehler.
 Vereinzelt kann es zu Problemen bei der Installation bzw. beim erstmaligen Start des R Commanders kommen. Sollten Sie eine Fehlermeldung ähnlich wie folgender erhalten:
 
 ```{r, eval=FALSE}
-library(Rcmdr)
-## Lade nötiges Paket: splines
-## Lade nötiges Paket: RcmdrMisc
-## Lade nötiges Paket: car
-## Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
-##   es gibt kein Paket namens ‘Rcpp’
-## Fehler: Paket ‘car’ konnte nicht geladen werden
+library(mosaic)
+##Lade nötiges Paket: dplyr
+##Fehler: package or namespace load failed for ‘dplyr’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = ##vI[[j]]):
+## es gibt kein Paket namens ‘Rcpp’
+##Fehler: Paket ‘dplyr’ konnte nicht geladen werden
 ```
 wurde Serverseitig hier das (abhängige) Paket `Rcpp` (Beispiel) nicht installiert. Installieren Sie dies bitte über
 ```{r, eval=FALSE}
@@ -172,11 +146,11 @@ In diesem Fall versuchen Sie bitte folgendes:
 
 1. R schließen, R neu starten
 2. `install.packages("Rcpp")`
-3.  `library(Rcmdr)`
+3.  `library(mosaic)`
 
 Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können.
 
-Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben. Achten Sie darauf ihn wieder anzuschalten und keine weiteren Dateien o. ä. zu öffenen. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen").
+Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben. Achten Sie darauf ihn wieder anzuschalten und keine weiteren Dateien o. ä. zu öffenen. Evtl. sind hier leider mehrere Versuche nötig. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen"). **Aktivieren Sie den Virenscanner im Anschluss sofort wieder und öffnen Sie währenddessen keine weiteren Dateien o. ä.. Führen Sie ggf. im Anschluss einen Virenscanlauf durch.**
 
 
 Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>. 
@@ -186,6 +160,7 @@ Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>.
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`
 
-
+### Haftungsausschuss:
+Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Trotz sorgfältiger Prüfung können wir für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
 
 
