@@ -3,10 +3,10 @@ title: "Installation von R und R-Studio"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -107,7 +107,7 @@ library(Mosaic)
 entsprechend in einem Fehler.
 
 ## Fehlersuche
-Vereinzelt kann es zu Problemen bei der Installation bzw. beim erstmaligen Start des R Commanders kommen. Sollten Sie eine Fehlermeldung ähnlich wie folgender erhalten:
+Vereinzelt kann es zu Problemen bei der Installation bzw. beim erstmaligen Start von `mosaic` kommen. Sollten Sie eine Fehlermeldung ähnlich wie folgender erhalten:
 
 ```{r, eval=FALSE}
 library(mosaic)
