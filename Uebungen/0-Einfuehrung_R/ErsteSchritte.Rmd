@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Hinweise
 [R](https://cran.r-project.org) ist der Name eines Programms für Statistik und Datenanalyse, [RStudio](https://www.rstudio.com) ist eine komfortable Entwicklungsumgebung für R.
 
-Nach dem Start von R Studio erscheint folgender Bildschirm, wobei die Version neuer sein kann.
+Nach dem Start von RStudio erscheint folgender Bildschirm, wobei die Version neuer sein kann.
 
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
@@ -245,7 +245,8 @@ In R Studio gibt es im Reiter `Environment` im Fenster Rechts oben einen Menüpu
 
 Excel Dateien können unter anderem mit Hilfe des Zusatzpaketes `readxl` können eingelesen werden:
 ```{r eval=FALSE}
-meineDaten <- read_excel(file.choose())  # Datei auswählen
+library(readxl) # Paket laden
+meineDaten <- read_excel(file.choose())  # Datei auswählen und in R einlesen
 ```
 
 [Hier](https://www.fom.de/forschung/institute/ifes/studium-und-lehre.html#!acc=datenquellen) finden Sie eine Linksammlung zu verschiedenen Datenquellen. 
