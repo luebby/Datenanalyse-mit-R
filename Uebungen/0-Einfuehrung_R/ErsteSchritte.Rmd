@@ -25,8 +25,7 @@ Nach dem Start von R Studio erscheint folgender Bildschirm, wobei die Version ne
 
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("../../Installation/RStudio-Screenshot.png",
-dpi = 300)
+knitr::include_graphics("../../Installation/RStudio-Screenshot-3.4.png")
 ```
 
 Links, in der *Console* werden die Befehle eingegeben. Rechts oben können Sie z. B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
@@ -102,7 +101,7 @@ Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster rechts oben in RStudio
 knitr::include_graphics("tips-Enviroment.png")
 ```
 
-Alternativ können Sie Daten in RStudio komfortabel mit dem Button `Import Dataset` (im Fenster `Environment` oder über das Menü `File` und `Open File...`) öffnen.
+Alternativ können Sie Daten in RStudio komfortabel mit dem Button `Import Dataset` (im Fenster `Environment` oder über das Menü `File`) öffnen.
 
 ## Erste Analyse des tips Datensatzes
 Dieser Datensatz aus 
@@ -148,11 +147,12 @@ install.packages("mosaic")
 ```
 installiert werden.
 
-Um es verwenden zu können, muss es - wie jedes Paket - für *jede* neue R-Sitzung über
-```{r message=FALSE}
+Um es verwenden zu können, muss es - wie jedes Paket - für *jede* neue R-Sitzung über `library(mosaic)`geladen werden. Die angegebenen Hinweise sind keine Fehlermeldung!
+
+```{r}
 library(mosaic)
 ```
-geladen werden.
+
 
 Sollte beim Laden eines Paketes eine Meldung wie 
 ```{r, error=TRUE}
