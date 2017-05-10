@@ -3,10 +3,10 @@ title: "Einführung Lineare Regression"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -77,11 +77,6 @@ Aber wie sieht es mit den Annahmen aus?
 ```{r}
 histogram( ~ resid(LinMod.1))
 
-```
-
-Alternativ mit qplot:
-```{r}
-resid_df <- data.frame(resid(LinMod.1))
 ```
 
 
