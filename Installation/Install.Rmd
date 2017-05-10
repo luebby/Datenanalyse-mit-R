@@ -50,7 +50,7 @@ Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofer
 Keine besonderen Vorbereitungen nötig. 
 
 ## Installation 
-Installieren Sie zunächst R und anschließend R-Studio Desktop.
+Installieren Sie zunächst R und anschließend RStudio Desktop.
 
 ### Installation von R
 Installieren Sie die für Ihr System aktuelle Version von R von der Seite 
@@ -75,7 +75,7 @@ entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. R-Studio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von R-Studio  starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie R Studio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
+Die Grundinstallation ist jetzt abgeschlossen. RStudio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von RStudio  starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, indem Sie RStudio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
