@@ -68,7 +68,7 @@ In mosaic kann die Modellgerade über
 plotModel(LinMod.1)
 ```
 
-betrachtet werden. Das Bestimmtheitsmaß R² ist mit `r round(summary(LinMod.1)$r.squared,2)` "ok": `r round(summary(LinMod.1)$r.squared*100)`-\% der Variation des Trinkgeldes wird im Modell erklärt.
+betrachtet werden. Das **Bestimmtheitsmaß**, d. h. der Anteil der im Modell erklärten Varianz, $R^2=1-\frac{Var(\epsilon_i)}{Var(y_i)}$  ist mit `r round(summary(LinMod.1)$r.squared,2)` "ok": `r round(summary(LinMod.1)$r.squared*100)`-\% der Variation des Trinkgeldes wird im Modell erklärt.
 
 Aber wie sieht es mit den Annahmen aus?
 
