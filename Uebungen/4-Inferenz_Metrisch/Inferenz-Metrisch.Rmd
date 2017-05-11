@@ -252,11 +252,16 @@ cohensD(ZINSK ~ PHASEN, data=B3AufAb)
 ## Varianzanalyse (ANOVA)
 Bei mehr als zwei Gruppen funktionieren die Techniken des t-Tests nicht mehr. Um Lagemaßunterschiede zu testen, wird anstelle der Mittelwerte die Streuung verglichen: Ist die Streuung zwischen den Gruppen groß im Vergleich zur Streuung innerhalb der Gruppen?
 
-Unterscheidet sich der mittlere Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
-
 ```{r}
-bwplot( DEFRATE ~ PHASEN, data=B3)
-favstats( DEFRATE ~ PHASEN, data=B3)
+xyplot(DEFRATE ~ PHASEN, data=B3)
+```
+
+Es gilt, dass sich die Gesamtstreung ($SST$) zusammensetzt aus der Streuung zwischen den Gruppen ($SSG$) und innerhalb der Gruppen ($SSE$), d. h., $$SST=SSG+SSE.$$
+
+Unterscheidet sich der mittlere Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
+```{r}
+bwplot(DEFRATE ~ PHASEN, data=B3)
+favstats(DEFRATE ~ PHASEN, data=B3)
 ```
 
 Vielleicht, vielleicht nicht.
@@ -267,6 +272,14 @@ DEFaov <- aov(DEFRATE ~ PHASEN, data=B3)
 summary(DEFaov)
 ```
 Der p-Wert des F-Tests der Nullhypothese $$H_0: \mu_{\text{Aufschwung}}=\mu_{\text{Oberer Wendepunt}}=\mu_{\text{Abschwung}}=\mu_{\text{Unterer Wendepunkt}}$$ der Gleichheit der Lage ist mit `r round(summary(DEFaov)[[1]][["Pr(>F)"]][1],4)` größer als 0.05, die Nullhypothese kann also für das Staatsdefizit nicht verworfen werden. 
+
+Bei $k$ Gruppen ist die mittlere quadratische Varianz $MSG=\frac{1}{k-1}\sum_{i=1}^k n_i (\bar{x}_i- \bar{x})^2=\frac{SSG}{\underbrace{k-1}_{df_G}}$ ($n_i$ ist die Anzahl Beobachtungen in Gruppe $i$, $\bar{x}_i$ der Gruppenmittelwert und $\bar{x}$ der Gesamtmittelwert.) Hier also $MSG=`r round(summary(DEFaov)[[1]]$"Mean Sq"[1],4)`$. Der mittlere Quadratische Fehler, $MSE$, ist dann $MSE=\frac{1}{n-k}  \sum_{i=1}^k (n_i-1) sd^2_i=\frac{SSE}{\underbrace{n-k}_{df_E}}$, mit $sd_i$ der Standardabweichung in Gruppe $i$. Hier: $MSE=`r round(summary(DEFaov)[[1]]$"Mean Sq"[2],4)`$.
+
+Der Wert der Teststatistik $F$ ist dann
+$$F=\frac{MSG}{MSE}=\frac{`r round(summary(DEFaov)[[1]]$"Mean Sq"[1],4)`}{`r round(summary(DEFaov)[[1]]$"Mean Sq"[2],4)`}=`r round(summary(DEFaov)[[1]]$"F value"[1],4)`.$$
+
+
+
 
 Unterscheidet sich das Lagemaß der Veränderung der Lohnstückkosten `LSTKJW` nicht zufällig?
 ```{r}
