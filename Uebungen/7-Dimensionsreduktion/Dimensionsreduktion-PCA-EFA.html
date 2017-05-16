@@ -717,8 +717,7 @@ scatterplot3d(Leader~Value+Latest, pch=row.names(brand.fa.mean))</code></pre>
 <div id="ubung" class="section level2">
 <h2>Übung</h2>
 <p>Führen Sie eine Dimensionsreduktion mit den nichtskalierten original Daten durch. Berechenn Sie zur Interpretaion keine Faktor-Scores, sondern berechnen Sie stattdessen den Mittelwert der Variablen, die hoch (mindestens 0,5) auf einen Faktor laden. Für die Berechnung verwenden Sie</p>
-<pre class="r"><code>Datensatz$Neue_Variable &lt;- apply(Datensatz[,c(&quot;Variable1&quot;,&quot;Variable2&quot;, &quot;etc..&quot;)], 
-                                 1, mean, na.rm=TRUE)   </code></pre>
+<pre class="r"><code>Datensatz$Neue_Variable &lt;- apply(Datensatz[,c(&quot;Variable1&quot;,&quot;Variable2&quot;, &quot;etc..&quot;)], 1, mean, na.rm=TRUE)   </code></pre>
 </div>
 <div id="literatur" class="section level2">
 <h2>Literatur</h2>
@@ -728,15 +727,13 @@ scatterplot3d(Leader~Value+Latest, pch=row.names(brand.fa.mean))</code></pre>
 <li>Reinhold Hatzinger, Kurt Hornik, Herbert Nagel (2011): <em>R – Einführung durch angewandte Statistik</em>. Kapitel 11</li>
 <li>Maike Luhmann (2015): R für Einsteiger, Kapitel 19</li>
 </ul>
-<div id="lizenz" class="section level3">
-<h3>Lizenz</h3>
-<p>Diese Übung wurde von Oliver Gansser entwickelt und orientiert sich am Beispiel aus Kapitel 8 aus Chapman und Feit (2015) und steht unter der Lizenz <a href="http://creativecommons.org/licenses/by-sa/3.0">Creative Commons Attribution-ShareAlike 3.0 Unported</a>. Der Code steht unter der <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Lizenz 2.0</a></p>
-</div>
+<hr />
+<p>Diese Übung orientiert sich am Beispiel aus Kapitel 8 aus Chapman und Feit (2015) und steht unter der Lizenz <a href="http://creativecommons.org/licenses/by-sa/3.0">Creative Commons Attribution-ShareAlike 3.0 Unported</a>. Der Code steht unter der <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Lizenz 2.0</a></p>
 <div id="versionshinweise" class="section level3">
 <h3>Versionshinweise:</h3>
 <ul>
-<li>Datum erstellt: 2017-03-10</li>
-<li>R Version: 3.3.3</li>
+<li>Datum erstellt: 2017-02-20</li>
+<li>R Version: 3.3.2</li>
 </ul>
 </div>
 </div>
