@@ -68,7 +68,7 @@ In mosaic kann die Modellgerade über
 plotModel(LinMod.1)
 ```
 
-betrachtet werden. Das **Bestimmtheitsmaß**, d. h. der Anteil der im Modell erklärten Varianz, $R^2=1-\frac{Var(\epsilon_i)}{Var(y_i)}$  ist mit `r round(summary(LinMod.1)$r.squared,2)` "ok": `r round(summary(LinMod.1)$r.squared*100)`-\% der Variation des Trinkgeldes wird im Modell erklärt.
+betrachtet werden. Das **Bestimmtheitsmaß**, d. h. der Anteil der im Modell erklärten Varianz, $$R^2=1-\frac{\sum_{i=1}^n (y_i-\hat{y}_i)^2}{\sum_{i=1}^n (y_i-\bar{y})^2}$$  ist mit `r round(summary(LinMod.1)$r.squared,2)` "ok": `r round(summary(LinMod.1)$r.squared*100)`-\% der Variation des Trinkgeldes wird im Modell erklärt.
 
 Aber wie sieht es mit den Annahmen aus?
 
@@ -221,7 +221,7 @@ Der Ausgabe können Sie auch entnehmen, welche Variablen in welcher Reihenfolge 
 
 ### Interaktionen 
 
-Wir haben gesehen, dass es einen Zusammenhang zwischen der Trinkgeldhöhe und der Rechnungshöhe gibt. Vielleicht unterscheidet sich der Zusammenhang je nachdem, ob geraucht wurde, d. h., vielleicht gibt es eine Interaktion (Wechselwirkung). Die kann in `lm` einfach durch ein `*` zwischen den unabhängigen Variablen modelliert werden:
+Wir haben gesehen, dass es einen Zusammenhang zwischen der Trinkgeldhöhe und der Rechnungshöhe gibt. Vielleicht unterscheidet sich der Zusammenhang je nachdem, ob geraucht wurde, d. h., vielleicht gibt es eine Interaktion (Wechselwirkung). Die kann in `lm` einfach durch ein `*` zwischen den unabhängigen Variablen modelliert werden (`a*b` entspricht in R Formeln `a+b+a:b`):
 
 ```{r}
 LinMod.6 <- lm(tip ~ smoker*total_bill, data = tips)

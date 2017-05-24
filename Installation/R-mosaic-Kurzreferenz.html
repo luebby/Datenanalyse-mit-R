@@ -218,6 +218,7 @@ heatmap() # Heatmap</code></pre>
 <pre class="r"><code>favstats()</code></pre>
 <p>Ansonsten (<code>mosaic</code> angepasst):</p>
 <pre class="r"><code>tally() # Tabellierung, Häufigkeiten 
+prop() # Anteile
 mean() # Arithmetischer Mittelwert
 median() # Median
 sd() # Standardabweichung
@@ -236,6 +237,7 @@ rflip() # Münzwurf
 do() # Wiederholung (Schleife)
 sample() # Stichprobe ohne Zurücklegen
 resample() # Stichprobe mit Zurücklegen
+shuffle() # Permutation
 rnorm() # Normalverteilte Zufallszahlen</code></pre>
 </div>
 <div id="verteilungen" class="section level3">
@@ -264,7 +266,8 @@ aov() # Varianzanalyse</code></pre>
 <pre class="r"><code>lm() # Lineare Regression
 glm(, family=&quot;binomial&quot;) # Logistische Regression
 residuals() # Residuen einer Regression
-fitted() # Angepasste Werte einer Regression</code></pre>
+fitted() # Angepasste Werte einer Regression
+predict() # Vorhersagen</code></pre>
 <p>In <code>mosaic</code> kann das Ergebnis einer solchen Regression über <code>makeFun()</code> in eine einfache mathematische Funktion überführt werden. <code>plotFun()</code> zeichnet das Ergebnis. <code>step()</code> führt eine Variablenselektion durch.</p>
 <p>Weitere Verfahren - nicht <code>mosaic</code>:</p>
 <pre class="r"><code>hclust() # Hierachsiche Clusteranalyse
@@ -275,7 +278,7 @@ rpart() # Klassifikations- und Regressionsbäume, Paket rpart</code></pre>
 <h3>Versionshinweise:</h3>
 <p>Erstellt von Karsten Lübke unter der Lizenz <a href="http://creativecommons.org/licenses/by-sa/3.0">Creative Commons Attribution-ShareAlike 3.0 Unported</a>.</p>
 <ul>
-<li>Datum erstellt: 2017-04-28</li>
+<li>Datum erstellt: 2017-05-24</li>
 <li>R Version: 3.4.0</li>
 <li><code>mosaic</code> Version: 0.14.4</li>
 </ul>
@@ -284,7 +287,7 @@ rpart() # Klassifikations- und Regressionsbäume, Paket rpart</code></pre>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Beim Mac ist <code>~</code> die Tastenkombination <code>alt+n</code>, <code>|</code> die Tastenkombination <code>alt+7</code><a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>Beim Mac ist <code>~</code> die Tastenkombination <code>alt</code>+<code>n</code>, <code>|</code> die Tastenkombination <code>alt</code>+<code>7</code><a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
 

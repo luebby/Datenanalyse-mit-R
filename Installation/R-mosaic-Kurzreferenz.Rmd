@@ -3,10 +3,10 @@ title: "R Kurzreferenz"
 author: "Karsten Lübke"
 date: ''
 output:
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -138,6 +138,7 @@ favstats()
 Ansonsten (`mosaic` angepasst):
 ```{r eval=FALSE}
 tally() # Tabellierung, Häufigkeiten 
+prop() # Anteile
 mean() # Arithmetischer Mittelwert
 median() # Median
 sd() # Standardabweichung
@@ -157,6 +158,7 @@ rflip() # Münzwurf
 do() # Wiederholung (Schleife)
 sample() # Stichprobe ohne Zurücklegen
 resample() # Stichprobe mit Zurücklegen
+shuffle() # Permutation
 rnorm() # Normalverteilte Zufallszahlen
 ```
 
@@ -190,6 +192,7 @@ lm() # Lineare Regression
 glm(, family="binomial") # Logistische Regression
 residuals() # Residuen einer Regression
 fitted() # Angepasste Werte einer Regression
+predict() # Vorhersagen
 ```
 In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine einfache mathematische Funktion überführt werden. `plotFun()` zeichnet das Ergebnis. `step()` führt eine Variablenselektion durch. 
 
