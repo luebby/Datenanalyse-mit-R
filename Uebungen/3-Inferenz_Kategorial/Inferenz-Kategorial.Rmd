@@ -170,12 +170,12 @@ pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
 # 1000-mal das Jahr permutieren: Nullhypothese kein Unterschied
-pdiff.null <- do(1000) * diff(tally( ~ response | sample(year), data=de, 
+pdiff.null <- do(1000) * diff(tally( ~ response | shuffle(year), data=de, 
                                     format="proportion")["atheist",])
 # Histogramm
 histogram(~ X2012, data=pdiff.null, v=c(pdiff, -pdiff))
 # p-Wert
-mean(abs(pdiff.null$X2012) >= abs(pdiff))
+prop(abs(pdiff.null$X2012) >= abs(pdiff))
 ```
 
 ***

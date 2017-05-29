@@ -190,6 +190,8 @@ Der Nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic
 ```{r eval=FALSE}
 lm() # Lineare Regression
 glm(, family="binomial") # Logistische Regression
+plotModel() # Modell zeichnen
+coef() # Koeffizienten extrahieren
 residuals() # Residuen einer Regression
 fitted() # Angepasste Werte einer Regression
 predict() # Vorhersagen

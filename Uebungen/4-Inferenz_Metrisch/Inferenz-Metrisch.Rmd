@@ -190,7 +190,7 @@ Auch hier können wir, ohne eine Verteilungsannahme zu verwenden, permutieren.
 ```{r}
 mdiff <- diff(mean(ZINSK ~ PHASEN, data=B3AufAb))
 mdiff
-mdiff.null <- do(1000) * diff(mean(ZINSK ~ sample(PHASEN), data=B3AufAb))
+mdiff.null <- do(1000) * diff(mean(ZINSK ~ shuffle(PHASEN), data=B3AufAb))
 histogram( ~ mdiff.null)
 ```
 

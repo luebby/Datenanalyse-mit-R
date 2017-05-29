@@ -3,10 +3,10 @@ title: "Einführung Wahrscheinlichkeit und Inferenz"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -114,7 +114,7 @@ Die Daten werden *normaler*, symmetrischer, d. h., die Verteilung des Gewinnante
 ***
 Richtig: `r mean(farbspiele$Gewinn>=0.5)`, das ist also anscheinend recht wahrscheinlich, während der relative Anteil der Spiele, in denen Sie maximal 1 der 8 Spiele gewinnen, recht klein ist:
 ```{r, eval = FALSE}
-anteil <- sum(farbspiele$Gewinn <= 1/8)/length(farbspiele$Gewinn)
+anteil <- prop(farbspiele$Gewinn <= 1/8)
 anteil
 ```
 Das kommt also eher selten vor. Pech. Vielleicht würden Ihnen aber auch Zweifel kommen, ob der Tisch fair ist. In der Simulation liegt also die Wahrscheinlichkeit, bei einem fairen Tisch bei 8 Spielen höchstens einmal zu gewinnen bei `r mean(farbspiele$Gewinn <= 1/8)*100`%. 
@@ -155,7 +155,7 @@ Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entsch
 Wir oft kommt also zufällig heraus, dass höchstens 79 der 151 Entscheidungen des Typs A (alleinige Entscheider) positiv zugeordnet werden? Simulieren wir das z. B. 1000-mal:
 ```{r}
 entsim <- do(1000)*tally(~sample(entscheidungen, size=151))
-sum(entsim$Positiv<=79)/length(entsim$Positiv)
+prop(entsim$Positiv<=79)
 ```
 
 Unter der **Nullhyothese**, dass das Ergebnis zufällig war (d. h. es gibt keinen Zusammenhang zwischen Typ und Rating), wurden in der Simulation in `r round(mean(entsim$Positiv<=79)*100,2)`% der Fälle höchstens 79 positive dem Typ A zufällig zugeordnet. Dieser **p-Wert** spricht also nicht wirklich gegen das Zufallsmodell.
@@ -214,7 +214,7 @@ Anlage | AAPL | FB | GOOGL |
 Mittelwert|-0.08|0.11|0.15|
 Standardabweichung|1.69|1.62|1.77|
 
-Unter der Annahme der Normalverteilung der logarithmierten Renditen können wir jetzt die Wahrscheinlichkeit eines Tagesverlustes der Apple Aktie (AAPL) berechnen über
+Unter der Annahme der unabhängig, identischen Normalverteilung der logarithmierten Renditen können wir jetzt die Wahrscheinlichkeit eines Tagesverlustes der Apple Aktie (AAPL) berechnen über
 ```{r}
 xpnorm(0, mean=-0.08, sd=1.69 )
 ```
