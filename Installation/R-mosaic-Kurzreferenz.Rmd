@@ -3,10 +3,10 @@ title: "R Kurzreferenz"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -109,8 +109,9 @@ select() # Wählt Variablen eines Datensatzes aus
 mutate() # Erzeugt neue Variable bzw. verändert bestehende
 rename() # Benennt Variablen um
 arrage() # Sortiert Beobachtungen eines Datensatzes
+%>% # Übergebe das Ergebnis der vorhergehenden Funktion an die folgende
 ```
-Dabei übergibt die "Pfeife" `%>%` das Ergebnis der vorhergehenden Funktion an die folgende.
+
 
 ## Grafische Verfahren
 Vor jeder mathematisch-statistischen Analyse sollte eine explorative, grafische Analyse erfolgen. Die folgenden Befehle sind aus dem Paket `mosaic`.
@@ -141,6 +142,7 @@ tally() # Tabellierung, Häufigkeiten
 prop() # Anteile
 mean() # Arithmetischer Mittelwert
 median() # Median
+quantile() # Quantile
 sd() # Standardabweichung
 var() # Varianz
 IQR() # Interquartilsabstand
@@ -163,14 +165,14 @@ rnorm() # Normalverteilte Zufallszahlen
 ```
 
 ### Verteilungen
-Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=`, bzw. `df=` angepasst werden.
+Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=`, bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
 ```{r, eval=FALSE}
-pchisq() # Verteilungsfunktion Chi² Verteilung
-qchisq() # Quantilsfunktion Chi² Verteilung
-pnorm() # Verteilungsfunktion Normalverteilung
-qnorm() # Quantilsfunktion Normalverteilung
-pt() # Verteilungsfunktion t-Vverteilung
-qt() # Quantilsfunktion t-Vverteilung
+xpchisq() # Verteilungsfunktion Chi² Verteilung
+xqchisq() # Quantilsfunktion Chi² Verteilung
+xpnorm() # Verteilungsfunktion Normalverteilung
+xqnorm() # Quantilsfunktion Normalverteilung
+xpt() # Verteilungsfunktion t-Vverteilung
+xqt() # Quantilsfunktion t-Vverteilung
 ```
 Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
 
@@ -200,10 +202,13 @@ In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine
 
 Weitere Verfahren - nicht `mosaic`:
 ```{r eval=FALSE}
+prcomp() # Hauptkomponentenanalyse (PCA)
+alpha() # Reliabilitätsanalys, Paket psych
+dist() # Distanzen
 hclust() # Hierachsiche Clusteranalyse
 kmeans() # k-Means Clusterverfahren
-prcomp() # Hauptkomponentenanalyse (PCA)
 rpart() # Klassifikations- und Regressionsbäume, Paket rpart
+
 ```
 
 
