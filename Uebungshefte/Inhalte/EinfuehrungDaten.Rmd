@@ -1,0 +1,334 @@
+# Einführung in Daten
+
+
+## Datensatz
+
+Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
+
+Sofern noch nicht geschehen, können Sie ihn z. B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
+```{r}
+download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
+```
+
+Wenn sich die Daten auf Ihrem Computer gespeichert sind, können Sie sie laden:
+
+```{r}
+tips <- read.csv2("tips.csv")
+```
+
+Achtung: `read.csv` geht vom amerikanischen Format aus. Wenn es sich um eine "deutsche CSV-Datei" handelt, verwenden Sie `read.csv2`.
+
+*Tipp:* Wenn Sie nicht mehr wissen, wo die Daten liegen: statt `tips.csv` den Befehl `file.choose()` als Argument für die Funktion `read.csv2` verwenden.
+
+
+Inwieweit das Einlesen wie gewünscht geklappt hat, kann über
+```{r eval=FALSE}
+str(tips)
+```
+überprüft werden: Der Datensatz hat also `r nrow(tips)` Zeilen (= Beobachtungen) und `r ncol(tips)` Spalten (= Merkmale/Variablen).
+
+Zur folgenden Analyse muss zunächst das Paket `mosaic` geladen werden:
+```{r eval=FALSE, message=FALSE}
+library(mosaic)
+```
+
+
+## Grafische Verfahren der Datenanalyse
+Bevor evtl. wichtige Information in zusammenfassenden Kennzahlen verloren geht, versuchen wir einen Gesamtüberblick zu erhalten.
+
+### Balkendiagramm
+Balkendiagramme eignen sich am besten um Häufigkeiten darzustellen, also für kategorielle Variablen (`factor`) oder für metrische Variablen (`numeric`) mit wenigen Merkmalsausprägungen. 
+
+Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die Funktion `bargraph` aus dem Paket `mosaic` verwendet werden:
+```{r}
+bargraph(~ sex, data=tips)
+```
+
+In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` in Abhängigkeit von `x` (`y` wird modelliert durch `x`), gruppiert nach den Werten von `z`, wobei einzelne Teile fehlen können, so wie im Beispiel `y` und `z`. Aber um z. B. die Verteilung des Geschlechts des Zahlenden je Tageszeit `time` darzustellen muss hier eingegeben werden:
+```{r}
+bargraph(~ sex | time, data=tips)
+```
+
+
+
+
+***
+**Übung:** 
+
+1.  Zeichnen Sie ein Balkendiagramm des Rauchverhaltens `smoker` je Wochentag `day` und interpretieren Sie das Ergebnis.
+
+***
+
+### Histogramm
+Histogramme werden für metrische Daten verwendet, der Befehl lautet `histogram`.
+
+***
+**Übung:** 
+
+2.  Welche Abbildung wird über
+```{r eval=FALSE}
+histogram(~ total_bill | sex, data=tips)
+```
+erzeugt?
+
+***
+
+**Punktdiagramme** sind eine Variante von Histogrammen, die besonders für metrische Variablen mit wenigen Merkmalsausprägungen geeignet sind.
+
+```{r}
+dotPlot(~ size, nint=6, data=tips)
+```
+
+Hier wurde ein zusätzliche Parameter der Funktion `dotPlot` übergeben: `nint=6`. Dieser Parameter wurde wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?dotPlot`, erfahren.
+
+### Boxplots
+Boxplots zeigen nicht nur den Median (50%-Quantil) sowie das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand -, sondern geben auch Hinweise auf potentielle Ausreißer:
+
+```{r}
+bwplot(total_bill ~ sex, data=tips)
+```
+
+und gruppiert nach Tageszeit:
+```{r}
+bwplot(total_bill ~ sex | time, data=tips)
+```
+
+
+***
+**Übung:** 
+
+3.  Zeichen Sie einen Boxplot für die Trinkgeldhöhe `tip` in Abhängigkeit davon, ob geraucht wurde (`smoker`). Gibt es Unterschiede in der Trinkgeldhöhe und, wenn ja, in welchem Bereich?
+
+***
+
+### Scatterplot (Streudiagramme)
+Streudiagramme sind besonders gut geeignet, um einen Überblick auf den Zusammenhang zweier metrischer Merkmale zu erhalten; beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren.
+
+```{r}
+xyplot(tip ~ total_bill, data=tips)
+```
+
+Wenig überraschend steigt die Trinkgeldhöhe mit der Rechnung. Wie sieht es relativ aus?
+Dazu müssen wir zunächst ein neues Merkmal im Datensatz erzeugen, z. B.:
+```{r}
+tips$tip_relativ <- tips$tip / tips$total_bill
+```
+Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Trinkgeld und Rechnungshöhe zugewiesen.
+
+***
+**Übung:** 
+
+4.  Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
+
+***
+
+
+### Mosaicplot
+Mosaicplots eignen sich, um den Zusammenhang zwischen kategoriellen Variablen darzustellen. Zunächst müssen wir dazu eine Kreuztabelle erstellen. Das geht in `mosaic` über den Befehl `tally`. Dieser Befehl ist recht mächtig -- dazu später mehr. Wir erzeugen eine solche Kreuztabelle zwischen Tageszeit und Rauchen über
+
+```{r}
+tab_smoke_time <- tally(smoker ~ time, data=tips)
+```
+
+Dem (neuen) R Objekt `tab_smoke_time` wird also das Ergebnis des `tally` Befehls zugewiesen. Wie das Ergebnis aussieht, und welchen Typ es hat erfahren wir über
+```{r}
+print(tab_smoke_time)
+str(tab_smoke_time)
+```
+Es handelt sich also um eine Tabelle (`table`) der Dimension `r dim(tab_smoke_time)`, also `r dim(tab_smoke_time)[1]` Zeilen, `r dim(tab_smoke_time)[2]` Spalten.
+
+Der Befehl für einen Mosaicplot lautet `mosaicplot`:
+```{r}
+mosaicplot(tab_smoke_time)
+```
+
+
+### Korrelationsplot
+Mit Hilfe des Zusatzpakets `corrplot` lassen sich Korrelationen besonders einfach visualisieren. Das Paket muss wie jedes Paket *einmalig* über
+```{r eval=FALSE}
+install.packages("corrplot")
+```
+installiert werden -- wiederum werden evt. weitere benötigte Pakete mit-installiert.
+Nach dem Laden des Pakets über
+```{r eval=TRUE, message=FALSE}
+library(corrplot)
+```
+kann dies über
+```{r}
+corrplot(cor(tips[,c("total_bill", "tip", "size")]))
+```
+
+gezeichnet werden. Je intensiver die Farbe, desto höher die Korrelation. Hier gibt es unzählige Einstellmöglichkeiten, siehe `?corrplot` bzw. für Beispiele:
+
+```{r eval=FALSE}
+vignette("corrplot-intro")
+```
+
+
+## Kennzahlen der Datenanalyse
+Nachdem wir einen ersten visuellen Eindruck gewonnen haben, wollen wir uns jetzt Kennzahlen widmen.
+
+
+### Lagemaße
+Das Minimum und Maximum von metrischen Daten kann einfach durch `min` bzw. `max` bestimmt werden, in `mosaic` auch "modelliert":
+```{r}
+min(~ total_bill | smoker, data=tips)
+```
+gibt also das Minimum der Rechnungshöhe, getrennt nach Raucher und Nichtrauchern an, d. h. das Minimum bei den Rauchern lag bei `r min(~total_bill|smoker, data=tips)["Yes"]`$.
+
+***
+**Übung:** 
+
+5.  Bestimmen Sie das Maximum der Trinkgeldhöhe je Wochentag (`day`)
+
+***
+
+Lagemaße sollen die zentrale Tendenz der Daten beschreiben. Gebräuchlich sind in der Regel der arithmetische Mittelwert  `mean`
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i=\frac{x_1+x_2+x_3+\cdots+x_n}{n}$$
+
+```{r}
+mean(~ total_bill, data=tips)
+```
+sowie der Median (Zentralwert) `median`:
+```{r}
+median(~ total_bill, data=tips)
+```
+
+Den jeweiligen Rang der Beonbachtungen erhalten Sie über 
+```{r}
+rank(tips$total_bill)
+```
+
+
+Diese unterscheiden sich:
+```{r}
+meantb <- mean(~ total_bill, data=tips) # Mittelwert
+mediantb <- median(~ total_bill, data=tips) # Median
+histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
+```
+
+Über die Option `v=` werden vertikale Linien an den entsprechenden Stellen gezeichnet. Mit `h=` können horizontale Linien gezeichnet werden.
+
+
+***
+**Übung:** 
+
+6.  Begründen Sie anhand des Histogramms, warum hier der Median kleiner als der arithmetische Mittelwert ist.
+
+***
+
+Auch Lagemaße zu berechnen in Abhängigkeit der Gruppenzugehörigkeit ist einfach. So können Sie den arithmetischen Mittelwert in Abhängigkeit von Geschlecht und Tageszeit berechnen:
+
+```{r}
+mean(total_bill ~ sex + time, data=tips)
+```
+
+***
+**Übung:** 
+
+7.  Bestimmen Sie den Median der Trinkgeldhöhe anhand der Anzahl Personen in der Tischgesellschaft.
+
+***
+
+Für kategorielle Variablen können eigentlich zunächst nur die Häufigkeiten bestimmt werden:
+```{r}
+tally(~day, data=tips)
+```
+Relative Häufigkeiten werden bei `mosaic` mit der zusätzlichen Option `format='proportion'` angefordert:
+
+```{r}
+tally(~day, format="proportion", data=tips)
+```
+
+### Streuungsmaße
+Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
+
+Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQR` sowie Varianz `var` bzw. Standardabweichung `sd` $$s=sd=\sqrt{x^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^2}$$
+herangezogen:
+
+```{r}
+IQR(~total_bill, data=tips)
+var(~total_bill, data=tips)
+sd(~total_bill, data=tips)
+```
+
+Um die Standardabweichung in Abhängigkeit der Gruppengröße zu berechnen genügt der Befehl:
+```{r}
+sd(~total_bill | size, data=tips)
+```
+
+Bei 4 Personen lag die Standardabweichung als bei `r round(sd(~total_bill|size, data=tips)["4"], 2)`$.
+
+
+Um jetzt z. B. den Variationskoeffizienten zu berechnen wird 
+```{r}
+sd(~total_bill | size, data=tips) / mean(~total_bill | size, data=tips)
+```
+gebildet.
+
+***
+**Übung:** 
+
+8.  Zu welcher Tageszeit ist die Standardabweichung des Trinkgelds geringer? Zum Lunch oder zum Dinner?
+
+***
+
+Die *üblichen* deskriptiven Kennzahlen sind in `mosaic` übrigens in einer Funktion zusammengefasst: `favstats`.
+```{r}
+favstats(tip~day, data=tips)
+```
+
+
+### Zusammenhangsmaße
+Kennzahlen für den linearen Zusammenhang von metrischen Variablen sind Kovarianz `cov` $$s_{xy}=\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})(y_{i}-\bar{y})$$
+und der Korrelationskoeffizient `cor` $$r=\frac{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})(y_{i}-\bar{y})}{\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^2}\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(y_{i}-\bar{y})^2}}=\frac{s_{xy}}{s_{x}s_{y}}$$
+```{r}
+cov(tip ~ total_bill, data=tips)
+cor(tip ~ total_bill, data=tips)
+```
+
+Für kategorielle Variablen wird in diesen Abschnitt zunächst nur die Kreuztabelle verwendet:
+```{r}
+tally(smoker~sex, format="proportion", data=tips)
+```
+
+***
+**Übung:** 
+
+9.  Zu welcher Tageszeit wurde relativ häufiger von einer Frau die Rechnung bezahlt?
+
+***
+
+
+## Übung: Teaching Rating
+Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
+
+*Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
+
+Sie können ihn von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) herunterladen.
+
+
+
+1.  Erstellen Sie ein Balkendiagramm der Variable `native` gruppiert nach der Variable `minority`.
+2.  Erstellen Sie ein Histogramm der Variable `beauty` gruppiert nach der Variable `gender`.
+3.  Vergleichen Sie das Evaluationsergebnis `eval` in Abhängigkeit ob es sich um einen Single-Credit Kurs `credits` handelt mit Hilfe eines Boxplots.
+4.  Zeichnen Sie ein Scatterplot der Variable `eval` in Abhängigkeit der zu definierenden Variable "Evaluierungsquote": `students/allstudents`.
+5.  Berechnen Sie deskriptive Kennzahlen der Variable `eval` in Abhängigkeit ob es sich um einen Single-Credit Kurs `credits` handelt.
+
+## Literatur
+
+- David M. Diez, Christopher D. Barr, Mine &Ccedil;etinkaya-Rundel (2014): *Introductory Statistics with Randomization and Simulation*, [https://www.openintro.org/stat/textbook.php?stat_book=isrs](https://www.openintro.org/stat/textbook.php?stat_book=isrs),  Kapitel 1
+- Nicholas J. Horton, Randall Pruim, Daniel T. Kaplan (2015): *Project MOSAIC Little Books -- A Student's Guide to R*,  [https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf](https://github.com/ProjectMOSAIC/LittleBooks/raw/master/StudentGuide/MOSAIC-StudentGuide.pdf), Kapitel 3.1, 3.2, 4.1, 5.1, 5.2, 6.1
+- Chester Ismay, Albert Y. Kim (2017): *ModernDive -- An Introduction to Statistical and Data Sciences via R*, [https://ismayc.github.io/moderndiver-book/](https://ismayc.github.io/moderndiver-book/)
+- Maike Luhmann (2015): *R für Einsteiger*, Kapitel 9-11
+- Andreas Quatember (2010): *Statistik ohne Angst vor Formeln*, Kapitel 1
+- Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 14
+
+
+### Lizenz
+Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und Mark Hansen und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+
+### Versionshinweise:
+* Datum erstellt: `r Sys.Date()`
+* R Version: `r getRversion()`
+* `mosaic` Version: `r packageVersion("mosaic")`

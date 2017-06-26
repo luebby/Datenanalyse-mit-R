@@ -1,0 +1,52 @@
+---
+title: "Wissenschaftliche Methodik -- \\newline Übung Quantitative Datenanalyse mit R"
+author: "Prof. Dr. Karsten Lübke"
+date: "SoSe 2017"
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+      keep_tex: yes
+documentclass: article
+classoption: a4paper, 10pt
+---
+\setstretch{1.44}
+
+\begin{center}
+\includegraphics{ifes.jpg}
+\end{center}
+
+\tableofcontents
+\newpage  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(mosaic)
+require(corrplot)
+```
+
+```{r child = 'Inhalte/ErsteSchritte.Rmd'}
+```
+
+```{r child = 'Inhalte/EinfuehrungDaten.Rmd'}
+```
+
+```{r child = 'Inhalte/EinfuehrungWkeitInferenz.Rmd'}
+```
+
+```{r child = 'Inhalte/Inferenz-Kategorial.Rmd'}
+```
+
+```{r child = 'Inhalte/Inferenz-Metrisch.Rmd'}
+```
+
+```{r child = 'Inhalte/Regression.Rmd'}
+```
+
+```{r child = 'Inhalte/LogRegression.Rmd'}
+```
+
+```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd'}
+```
+
+```{r child = 'Inhalte/Clusteranalyse.Rmd'}
+```

@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 .Rproj
+*_files
+*.csv
+*cache
