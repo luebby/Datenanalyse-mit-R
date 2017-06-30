@@ -1,0 +1,343 @@
+---
+title: "Unüberwachtes Lernen"
+author: "Prof. Dr. Karsten Lübke"
+date: "SoSe 2017"
+output:
+  beamer_presentation:
+    includes:
+      in_header: fom-ifes-style-sheet.tex
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+require(readxl)
+require(mosaic)
+require(corrplot)
+require(psych)
+knitr::opts_chunk$set(size = "small",
+                      message = FALSE, 
+                      fig.width = 10, fig.asp = 0.618)
+ex <- 0
+
+set.seed(1896)
+```
+
+## Unüberwachtes Lernen
+
+Unüberwachtes Lernen (engl.: unsupervised learning): Es gibt *keine* bekannte abhänige Variable $y$, die modelliert werden soll
+
+Methoden (u. a.):
+
+- Hauptkomponentenanalyse (engl.: Principal Component Analysis): Finde (wenige) Linearkombinationen der Variablen: Zusammenfassung von Variablen, Dimensionsreduktion
+- Clusteranalyse (engl.: Cluster Analysis): Finde Gruppen (Cluster) von Beobachtungen, die innerhalb der Cluster homogen, zwischen den Clustern heterogen sind^[Clustern von Variablen analog]
+
+## Hauptkomponentenanalyse
+
+Idee: Fasse korrelierte Variablen (linear) zusammen. Die resultierenden Komponenten sind unkorreliert und beinhalten einen möglichst großen Anteil der (multivariaten) Gesamtvariation.
+
+
+## Analyse Extraversion
+
+Extraversionstest nach Dr. Satow, angepasst von Prof. Dr. Sebastian Sauer.
+
+Fragebogen: [http://bit.ly/1HBhKWU](http://bit.ly/1HBhKWU)
+
+## Analyse Extraversionsdaten: Alternative Einlesen
+
+Menü RStudio:
+
+`File -> Import Dataset-> From Excel ...`
+
+Datei "Extraversion.xlsx" auswählen (`Browse`) `-> Import`
+
+## Analyse Extraversionsdaten: Einlesen
+
+```{r xlsx}
+# Gggfs. Einmalig vorab installieren
+# install.packages("readxl")
+
+# Paket zum Einlesen von Excel Dateien laden
+library(readxl)
+
+# Daten einlesen
+
+# Daten "Extraversion.xls" einlesen 
+# und als Datensatz "Extraversion" in R speichern
+# Achtung: Pfad zur Datei anpassen
+Extraversion <- read_excel("Extraversion.xlsx")
+```
+
+## Vorbereitung: Big-5 Extraversionsitems
+
+```{r}
+library(mosaic)
+
+Big5_Extra <- Extraversion[,1:10] %>% # Variablen wählen
+  na.omit() %>% # Fehlende Werte löschen
+  scale() %>% # Skalieren 
+  data.frame() # Als Datensatz definieren
+
+```
+
+## Übung `r ex <- ex+1; ex`: Korrelation/ Kovarianz Big-5
+
+Stimmt die Aussage: Bei skalierten/ standardisierten^[d. h. $\bar{x}=0, sd=1$] Variablen ist die Kovarianzmatrix identisch zu der Korrelationsmatrix?
+
+- Ja.
+- Nein.
+
+## Big-5 Extraversion: Korrelation
+
+```{r  fig.align="center", out.width="50%"}
+library(corrplot) # ggfs. einmalig vorab installieren
+cor(Big5_Extra) %>%
+  corrplot()
+```
+
+
+## Übung `r ex <- ex+1; ex`: Korrelation Big-5
+
+Welche der folgenden Aussagen stimmt?
+
+- A: Die Variable `F4_Verein` korreliert hoch mit allen anderen Variablen
+- B: Es gibt eine hohe Korrelation zwischen `F5_Kommunikativ` und `F9_Party`
+- C: Die Variablen `F3_Einzelgaenger` und `F7_Allein` korrelieren negativ mit den anderen Variablen
+- D: Es gibt eine negative Korrelation zwischen `F5_Kommunikativ` und `F6_Kontaktfreudig`
+
+## Hauptkomponentenanalyse Big-5
+
+```{r}
+ergpca <- prcomp( ~., data=Big5_Extra)
+```
+
+
+## Screeplot Big-5
+
+Ein Screeplot stellt die Varianz der Hauptkomponenten dar.
+```{r  fig.align="center", out.width="60%"}
+plot(ergpca, type="l")
+```
+
+## Übung `r ex <- ex+1; ex`: Screeplot
+
+Welche der folgenden Aussagen stimmt?
+
+- A: Alle Hauptkomponenten haben in etwa die gleiche Varianz
+- B: Ungefähr nach $k=5$ Hauptkomponenten gibt es einen Abfall in der Varianz
+- C: Die erste Hauptkomponente hat eine deutlich höhere Varianz als die anderen 
+
+## Big-5: Multivariate Varianz
+
+```{r}
+summary(ergpca)
+```
+
+## Übung `r ex <- ex+1; ex`: Multivariate Varianz
+
+Welche der folgenden Aussagen stimmt?
+
+- A: Die erste Hauptkomponente enthält mehr als die Hälfte der Gesamtvarianz
+- B: Die ersten drei Hauptkomponenten haben eine Varianz größer als 1
+- C: Die Varianz der Hauptkomponenten nimmt zu
+- D: Mit $20\%$ der Hauptkomponenten kann $80\%$ der Gesamtvarianz erfasst werden
+
+
+## Extraversion: Biplot
+
+Ein Biplot visualisiert die Ladungen der Variablen sowie die Werte der Beobachtungen auf den ersten Hauptkomponenten ("Scores").
+
+```{r  fig.align="center", out.width="40%"}
+biplot(ergpca)
+```
+
+## Übung `r ex <- ex+1; ex`: Biplot
+
+Welche der folgenden Aussagen stimmt?
+
+- A: Beobachtung `25` steht gerne im Mittelpunkt
+- B: Beobachtung `25` ist gerne allein
+- C: Weiß nicht
+
+## Ladungen
+
+Die Ladungen geben das Gewicht der einzelnen Variablen für die jeweilige Hauptkomponente an. 
+```{r}
+ergpca$rotation[,1:3]
+```
+
+## Übung `r ex <- ex+1; ex`: Ladungen
+
+Welche der folgenden Aussagen stimmt *nicht*?
+
+- A: Die Variable `F4_Verein` ist für die erste Hauptkomponente unwichtig
+- B: Die Variablen `F3_Einzelgaenger` und `F7_Allein` haben auf der ersten Hauptkomponente eine andere Richtung als die anderen Variablen
+- C: Mit Ausnahme von `F4_Verein` sind die meisten Variablen für die erste Hauptkomponente annähernd gleich wichtig
+- D: Je höher der Wert für `F11_Mittelpunkt` desto höher ist der Wert auf der zweiten Hauptkomponente
+
+## Cronbachs Alpha
+
+Cronbachs Alpha ist eine Maßzahl für die interne Konsistenz einer Skala (Reliabilität). Sollte i. d. R. $>0.7$ sein.
+
+```{r}
+library(psych) # ggfs. einmalig vorab installieren
+ca <- alpha(Big5_Extra, check.keys = TRUE)
+summary(ca)
+```
+
+## Übung `r ex <- ex+1; ex`: Cronbachs Alpha
+
+Ist die interne Konsistenz der Skala hier akzeptabel?
+
+- Ja.
+- Nein.
+
+
+## Offene Übung Freizeitverhalten
+
+Lassen sich die Variablen `F12_Facebook`, `F13_Kater` und `F19_Partybesuche` zusammenfassen?
+
+## Clusteranalyse
+
+Finde Gruppen, die sich intern ähnlich sind:
+
+- Agglomerativ/ hierarchisch: Beobachtungen werden sukzessiv zusammengefasst
+- Partitionierend: Beobachtungen werden zu $k$ Clustern zusammengefasst
+
+Ähnlichkeit/ Unähnlichkeit wird über Distanzmaße (z. B. Euklidischer Abstand $d(x,y)=\sqrt{\sum_j{(x_j-y_j)^2}}$ definiert.
+
+## Vorbereitung: Freizeitverhalten
+
+```{r}
+Freizeit <- Extraversion %>% 
+  select(F12_Facebook, F13_Kater, F19_Partybesuche) %>% # Variablen wählen
+  na.omit() %>% # Fehlende Werte löschen
+  scale() %>% # Skalieren 
+  data.frame() # Als Datensatz definieren
+```
+
+
+## Distanz
+
+```{r}
+Freizeit[1:3,] # Ersten drei Beobachtungen
+
+Freizeit[1:3,] %>%
+  dist() # Distanz
+```
+
+## Übung `r ex <- ex+1; ex`: Distanz
+
+Welche der folgenden Aussagen stimmt?
+
+- A: Beobachtungen `1` und `2` sind sich am ähnlichsten
+- B: Beobachtungen `1` und `3` sind sich am ähnlichsten
+- C: Beobachtungen `2` und `3` sind sich am ähnlichsten
+
+## Hierarchische Clusteranalyse
+
+```{r}
+erghclust <-Freizeit %>% # Datensatz
+  dist() %>% # Distanz
+  hclust() # Hierarchische Cluster
+```
+
+## Dendrogramm
+
+Je höher (`Height`) die Stelle ist, an der zwei Beobachtungen oder Cluster zusammengefasst werden, desto größer ist die Distanz zwischen ihnen.
+```{r  fig.align="center", out.width="60%"}
+plot(erghclust)
+```
+
+## Anzahl Cluster
+
+Eine mögliche Trennung für $k=2$ Cluster:
+
+```{r  fig.align="center", out.width="40%"}
+plot(erghclust)
+rect.hclust(erghclust, k=2, border="red")
+
+# Zuordnung in Datensatz schreiben
+Freizeit$hcclust <- cutree(erghclust, k=2)
+```
+
+## Cluster Beschreibung
+
+```{r}
+mean(F12_Facebook ~  hcclust, data=Freizeit)
+mean(F13_Kater ~  hcclust, data=Freizeit)
+mean(F19_Partybesuche ~  hcclust, data=Freizeit)
+```
+
+## Übung `r ex <- ex+1; ex`: Cluster Beschreibung
+
+Welche der folgenden Aussagen stimmt?^[Beachte: der Datensatz Freizeit ist standardisiert]
+
+- A: Im Mittelwert haben Beobachtungen aus Cluster `2` `r round(mean(F12_Facebook ~  hcclust, data=Freizeit)[2],2)` Facebook-Freunde
+- B: Im Mittelwert gehen Personen aus Cluster `1` öfter auf Partys als aus Cluster `2`
+- C: Personen aus Cluster `2` haben im Mittelwert öfter einen Kater als aus Cluster `1`
+
+## k-Means Clusteranalyse
+
+Der Ablauf des Verfahrens:
+
+- 1:  Zufällige Beobachtungen als $k$ Clusterzentrum
+- 2:  Zuordnung der Beobachtungen zum nächsten Clusterzentrum
+- 3:  Neuberechnung der Clusterzentren als Mittelwert der dem Cluster zugeordneten Beobachtungen
+
+Wiederholung bis keine Änderung in (2) oder maximale Iterationsanzahl erreicht.
+
+## k-Means Clusteranalyse Freizeitverhalten
+
+Mit z. B. $k=3$ Zentren:
+
+```{r}
+Freizeit <- Freizeit %>%
+  select(-hcclust) # Clusterzuordnung löschen
+
+set.seed(1896) # Zufallszahlengenerator setzen
+
+ergkclust <- kmeans(Freizeit, # Datensatz
+                    centers = 3, # Anzahl Zentren (k)
+                    nstart = 10) # Anzahl Startpartitionen
+```
+
+## Ergebnis k-Means
+
+```{r}
+ergkclust$size # Anzahl Beob. je Cluster
+ergkclust$centers # Cluster Zentren
+```
+
+## Übung `r ex <- ex+1; ex`: Clustergröße
+
+Welche Aussage stimmt?
+
+- A: Die Anzahl Beobachtungen ist in Cluster `1` am größten
+- B: Die Anzahl Beobachtungen ist in Cluster `2` am größten
+- C: Die Anzahl Beobachtungen ist in Cluster `3` am größten
+
+## Übung `r ex <- ex+1; ex`: Beschreibung Cluster
+
+Für welchen Cluster passt die Beschreibung *Facebook Junkies* am Besten?
+
+- A: Cluster `1` 
+- B: Cluster `2` 
+- C: Cluster `3` 
+
+##  Übung `r ex <- ex+1; ex`: Clusterzentren
+
+In welcher Variable unterscheidet sich Cluster `3` am meisten von den anderen?^[Beachte: der Datensatz Freizeit ist standardisiert]
+
+- A: `F12_Facebook`
+- B: `F13_Kater`
+- C: `F19_Partybesuche`
+
+## Offene Übung Extraversion
+
+Führen Sie eine Clusteranalyse auf den Scores der ersten beiden Hauptkomponenten der Extraversionsitems durch
+```{r}
+pcascores <- predict(ergpca)[,1:2]
+```
+
+
+

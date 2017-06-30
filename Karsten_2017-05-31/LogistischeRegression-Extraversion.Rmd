@@ -1,0 +1,319 @@
+---
+title: "Logistische Regression"
+author: "Prof. Dr. Karsten Lübke"
+date: "SoSe 2017"
+output:
+  beamer_presentation:
+    includes:
+      in_header: fom-ifes-style-sheet.tex
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+require(readxl)
+require(mosaic)
+require(knitr)
+knitr::opts_chunk$set(size = "small",
+                      message = FALSE, 
+                      fig.width = 10, fig.asp = 0.618)
+ex <- 0
+
+set.seed(1896)
+```
+
+## Modellierung
+
+$$y=f(x) + \epsilon $$
+
+Hier nur für eine unabhängige Variable:
+
+- Lineare Regression: abhängige Variable $y$ numerisch: $y_i=\beta_0 + \beta_1 \cdot x_i + \epsilon_i$
+- Logistische Regression: abhängige Variable $y$ binär, d. h., kategorial mit zwei Merkmalsausprägungen $y_i \in \{0,1\}$. $p_i$ sei die Wahrscheinlichkeit, dass $y_i=1$, dann: $logit(p_i)=\ln(\frac{p_i}{1-p_i})=\beta_0 + \beta_1 \cdot x_i$
+    - Kunde/ kein Kunde
+    - Abwanderung Ja/ Nein
+    - Raucher/ Nichtraucher
+    - Kreditausfall Ja/ Nein
+
+
+## Analyse Extraversion
+
+Extraversionstest nach Dr. Satow, angepasst von Prof. Dr. Sebastian Sauer.
+
+Fragebogen: [http://bit.ly/1HBhKWU](http://bit.ly/1HBhKWU)
+
+## Analyse Extraversionsdaten: Alternative Einlesen
+
+Menü RStudio:
+
+`File -> Import Dataset-> From Excel ...`
+
+Datei "Extraversion.xlsx" auswählen (`Browse`) `-> Import`
+
+## Analyse Extraversionsdaten: Einlesen
+
+```{r xlsx}
+# Gggfs. Einmalig vorab installieren
+# install.packages("readxl")
+
+# Paket zum Einlesen von Excel Dateien laden
+library(readxl)
+
+# Daten einlesen
+
+# Daten "Extraversion.xls" einlesen 
+# und als Datensatz "Extraversion" in R speichern
+# Achtung: Pfad zur Datei anpassen
+Extraversion <- read_excel("Extraversion.xlsx")
+```
+
+## Bereitschaft sich freiwillig zur Messe zu melden
+
+
+Modellierung durch die Anzahl Facebook-Freunde. 
+
+```{r, fig.align="center", out.width="60%"}
+library(mosaic)
+
+xyplot( (F18_Messe=="ja") ~ F12_Facebook, 
+        data = Extraversion)
+```
+
+## Modellierung Logit
+
+$$p(y=1)=\frac{e^\eta}{1+e^\eta}=\frac{e^{\beta_0 + \beta_1 \cdot x_i}}{1+e^{\beta_0 + \beta_1 \cdot x_i}} = \frac{1}{1+e^{-(\beta_0 + \beta_1 \cdot x_i)}}$$
+```{r, echo=FALSE, fig.align="center", out.width="33%"}
+eta <- seq(-10,10,by = 0.1)
+y <- 1/(1+exp(-eta))
+xyplot(y ~ eta, xlab = expression(eta), ylab = "p(y=1)", type = "l")  
+```
+
+Schätze $\beta$ anhand der Daten: $\hat{\beta}$:
+
+- $\beta>0$: Wahrscheinlichkeit steigt
+- $\beta<0$: Wahrscheinlichkeit fällt
+
+
+## Vorbereitung: Modellierung Messebesuch
+
+R modelliert $y$ anhand der *Faktorstufen*: In der logistischen Regression ist die erste Ausprägung die $0$, alle weiteren $1$
+
+```{r}
+# Als Faktor definieren
+Extraversion$F18_Messe <- factor(Extraversion$F18_Messe)
+# Referenzklasse festelgen
+Extraversion$F18_Messe <- relevel(Extraversion$F18_Messe, 
+                                  ref="nein")
+# Kontrolle
+levels(Extraversion$F18_Messe)
+```
+
+
+## Logistische Regression: Messebesuch
+
+```{r, fig.align="center", out.width="60%"}
+ergglm <- glm(F18_Messe ~ F12_Facebook, 
+              data = Extraversion,
+              family = binomial("logit"))
+              
+plotModel(ergglm)
+```
+
+## Ergebnis Logistische Regression
+
+```{r}
+summary(ergglm)
+```
+
+## Regressionskoeffizienten
+
+```{r, echo=FALSE}
+kable(summary(ergglm)$coefficients)
+```
+
+## Übung `r ex <- ex+1; ex`: Regressionskoeffizienten
+
+Welche der folgenden Aussagen stimmt?
+
+- A: In der Stichprobe steigt die Bereitschaft sich freiwillig zur Messe zu melden mit der Anzahl der Facebook-Freunde
+- B: In der Stichprobe sinkt die Bereitschaft sich freiwillig zur Messe zu melden mit der Anzahl der Facebook-Freunde
+- C: In der Stichprobe ist die Bereitschaft sich freiwillig zur Messe zu melden unverändert mit der Anzahl der Facebook-Freunde
+
+## Bootstrap Regressionkoeffizient (I/II)
+
+
+```{r}
+set.seed(1896)
+
+Bootvtlg <- do(5000) *
+  coef(glm(F18_Messe ~ F12_Facebook, 
+           data = resample(Extraversion),
+           family = binomial("logit")))[2]
+```
+
+## Bootstrap Regressionkoeffizient (II/II)
+
+
+```{r,  fig.align="center", out.width="40%"}
+histogram( ~ F12_Facebook, data = Bootvtlg)
+quantile( ~ F12_Facebook, data = Bootvtlg, 
+          probs = c(0.025, 0.975))
+```
+
+## Übung `r ex <- ex+1; ex`: Inferenz: Nullhypothese
+
+Wie lautet die Nullhypothese, wenn die Variable $x$ keinen Einfluss auf $p(y=1)$ in der Population hat:
+
+- A: $H_0: \beta_1=0$
+- B: $H_0: \beta_1=1$
+- C: $H_0: \hat{\beta}_1=0$
+- D: $H_0: \hat{\beta}_1=1$
+
+## Permutationstest Regressionskoeffizient (I/II)
+
+
+```{r}
+Nullvtlg <- do(5000) *
+  coef(glm(F18_Messe ~ shuffle(F12_Facebook), 
+           data = Extraversion,
+           family = binomial("logit")))[2]
+```
+
+## Permutationstest Regressionskoeffizient  (II/II)
+
+
+```{r,  fig.align="center", out.width="33%"}
+histogram( ~ F12_Facebook, data = Nullvtlg)
+
+prop( ~ abs(F12_Facebook) >= coef(ergglm)[2], 
+      data=Nullvtlg )
+```
+
+## Übung `r ex <- ex+1; ex`: Inferenz Anzahl Facebook Freunde
+
+Liefern die Daten Belege dafür, einen Zusammenhang zwischen der Anzahl Facebook-Freunde und der Bereitschaft sich freiwillig zur Messe zu melden in der Population zu zeigen (Forschungsthese)?
+
+- Ja.
+- Nein.
+
+## Modellierung Messebesuch durch Alter
+
+```{r}
+ergglm2 <- glm(F18_Messe ~ F14_Alter, 
+              data = Extraversion,
+              family = binomial("logit"))
+              
+summary(ergglm2)
+```
+
+## Koeffizienten Modellierung Messebesuch durch Alter
+
+```{r, echo=FALSE}
+kable(summary(ergglm2)$coefficients)
+```
+
+## Übung `r ex <- ex+1; ex`: Ergebnis Modellierung Messebesuch durch Alter
+
+Wer hat im Modell die höchste Wahrscheinlichkeit sich freiwillig zur Messe zu melden?
+
+- A: Max, 20 Jahre
+- B: Tina, 24 Jahre
+- C: Susi, 30 Jahre
+
+## Übung `r ex <- ex+1; ex`: Inferenz Modellierung Messebesuch durch Alter
+
+Ist in dem Modell der Einfluss der Variable `F14_Alter` *signifikant*?
+
+- Ja.
+- Nein.
+
+## Vorhersagen Logistische Regression
+
+Für Susi, 30 Jahre:
+```{r}
+predict(ergglm2, 
+        newdata = data.frame(F14_Alter=30), 
+        type="response")
+```
+
+## Modellierung Messebesuch durch Geschlecht
+
+```{r}
+ergglm3 <- glm(F18_Messe ~ F15_Geschlecht, 
+              data = Extraversion,
+              family = binomial("logit"))
+              
+summary(ergglm3)
+```
+
+## Koeffizienten Modellierung Messebesuch durch Geschlecht
+
+```{r, echo=FALSE}
+kable(summary(ergglm3)$coefficients)
+```
+
+## Übung `r ex <- ex+1; ex`: Ergebnis Modellierung Messebesuch durch Geschlecht
+
+Wer hat im Modell die höchste Wahrscheinlichkeit sich freiwillig zur Messe zu melden?
+
+- A: Max
+- B: Tina
+- C: Beide gleich
+
+## Übung `r ex <- ex+1; ex`: Inferenz Modellierung Messebesuch durch Geschlecht
+
+Kann im Modell die Nullhypothese $\beta_{\text{F15\_Geschlecht}}=0$ verworfen werden?
+
+- Ja.
+- Nein.
+
+## Odds Ratio
+
+$$OR=\frac{\frac{p_{\text{Mann}}}{1-p_{\text{Mann}}}}{\frac{p_{\text{Frau}}}{1-p_{\text{Frau}}}}$$
+```{r}
+exp(coef(ergglm3))
+```
+
+Die Chance, dass sich ein Mann freiwillig meldet ist `r round(exp(coef(ergglm3))[2],2)` mal so groß wie die einer Frau.
+
+## Multiple Logistische Regression
+
+```{r}
+ergglm4 <- glm(F18_Messe ~ F14_Alter 
+               + F15_Geschlecht
+               + F12_Facebook,
+              data = Extraversion,
+              family = binomial("logit"))
+              
+summary(ergglm4)
+```
+
+## Koeffizienten Multiple Logistische Regression
+
+```{r, echo=FALSE}
+kable(summary(ergglm4)$coefficients)
+```
+
+## Übung `r ex <- ex+1; ex`: Ergebnis Multiple Logistische Regression
+
+Welche Variablen erhöhen die Wahrscheinlichkeit im Modell, dass sich die Person freiwillig zur Messe meldet?
+
+- A: Nur steigendes Alter
+- B: Nur Geschlecht Mann
+- C: Nur steigende Anzahl Facebook-Freunde
+- D: Alle Variablen
+- E: Keine der Variablen
+
+## Übung `r ex <- ex+1; ex`: Inferenz Multiple Logistische Regression
+
+Welche Variablen sind *signifikant*?
+
+- A: Nur Alter
+- B: Nur Geschlecht 
+- C: Nur Anzahl Facebook-Freunde
+- D: Alle Variablen
+- E: Keine der Variablen
+
+## Offene Übung: Modellierung Geschlecht
+
+Modellieren Sie die Wahrscheinlichkeit, dass es sich bei einer Person um eine Frau handelt als Funktion der Variablen `F12_Facebook`, `F13_Kater`, `F19_Partybesuche`.
+
