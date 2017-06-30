@@ -1,36 +1,8 @@
----
-title: "Datenaufbereiten mit dplyr"
-output:
-  html_document: default
-  pdf_document: default
-lang: de-DE
----
-```{r include=FALSE, cache=FALSE}
-set.seed(1014)
-options(digits = 3)
-
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  cache = TRUE,
-  out.width = "70%",
-  fig.align = 'center',
-  fig.width = 6,
-  fig.asp = 0.618,  # 1 / phi
-  fig.show = "hold"
-)
-
-```
-
-
-
-# Datenjudo
+# Anhang `r anh <- anh+1; anh`:  Datenjudo
 
 
 ```{r echo = FALSE, fig.cap = "Daten aufbereiten"}
-knitr::include_graphics("images/Datenjudo/Aufbereiten.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/Aufbereiten.pdf")
 ```
 
 In diesem Kapitel benötigte Pakete: 
@@ -79,7 +51,7 @@ Häufig will man bestimmte Zeilen aus einer Tabelle filtern. Zum Beispiel man ar
 Ein Sinnbild:
 
 ```{r fig-filter, echo = FALSE, fig.cap = "Zeilen filtern"}
-knitr::include_graphics("images/Datenjudo/filter.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/filter.pdf")
 ```
 
 Merke:
@@ -162,7 +134,7 @@ filter(profiles, !is.na(income) | !is.na(sex))
 Das Gegenstück zu `filter` ist `select`; dieser Befehl liefert die gewählten Spalten zurück. Das ist häufig praktisch, wenn der Datensatz sehr "breit" ist, also viele Spalten enthält. Dann kann es übersichtlicher sein, sich nur die relevanten auszuwählen. Das Sinnbild für diesen Befehl:
 
 ```{r fig-select, echo = FALSE, fig.cap = "Spalten auswählen"}
-knitr::include_graphics("images/Datenjudo/select.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/select.pdf")
 ```
 
 
@@ -173,7 +145,7 @@ Merke:
 Laden wir als ersten einen Datensatz.
 
 ```{r eval = FALSE}
-stats_test <- read.csv("data/test_inf_short.csv")
+stats_test <- read.csv("./data/test_inf_short.csv")
 ```
 
 Dieser Datensatz beinhaltet Daten zu einer Statistikklausur.
@@ -261,7 +233,7 @@ Merke:
 Ein Sinnbild zur Verdeutlichung:
 
 ```{r fig-arrange, echo = FALSE, fig.cap = "Spalten sortieren"}
-knitr::include_graphics("images/Datenjudo/arrange.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/arrange.pdf")
 ```
 
 
@@ -295,7 +267,7 @@ Richtig oder Falsch!?
 Einen Datensatz zu gruppieren ist ebenfalls eine häufige Angelegenheit: Was ist der mittlere Umsatz in Region X im Vergleich zu Region Y? Ist die Reaktionszeit in der Experimentalgruppe kleiner als in der Kontrollgruppe? Können Männer schneller ausparken als Frauen? Man sieht, dass das Gruppieren v.a. in Verbindung mit Mittelwerten oder anderen Zusammenfassungen sinnvol ist; dazu im nächsten Abschnitt mehr.
 
 ```{r fig-groupby, echo = FALSE, fig.cap = "Datensätze nach Subgruppen aufteilen"}
-knitr::include_graphics("images/Datenjudo/group_by.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/group_by.pdf")
 ```
 
 In der Abbildung wurde der Datensatz anhand der Spalte `Fach` in mehrere Gruppen geteilt. Wir könnten uns als nächstes z.B. Mittelwerte pro Fach - d.h. pro Gruppe (pro Ausprägung von `Fach`) - ausgeben lassen; in diesem Fall vier Gruppen (Fach A bis D).
@@ -337,7 +309,7 @@ Merke:
 Vielleicht die wichtigste oder häufigte Tätigkeit in der Analyse von Daten ist es, eine Spalte zu *einem* Wert zusammenzufassen. Anders gesagt: Einen Mittelwert berechnen, den größten (kleinsten) Wert heraussuchen, die Korrelation berechnen oder eine beliebige andere Statistik ausgeben lassen. Die Gemeinsamkeit dieser Operaitonen ist, dass sie eine Spalte zu einem Wert zusammenfassen, "aus Spalte mach Zahl", sozusagen. Daher ist der Name des Befehls `summarise` ganz passend. Genauer gesagt fasst dieser Befehl eine Spalte zu einer Zahl zusammen *anhand* einer Funktion wie `mean` oder `max`. Hierbei ist jede Funktion erlaubt, die eine Spalte als Input verlangt und eine Zahl zurückgibt; andere Funktionen sind bei `summarise` nicht erlaubt. 
 
 ```{r fig-summarise, echo = FALSE, fig.cap = "Spalten zu einer Zahl zusammenfassen"}
-knitr::include_graphics("images/Datenjudo/summarise.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/summarise.pdf")
 ```
 
 
@@ -441,7 +413,7 @@ Richtig oder Falsch!?
 Die zweite Idee kann man salopp als "Durchpfeifen" bezeichnen; ikonographisch mit diesem Symbol dargestellt ` %>% `. Der Begriff "Durchpfeifen" ist frei vom Englischen "to pipe" übernommen. Das berühmte Bild von René Magritte stand dabei Pate.
 
 ```{r cecie-une-pipe, echo = FALSE, fig.cap = "La trahison des images [Ceci n'est pas une pipe], René Magritte, 1929, © C. Herscovici, Brussels / Artists Rights Society (ARS), New York, http://collections.lacma.org/node/239578"}
-knitr::include_graphics("images/Datenjudo/ma-150089-WEB.jpg")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/ma-150089-WEB.jpg")
 ```
 
 
@@ -450,7 +422,7 @@ knitr::include_graphics("images/Datenjudo/ma-150089-WEB.jpg")
 
 
 ```{r fig-durchpreifen, echo = FALSE, out.width  = "80%", fig.cap = "Das 'Durchpeifen'"}
-knitr::include_graphics("images/Datenjudo/durchpfeifen.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/durchpfeifen.pdf")
 ```
 
 Die sog. "Pfeife" (pipe: ` %>% `) in Anspielung an das berühmte Bild von René Magritte, verkettet Befehle hintereinander. Das ist praktisch, da es die Syntax vereinfacht. Vergleichen Sie mal diese Syntax
@@ -504,7 +476,7 @@ stats_test$study_time <- car::recode(stats_test$study_time, "5 = 'sehr viel'; 4 
 head(stats_test$study_time)
 ```
 
-Der Befehle `recode` ist wirklich sehr prkatisch; mit `:` kann man "von bis" ansprechen (das ginge mit `c()` übrigens auch); `else` für "ansonsten" ist möglich und mit `as.factor.result` kann man entweder einen Faktor oder eine Text-Variable zurückgeliefert bekommen. Der ganze "Wechselterm" steht in Anführungsstrichen (`"`). Einzelne Teile des Wechselterms sind mit einem Strichpunkt (`;`) voneinander getrennt.
+Der Befehle `recode` ist wirklich sehr prkatisch; mit `:` kann man "von bis" ansprechen (das ginge mit `c()` übrigens auch); `else` für "ansonsten" ist möglich und mit `as.factor.result` kann man entweder einen Faktor oder eine Text-Variable zurückgeliefert bekommen. Der ganze "Wechselterm" steht in Anführungsstrichen (`'`). Einzelne Teile des Wechselterms sind mit einem Strichpunkt (`;`) voneinander getrennt.
 
 
 Das klassiche Umkodieren von Items aus Fragebögen kann man so anstellen; sagen wir `interest` soll umkodiert werden:
@@ -552,7 +524,7 @@ Eine numerische Variable ...
 Nehmen wir an, wir möchten die numerische Variable "Körpergröße" in drei Gruppen einteilen: "klein", "mittel" und "groß". Der Range von Körpergröße soll gleichmäßig auf die drei Gruppen aufgeteilt werden, d.h. der Range (Interval) der drei Gruppen soll gleich groß sein. Dazu kann man `cut_interval` aus `ggplot2` nehmen [^d.h. `ggplot2` muss geladen sein; wenn man `tidyverse` lädt, wird `ggplot2` automatisch auch geladen].
 
 ```{r}
-wo_men <- read_csv("data/wo_men.csv")
+wo_men <- read_csv("./data/wo_men.csv")
 
 wo_men %>% 
   filter(height > 150, height < 220) -> wo_men2
@@ -596,9 +568,9 @@ count(wo_men, groesse_gruppe)
 ## Verweise
 - Eine schöne Demonstration der Mächtigkeit von `dplyr` findet sich hier^[: <http://bit.ly/2kX9lvC>].
 
-- Die GUI "exploratory" ist ein "klickbare" Umsetzung von `dplyr`, mächtig, modern und sieht cool aus: https://exploratory.io.
+## Hinweis
 
-- *R for Data Science* bietet umfangreiche Unterstützung zu diesem Thema [@r4ds].  
+Erstellt von Sebastian Sauer
 
 
 

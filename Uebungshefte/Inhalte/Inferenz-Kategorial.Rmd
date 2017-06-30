@@ -1,4 +1,4 @@
-# Einführung Inferenz kategoriale Werte
+# Kapitel `r kap <- kap+1; kap`: Einführung Inferenz kategoriale Werte
 
 ## Globaler Index der Religiösität und Atheismus
 Im Jahre 2012 führte das [WIN/Gallup International Institut](http://www.wingia.com/) in 57 Ländern eine Untersuchung zur Religiosität durch. Die Pressemitteilung zur Studie finden Sie [hier](http://www.wingia.com/web/files/richeditor/filemanager/Global_INDEX_of_Religiosity_and_Atheism_PR__6.pdf). 
@@ -210,7 +210,7 @@ pchisq(504, 5, lower.tail = FALSE)
 ***
 
 
-## Übung: 
+## Übung: Trinkgelddaten
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* weiter analysieren.
 
 Sofern noch nicht geschehen, können Sie diesen als `csv` Datei herunterladen:

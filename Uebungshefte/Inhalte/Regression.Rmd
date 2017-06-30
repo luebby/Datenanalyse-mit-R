@@ -1,4 +1,4 @@
-# Einführung Lineare Regression
+# Kapitel `r kap <- kap+1; kap`: Einführung Lineare Regression
 
 ## Einfache Regression
 Wir werden weiter den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* analysieren.

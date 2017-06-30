@@ -1,4 +1,4 @@
-# Einführung Wahrscheinlichkeit und Inferenz
+# Kapitel `r kap <- kap+1; kap`: Einführung Wahrscheinlichkeit und Inferenz
 
 
 ## Zufall und Wahrscheinlichkeit
@@ -259,16 +259,18 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 
 ***
 
-## Übung: 
+## Übung: Achtsamkeit 
 In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmern der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels (Link/Bild) steigern.
 
 1.  Kann diese Verbesserung bei fast 90% der Personen zufällig sein? Bestimmen Sie die Wahrscheinlichkeit, dass zufällig mindestens 34 von 38 Personen eine Verbesserung erzielen mit Hilfe einer Simulation.
 2.  Bestimmen Sie ein nicht-paramatrisches Bootstrap-Konfidenzintervall, dass den Anteilswert der Verbesserung in 95% der Fälle überdeckt.    
 
+## Übung: Intelligenzquotient
+
 Der IQ hat nach Konstruktion einen arithmetischen Mittelwert von 100 bei einer Standardabweichung von 15.
 
-3.  Wie hoch ist der Anteil der Personen mit einem IQ von 130 oder größer?
-4.  Welchen IQ sollte eine Person mindestens haben, wenn Sie zu den 1% Personen mit dem höchsten IQ gehören will?
+1.  Wie hoch ist der Anteil der Personen mit einem IQ von 130 oder größer?
+2.  Welchen IQ sollte eine Person mindestens haben, wenn Sie zu den 1% Personen mit dem höchsten IQ gehören will?
 
 
 

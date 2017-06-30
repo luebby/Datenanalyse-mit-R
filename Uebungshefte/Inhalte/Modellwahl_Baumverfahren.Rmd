@@ -1,18 +1,4 @@
----
-title: "Baumverfahren und Modellwahl in R"
-author: "Karsten Lübke, Matthias Gehrke"
-date: ''
-output:
-  pdf_document: default
-  html_document: default
-documentclass: article
-classoption: a4paper
----
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Kapitel `r kap <- kap+1; kap`: Baumverfahren und Modellwahl in R
 
 ## Grundlagen Baum-basierter Verfahren
 

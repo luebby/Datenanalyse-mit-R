@@ -1,17 +1,4 @@
----
-title: "Einführung Zeitreihenanalyse"
-author: "Karsten Lübke"
-date: ''
-output:
-  html_document: null
-  pdf_document: null
-documentclass: article
-classoption: a4paper
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Kapitel `r kap <- kap+1; kap`: Einführung Zeitreihenanalyse
 
 ## Euro Handelsdaten
 

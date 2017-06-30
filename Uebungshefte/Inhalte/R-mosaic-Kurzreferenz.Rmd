@@ -1,24 +1,4 @@
----
-title: "R Kurzreferenz"
-author: "Karsten Lübke"
-date: ''
-output:
-  pdf_document:
-    fig_height: 3
-    fig_width: 5
-  html_document:
-    fig_height: 3
-    fig_width: 5
-  word_document:
-    fig_height: 3
-    fig_width: 5
-documentclass: article
-classoption: a4paper
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Anhang `r anh <- anh+1; anh`: R Kurzreferenz
 
 ## Vorbemerkungen
 Eine Übersicht von nützlichen R Funktionen innerhalb der Datenanalyse. 

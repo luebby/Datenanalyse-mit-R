@@ -1,31 +1,21 @@
----
-title: "Daten visualisieren mit ggplot"
-output:
-  html_document: default
-  pdf_document: default
-lang: de-De
----
-```{r include=FALSE, cache=FALSE}
-set.seed(1014)
-options(digits = 3)
+# Anhang `r anh <- anh+1; anh`: Daten visualisieren mit ggplot
 
-knitr::opts_chunk$set(
-  message = FALSE,
-  warning = FALSE,
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE,
-  out.width = "70%",
-  fig.align = 'center',
-  fig.width = 6,
-  fig.asp = 0.618,  # 1 / phi
-  fig.show = "hold"
-)
+```{r, echo=FALSE}
+detachAllPackages <- function() {
 
+  basic.packages <- c("package:stats","package:graphics","package:grDevices","package:utils","package:datasets","package:methods","package:base")
+
+  package.list <- search()[ifelse(unlist(gregexpr("package:",search()))==1,TRUE,FALSE)]
+
+  package.list <- setdiff(package.list,basic.packages)
+
+  if (length(package.list)>0)  for (package in package.list) detach(package, character.only=TRUE)
+
+}
+
+detachAllPackages()
 ```
 
-
-# Daten visualisieren
 
 In diesem Kapitel werden folgende Pakete benötigt::
 ```{r libs_visualisieren}
@@ -37,7 +27,7 @@ library(knitr)  # HTML-Tabellen
 
 
 ```{r echo = FALSE}
-knitr::include_graphics("images/visualisieren/Visualisieren.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/visualisieren/Visualisieren.pdf")
 ```
 
 ## Ein Bild sagt mehr als 1000 Worte
@@ -47,7 +37,7 @@ Ein Bild sagt bekanntlich mehr als 1000 Worte. Schauen wir uns zur Verdeutlichun
 
 
 ```{r echo = FALSE}
-knitr::include_graphics("images/visualisieren/anscombe.pdf")
+knitr::include_graphics("../Uebungshefte/Inhalte/images/visualisieren/anscombe.pdf")
 ```
 
 
@@ -106,10 +96,11 @@ Unter den vielen Arten von Diagrammen und vielen Arten, diese zu klassifizieren 
 Schauen wir uns die Verteilung der Schuhgrößen von Studierenden an.
 
 ```{r}
-wo_men <- read.csv("data/wo_men.csv")
+wo_men <- read.csv("./data/wo_men.csv")
 
 qplot(x = shoe_size, data = wo_men)
 ```
+
 
 Weisen wir nur der X-Achse (aber nicht der Y-Achse) eine kontinuierliche Variable zu, so wählt `ggplot2` automatisch als Geom automatisch ein Histogramm; wir müssen daher nicht explizieren, dass wir ein Histogramm als Geom wünschen (aber wir könnten es hinzufügen). Alternativ wäre ein Dichtediagramm hier von Interesse:
 
@@ -168,11 +159,13 @@ Mit `fill = sex` sagen wir `qplot`, dass er für Männer und Frauen jeweils ein 
 
 Ein Streudiagramm ist die klassische Art, zwei metrische Variablen darzustellen. Das ist mit `qplot` einfach:
 
+
 ```{r}
 qplot(x = height, y = shoe_size, data = wo_men)
 ```
 
-Wir weisen wieder der X-Achse und der Y-Achse eine Variable zu; handelt es sich in beiden Fällen um Zahlen, so wählt `ggplot2` automatisch ein Streudiagramm - d.h. Punkte als Geom (`geom = "point"`). Wir sollten aber noch die Extremwerte herausnehmen:
+
+Wir weisen wieder der X-Achse und der Y-Achse eine Variable zu; handelt es sich in beiden Fällen um Zahlen, so wählt `ggplot2` automatisch ein Streudiagramm - d.h. Punkte als Geom (`geom = 'point'`). Wir sollten aber noch die Extremwerte herausnehmen:
 
 ```{r}
 wo_men %>% 
@@ -298,7 +291,7 @@ Ein Geom ist in ggplot2 das zu zeichnende Objekt, also ein Boxplot, ein Balken, 
 
 
 
-Die einzige Änderung in den Parametern ist `position = "fill"`. Dieser Parameter weist `ggplot` an, die Positionierung der Balken auf die Darstellung von Anteilen auszulegen. Damit haben alle Balken die gleiche Höhe, nämlich 100% (1). Aber die "Füllung" der Balken schwankt je nach der Häufigkeit der Werte von `groesse_gruppe` pro Balken (d.h. pro Wert von `sex`).
+Die einzige Änderung in den Parametern ist `position ='fill'`. Dieser Parameter weist `ggplot` an, die Positionierung der Balken auf die Darstellung von Anteilen auszulegen. Damit haben alle Balken die gleiche Höhe, nämlich 100% (1). Aber die "Füllung" der Balken schwankt je nach der Häufigkeit der Werte von `groesse_gruppe` pro Balken (d.h. pro Wert von `sex`).
 
 Wir sehen, dass die Anteile von großen bzw. kleinen Menschen bei den beiden Gruppen (Frauen vs. Männer) *unterschiedlich hoch* ist. Dies spricht für einen *Zusammenhang* der beiden Variablen; man sagt, die Variablen sind *abhängig* (im statistischen Sinne).
 
@@ -385,7 +378,9 @@ wo_men2 %>%
 
 - Die Auswertung von Umfragedaten basiert häufig auf Likert-Skalen. Ob diese metrisches Niveau aufweisen, darf bezweifelt werden. Hier findet sich einige vertiefenden Überlegungen dazu und zur Frage, wie Likert-Daten ausgewertet werden könnten: https://bookdown.org/Rmadillo/likert/. 
 
+## Hinweis
 
+Erstellt von Sebastian Sauer
 
 
 
