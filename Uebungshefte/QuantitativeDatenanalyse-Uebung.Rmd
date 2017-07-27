@@ -1,7 +1,7 @@
 ---
-title: "Quantitative Datenanalyse -- \\newline Übung Quantitative Datenanalyse mit R"
-author: "Diverse"
-date: "Stand SoSe 2017"
+title: "Quantitative Datenanalyse \\newline -- Übung Quantitative Datenanalyse mit R --"
+author: "erstellt von Professor*innen des ifes"
+date: "Stand WiSe 2017/18"
 output:
   pdf_document:
     includes:
@@ -20,6 +20,10 @@ classoption: a4paper, 10pt
 \newpage  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# tidy funktioniert nicht - gelegentlich überprüfen
+# knitr::opts_chunk$set(echo = TRUE,
+#                       tidy.opts=list(width.cutoff=60),tidy=TRUE)
+
 
 # Initiale Paket Installation
 needed_pkgs <- c("mosaic", "corrplot", 
@@ -45,20 +49,32 @@ anh <- 0
 ```{r child = 'Inhalte/ErsteSchritte.Rmd'}
 ```
 
+\newpage  
+
 ```{r child = 'Inhalte/EinfuehrungDaten.Rmd'}
 ```
+
+\newpage  
 
 ```{r child = 'Inhalte/EinfuehrungWkeitInferenz.Rmd'}
 ```
 
+\newpage  
+
 ```{r child = 'Inhalte/Inferenz-Kategorial.Rmd'}
 ```
+
+\newpage  
 
 ```{r child = 'Inhalte/Inferenz-Metrisch.Rmd'}
 ```
 
+\newpage  
+
 ```{r child = 'Inhalte/Regression.Rmd'}
 ```
+
+\newpage  
 
 ```{r child = 'Inhalte/Zeitreihenanalyse.Rmd'}
 ```
@@ -68,8 +84,12 @@ anh <- 0
 ```{r child = 'Inhalte/R-mosaic-Kurzreferenz.Rmd'}
 ```
 
+\newpage  
+
 ```{r child = 'Inhalte/Datenjudo.Rmd'}
 ```
+
+\newpage  
 
 ```{r child = 'Inhalte/Daten_visualisieren.Rmd'}
 ```
