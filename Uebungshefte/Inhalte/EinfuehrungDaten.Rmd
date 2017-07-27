@@ -241,9 +241,9 @@ tally(~day, format="proportion", data=tips)
 ```
 
 ### Streuungsmaße
-Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
+Die Variation der Daten, die wir grafisch und auch in den (bedingten) Lagemaßen gesehen haben, ist eines der zentralen Themen der Statistik: Können wir die Variation vielleicht erklären? Variiert die Rechnungshöhe vielleicht mit der Anzahl Personen?
 
-Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQR` sowie Varianz `var` bzw. Standardabweichung `sd` $$s=sd=\sqrt{x^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^2}$$
+Zur Bestimmung der Streuung werden in der Regel der Interquartilsabstand `IQR` sowie Varianz `var` bzw. Standardabweichung `sd` $$s=sd=\sqrt{s^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^2}$$
 herangezogen:
 
 ```{r}
@@ -260,7 +260,7 @@ sd(~total_bill | size, data=tips)
 Bei 4 Personen lag die Standardabweichung als bei `r round(sd(~total_bill|size, data=tips)["4"], 2)`$.
 
 
-Um jetzt z. B. den Variationskoeffizienten zu berechnen wird 
+Um jetzt z. B. den Variationskoeffizienten zu berechnen, wird 
 ```{r}
 sd(~total_bill | size, data=tips) / mean(~total_bill | size, data=tips)
 ```
