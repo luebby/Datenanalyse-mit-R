@@ -6,7 +6,7 @@ Im Jahre 2012 führte das [WIN/Gallup International Institut](http://www.wingia.
 Dabei wurde die Frage gestellt:
 *Unabhängig davon, ob Sie an Gottesdiensten teilnehmen oder nicht ("attend place of worship"), würden Sie sagen, dass Sie ein religiöser Mensch sind, eine nicht religiöse Person oder ein überzeugter Atheist?*
 
-Die Befragten hatten dabei drei Antwortmöglichkeiten: Religiöser Mensch ("A religious person"), Nicht religiöser Mensch ("Not a religious person"), und Atheist ("A convinced atheist"). Die Befragten klassifizierten sich, es wurden als kategorielle (nominale) Daten (`factor`) erzeugt.
+Die Befragten hatten dabei drei Antwortmöglichkeiten: Religiöser Mensch ("A religious person"), Nicht religiöser Mensch ("Not a religious person"), und Atheist ("A convinced atheist"). Die Befragten klassifizierten sich, es wurden kategorielle (nominale) Daten (`factor`) erzeugt.
 
 ***
 **Übung:** 
@@ -29,13 +29,15 @@ head(atheism) # Erste Beobachtungen
 tail(atheism) # letzte Beobachtungen
 ```
 
+Hinweis: Die drei Antwortmöglichkeiten wurden im verwendeten Datensatz zu zwei Leveln (`atheist`, `non-atheist`) zusammengefasst.
+
 Zur Analyse wird wieder das Paket mosaic verwendet:
 ```{r, message=FALSE}
 library(mosaic)
 ```
 
 ## Inferenz eines Anteilswerts
-In Tabelle 6 der Pressemitteilung wird der Anteil der Atheisten für Deutschland mit 15% angegeben. Dies ist eine *Statistik* der Stichprobe, nicht der Parameter der *Population*. Es wird also die Frage beantwortet "Wie hoch ist der Anteil der Atheisten in der Stichprobe?". Um die Frage "Wie hoch ist der Anteil der Atheisten in der Population?" zu beantworten, muss von der Stichprobe auf die Population geschlossen werden, d. h., es wird z. B. der Anteilswert *geschätzt*. 
+In Tabelle 6 der Pressemitteilung wird der Anteil der Atheisten für Deutschland mit 15$\,$% angegeben. Dies ist eine *Statistik* der Stichprobe, nicht der Parameter der *Population*. Es wird also die Frage beantwortet "Wie hoch ist der Anteil der Atheisten in der Stichprobe?". Um die Frage "Wie hoch ist der Anteil der Atheisten in der Population?" zu beantworten, muss von der Stichprobe auf die Population geschlossen werden, d. h., es wird z. B. der Anteilswert *geschätzt*. 
 
 Der folgende Befehl filtert den Datensatz auf das Ergebnis für Deutschland im Jahr 2012, d. h., es werden nur die gewünschten Zeilen im Datensatz belassen:
 ```{r}
@@ -47,19 +49,19 @@ Die *Punktschätzung* des Anteilswertes der Atheisten für Deutschland im Jahr 2
 pdach <- tally(~response, data=de12, format='proportion')["atheist"]
 pdach
 ```
-also bei `r round(pdach*100)`%.
+also bei `r round(pdach*100)`$\,$%.
 
-Um jetzt ein 95% Konfidenzintervall für den Populationsparameter zu konstruieren (*Bereichsschätzung*) muss der Standardfehler $se$ bestimmt werden, hier:
+Um jetzt ein 95$\,$% Konfidenzintervall für den Populationsparameter zu konstruieren (*Bereichsschätzung*) muss der Standardfehler $se$ bestimmt werden, hier:
 ```{r}
 n <- nrow(de12) # Anzahl Beobachtungen
 se <- sqrt( pdach * (1-pdach) / n)
 se
 ```
-Der Standardfehler, d. h., die Standardabweichung des Anteilswertes liegt hier also bei `r round(se*100,2)`%. Zusammen mit dem 2,5% und 97,5% Quantil der Standardnormalverteilung ergibt sich folgendes Konfidenzintervall:
+Der Standardfehler, d. h., die Standardabweichung des Anteilswertes liegt hier also bei `r round(se*100,2)`$\,$%. Zusammen mit dem 2,5$\,$% und 97,5$\,$% Quantil der Standardnormalverteilung ergibt sich folgendes Konfidenzintervall:
 ```{r}
 pdach + qnorm(c(0.025, 0.975)) * se
 ```
-Da der Populationsparameter unbekannt aber nicht zufällig ist, werden die 95% auch als *Überdeckungswahrscheinlichkeit* bezeichnet.
+Da der Populationsparameter unbekannt aber nicht zufällig ist, werden die 95$\,$% auch als *Überdeckungswahrscheinlichkeit* bezeichnet.
 
 In `mosaic` besteht die Möglichkeit, Punkt- und Bereichsschätzungen mit dem Befehl `prop.test` durchzuführen. Sofern kein Wert für `p` angegeben wird lautet die Nullyhpothese $H_0: p=0.5$.
 ```{r}
@@ -72,19 +74,19 @@ Beachte, dass das Konfidenzintervall, anders als bei der *Approximation* über d
 ***
 **Übung:**
 
-3.  Bei annähernd gleicher Stichprobengröße liegt der Anteil der Atheisten in Saudi Arabien bei 5%. Wie verändert sich der Standardfehler und damit die Breite des Konfidenzintervalls?
-4.  Der Anteil der Atheisten in Südkorea liegt in etwa ebenfalls bei 15%, allerdings liegen die Daten von 1523 Befragten vor. Wie verändert sich der Standardfehler und damit die Breite des Konfidenzintervalls?
+3.  Bei annähernd gleicher Stichprobengröße liegt der Anteil der Atheisten in Saudi Arabien bei 5$\,$%. Wie verändert sich der Standardfehler und damit die Breite des Konfidenzintervalls?
+4.  Der Anteil der Atheisten in Südkorea liegt in etwa ebenfalls bei 15$\,$%, allerdings liegen die Daten von 1523 Befragten vor. Wie verändert sich der Standardfehler und damit die Breite des Konfidenzintervalls?
 
 ***
 
-Um für Deutschland die Nullhypothese "Der Anteil der Atheisten liegt nicht über 10%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10%" können entweder wieder Simulations- und Resamplingtechniken verwendet werden oder die Approximation durch die Normalverteilung :
+Um für Deutschland die Nullhypothese "Der Anteil der Atheisten liegt nicht über 10$\,$%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10$\,$%" können entweder wieder Simulations- und Resamplingtechniken verwendet werden oder die Approximation durch die Normalverteilung:
 ```{r}
 se0 <- sqrt( (0.1 * (1-0.1)) /n)
 z <- (pdach - 0.10) / se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der *p-Wert* liegt also bei `r round(pnorm(z, lower.tail = FALSE)*100, 4)`%, die Nullhypothese wird also zum Signifikanzniveau von 5% verworfen.
+Der *p-Wert* liegt also bei `r round(pnorm(z, lower.tail = FALSE)*100, 4)`$\,$%, die Nullhypothese wird also zum Signifikanzniveau von 5$\,$% verworfen.
 
 Auch hier direkt über `prop.test`:
 ```{r}
@@ -105,7 +107,7 @@ Im Jahre 2005 lag der Anteil der Atheisten in Deutschland bei
 ```{r}
 tally(~response, data=de05, format="proportion")
 ```
-Der Aneil lag also bei unter 10% -- in der *Stichprobe*! Können wir daraus auf eine Erhöhung des Anteils von 2005 zu 2012 in der *Population* schließen? 
+Der Aneil lag also bei unter 10$\,$% -- in der *Stichprobe*! Können wir daraus auf eine Erhöhung des Anteils von 2005 zu 2012 in der *Population* schließen? 
 ```{r}
 # 2012
 a12 <- tally(~response, data=de12)["atheist"] # Anzahl Atheisten 2012
@@ -118,7 +120,7 @@ p05 <- a05/n05 # Anteil Atheisten 2005
 # Punktschätzer Differenz Population
 pdiff <- p12-p05
 pdiff
-# Pooling zur Berechnen Standardfehler unter H_0
+# Pooling zur Berechnung Standardfehler unter H_0
 ppool <- (a12 + a05)/(n12+n05)
 ppool
 # Standardfehler se
@@ -130,7 +132,7 @@ z <- (pdiff - 0)/se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten ist also gering -- wenn die $H_0$ gilt! d. h. es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit, *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten, ist also gering -- wenn die $H_0$ gilt! D. h., es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
 
 Auch dies kann direkt durch den Befehl `prop.test` gestestet werden. Dazu wird zunächst ein gemeinsamer Datensatz erzeugt:
 ```{r}
@@ -146,7 +148,7 @@ Hier wird die Alternativhypothese `less` verwendet: $H_0: p_1 \geq p_2$, gegen $
 
 
 
-*Exkurs:*
+*Exkurs:* 
 Mit dem Paket mosaic können Sie das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d. h., zweiseitig getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch ein Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
 ```{r}
 # Beobachtete Differenz
@@ -155,8 +157,7 @@ pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
 # 1000-mal das Jahr permutieren: Nullhypothese kein Unterschied
-pdiff.null <- do(1000) * diff(tally( ~ response | shuffle(year), data=de, 
-                                    format="proportion")["atheist",])
+pdiff.null <- do(1000) * diff(tally( ~ response | shuffle(year), data=de, format="proportion") ["atheist",])
 # Histogramm
 histogram(~ X2012, data=pdiff.null, v=c(pdiff, -pdiff))
 # p-Wert
@@ -166,8 +167,8 @@ prop(abs(pdiff.null$X2012) >= abs(pdiff))
 ***
 **Übung:**
 
-5.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und den Niederlanden (`Netherlands`) in der Population gibt.
-6.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und Polen (`Poland`) in der Population gibt.
+5.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5$\,$% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und den Niederlanden (`Netherlands`) in der Population gibt.
+6.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5$\,$% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und Polen (`Poland`) in der Population gibt.
 
 ***
 
@@ -224,8 +225,8 @@ tips <- read.csv2("tips.csv")
 ```
 *Tipp:* Wenn Sie nicht mehr wissen wo die Daten liegen: statt `tips.csv` den Befehl `file.choose()` als Argument für die Funktion `read.csv2` verwenden.
 
-1.  Bestimmen Sie ein 90% Konfidenzintervall für den Anteil der Raucher (`smoker`) in der Population.
-2.  Testen Sie zum Niveau 5%, ob sich der Anteil der Raucher in der Population beim Lunch von dem beim Dinner (`time`) unterscheidet.
+1.  Bestimmen Sie ein 90$\,$% Konfidenzintervall für den Anteil der Raucher (`smoker`) in der Population.
+2.  Testen Sie zum Niveau 5$\,$%, ob sich der Anteil der Raucher in der Population beim Lunch von dem beim Dinner (`time`) unterscheidet.
 3.  Gibt es einen Zusammenhang zwischen Rauchen und Wochentag (`day`)? 
 
 ## Literatur
