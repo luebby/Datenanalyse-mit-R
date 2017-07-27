@@ -19,10 +19,10 @@ classoption: a4paper, 10pt
 \tableofcontents
 \newpage  
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-# tidy funktioniert nicht - gelegentlich überprüfen
-# knitr::opts_chunk$set(echo = TRUE,
-#                       tidy.opts=list(width.cutoff=60),tidy=TRUE)
+# knitr::opts_chunk$set(echo = TRUE)
+# tidy gibt Warnmeldungen - gelegentlich überprüfen
+knitr::opts_chunk$set(echo = TRUE,
+                      tidy.opts=list(width.cutoff=60),tidy=TRUE)
 
 
 # Initiale Paket Installation
