@@ -380,7 +380,7 @@ wo_men2 %>%
 
 ## Hinweis
 
-Erstellt von Sebastian Sauer
+Der Anhang *Daten visualisieren* mit ggplot wurde von Sebastian Sauer erstellt.
 
 
 

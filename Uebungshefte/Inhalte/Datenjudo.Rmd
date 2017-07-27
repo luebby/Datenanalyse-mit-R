@@ -566,11 +566,12 @@ count(wo_men, groesse_gruppe)
 
 
 ## Verweise
+
 - Eine schöne Demonstration der Mächtigkeit von `dplyr` findet sich hier^[: <http://bit.ly/2kX9lvC>].
 
 ## Hinweis
 
-Erstellt von Sebastian Sauer
+Der Anhang *Datenjudo* wurde von Sebastian Sauer erstellt.
 
 
 
