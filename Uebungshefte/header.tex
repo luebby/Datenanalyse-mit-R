@@ -1,3 +1,21 @@
 \usepackage{fancyhdr, german, courier,amsmath, setspace}
+% package fancyhdr
+% documentation see here: https://www.ctan.org/pkg/fancyhdr?lang=de
 \pagestyle{fancy}
 % \rhead{\includegraphics[width = .2\textwidth]{ifes.jpg}}
+
+% mg
+% \leftmark: section, standard uppercase, slanted
+% change to no uppercase, upright
+\fancyhead[LE,RO]{\textup{\nouppercase{\leftmark}}}   
+% \rightmark: subsection
+\fancyhead[LO,RE]{\textsl{\rightmark}}  
+
+% attempts to get lines two lines in header - not yet successful
+%\fancyhf{}    % reset all
+%\addtolength{\headheight}{\baselineskip}  % header line after two lines
+% \leftmark: section
+%\fancyhead[RE,RO]{\textup{\nouppercase{\leftmark}}}   
+% \rightmark: subsection
+%\fancyhead[RO,RE]{\textsl{\rightmark}}  
+%\fancyfoot[C]{\thepage}
