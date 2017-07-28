@@ -107,7 +107,8 @@ Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$
 
 ***
 
-## t-Test für zwei unabhängige Stichprobe
+## t-Test für zwei unabhängige Stichproben
+
 Untersuchen wir, ob sich makroökonomische Kennzahlen im Auf- und Abschwung unterscheiden. 
 Zunächst stellen wir fest, dass die eigentlich kategorielle Variable `PHASEN` hier numerisch kodiert wurde, was aber schnell verwirren würde.
 ```{r}
