@@ -30,7 +30,7 @@ Mit diesem Vektor können wir jetzt virtuell und ganz ohne Risiko über den Befe
 resample(roulette, size=1, prob=c(18/37, 19/37))
 resample(roulette, size=10, prob=c(18/37, 19/37))
 ```
-Mit dem Argument `size` wird also eingestellt, wie oft Roulette gespielt wird, `prob` ist der Vektor der Wahrscheinlichkeiten für die einzelnen Elemente im Ereignisvektor, hier `roulette`.
+Mit dem Argument `size` wird also eingestellt, wie oft Roulette gespielt wird, `prob` ist der Vektor der Wahrscheinlichkeiten für die einzelnen Elemente im Ereignisvektor, hier `roulette`. `resample` heißt Ziehen mit Zurücklegen.
 
 Über
 ```{r}
@@ -136,7 +136,7 @@ Aus diesem Vektor ziehen wir eine zufällige Stichprobe von 151 Entscheidungen v
 simentscheidung <- sample(entscheidungen, size=151)
 tally(~simentscheidung)
 ```
-Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entscheidungen des Typ A Positiv gewesen -- wenn es keinen Zusammanhang zwischen Entscheidungstyp und Ratingentscheidung gibt.
+Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entscheidungen des Typ A Positiv gewesen -- wenn es keinen Zusammanhang zwischen Entscheidungstyp und Ratingentscheidung gibt. `sample` bedeutet Ziehen ohne Zurücklegen, d. h., jeder der Entscheidungen kann nur einmal gezogen werden.
 
 Wir oft kommt also zufällig heraus, dass höchstens 79 der 151 Entscheidungen des Typs A (alleinige Entscheider) positiv zugeordnet werden? Simulieren wir das z. B. 1000-mal:
 ```{r}
