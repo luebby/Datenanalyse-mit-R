@@ -2,12 +2,11 @@
 
 ## Euro Handelsdaten
 
-Eurostat stellt viele Konjunkturdaten zur Verfügung, u. a. auch Handelsdaten [hier](https://datamarket.com/data/set/18tp/retail-trade-quarterly-data-nace-rev-2#!display=line&ds=18tp!mqw=2:mqz=y). 
+Eurostat stellt viele Konjunkturdaten zur Verfügung, u. a. auch Handelsdaten (siehe [hier](https://datamarket.com/data/set/18tp/retail-trade-quarterly-data-nace-rev-2#!display=line&ds=18tp!mqw=2:mqz=y)). 
 Diese finden sich im Datensatz `euretail` des Paktes `fpp`:
 ```{r, message=FALSE}
 # Einmalig installieren:
 # install.packages("fpp")
-
 library(fpp) # Paket laden
 data(euretail) # Datensatz laden
 euretail
@@ -37,7 +36,7 @@ Man erkennt einen Anstieg bis ca. 2008 (Finanzkrise!), dann einen Abschwung und 
 Eine Zeitreihe (`data`) $y_t$ kann in verschiedene Komponenten zerlegt werden:
 
 - Trend (`trend`) $M_t$
-- Saisonkomponenten (`seasonal`)$S_t$
+- Saisonkomponenten (`seasonal`) $S_t$
 - Rest-/ Fehlerkomponenten (`remainder`) $E_t$
 
 Das *additive* Modell lautet dann:
