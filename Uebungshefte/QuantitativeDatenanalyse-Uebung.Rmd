@@ -6,7 +6,6 @@ output:
   pdf_document:
     includes:
       in_header: header.tex
-      keep_tex: yes
 documentclass: article
 classoption: a4paper, 10pt
 ---
