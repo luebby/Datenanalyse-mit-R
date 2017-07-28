@@ -3,31 +3,32 @@
 ## Vorbemerkungen
 Eine Übersicht von nützlichen R Funktionen innerhalb der Datenanalyse. 
 
-Diese Kurzreferenz beschreibt ein kleinen Teil der R Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert größtenteils auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
+Diese Kurzreferenz beschreibt ein kleinen Teil der R Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert weitgehend auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
 
 Weitere Hilfe und Beispiele finden Sie, wenn Sie
 ```{r eval=FALSE}
-?Befehl
+> ?plot
 ```
 eingeben.
 
-* R unterscheidet zwischen Groß- und Kleinbuchstaben
-* R verwendet den Punkt `.` als Dezimaltrennzeichen
-* Fehlende Werte werden in R durch `NA` kodiert
+* R unterscheidet zwischen Groß- und Kleinbuchstaben.
+* R verwendet den Punkt `.` als Dezimaltrennzeichen.
+* Fehlende Werte werden in R durch `NA` kodiert.
 * Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
-* R wendet Befehle direkt an
-* R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
-* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
-* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen
-* Eine Ergebniszuweiseung erfolgt über `<-`
+* R wendet Befehle direkt an.
+* R ist objektorientiert, d. h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte.
+* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden.
+* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen.
+* Eine Ergebniszuweisung erfolgt über `<-`
 
 Innerhalb von `mosaic`:
 ```{r eval=FALSE} 
 analysiere(y ~ x | z , data=Daten)
 ```
-d. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.^[Beim Mac ist `~` die Tastenkombination `alt`+`n`, `|` die Tastenkombination `alt`+`7`] 
 
-Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und geladen werden:
+d\. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.^[Beim Mac ist `~` die Tastenkombination `alt`+`n`, `|` die Tastenkombination `alt`+`7`] 
+
+Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und nach jedem Neustart von R geladen werden:
 ```{r, eval=FALSE}
 install.packages("Paket") # Einmalig installieren
 library(Paket) # Laden, einmalig in jeder Sitzung
@@ -46,7 +47,7 @@ file.choose() # Datei auswählen
 meineDaten <- read.csv2(file.choose())
 ```
 
-U. a. mit Hilfe des Zusatzpaketes `readxl` können Excel Dateien eingelesen werden:
+U\. a. mit Hilfe des Zusatzpaketes `readxl` können Excel Dateien eingelesen werden:
 ```{r eval=FALSE}
 meineDaten <- read_excel(file.choose()) 
 ```
@@ -61,7 +62,7 @@ rownames(); colnames() # Zeilennamen, Spaltennamen
 ```
 
 ### Daten transformieren
-Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i. Zeile und j. Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt.
+Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i-te Zeile und j-te Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt. Mit `-` vor der Auswahl werden der Rest ohne die Auswahl ausgewählt.
 ```{r eval=FALSE}
 as.factor() # Daten als Faktoren definieren
 relevel() # Faktorstufen umordnen
@@ -145,7 +146,7 @@ rnorm() # Normalverteilte Zufallszahlen
 ```
 
 ### Verteilungen
-Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=`, bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
+Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=` bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
 ```{r, eval=FALSE}
 xpchisq() # Verteilungsfunktion Chi² Verteilung
 xqchisq() # Quantilsfunktion Chi² Verteilung
@@ -154,7 +155,7 @@ xqnorm() # Quantilsfunktion Normalverteilung
 xpt() # Verteilungsfunktion t-Vverteilung
 xqt() # Quantilsfunktion t-Vverteilung
 ```
-Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
+Analoger Aufbau für weitere Verteilungen, z. B. `_binom()` (Binomialverteilung), `_f()` (F_Verteilung).
 
 ### Testverfahren
 Einige der Testverfahren wurden von `mosaic` angepasst.
@@ -165,7 +166,7 @@ xchisq.test() # Chi²-Test
 aov() # Varianzanalyse
 ```
 
-Der Nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic`, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. 
+Der nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic` enthalten, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. 
 
 
 ## Multivariate Verfahren
@@ -180,12 +181,12 @@ predict() # Vorhersagen
 ```
 In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine einfache mathematische Funktion überführt werden. `plotFun()` zeichnet das Ergebnis. `step()` führt eine Variablenselektion durch. 
 
-Weitere Verfahren - nicht `mosaic`:
+Weitere Verfahren -- nicht `mosaic`:
 ```{r eval=FALSE}
 prcomp() # Hauptkomponentenanalyse (PCA)
 alpha() # Reliabilitätsanalys, Paket psych
 dist() # Distanzen
-hclust() # Hierachsiche Clusteranalyse
+hclust() # Hierachische Clusteranalyse
 kmeans() # k-Means Clusterverfahren
 rpart() # Klassifikations- und Regressionsbäume, Paket rpart
 
