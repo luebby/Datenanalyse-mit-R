@@ -211,6 +211,8 @@ Für Facebook (FB) lag die Wahrscheinlichkeit eines Gewinns demnach bei
 xpnorm(0, mean=0.11, sd=1.62, lower.tail = FALSE)
 ```
 
+Die Voreinstellung ist `lower.tail = TRUE`, d. h., es wird die Unterschreitungswahrscheinlichkeit angezeigt. Da wir hier aber an der Überschreitungswahrscheinlichkeit (Gewinn) interessiert sind, muss die Option auf `FALSE` gesetzt werden.
+
 ***
 **Übung:** 
 
