@@ -541,10 +541,17 @@ count(wo_men, groesse_gruppe)
 
 - Eine schöne Demonstration der Mächtigkeit von `dplyr` findet sich [hier: <http://bit.ly/2kX9lvC>](<http://bit.ly/2kX9lvC>).
 
+## Hinweis
+
+Der Anhang *Datenjudo* wurde von Sebastian Sauer erstellt.
+
 ### Versionshinweise:
+
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`
-* Der Anhang *Datenjudo* wurde von Sebastian Sauer erstellt.
+* `tidyverse` Version: `r packageVersion("tidyverse")`
+* `dplyr` Version: `r packageVersion("dplyr")`
+
 
 
 

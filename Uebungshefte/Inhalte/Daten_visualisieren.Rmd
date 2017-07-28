@@ -362,6 +362,11 @@ wo_men2 %>%
 
 Der Anhang *Daten visualisieren* mit ggplot wurde von Sebastian Sauer erstellt.
 
+### Versionshinweise:
+
+* Datum erstellt: `r Sys.Date()`
+* R Version: `r getRversion()`
+* `ggplot2` Version: `r packageVersion("ggplot2")`
 
 
 
