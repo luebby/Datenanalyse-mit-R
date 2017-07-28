@@ -29,9 +29,9 @@ histogram( ~ BSP91JW, data = B3)
 favstats( ~ BSP91JW, data = B3)
 ```
 
-Liefern die Daten Belege für die Forschungsthese, dass der Mittelwert nicht zufällig $> 0\%$ ist?
+Liefern die Daten Belege für die Forschungsthese, dass der Mittelwert nicht zufällig $> 0\,\%$ ist?
 
-Zunöcht ein Konfidenzintervall für den unbekannten Wert $\mu$:
+Zunächst ein Konfidenzintervall für den unbekannten Wert $\mu$:
 ```{r}
 BootBSP91JW <- do(1000) * mean( ~ BSP91JW, data = resample(B3))
 histogram( ~ mean, data = BootBSP91JW)
@@ -85,12 +85,12 @@ xpnorm( meandBSP, mean=0, sd=se, lower.tail = FALSE)
 ## t-Test für eine abhängige/gepaarte Stichprobe
 
 
-Hier interessieren besonders die (Veränderung) der Investitionen in Ausrüstungsgüter (`IAUJW91`) und in Bauten (`IB91JW`). Die deskriptiven Kennzahlen zeigen,
+Hier interessieren besonders die (Veränderung der) Investitionen in Ausrüstungsgüter (`IAUJW91`) und in Bauten (`IB91JW`). Die deskriptiven Kennzahlen zeigen,
 ```{r}
 favstats( ~ IAU91JW, data=B3)
 favstats( ~ IB91JW, data=B3)
 ```
-dass im betrachteten Zeitraum die Investitionen in Ausrüstungsgüter mit im arithmetischen Mittelwert von `r round(mean(B3$IAU91JW),2)` im Mittel stärker gestiegen sind als die in Bauten mit `r round(mean(B3$IB91JW),2)`. Da die Investitionen sicherlich in Zusammenhang mit der gesamten konjunkturellen Entwicklung stehen, ist davon auszugehen, dass es sich hier um vom jeweiligen Zeitpunkt abhängige Beobachtungen handelt. Daher wird hier die Differenz der Werte betrachtet: `IB91JW - IAU91JW`.  Der R Befehl für einen t-Test lautet `t.test`:
+dass im betrachteten Zeitraum die Investitionen in Ausrüstungsgüter mit dem arithmetischen Mittelwert von `r round(mean(B3$IAU91JW),2)` im Mittel stärker gestiegen sind als die in Bauten mit `r round(mean(B3$IB91JW),2)`. Da die Investitionen sicherlich in Zusammenhang mit der gesamten konjunkturellen Entwicklung stehen, ist davon auszugehen, dass es sich hier um vom jeweiligen Zeitpunkt abhängige Beobachtungen handelt. Daher wird hier die Differenz der Werte betrachtet: `IB91JW - IAU91JW`.  Der R Befehl für einen t-Test lautet `t.test`:
 ```{r}
 t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
@@ -98,7 +98,7 @@ t.test (~ (IB91JW - IAU91JW), data=B3)
 ptb3 <- t.test (~ (IB91JW - IAU91JW), data=B3)
 ```
 
-Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) mit unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall (`r round(ptb3$conf.int,2)`) entnehmen. Zum Signifikanznvieau von 5% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5\% liegt sowie der Wert der Nullhypothese, $\mu=0$, im Konfidenzintervall.
+Der (umfangreichen) Ausgabe können Sie neben dem z- bzw. t-Wert (`r round(ptb3$statistic, 2)`) mit unter der Nullhypothese der Gleichheit des Lageparameters $$H_0: \mu_{\text{IB91JW}-\text{IAU91JW}}=0$$ insbesondere den p-Wert (`r round(ptb3$p.value, 4)`) und das Konfidenzintervall $(`r round(ptb3$conf.int,2)`)$ entnehmen. Zum Signifikanznvieau von 5$\,$% wird die Nullhypothese also gerade so *nicht* abgelehnt, da der p-Wert über 5$\,$% liegt sowie der Wert der Nullhypothese, $\mu=0$, im Konfidenzintervall ist.
 
 ***
 **Übung:**
@@ -140,14 +140,14 @@ bwplot(ZINSK ~ PHASEN, data=B3AufAb)
 
 Anscheinend waren die Zinsen in Zeiten des Aufschwungs niedriger. 
 
-Was sagen die deskriptiven Kennzahlen:
+Was sagen die deskriptiven Kennzahlen?
 ```{r}
 favstats(ZINSK ~ PHASEN, data=B3AufAb)
 ```
 Alle Lagemaße für die Zinskosten sind in der Aufschwungphase niedriger. 
 
 Der t-Test der Zinskosten für $$H_0: \mu_{\text{Aufschwung}}=\mu_{\text{Abschwung}} \Leftrightarrow \mu_{\text{Aufschwung}}-\mu_{\text{Abschwung}}=0$$ mit der Teststatistik $$T=\frac{\bar{x}_A-\bar{x}_B}{\sqrt{\frac{sd^2_A}{{n_A}}+\frac{sd^2_B}{{n_B}}}}$$
-hat dann den gleichen Aufbau des Syntax wie `bwplot` oder `favstats`: Teste die Zinskosten in Abhängigkeit der Konjunkturphase.
+hat dann den gleichen Aufbau der Syntax wie `bwplot` oder `favstats`: Teste die Zinskosten in Abhängigkeit der Konjunkturphase.
 
 Die Berechnung der Teststatistik 
 ```{r}
@@ -258,7 +258,7 @@ summary(DEFaov)
 ```
 Der p-Wert des F-Tests der Nullhypothese $$H_0: \mu_{\text{Aufschwung}}=\mu_{\text{Oberer Wendepunt}}=\mu_{\text{Abschwung}}=\mu_{\text{Unterer Wendepunkt}}$$ der Gleichheit der Lage ist mit `r round(summary(DEFaov)[[1]][["Pr(>F)"]][1],4)` größer als 0.05, die Nullhypothese kann also für das Staatsdefizit nicht verworfen werden. 
 
-Bei $k$ Gruppen ist die mittlere quadratische Varianz $MSG=\frac{1}{k-1}\sum_{i=1}^k n_i (\bar{x}_i- \bar{x})^2=\frac{SSG}{\underbrace{k-1}_{df_G}}$ ($n_i$ ist die Anzahl Beobachtungen in Gruppe $i$, $\bar{x}_i$ der Gruppenmittelwert und $\bar{x}$ der Gesamtmittelwert.) Hier also $MSG=`r round(summary(DEFaov)[[1]]$"Mean Sq"[1],4)`$. Der mittlere Quadratische Fehler, $MSE$, ist dann $MSE=\frac{1}{n-k}  \sum_{i=1}^k (n_i-1) sd^2_i=\frac{SSE}{\underbrace{n-k}_{df_E}}$, mit $sd_i$ der Standardabweichung in Gruppe $i$. Hier: $MSE=`r round(summary(DEFaov)[[1]]$"Mean Sq"[2],4)`$.
+Bei $k$ Gruppen ist die mittlere quadratische Varianz $MSG=\frac{1}{k-1}\sum_{i=1}^k n_i (\bar{x}_i- \bar{x})^2=\frac{SSG}{\underbrace{k-1}_{df_G}}$ ($n_i$ ist die Anzahl Beobachtungen in Gruppe $i$, $\bar{x}_i$ der Gruppenmittelwert und $\bar{x}$ der Gesamtmittelwert.) Hier also $MSG=`r round(summary(DEFaov)[[1]]$"Mean Sq"[1],4)`$. Der mittlere quadratische Fehler, $MSE$, ist dann $MSE=\frac{1}{n-k}  \sum_{i=1}^k (n_i-1) sd^2_i=\frac{SSE}{\underbrace{n-k}_{df_E}}$, mit $sd_i$ der Standardabweichung in Gruppe $i$. Hier: $MSE=`r round(summary(DEFaov)[[1]]$"Mean Sq"[2],4)`$.
 
 Der Wert der Teststatistik $F$ ist dann
 $$F=\frac{MSG}{MSE}=\frac{`r round(summary(DEFaov)[[1]]$"Mean Sq"[1],4)`}{`r round(summary(DEFaov)[[1]]$"Mean Sq"[2],4)`}=`r round(summary(DEFaov)[[1]]$"F value"[1],4)`.$$
@@ -284,7 +284,7 @@ library(effects)
 plot(allEffects(LSTKaov))
 ```
 
-Neben dem arithmetischen Mittelwert (Punktschätzer) wird in der Standardeinstellung das 95\% Konfidenzintervall eingezeichnet.
+Neben dem arithmetischen Mittelwert (Punktschätzer) wird in der Standardeinstellung das 95$\,$% Konfidenzintervall eingezeichnet.
 
 Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuführen (z. B.  welche der paarweisen Vergleiche sind signifikant?) kann die Funktion `TukeyHSD()` (Tukey's "Honest Significant Difference") verwendet werden. Aufgrund des multiplen Testproblems (Kumulierung Fehler 1. Art) müssen die p-Werte angepasst werden. 
 
@@ -324,9 +324,9 @@ summary(tipaov)
 plot(allEffects(tipaov))
 ```
 
-Beide Faktoren sind zum Signifikanzniveau 5\% *nicht* signifikant, d. h., $H_0$, dass sich die Mittelwerte in der Population nicht unterscheiden, wird nicht verworfen.
+Beide Faktoren sind zum Signifikanzniveau 5$\,$% *nicht* signifikant, d. h., $H_0$, dass sich die Mittelwerte in der Population nicht unterscheiden, wird nicht verworfen.
 
-Allerdings beobachten wir etwas anderes: Während der Mittelwert des Trinkgeldes bei den Frauen bei den Rauchern größer ist, ist es bei den Männern umgekehrt. Hier könnte also eine Wechselwirkung, eine Interaktion vorliegen. Diese wird in R über ein `:` in der Formel eingefügt:
+Allerdings beobachten wir etwas anderes: Während der Mittelwert des Trinkgeldes bei den Frauen bei den Rauchern größer ist, ist es bei den Männern umgekehrt. Hier könnte also eine Wechselwirkung, eine Interaktion, vorliegen. Diese wird in R über ein `:` in der Formel eingefügt:
 ```{r}
 tipaovww <- aov(tip ~ sex + smoker + sex:smoker, data=tips)
 summary(tipaovww)
