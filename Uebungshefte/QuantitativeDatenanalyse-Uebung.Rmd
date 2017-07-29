@@ -15,8 +15,14 @@ classoption: a4paper, 10pt
 <!-- \includegraphics{ifes.jpg} -->
 <!-- \end{center} -->
 
+\fancyhead{}
+\fancyhead[LE,RO]{\textup{\nouppercase{\leftmark}}}   
+
 \tableofcontents
-\newpage  
+\newpage 
+
+\fancyhead[LO,RE]{\textsl{\rightmark}}  
+
 ```{r setup, include=FALSE}
 # knitr::opts_chunk$set(echo = TRUE)
 # tidy gibt Warnmeldungen - gelegentlich überprüfen
