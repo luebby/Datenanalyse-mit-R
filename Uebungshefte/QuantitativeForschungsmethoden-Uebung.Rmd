@@ -1,5 +1,5 @@
 ---
-title: "Wissenschaftliche Methodik -- \\newline Übung Quantitative Datenanalyse mit R"
+title: "Quantitative Forschungsmethoden -- \\newline Übung Quantitative Datenanalyse mit R"
 author: "erstellt von Professor*innen des ifes"
 date: "Stand WiSe 2017/18"
 output:
@@ -32,7 +32,8 @@ needed_pkgs <- c("mosaic", "corrplot",
                  "SDMTools","ROCR", "lmtest", "BaylorEdPsych",
                  "gplots","nFactors", "scatterplot3d",
                  "tidyverse", "stringr", "car", "okcupiddata", 
-                 "knitr", "nycflights13")
+                 "knitr", "nycflights13", 
+                 "fpp")
 new.pkgs <- needed_pkgs[!(needed_pkgs %in% installed.packages())]
 
 if(length(new.pkgs)) {
@@ -62,15 +63,6 @@ anh <- 0
 ```
 
 ```{r child = 'Inhalte/Regression.Rmd'}
-```
-
-```{r child = 'Inhalte/LogRegression.Rmd'}
-```
-
-```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd'}
-```
-
-```{r child = 'Inhalte/Clusteranalyse.Rmd'}
 ```
 
 \newpage

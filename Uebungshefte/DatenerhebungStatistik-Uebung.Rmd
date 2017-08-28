@@ -1,12 +1,11 @@
 ---
 title: "Datenerhebung und Statistik -- \\newline Übung Quantitative Datenanalyse mit R"
-author: "Diverse"
-date: "Stand SoSe 2017"
+author: "erstellt von Professor*innen des ifes"
+date: "Stand WiSe 2017/18"
 output:
   pdf_document:
     includes:
       in_header: header.tex
-      keep_tex: yes
 documentclass: article
 classoption: a4paper, 10pt
 ---
@@ -16,8 +15,14 @@ classoption: a4paper, 10pt
 <!-- \includegraphics{ifes.jpg} -->
 <!-- \end{center} -->
 
+\fancyhead{}
+\fancyhead[LE,RO]{\textup{\nouppercase{\leftmark}}}   
+
 \tableofcontents
-\newpage  
+\newpage 
+
+\fancyhead[LO,RE]{\textsl{\rightmark}}  
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 

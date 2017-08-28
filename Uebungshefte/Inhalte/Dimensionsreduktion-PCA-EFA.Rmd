@@ -96,7 +96,7 @@ Die Daten wurden richtig skaliert, da der Mittelwert aller Variablen über alle 
 
 ## Zusammenhänge in den Daten
 
-Wir verwenden den Befehl `corrplot()` für die Erstinspektion von bivariaten Beziehungen zwischen den Variablen. Das Argument `order = "hclust"` ordnet die Zeilen und Spalten entsprechend der Ähnlichkeit der Variablen in einer hierarchischen Cluster-Lösung der Variablen (mehr dazu im Teil *Clusteranalyse*) neu an.
+Wir verwenden den Befehl `corrplot()` für die Erstinspektion von bivariaten Beziehungen zwischen den Variablen. Das Argument `order = 'hclust'` ordnet die Zeilen und Spalten entsprechend der Ähnlichkeit der Variablen in einer hierarchischen Cluster-Lösung der Variablen (mehr dazu im Teil *Clusteranalyse*) neu an.
 
 ```{r}
 library(corrplot)
@@ -156,7 +156,7 @@ Werte.pc$sdev[1]^2/Gesamtvarianz
 
 ## Scree-Plot
 
-Der Standard-Plot `plot()` für die PCA ist ein **Scree-Plot**, dieser zeigt uns in Reihenfolge der Hauptkomponenten jeweils die durch diese Hauptkomponente erfasste Streuung (Varianz). Wir plotten ein Liniendiagramm mit dem Argument `type = "l"` (`l` für Linie):
+Der Standard-Plot `plot()` für die PCA ist ein **Scree-Plot**, dieser zeigt uns in Reihenfolge der Hauptkomponenten jeweils die durch diese Hauptkomponente erfasste Streuung (Varianz). Wir plotten ein Liniendiagramm mit dem Argument `type = 'l'` (`l` für Linie):
 
 ```{r}
 plot(Werte.pc, type="l")
@@ -212,7 +212,7 @@ print(Werte.pca, cut=0.5, sort = TRUE, digits=2)
 
 ## Interpretation der Ergebnisse der PCA I: 
 
-* Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate="none"`), dann ist die Voreinstellung eine `Varimax-Rotation`.   
+* Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate='none'`), dann ist die Voreinstellung eine `Varimax-Rotation`.   
 * Es gibt keine Items die auf mehr als einer Komponente hoch laden. Die Ladungen sind Korrelationskoeffizienten zwischen den Items und den Hauptkomponenten. 
 * In der Zeile SS loadings finden wir die Eigenwerte der fünf Hauptkomponenten. Den Anteil an der Gesamtvarianz, den sie erklären, findet man in der Zeile Proportion Var. Aufsummiert sind die Anteile in der Zeile Cumlative Var. Insgesamt werden durch die fünf Hauptkomponenten 64% der Gesamtvarianz erklärt. 
 * Einzig das Item `Unabhängigkeit` lädt auf keine der Hauptkomponenten hoch. 
@@ -266,7 +266,7 @@ print(Werte.fa, digits=2, cutoff=.4, sort=TRUE)
 ```
 
 
-Standardmäßig wird bei  `factanal()` eine Varimax-Rotation durchgeführt (das Koordinatensystem der Faktoren wird so rotiert, das eine optimale Zuordnung zu den Variablen erfolgt). Bei Varimax gibt es keine Korrelationen zwischen den Faktoren. Sollen Korrelationen zwischen den Faktoren zugelassen werden, empfiehlt sich die Oblimin-Rotation mit dem Argument `rotation="oblimin"` aus dem Paket `GPArotation`.
+Standardmäßig wird bei  `factanal()` eine Varimax-Rotation durchgeführt (das Koordinatensystem der Faktoren wird so rotiert, das eine optimale Zuordnung zu den Variablen erfolgt). Bei Varimax gibt es keine Korrelationen zwischen den Faktoren. Sollen Korrelationen zwischen den Faktoren zugelassen werden, empfiehlt sich die Oblimin-Rotation mit dem Argument `rotation='oblimin'` aus dem Paket `GPArotation`.
 
 ## Heatmap mit Ladungen
 

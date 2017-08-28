@@ -3,10 +3,10 @@ title: "Einführung Wahrscheinlichkeit und Inferenz"
 author: "Karsten Lübke"
 date: ''
 output:
+  html_document: null
   pdf_document:
     fig_height: 3
     fig_width: 5
-  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -176,19 +176,14 @@ typAboot <- do(1000)*tally(~resample(typA), format="proportion")
 ```
 erhalten wir 1000 (resampelte) Stichproben, die jeweils einen zufälligen Stichprobenanteil haben:
 ```{r}
-histogram(~typAboot$Positiv, v=79/151) # 79/151: Anteil der Originalstichprobe
+histogram(~Positiv, data=typAboot, v=79/151) # 79/151: Anteil der Originalstichprobe
 ```
 
 In 95% der Fälle liegt dieser zufällige Stichprobenanteil hier zwischen 
 ```{r}
-ki <- c(sort(typAboot$Positiv)[1000*0.025], sort(typAboot$Positiv)[1000*(1-0.025)])
+ki <- quantile(~Positiv, data=typAboot, probs = c(0.025, 0.975))
 ki
-```
-`sort` sortiert den Vektor aufsteigend und über`[]` wird einmal auf das 2.5%-Quantil und einmal auf das 97.5%-Quantil zugegriffen. *Anmerkung*: Sollte z. B. das 2.5%-Quantil nicht auf eine konkrete Beobachtung fallen, so müssten wir runden mit `round()`, abrunden `floor()` bzw. aufrunden `ceiling()`.
-
-
-```{r}
-histogram(~typAboot$Positiv, v=ki)
+histogram(~Positiv, data=typAboot, v=ki)
 ```
 
 Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
@@ -205,7 +200,10 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 
 
 ## Rechnen mit der Normalverteilung
-In der Finanzwissenschaft wird häutig die Annahme verwendet, dass die (logarithmierten) Renditen von Anlagen unabhängig, identisch normalverteilt sind. 
+
+### Random Walk
+Beim Glücksspiel ist es offensichtlich, aber auch an vielen, vielen anderen Stellen im Leben begegnen wir dem *Zufall*. Daten, Beobachtungen sind häufig Realisationen von sogenannten Zufallsvariablen. Das sind Variablen, deren Werte vom Zufall (und damit auch seinen Modellen und Gesetzen) abhängen. So werden Aktienkurse und -renditen häufig als Random Walk aufgefasst und modelliert - häufig unter der *Annahme* einer Normalverteilung.^[Sowohl die Annahme einer Normalverteilung, als auch die Annahme, dass die Renditen unabhängig voneinander sind (d. h., dass keine *Autokorrelation* vorliegt) und einer identischen Verteilung folgen (hier gleiche Varianz) sind in der Praxis kritisch zu hinterfragen.]
+
 
 Hier drei Kennzahlen der logarithmierten Tagesrenditen von Aktienunternehmen in 2015 in %.
 

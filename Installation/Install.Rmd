@@ -1,12 +1,12 @@
 ---
 title: "Installation von R und RStudio"
-author: "Karsten Lübke"
+author: "ifes"
 date: ''
 output:
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -46,9 +46,6 @@ Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofer
 3. Fortfahren mit der Installation von R
 
 
-### Linux
-Keine besonderen Vorbereitungen nötig. 
-
 ## Installation 
 Installieren Sie zunächst R und anschließend RStudio Desktop.
 
@@ -71,7 +68,6 @@ Sie können R-Studio (Desktop-Version) von der Seite
 
 entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
-*Tipp:* Falls Sie Dateien, Code etc. plattformübergreifend verwenden wollen, empfiehlt es sich unter `Tools... -> Global Options -> Code -> Saving -> Default text encodings:` `UTF-8` auszuwählen. 
 
 ### Installation von Zusatzpaketen
 
@@ -93,6 +89,32 @@ eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige 
 
 [Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
+Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. Die angegebenen Meldungen sind **keine** Fehler.
+
+```{r}
+library(mosaic)
+```
+
+#### R Commander
+
+In einigen Vorlesungen wird das Paket [R Commander](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) verwendet. Dies ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt. Sollte dies in Ihrer Vorlesung der Fall sein, so können Sie dies analog installieren:
+
+Zu Verwendung der grafischen Oberfläche R Commander bitte zunächst zur Installation den Befehl eingeben:
+```{r eval=FALSE}
+install.packages("Rcmdr")
+```
+Evt. werden Sie gefragt, ob Sie eine neuere Version aus "Sourcen" im Vergleich zu "Binaries" erstellen wollen. Hier können Sie ruhig "Nein" antworten.
+
+Hier werden ebenfalls einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über
+```{r eval=FALSE}
+library(Rcmdr)
+```
+gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimmen.
+
+[Hier](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html) gibt es weitere Hinweise zur Installation des R Commanders.
+
+Unter **macOS** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
+
 ## Pakete verwenden
 In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic`. Jedes Zusatzpaket wird über den Befehle `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde. Starten Sie also `mosaic` und also zunächst mit den folgenden Befehlen
 ```{r eval=FALSE}
@@ -106,6 +128,9 @@ library(Mosaic)
 ```
 entsprechend in einem Fehler.
 
+
+
+
 ## Fehlersuche
 Vereinzelt kann es zu Problemen bei der Installation bzw. beim erstmaligen Start von `mosaic` kommen. Sollten Sie eine Fehlermeldung ähnlich wie folgender erhalten:
 
@@ -116,7 +141,7 @@ library(mosaic)
 ## es gibt kein Paket namens ‘Rcpp’
 ##Fehler: Paket ‘dplyr’ konnte nicht geladen werden
 ```
-wurde Serverseitig hier das (abhängige) Paket `Rcpp` (Beispiel) nicht installiert. Installieren Sie dies bitte über
+wurde Serverseitig hier das (abhängige) Paket `Rcpp` (*Beispiel*) nicht installiert. Installieren Sie dies bitte über
 ```{r, eval=FALSE}
 install.packages("Rcpp")
 ```
@@ -136,7 +161,7 @@ install.packages("Rcpp")
 ## 
 ## Warning in install.packages :
 ## unable to move temporary installation ‘C:\Users\karsten\Documents\R\win-library\3.3\file175c5c02336c\Rcpp’ to 
-## ‘C:\Users\krist\Documents\R\win-library\3.3\Rcpp’
+## ‘C:\Users\karsten\Documents\R\win-library\3.3\Rcpp’
 ## 
 ## The downloaded binary packages are in
 ##         C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages
@@ -148,9 +173,11 @@ In diesem Fall versuchen Sie bitte folgendes:
 2. `install.packages("Rcpp")`
 3.  `library(mosaic)`
 
-Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können.
+Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können. Evtl. sind hier leider mehrere Versuche nötig.
 
-Sollte 2.) wieder eine Fehlermeldung ergeben, öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben. Achten Sie darauf ihn wieder anzuschalten und keine weiteren Dateien o. ä. zu öffenen. Evtl. sind hier leider mehrere Versuche nötig. Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen"). **Aktivieren Sie den Virenscanner im Anschluss sofort wieder und öffnen Sie währenddessen keine weiteren Dateien o. ä.. Führen Sie ggf. im Anschluss einen Virenscanlauf durch.**
+Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen")
+
+Sollte 2.) wieder eine Fehlermeldung ergeben (`unable to move temporary installation`), öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben.  **Aktivieren Sie den Virenscanner im Anschluss sofort wieder und öffnen Sie währenddessen keine weiteren Dateien o. ä.. Führen Sie im Anschluss sicherheitshalber einen Virenscanlauf durch.**
 
 
 Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>. 
