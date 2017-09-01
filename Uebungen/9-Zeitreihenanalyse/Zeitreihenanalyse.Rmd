@@ -3,8 +3,8 @@ title: "Einführung Zeitreihenanalyse"
 author: "Karsten Lübke"
 date: ''
 output:
-  html_document: null
   pdf_document: null
+  html_document: null
 documentclass: article
 classoption: a4paper
 ---
@@ -80,13 +80,13 @@ Eine einfache Möglichkeit eine Zeitreihe zu glätten, sind gleitende Durchschni
 $$ \hat{y}_{q,t}:=\frac{1}{p}\sum_{j=-q}^{q}y_{t+j} $$ 
 mit $p=2q+1$.
 
-Je größer $q$ (`order`) ist, desto glatter wird die Zeitreihe:
+Je größer $p$ (`order`) ist, desto glatter wird die Zeitreihe:
 ```{r}
 plot(euretail)
 lines(ma(euretail, order = 3), col = "red")
 lines(ma(euretail, order = 5), col = "blue")
 lines(ma(euretail, order = 7), col = "green")
-legend("topleft", legend=c("q=3", "q=5", "q=7"), text.col=c("red", "blue", "green"))
+legend("topleft", legend=c("p=3", "p=5", "p=7"), text.col=c("red", "blue", "green"))
 ```
 
 
