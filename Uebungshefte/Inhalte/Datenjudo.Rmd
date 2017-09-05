@@ -2,7 +2,7 @@
 
 
 ```{r echo = FALSE, fig.align = "center", fig.cap = "Daten aufbereiten"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/Aufbereiten.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/Aufbereiten.pdf")
 ```
 
 In diesem Kapitel benötigte Pakete: 
@@ -51,7 +51,7 @@ Häufig will man bestimmte Zeilen aus einer Tabelle filtern. Zum Beispiel man ar
 Ein Sinnbild:
 
 ```{r fig-filter, echo = FALSE, out.width  = "60%", fig.align = "center", fig.cap = "Zeilen filtern"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/filter.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/filter.pdf")
 ```
 
 Merke:
@@ -126,7 +126,7 @@ filter(profiles, !is.na(income) | !is.na(sex))
 Das Gegenstück zu `filter` ist `select`; dieser Befehl liefert die gewählten Spalten zurück. Das ist häufig praktisch, wenn der Datensatz sehr "breit" ist, also viele Spalten enthält. Dann kann es übersichtlicher sein, sich nur die relevanten auszuwählen. Das Sinnbild für diesen Befehl:
 
 ```{r fig-select, echo = FALSE, out.width  = "60%", fig.align = "center", fig.cap = "Spalten auswählen"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/select.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/select.pdf")
 ```
 
 
@@ -222,7 +222,7 @@ Merke:
 Ein Sinnbild zur Verdeutlichung:
 
 ```{r fig-arrange, echo = FALSE, out.width  = "60%", fig.align = "center", fig.cap = "Spalten sortieren"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/arrange.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/arrange.pdf")
 ```
 
 
@@ -254,7 +254,7 @@ Richtig oder Falsch!?^[F, F, F, F, R]
 Einen Datensatz zu gruppieren ist ebenfalls eine häufige Angelegenheit: Was ist der mittlere Umsatz in Region X im Vergleich zu Region Y? Ist die Reaktionszeit in der Experimentalgruppe kleiner als in der Kontrollgruppe? Können Männer schneller ausparken als Frauen? Man sieht, dass das Gruppieren u. a. in Verbindung mit Mittelwerten oder anderen Zusammenfassungen sinnvoll ist; dazu im nächsten Abschnitt mehr.
 
 ```{r fig-groupby, echo = FALSE, out.width  = "60%", fig.align = "center", fig.cap = "Datensätze nach Subgruppen aufteilen"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/group_by.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/group_by.pdf")
 ```
 
 In der Abbildung wurde der Datensatz anhand der Spalte `Fach` in mehrere Gruppen geteilt. Wir könnten uns als nächstes z. B. Mittelwerte pro Fach -- d. h. pro Gruppe (pro Ausprägung von `Fach`) -- ausgeben lassen; in diesem Fall vier Gruppen (Fach A bis D).
@@ -289,7 +289,7 @@ Richtig oder Falsch!?^[R, F, R, R]
 Vielleicht die wichtigste oder häufigte Tätigkeit in der Analyse von Daten ist es, eine Spalte zu *einem* Wert zusammenzufassen. Anders gesagt: Einen Mittelwert berechnen, den größten (kleinsten) Wert heraussuchen, die Korrelation berechnen oder eine beliebige andere Statistik ausgeben lassen. Die Gemeinsamkeit dieser Operationen ist, dass sie eine Spalte zu einem Wert zusammenfassen, "aus Spalte mach Zahl", sozusagen. Daher ist der Name des Befehls `summarise` ganz passend. Genauer gesagt fasst dieser Befehl eine Spalte zu einer Zahl zusammen *anhand* einer Funktion wie `mean` oder `max`. Hierbei ist jede Funktion erlaubt, die eine Spalte als Input verlangt und eine Zahl zurückgibt; andere Funktionen sind bei `summarise` nicht erlaubt. 
 
 ```{r fig-summarise, echo = FALSE, out.width  = "60%", fig.align = "center", fig.cap = "Spalten zu einer Zahl zusammenfassen"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/summarise.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/summarise.pdf")
 ```
 
 
@@ -382,13 +382,13 @@ Richtig oder Falsch!?^[R, R, F, F]
 Die zweite Idee kann man salopp als "Durchpfeifen" bezeichnen; ikonographisch mit diesem Symbol dargestellt ` %>% `. Der Begriff "Durchpfeifen" ist frei vom Englischen "to pipe" übernommen. Das berühmte Bild von René Magritte stand dabei Pate.
 
 ```{r cecie-une-pipe, echo = FALSE, fig.align = "center", fig.cap = "La trahison des images [Ceci n'est pas une pipe], René Magritte, 1929, © C. Herscovici, Brussels / Artists Rights Society (ARS), New York, http://collections.lacma.org/node/239578 "}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/ma-150089-WEB.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/ma-150089-WEB.pdf")
 ```
 
 Hierbei ist gemeint, einen Datensatz sozusagen auf ein Fließband zu legen und an jedem Arbeitsplatz einen Arbeitsschritt auszuführen. Der springende Punkt ist, dass ein Dataframe als "Rohstoff" eingegeben wird und jeder Arbeitsschritt seinerseits wieder einen Datafram ausgibt. Damit kann man sehr schön einen "Flow" an Verarbeitung erreichen, außerdem spart man sich Tipparbeit und die Syntax wird lesbarer. Damit das Durchpfeifen funktioniert, benötigt man Befehle, die als Eingabe einen Dataframe erwarten und wieder einen Dataframe zurückliefern. Das Schaubild verdeutlich beispielhaft eine Abfolge des Durchpfeifens.
 
 ```{r fig-durchpfeifen, echo = FALSE, out.width  = "90%", fig.align = "center", fig.cap = "Das 'Durchpeifen'"}
-knitr::include_graphics("../Uebungshefte/Inhalte/images/Datenjudo/durchpfeifen.pdf")
+knitr::include_graphics("Inhalte/images/Datenjudo/durchpfeifen.pdf")
 ```
 
 Die sog. "Pfeife" (pipe: ` %>% `) in Anspielung an das berühmte Bild von René Magritte verkettet Befehle hintereinander. Das ist praktisch, da es die Syntax vereinfacht. Vergleichen Sie mal diese Syntax
