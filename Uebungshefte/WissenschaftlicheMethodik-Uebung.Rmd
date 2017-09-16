@@ -49,26 +49,42 @@ anh <- 0
 ```{r child = 'Inhalte/ErsteSchritte.Rmd'}
 ```
 
+\newpage
+
 ```{r child = 'Inhalte/EinfuehrungDaten.Rmd'}
 ```
+
+\newpage
 
 ```{r child = 'Inhalte/EinfuehrungWkeitInferenz.Rmd'}
 ```
 
+\newpage
+
 ```{r child = 'Inhalte/Inferenz-Kategorial.Rmd'}
 ```
+
+\newpage
 
 ```{r child = 'Inhalte/Inferenz-Metrisch.Rmd'}
 ```
 
+\newpage
+
 ```{r child = 'Inhalte/Regression.Rmd'}
 ```
+
+\newpage
 
 ```{r child = 'Inhalte/LogRegression.Rmd'}
 ```
 
+\newpage
+
 ```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd'}
 ```
+
+\newpage
 
 ```{r child = 'Inhalte/Clusteranalyse.Rmd'}
 ```
@@ -78,8 +94,12 @@ anh <- 0
 ```{r child = 'Inhalte/R-mosaic-Kurzreferenz.Rmd'}
 ```
 
+\newpage
+
 ```{r child = 'Inhalte/Datenjudo.Rmd'}
 ```
+
+\newpage
 
 ```{r child = 'Inhalte/Daten_visualisieren.Rmd'}
 ```

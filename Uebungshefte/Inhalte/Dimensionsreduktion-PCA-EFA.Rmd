@@ -19,7 +19,7 @@ Liest man bei Wikipediea diesen Begriff nach, kommt folgende Antwort: "Anerkennu
 
 ## Messung von Anerkennung
 
-Gut, wir kennen nun die Bedeutung von Anerkennung, aber wir wissen immer noch nicht, wie wir Anerkennung messen können. Da die Suche nach Anerkennung in der Psychologie kein neues `Konstrukt` darstellt, sondern schon vielfach gemessen wurde, müssen wir nur in bisherigen Forschungsergebnissen nachlesen. Dies führt unweigerlich dazu, dass wir auf bisherige Forschungen stoßen, die das Konstrukt Anerkennung als ein `multidimensionales Konstrukt` definieren und mit mehr als einem **Item (Indikator)** messen. Mehr zur Messung von Anerkennung weiter unten im Datenbeispiel. D. h. der Sachverhalt `Anerkennung` wird aus anderen, messbaren Sachverhalten `(Indikatoren)` messbar gemacht. Der Prozess des **Messbar machens** heißt Operationalisierung. Mehr zur Operationalisierung von Anerkennung und anderen Konstrukten betrachten wir weiter untern im Datenbeispiel. 
+Gut, wir kennen nun die Bedeutung von Anerkennung, aber wir wissen immer noch nicht, wie wir Anerkennung messen können. Da die Suche nach Anerkennung in der Psychologie kein neues `Konstrukt` darstellt, sondern schon vielfach gemessen wurde, müssen wir nur in bisherigen Forschungsergebnissen nachlesen. Dies führt unweigerlich dazu, dass wir auf bisherige Forschungen stoßen, die das Konstrukt Anerkennung als ein `multidimensionales Konstrukt` definieren und mit mehr als einem **Item (Indikator)** messen. Mehr zur Messung von Anerkennung weiter unten im Datenbeispiel. D. h., der Sachverhalt `Anerkennung` wird aus anderen, messbaren Sachverhalten `(Indikatoren)` messbar gemacht. Der Prozess des **Messbarmachens** heißt Operationalisierung. Mehr zur Operationalisierung von Anerkennung und anderen Konstrukten betrachten wir weiter unten im Datenbeispiel. 
 
 
 ## Zwei Methoden der Dimensionsreduktion
@@ -60,7 +60,7 @@ Pakete, die für diese Datenanalyse benötigt werden, müssen vorher einmalig in
 
 ## Daten
 
-Wir untersuchen die Dimensionalität mittels einer auf 1000 Fälle reduzierten Zufallsauswahl von 15 Variablen zur Messung der grundlegenden Wertorientierungen von Menschen. Die Daten wurden im Sommersemester 2017 von FOM Studierenden im ersten Semester an der FOM bundesweit erhoben. Die Variablen zu Wertorientierungen wurden ursprüngliche aus dem 40-Item-Set des «Portraits Value Questionnaire» (PVQ) von Schwartz adaptiert und durch die Studien an der FOM seit 2014 stufenweise bis auf 15 relevante Variablen reduziert. Alle Variablen wurden auf einer Skala von 1 bis 7 (wobei 1 am wenigsten und 7 am meisten zutrifft) abgefragt. 
+Wir untersuchen die Dimensionalität mittels einer auf 1000 Fälle reduzierten Zufallsauswahl von 15 Variablen zur Messung der grundlegenden Wertorientierungen von Menschen. Die Daten wurden im Sommersemester 2017 von FOM Studierenden im ersten Semester an der FOM bundesweit erhoben. Die Variablen zu Wertorientierungen wurden ursprünglich aus dem 40-Item-Set des «Portraits Value Questionnaire» (PVQ) von Schwartz adaptiert und durch die Studien an der FOM seit 2014 stufenweise bis auf 15 relevante Variablen reduziert. Alle Variablen wurden auf einer Skala von 1 bis 7 (wobei 1 am wenigsten und 7 am meisten zutrifft) abgefragt. 
 
 ## Einlesen
 
@@ -181,7 +181,7 @@ eigen(cor(Werte))
 
 Der Eigenwert einer Komponente/ eines Faktors sagt aus, wie viel Varianz dieser Faktor an der Gesamtvarianz aufklärt. Laut dem Eigenwert-Kriterium sollen nur Faktoren mit einem Eigenwert größer 1 extrahiert werden. Dies sind bei den Werte-Daten fünf Komponenten/ Faktoren, da fünf Eigenwerte größer 1 sind. Der Grund ist, dass Komponenten/ Faktoren mit einem Eigenwert kleiner als 1 weniger Erklärungswert haben als die ursprünglichen Variablen. 
 
-Dies kann auch grafisch mit dem `VSS.Scree` geplotet werden. 
+Dies kann auch grafisch mit dem `VSS.Scree` geplottet werden. 
 
 ```{r}
 library(nFactors)
@@ -214,7 +214,7 @@ print(Werte.pca, cut=0.5, sort = TRUE, digits=2)
 
 * Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate='none'`), dann ist die Voreinstellung eine `Varimax-Rotation`.   
 * Es gibt keine Items die auf mehr als einer Komponente hoch laden. Die Ladungen sind Korrelationskoeffizienten zwischen den Items und den Hauptkomponenten. 
-* In der Zeile SS loadings finden wir die Eigenwerte der fünf Hauptkomponenten. Den Anteil an der Gesamtvarianz, den sie erklären, findet man in der Zeile Proportion Var. Aufsummiert sind die Anteile in der Zeile Cumlative Var. Insgesamt werden durch die fünf Hauptkomponenten 64% der Gesamtvarianz erklärt. 
+* In der Zeile SS loadings finden wir die Eigenwerte der fünf Hauptkomponenten. Den Anteil an der Gesamtvarianz, den sie erklären, findet man in der Zeile `Proportion Var`. Aufsummiert sind die Anteile in der Zeile `Cumlative Var`. Insgesamt werden durch die fünf Hauptkomponenten 64% der Gesamtvarianz erklärt. 
 * Einzig das Item `Unabhängigkeit` lädt auf keine der Hauptkomponenten hoch. 
 * Die Erste Komponenten (RC1) könnte mit **Genuss**, die zweite (RC2) mit **Sicherheit**, die dritte (RC3) mit **Annerkennung**, die vierte (RC4) mit **Konformismus** und die fünfte mit **Bewusstsein** bezeichnet werden. 
 
@@ -302,9 +302,12 @@ Eine andere Möglichkeit ist die Bildung der Konstrukte über die Mittelwerte de
 ```{r}
 Werte$Anerkennung<-rowMeans(Werte[,c("Führung", "Entscheidung")], na.rm = TRUE)
 Werte$Genuss<-rowMeans(Werte[,c("Spaß", "Freude", "Aufregung")], na.rm = TRUE)
-Werte$Sicherheit<-rowMeans(Werte[,c("Gefahrenvermeidung", "Sicherheit","Ordentlichkeit")], na.rm = TRUE)
-Werte$Bewusstsein<-rowMeans(Werte[,c("Zuhören",  "Umweltbewusstsein", "Interesse")], na.rm = TRUE)
-Werte$Konformismus<-rowMeans(Werte[,c("Religiösität", "Respekt", "Demut")], na.rm = TRUE)
+Werte$Sicherheit<-rowMeans(Werte[,c("Gefahrenvermeidung", "Sicherheit", 
+                                    "Ordentlichkeit")], na.rm = TRUE)
+Werte$Bewusstsein<-rowMeans(Werte[,c("Zuhören",  "Umweltbewusstsein", 
+                                     "Interesse")], na.rm = TRUE)
+Werte$Konformismus<-rowMeans(Werte[,c("Religiösität", "Respekt", "Demut")], 
+                             na.rm = TRUE)
 ```
 
 
@@ -321,9 +324,10 @@ Zufriedenstellende Reliabilität wird bei einem Alpha-Wert von 0.7 erreicht. Wer
 
 ## Bewertung von Sicherheit
 
-Wir bewerten nun die interne Konsistent der Items Beispielhaft für das Konstrukt `Sicherheit` und nehmen zur Demonstration das Item `Unabhängigkeit` mit in die Analyse auf.
+Wir bewerten nun die interne Konsistenz der Items beispielhaft für das Konstrukt `Sicherheit` und nehmen zur Demonstration das Item `Unabhängigkeit` mit in die Analyse auf.
 ```{r}
-alpha(Werte[, c("Unabhängigkeit", "Zuhören",  "Umweltbewusstsein", "Interesse")], check.keys=TRUE)
+alpha(Werte[, c("Unabhängigkeit", "Zuhören",  "Umweltbewusstsein", "Interesse")], 
+      check.keys=TRUE)
 ```
 
 Bei dem Konstrukt `Sicherheit` können wir durch Elimination von `Unabhängigkeit` das Cronbachs Alpha von 0,63 auf einen fast akzeptablen Wert von 0,69 erhöhen.
