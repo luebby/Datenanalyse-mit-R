@@ -37,7 +37,7 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
 ### macOS
-Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. eine Aktualisierung auf macOS Sierra: [https://www.apple.com/de/macos/how-to-upgrade/](https://www.apple.com/de/macos/how-to-upgrade/). 
+Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-gründen eine Aktualisierung auf macOS Sierra: [https://www.apple.com/de/macos/how-to-upgrade/](https://www.apple.com/de/macos/how-to-upgrade/). 
 
 Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. Nach der Installation muss der Computer neu gestartet werden.
 
@@ -95,25 +95,6 @@ Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. Die ange
 library(mosaic)
 ```
 
-#### R Commander
-
-In einigen Vorlesungen wird das Paket [R Commander](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/) verwendet. Dies ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt. Sollte dies in Ihrer Vorlesung der Fall sein, so können Sie dies analog installieren:
-
-Zu Verwendung der grafischen Oberfläche R Commander bitte zunächst zur Installation den Befehl eingeben:
-```{r eval=FALSE}
-install.packages("Rcmdr")
-```
-Evt. werden Sie gefragt, ob Sie eine neuere Version aus "Sourcen" im Vergleich zu "Binaries" erstellen wollen. Hier können Sie ruhig "Nein" antworten.
-
-Hier werden ebenfalls einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über
-```{r eval=FALSE}
-library(Rcmdr)
-```
-gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimmen.
-
-[Hier](http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html) gibt es weitere Hinweise zur Installation des R Commanders.
-
-Unter **macOS** kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über `Extras -> MAC OS X app nap für R.app managen ...` verhindern, in dem Sie die Option `aus` wählen.
 
 ## Pakete verwenden
 In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic`. Jedes Zusatzpaket wird über den Befehle `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde. Starten Sie also `mosaic` und also zunächst mit den folgenden Befehlen
@@ -141,13 +122,13 @@ library(mosaic)
 ## es gibt kein Paket namens ‘Rcpp’
 ##Fehler: Paket ‘dplyr’ konnte nicht geladen werden
 ```
-wurde Serverseitig hier das (abhängige) Paket `Rcpp` (*Beispiel*) nicht installiert. Installieren Sie dies bitte über
+wurde Serverseitig hier das (abhängige) Paket `Rcpp` (*Beispiel*: `es gibt kein Paket namens ‘Rcpp’`) nicht installiert. Installieren Sie dies bitte über
 ```{r, eval=FALSE}
 install.packages("Rcpp")
 ```
 entsprechend nach. 
 
-Vereinzelt kann es auch dabei zu Fehlermeldungen kommen:
+Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen:
 ```{r, eval=FALSE}
 install.packages("Rcpp")
 ## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.3’
@@ -177,7 +158,12 @@ Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werd
 
 Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen")
 
-Sollte 2.) wieder eine Fehlermeldung ergeben (`unable to move temporary installation`), öffnen Sie bitte R in 1) nachdem Sie **kurzfristig** den Virenscanner deaktiviert haben.  **Aktivieren Sie den Virenscanner im Anschluss sofort wieder und öffnen Sie währenddessen keine weiteren Dateien o. ä.. Führen Sie im Anschluss sicherheitshalber einen Virenscanlauf durch.**
+Sollte wieder die Fehlermeldung erscheinen (`unable to move temporary installation`) verschieben Sie das Paket bitte manuell:
+
+- Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung `The downloaded binary packages are in`): `C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages`. Sollte der Ordner `AppData` nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.
+- Doppelklick auf die zip-Datei, rechtsklick auf den Ornder (hier `Rcpp`), rechte Maustaste, kopieren
+- Einfügen in (hier) `C:\Users\karsten\Documents\R\win-library\3.3\` (`unable to move temporary installation [...] to`)
+
 
 
 Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>. 

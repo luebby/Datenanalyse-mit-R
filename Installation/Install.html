@@ -136,7 +136,7 @@ $(document).ready(function () {
 </div>
 <div id="macos" class="section level3">
 <h3>macOS</h3>
-<p>Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Daher lohnt sich auch aus diesem Grund evt. eine Aktualisierung auf macOS Sierra: <a href="https://www.apple.com/de/macos/how-to-upgrade/" class="uri">https://www.apple.com/de/macos/how-to-upgrade/</a>.</p>
+<p>Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-gründen eine Aktualisierung auf macOS Sierra: <a href="https://www.apple.com/de/macos/how-to-upgrade/" class="uri">https://www.apple.com/de/macos/how-to-upgrade/</a>.</p>
 <p>Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite <a href="https://www.xquartz.org/" class="uri">https://www.xquartz.org/</a> installiert werden. Nach der Installation muss der Computer neu gestartet werden.</p>
 <ol style="list-style-type: decimal">
 <li>Installation XQuartz</li>
@@ -195,6 +195,7 @@ $(document).ready(function () {
 ##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
 ##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
 <pre><code>## Loading required package: mosaicData</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
 <pre><code>## 
 ## The 'mosaic' package masks several functions from core packages in order to add 
 ## additional features.  The original behavior of these functions should not be affected by this.
@@ -202,6 +203,9 @@ $(document).ready(function () {
 ## Note: If you use the Matrix package, be sure to load it BEFORE loading mosaic.</code></pre>
 <pre><code>## 
 ## Attaching package: 'mosaic'</code></pre>
+<pre><code>## The following object is masked from 'package:Matrix':
+## 
+##     mean</code></pre>
 <pre><code>## The following objects are masked from 'package:dplyr':
 ## 
 ##     count, do, tally</code></pre>
@@ -212,18 +216,6 @@ $(document).ready(function () {
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     max, mean, min, prod, range, sample, sum</code></pre>
-</div>
-<div id="r-commander" class="section level4">
-<h4>R Commander</h4>
-<p>In einigen Vorlesungen wird das Paket <a href="http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/">R Commander</a> verwendet. Dies ist ein Zusatzpaket für R, welches eine grafische Benutzeroberfläche für einen wichtigen Teil der Funktionalität von R zur Verfügung stellt. Sollte dies in Ihrer Vorlesung der Fall sein, so können Sie dies analog installieren:</p>
-<p>Zu Verwendung der grafischen Oberfläche R Commander bitte zunächst zur Installation den Befehl eingeben:</p>
-<pre class="r"><code>install.packages(&quot;Rcmdr&quot;)</code></pre>
-<p>Evt. werden Sie gefragt, ob Sie eine neuere Version aus “Sourcen” im Vergleich zu “Binaries” erstellen wollen. Hier können Sie ruhig “Nein” antworten.</p>
-<p>Hier werden ebenfalls einige weitere abhängige Pakete installiert, so dass es ein wenig dauern kann. Eventuell werden Sie beim erstmaligen Start des R Commanders über</p>
-<pre class="r"><code>library(Rcmdr)</code></pre>
-<p>gefragt, dass weitere Pakete installiert werden sollen. Dem können Sie zustimmen.</p>
-<p><a href="http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html">Hier</a> gibt es weitere Hinweise zur Installation des R Commanders.</p>
-<p>Unter <strong>macOS</strong> kann es sein, dass der R Commander teilweise sehr langsam wird. Dies können Sie im R Commander Menü über <code>Extras -&gt; MAC OS X app nap für R.app managen ...</code> verhindern, in dem Sie die Option <code>aus</code> wählen.</p>
 </div>
 </div>
 </div>
@@ -244,10 +236,10 @@ $(document).ready(function () {
 ##Fehler: package or namespace load failed for ‘dplyr’ in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = ##vI[[j]]):
 ## es gibt kein Paket namens ‘Rcpp’
 ##Fehler: Paket ‘dplyr’ konnte nicht geladen werden</code></pre>
-<p>wurde Serverseitig hier das (abhängige) Paket <code>Rcpp</code> (<em>Beispiel</em>) nicht installiert. Installieren Sie dies bitte über</p>
+<p>wurde Serverseitig hier das (abhängige) Paket <code>Rcpp</code> (<em>Beispiel</em>: <code>es gibt kein Paket namens ‘Rcpp’</code>) nicht installiert. Installieren Sie dies bitte über</p>
 <pre class="r"><code>install.packages(&quot;Rcpp&quot;)</code></pre>
 <p>entsprechend nach.</p>
-<p>Vereinzelt kann es auch dabei zu Fehlermeldungen kommen:</p>
+<p>Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen:</p>
 <pre class="r"><code>install.packages(&quot;Rcpp&quot;)
 ## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.3’
 ## (as ‘lib’ is unspecified)
@@ -272,12 +264,17 @@ $(document).ready(function () {
 </ol>
 <p>Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können. Evtl. sind hier leider mehrere Versuche nötig.</p>
 <p>Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator (“Rechte Maustaste -&gt; Als Administrator ausführen”)</p>
-<p>Sollte 2.) wieder eine Fehlermeldung ergeben (<code>unable to move temporary installation</code>), öffnen Sie bitte R in 1) nachdem Sie <strong>kurzfristig</strong> den Virenscanner deaktiviert haben. <strong>Aktivieren Sie den Virenscanner im Anschluss sofort wieder und öffnen Sie währenddessen keine weiteren Dateien o. ä.. Führen Sie im Anschluss sicherheitshalber einen Virenscanlauf durch.</strong></p>
+<p>Sollte wieder die Fehlermeldung erscheinen (<code>unable to move temporary installation</code>) verschieben Sie das Paket bitte manuell:</p>
+<ul>
+<li>Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung <code>The downloaded binary packages are in</code>): <code>C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages</code>. Sollte der Ordner <code>AppData</code> nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.</li>
+<li>Doppelklick auf die zip-Datei, rechtsklick auf den Ornder (hier <code>Rcpp</code>), rechte Maustaste, kopieren</li>
+<li>Einfügen in (hier) <code>C:\Users\karsten\Documents\R\win-library\3.3\</code> (<code>unable to move temporary installation [...] to</code>)</li>
+</ul>
 <p>Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <a href="mailto:R@fom.de">R@fom.de</a>.</p>
 <div id="versionshinweise" class="section level3">
 <h3>Versionshinweise:</h3>
 <ul>
-<li>Datum erstellt: 2017-08-28</li>
+<li>Datum erstellt: 2017-09-25</li>
 <li>R Version: 3.4.1</li>
 </ul>
 </div>

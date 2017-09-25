@@ -171,8 +171,8 @@ xpchisq() # Verteilungsfunktion Chi² Verteilung
 xqchisq() # Quantilsfunktion Chi² Verteilung
 xpnorm() # Verteilungsfunktion Normalverteilung
 xqnorm() # Quantilsfunktion Normalverteilung
-xpt() # Verteilungsfunktion t-Vverteilung
-xqt() # Quantilsfunktion t-Vverteilung
+xpt() # Verteilungsfunktion t-Verteilung
+xqt() # Quantilsfunktion t-Verteilung
 ```
 Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
 
@@ -185,7 +185,7 @@ xchisq.test() # Chi²-Test
 aov() # Varianzanalyse
 ```
 
-Der Nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic`, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. 
+Der Nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic`, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. `cohensD()` aus dem Paket `lsr` berechnet die Effektgröße Cohens D. 
 
 
 ## Multivariate Verfahren
@@ -208,7 +208,6 @@ dist() # Distanzen
 hclust() # Hierachsiche Clusteranalyse
 kmeans() # k-Means Clusterverfahren
 rpart() # Klassifikations- und Regressionsbäume, Paket rpart
-
 ```
 
 
