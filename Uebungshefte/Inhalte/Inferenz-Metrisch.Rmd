@@ -252,7 +252,7 @@ favstats(DEFRATE ~ PHASEN, data=B3)
 
 Vielleicht, vielleicht nicht.
 
-Um eine Varianzanalyse (*Analysis of Variance, ANOVA*) mit $$H_0: \mu_1=\mu_2=\ldots =\mu_k$$ gegen $$H_A: \text{Mindestens ein } \mu \text{ ist verschieden.}$$ durchzuführen kann in R u. a. der Befehl `aov` verwendet werden:
+Um eine Varianzanalyse (*Analysis of Variance, ANOVA*) mit $$H_0: \mu_1=\mu_2=\ldots =\mu_k$$ gegen $$H_A: \text{Mindestens ein } \mu_i \text{ ist verschieden.}$$ durchzuführen kann in R u. a. der Befehl `aov` verwendet werden:
 ```{r}
 DEFaov <- aov(DEFRATE ~ PHASEN, data=B3)
 summary(DEFaov)

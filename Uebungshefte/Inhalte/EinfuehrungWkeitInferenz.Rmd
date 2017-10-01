@@ -248,9 +248,9 @@ Z. B. für die 5$\,$% schlechtesten Tage der Appleaktie
 ```{r}
 xqnorm(0.05, mean=-0.08, sd=1.69 )
 ```
-Die Wahrscheinlichkeit beträgt also 5$\,$, dass die Tagesrendite unter `r round(qnorm(0.05, mean=-0.08, sd=1.69),2)` liegt.
+Die Wahrscheinlichkeit beträgt also $0,05=5\%$, dass die Tagesrendite unter `r round(qnorm(0.05, mean=-0.08, sd=1.69),2)` liegt.
 
-Für die Facebook Aktie gilt, dass Sie nur mit einer Wahrscheinlichkeit von 1$\,$ über `r xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)` lag:
+Für die Facebook Aktie gilt, dass Sie nur mit einer Wahrscheinlichkeit von $0,01=1\%$ über `r xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)` lag:
 ```{r, eval=FALSE}
 xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ```
@@ -258,7 +258,7 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ***
 **Übung:** 
 
-6.  Sie wollen Ihre Google-Aktien absichern. Wie groß ist bei einer maximalen Eintretenswahrscheinlichkeit von 1$\,$ der Tagesverlust mindestens?
+6.  Sie wollen Ihre Google-Aktien absichern. Wie groß ist bei einer maximalen Eintretenswahrscheinlichkeit von $1\%$ der Tagesverlust mindestens?
 
 ***
 
