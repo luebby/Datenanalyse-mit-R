@@ -74,6 +74,7 @@ meineDaten <- read_excel(file.choose())
 ### Daten verarbeiten
 ```{r eval=FALSE}
 str() # Datenstruktur
+insprect() # Datenübersicht
 head() # Obere Zeilen
 tail() # Untere Zeilen
 nrow(); ncol() # Anzahl Zeilen; Spalten 
@@ -107,8 +108,10 @@ Innerhalb des Paketes `dplyr` (wird mit `mosaic` geladen) gibt es u. a. folgende
 filter() # Filtert Beobachtungen eines Datensatzes
 select() # Wählt Variablen eines Datensatzes aus
 mutate() # Erzeugt neue Variable bzw. verändert bestehende
-rename() # Benennt Variablen um
 arrange() # Sortiert Beobachtungen eines Datensatzes
+mutate() # Variablen verändern, neu erzeunge
+summarise() # Variablen zusammenfassen
+group_by() # Beobachtungen gruppieren
 %>% # Übergebe das Ergebnis der vorhergehenden Funktion an die folgende
 ```
 
@@ -121,6 +124,9 @@ histogram() # Histogramm
 bwplot() # Boxplot
 xyplot() # Streudiagrmm
 ```
+
+\pagebreak 
+
 Nicht aus dem Paket `mosaic` sind:
 ```{r eval=FALSE}
 mosaicplot() # Mosaicplot
@@ -129,10 +135,8 @@ ggpairs() # Matrixplot, Paket GGally
 heatmap() # Heatmap
 ```
 
-\pagebreak 
-
 ## Deskriptive Statistik
-Eine gute Zusammenfassung liefert der `mosaic` Befehl:
+Eine gute Zusammenfassung numerischer Variablen liefert der `mosaic` Befehl:
 ```{r eval=FALSE}
 favstats()
 ```
@@ -174,7 +178,9 @@ xqnorm() # Quantilsfunktion Normalverteilung
 xpt() # Verteilungsfunktion t-Verteilung
 xqt() # Quantilsfunktion t-Verteilung
 ```
-Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
+Analoger Aufbau für weitere Verteilungen, z. B. `_pbinom()`, `_f()`.
+
+\pagebreak 
 
 ### Testverfahren
 Einige der Testverfahren wurden von `mosaic` angepasst.
@@ -210,8 +216,26 @@ kmeans() # k-Means Clusterverfahren
 rpart() # Klassifikations- und Regressionsbäume, Paket rpart
 ```
 
+## Weitere Themen
+
+### Disparitäts- und Konzentrationsmessung
+
+Paket `ineq`:
+
+```{r, eval=FALSE}
+Lc() # Loremzkurve
+ineq() # Gini Koeffizient (u. a.)
+```
 
 
+### Zeitreihen
+
+```{r, eval=FALSE}
+ma() # Gleitende Durchschnitte, Paket forecast
+stl() # Zeitreihe zerlegen
+```
+
+\pagebreak
 
 ### Versionshinweise:
 Erstellt von Karsten Lübke unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
