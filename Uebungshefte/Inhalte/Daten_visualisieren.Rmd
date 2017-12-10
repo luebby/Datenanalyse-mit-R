@@ -18,7 +18,7 @@ detachAllPackages()
 
 
 In diesem Kapitel werden folgende Pakete benötigt::
-```{r libs_visualisieren}
+```{r libs_visualisieren, message=FALSE} 
 library(tidyverse)  # Zum Plotten
 library(car)  # Umkodieren
 library(knitr)  # HTML-Tabellen

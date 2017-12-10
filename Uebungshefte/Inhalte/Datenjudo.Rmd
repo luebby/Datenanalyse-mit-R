@@ -6,12 +6,10 @@ knitr::include_graphics("Inhalte/images/Datenjudo/Aufbereiten.pdf")
 ```
 
 In diesem Kapitel benötigte Pakete: 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)  # Datenjudo
 library(stringr)   # Texte bearbeiten
 library(car)  # für 'recode'
-
-
 ```
 
 
@@ -46,7 +44,7 @@ Diese Bausteine sind typische Tätigkeiten im Umgang mit Daten; nichts Überrasc
 
 ## Zeilen filtern mit `filter`
 
-Häufig will man bestimmte Zeilen aus einer Tabelle filtern. Zum Beispiel man arbeitet für die Zigarettenindustrie und ist nur an den Rauchern interessiert (die im Übrigen unser Gesundheitssystem retten [@kraemer2011wir]), nicht an Nicht-Rauchern; es sollen die nur Umsatzzahlen des letzten Quartals untersucht werden, nicht die vorherigen Quartale; es sollen nur die Daten aus Labor X (nicht Labor Y) ausgewertet werden etc.
+Häufig will man bestimmte Zeilen aus einer Tabelle filtern. Zum Beispiel man arbeitet für die Zigarettenindustrie und ist nur an den Rauchern interessiert (die im Übrigen unser Gesundheitssystem retten), nicht an Nicht-Rauchern; es sollen die nur Umsatzzahlen des letzten Quartals untersucht werden, nicht die vorherigen Quartale; es sollen nur die Daten aus Labor X (nicht Labor Y) ausgewertet werden etc.
 
 Ein Sinnbild:
 
@@ -381,7 +379,7 @@ Richtig oder Falsch!?^[R, R, F, F]
 
 Die zweite Idee kann man salopp als "Durchpfeifen" bezeichnen; ikonographisch mit diesem Symbol dargestellt ` %>% `. Der Begriff "Durchpfeifen" ist frei vom Englischen "to pipe" übernommen. Das berühmte Bild von René Magritte stand dabei Pate.
 
-```{r cecie-une-pipe, echo = FALSE, fig.align = "center", fig.cap = "La trahison des images [Ceci n'est pas une pipe], René Magritte, 1929, © C. Herscovici, Brussels / Artists Rights Society (ARS), New York, http://collections.lacma.org/node/239578 "}
+```{r cecie-une-pipe, echo = FALSE, fig.cap = "La trahison des images [Ceci n'est pas une pipe], René Magritte, 1929, © C. Herscovici, Brussels / Artists Rights Society (ARS), New York, http://collections.lacma.org/node/239578"}
 knitr::include_graphics("Inhalte/images/Datenjudo/ma-150089-WEB.pdf")
 ```
 
