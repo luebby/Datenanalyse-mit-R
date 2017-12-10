@@ -206,7 +206,7 @@ Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evalu
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
-Sie können ihn von  [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK)  herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung.
+Sie können ihn von  [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK)  herunterladen. [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/TeachingRatings-help.pdf) gibt es eine Beschreibung. Anders als im Paper (und im Paket `AER`) wird hier nur ein zufälliger Kurs je Dozent verwendet.
 
 1.  Lesen Sie den Datensatz in R ein.
 2.  Wie viele Zeilen, wie viele Spalten liegen vor?

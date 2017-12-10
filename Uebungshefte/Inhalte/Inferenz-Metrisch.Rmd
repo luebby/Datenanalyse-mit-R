@@ -305,7 +305,7 @@ Hinweis: Da die einzelnen Faktorstufen hier unbalanciert sind (d .h., unterschie
 ***
 
 ### Erweiterung: Mehrfaktorielle Varianzanalyse mit Wechselwirkung
-Betrachten wir noch einmal den  *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing*.
+Betrachten wir noch einmal den  *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing*.^[Anders als im Paper (und im Paket `AER`) wird hier nur ein zufälliger Kurs je Dozent verwendet.]
 
 Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:
 ```{r }

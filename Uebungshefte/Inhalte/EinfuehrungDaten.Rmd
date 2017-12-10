@@ -305,7 +305,7 @@ Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evalu
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
-Sie können ihn von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) herunterladen.
+Sie können ihn von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) herunterladen. Anders als im Paper (und im Paket `AER`) wird hier nur ein zufälliger Kurs je Dozent verwendet.
 
 
 

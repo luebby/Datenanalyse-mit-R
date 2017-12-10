@@ -3,7 +3,7 @@
 ## Einfache Regression
 Wir werden weiter den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* analysieren.
 
-Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:
+Sofern noch nicht geschehen, können Sie in [hier](https://goo.gl/whKjnl) als `csv`-Datei herunterladen:^[Anders als im Paper (und im Paket `AER`) wird hier nur ein zufälliger Kurs je Dozent verwendet. Daher weicht das Ergebnis vom Paper ab.] 
 ```{r }
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
