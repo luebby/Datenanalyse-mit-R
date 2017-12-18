@@ -39,7 +39,7 @@ eingeben.
 * R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen
-* Eine Ergebniszuweiseung erfolgt über `<-`
+* Eine Ergebniszuweisung erfolgt über `<-`
 
 Innerhalb von `mosaic`:
 ```{r eval=FALSE} 
@@ -110,7 +110,7 @@ select() # Wählt Variablen eines Datensatzes aus
 mutate() # Erzeugt neue Variable bzw. verändert bestehende
 arrange() # Sortiert Beobachtungen eines Datensatzes
 mutate() # Variablen verändern, neu erzeunge
-summarise() # Variablen zusammenfassen
+summarise() # Beobachtungen zusammenfassen
 group_by() # Beobachtungen gruppieren
 %>% # Übergebe das Ergebnis der vorhergehenden Funktion an die folgende
 ```
@@ -144,7 +144,9 @@ Ansonsten (`mosaic` angepasst):
 ```{r eval=FALSE}
 tally() # Tabellierung, Häufigkeiten 
 prop() # Anteile
+diffprop() # Differenz Anteile
 mean() # Arithmetischer Mittelwert
+diffmean() # Differenz Mittelwerte
 median() # Median
 quantile() # Quantile
 sd() # Standardabweichung
@@ -161,7 +163,7 @@ Größtenteils `mosaic`:
 ```{r, eval=FALSE}
 set.seed() # Zufallszahlengenerator setzen
 rflip() # Münzwurf
-do() # Wiederholung (Schleife)
+do() * # Wiederholung (Schleife)
 sample() # Stichprobe ohne Zurücklegen
 resample() # Stichprobe mit Zurücklegen
 shuffle() # Permutation
@@ -203,6 +205,8 @@ coef() # Koeffizienten extrahieren
 residuals() # Residuen einer Regression
 fitted() # Angepasste Werte einer Regression
 predict() # Vorhersagen
+summary() # Zusammenfassung
+anova() # ANOVA Tabelle
 ```
 In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine einfache mathematische Funktion überführt werden. `plotFun()` zeichnet das Ergebnis. `step()` führt eine Variablenselektion durch. 
 
