@@ -188,7 +188,7 @@ mal vor!
 
 Da die statistische *Signifikanz* vom Standardfehler abhängt, welcher wiederum vom Stichprobenumfang abhängt, wurde von Cohen ein Maß für die *Effektstärke*, **Cohen's d** vorgeschlagen:
 $$d=\frac{\bar{x}_A-\bar{x}_B}{sd_{\text{pool}}}$$
-mit $${sd_{\text{pool}}=\sqrt{\frac{1}{n_A+n_B-2}\Bigl((n_1-1)sd^2_A+(n_2-1)sd^2_B \Bigr)}}$$
+mit $${sd_{\text{pool}}=\sqrt{\frac{1}{n_A+n_B-2}\Bigl((n_A-1)sd^2_A+(n_B-1)sd^2_B \Bigr)}}$$
 
 ```{r}
 # Kennzahlen 1. Stichprobe
