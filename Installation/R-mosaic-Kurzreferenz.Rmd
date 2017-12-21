@@ -34,12 +34,16 @@ eingeben.
 * R unterscheidet zwischen Groß- und Kleinbuchstaben
 * R verwendet den Punkt `.` als Dezimaltrennzeichen
 * Fehlende Werte werden in R durch `NA` kodiert
-* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
+* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert
 * R wendet Befehle direkt an
+* R Befehle haben Ihre Argumente immer innerhalb von Klammern, und Optionen etc. werden durch Komma getrennt
 * R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen
 * Eine Ergebniszuweisung erfolgt über `<-`
+* Ein `+` heißt, das R auf eine weitere Eingabe wartet (Anführungsstriche, Klammer zu ...)
+* Befehle können über `Esc` abgebrochen werden
+
 
 Innerhalb von `mosaic`:
 ```{r eval=FALSE} 
