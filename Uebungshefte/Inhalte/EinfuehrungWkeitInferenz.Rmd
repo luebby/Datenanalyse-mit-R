@@ -179,7 +179,7 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 ***
 **Übung:** 
 
-3.  Bestimmen Sie das 90$\,$% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-Positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $p=0.5$ zum Signifikanzniveau 10$\,$% verworfen?
+3.  Bestimmen Sie das 90$\,$% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-Positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $p=0.5$ zum Signifikanzniveau 10$\,$% vermutlich verworfen werden?
 
 ***
 
