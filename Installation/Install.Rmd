@@ -3,10 +3,10 @@ title: "Installation von R und RStudio"
 author: "ifes"
 date: ''
 output:
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -41,6 +41,8 @@ Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neu
 
 Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. Nach der Installation muss der Computer neu gestartet werden.
 
+Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie [`XCode`](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (`Command Line Tool`) installieren wollen dies bitte tun.
+
 1. Installation XQuartz
 2. Neustart Computer
 3. Fortfahren mit der Installation von R
@@ -67,6 +69,8 @@ Sie können R-Studio (Desktop-Version) von der Seite
 [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
 
 entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
+
+*Hinweis macOS*: Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie `XCode` (`Command Line Tool`) installieren wollen dies bitte tun.
 
 
 ### Installation von Zusatzpaketen
