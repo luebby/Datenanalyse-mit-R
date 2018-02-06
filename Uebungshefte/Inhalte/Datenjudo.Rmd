@@ -158,7 +158,7 @@ select(stats_test, score)  # Spalte `score` auswählen
 # Spalten `score` und `study_time` auswählen
 select(stats_test, score, study_time)  
 select(stats_test, score:study_time) # dito
-select(stats_test, 5:6) Spalten 5 bis 6 auswählen
+select(stats_test, 5:6) # Spalten 5 bis 6 auswählen
 ```
 
 Tatsächlich ist der Befehl `select` sehr flexibel; es gibt viele Möglichkeiten, Spalten auszuwählen. Im `dplyr`-[Cheatsheet](https://www.rstudio.com/wp.../data-wrangling-cheatsheet.pdf) findet sich ein guter Überblick dazu.
