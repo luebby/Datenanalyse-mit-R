@@ -1,7 +1,7 @@
 ---
 title: "Wissenschaftliche Methodik -- \\newline Übung Quantitative Datenanalyse mit R"
 author: "erstellt von Professor*innen des ifes"
-date: "Stand WiSe 2017/18"
+date: "Stand SoSe 2018"
 output:
   pdf_document:
     includes:
