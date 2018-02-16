@@ -1,5 +1,5 @@
 ---
-title: Wissenschaftliche Methoden -- Quantitative Datenanalyse -- \newline Übung Quantitative
+title: Quantitative Methoden und Evaluationsforschung -- \newline Übung Quantitative
   Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
 date: "Stand SoSe 2018"
