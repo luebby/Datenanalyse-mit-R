@@ -3,10 +3,10 @@ title: "Installation von R und RStudio"
 author: "ifes"
 date: ''
 output:
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 3
     fig_width: 5
   word_document:
@@ -131,6 +131,17 @@ wurde Serverseitig hier das (abhängige) Paket `Rcpp` (*Beispiel*: `es gibt kein
 install.packages("Rcpp")
 ```
 entsprechend nach. 
+
+Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket yaml. Nach folgender Fehlermeldung:
+```{r, eval=FALSE}
+## Error in loadNamespace(name): there is no package called ‘yaml’
+```
+installieren Sie bitte über
+```{r, eval=FALSE}
+install.packages("yaml")
+```
+das Paket nach.
+
 
 Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen:
 ```{r, eval=FALSE}
