@@ -6,4 +6,7 @@
 *.csv
 *_cache
 *_files
+*.pdf
 .DS_Store
+Uebungshefte/*.pdf
+*.pdf
