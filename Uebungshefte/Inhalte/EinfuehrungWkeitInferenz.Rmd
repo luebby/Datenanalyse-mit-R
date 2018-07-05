@@ -51,42 +51,42 @@ tally(~resample(roulette, size=1000000, prob=c(18/37, 19/37)), format="proportio
 
 Die theoretische Wahrscheinlichkeit eines Gewinns liegt bei $\frac{18}{37} \approx `r round(18/37, 4)`$: Achtung, das Gesetz der großen Zahl gilt für den Durchschnitt und auf lange Sicht, evtl. Ungleichgewichte, z. B. 5 Gewinne in Folge, werden im Laufe der Zeit abgeschwächt und nicht durch anschließende 5 Verluste ausgeglichen.
 
-Bei bestimmten Spielstrategien, z. B. bei der sogenannten Martingale oder Verdoppelungsstrategie, ist man daran interessiert, wie wahrscheinlich es ist, z. B. 8-mal in Folge zu verlieren. Natürlich kann das mit Hilfe der *Binomialverteilung* ausgerechnet werden, wir können es aber auch simulieren: `do()` ist eine einfache Schleifenfunktion in mosaic. Um z. B. 1000-mal jeweils 8 Runden Roulette zu spielen -- und das Ergebnis zu speichern -- genügt:
+Bei bestimmten Spielstrategien, z. B. bei der sogenannten Martingale oder Verdoppelungsstrategie, ist man daran interessiert, wie wahrscheinlich es ist, z. B. 8-mal in Folge zu verlieren. Natürlich kann das mit Hilfe der *Binomialverteilung* ausgerechnet werden, wir können es aber auch simulieren: `do()` ist eine einfache Schleifenfunktion in mosaic. Um z. B. 10000-mal jeweils 8 Runden Roulette zu spielen -- und das Ergebnis zu speichern -- genügt:
 
 
 ```{r}
-farbspiele <- do(1000)*tally(~resample(roulette, size=8, prob=c(18/37, 19/37)), 
-                             format="proportion")
+farbspiele <- do(10000)*tally(~resample(roulette, size = 8, 
+                  prob = c(18/37, 19/37)), format="proportion")
 ```
-`farbspiele` ist jetzt ein Datensatz (`data.frame`) mit 1000 Zeilen (=Simulationen) und den relativen Häufigkeiten für Gewinn und Verlust in den 8 Spielen in den Spalten.
+`farbspiele` ist jetzt ein Datensatz (`data.frame`) mit 10000 Zeilen (=Simulationen) und den relativen Häufigkeiten für Gewinn und Verlust in den 8 Spielen in den Spalten.
 
 Das Balkendiagramm der relativen Verlusthäufigkeit zeigt, dass es zwar selten aber doch vorkommt, alle 8 Spiele zu verlieren.
 ```{r}
 bargraph(~Verlust, data=farbspiele)
 ```
 
-Wir haben in `r sum(farbspiele$Verlust==1)` von 1000 Wiederholungen nur verloren, d. h. 8 von 8 Spielen.
+Wir haben in `r sum(farbspiele$Verlust==1)` von 10000 Wiederholungen nur verloren, d. h. 8 von 8 Spielen.
 
 
 ***
 **Übung:** 
 
-1.  Wenn Sie statt auf Farbe auf eine Zahl setzen, beträgt Ihre Gewinnwahrscheinlichkeit $\frac{1}{37}$. Simulieren Sie 1000-mal 10 Spiele. Wie oft haben Sie mindestens 1-mal gewonnen?
+1.  Wenn Sie statt auf Farbe auf eine Zahl setzen, beträgt Ihre Gewinnwahrscheinlichkeit $\frac{1}{37}$. Simulieren Sie 10000-mal 10 Spiele. Wie oft haben Sie mindestens 1-mal gewonnen?
 
 ***
 
 Wenn wir uns die Verteilung der Daten der Übung anschauen
 ```{r}
-zahlspiele <- do(1000)*tally(~resample(roulette, size=10, 
-                                       prob=c(1/37, 36/37)), format="proportion")
+zahlspiele <- do(10000)*tally(~resample(roulette, size = 10, 
+                  prob = c(1/37, 36/37)), format = "proportion")
 bargraph(~Gewinn, data=zahlspiele)
 ```
 
-stellen wir fest, dass diese Daten (leider) extrem rechtsschief sind, d. h., i. d. R. gewinnen wir in keiner der 10 Runden, Gewinn=0. Wenn wir  `size=10` durch `size=10000` ersetzen (d. h., bei jeden der 1000 Simulationen 10000 Runden spielen), passiert folgendes (Darstellung jetzt als Histogramm, da es zu sehr viele mögliche Ausprägungen für die Anzahl Gewinne gibt):
+stellen wir fest, dass diese Daten (leider) extrem rechtsschief sind, d. h., i. d. R. gewinnen wir in keiner der 10 Runden, Gewinn=0. Wenn wir  `size=10` durch `size=1000` ersetzen (d. h., bei jeden der 10000 Simulationen 1000 Runden spielen), passiert folgendes (Darstellung jetzt als Histogramm, da es zu sehr viele mögliche Ausprägungen für die Anzahl Gewinne gibt):
 
 ```{r}
-zahlspiele2 <- do(1000)*tally(~resample(roulette, size=10000, 
-                                        prob=c(1/37, 36/37)), format="proportion")
+zahlspiele2 <- do(10000)*tally(~resample(roulette, size = 1000, 
+                  prob = c(1/37, 36/37)), format = "proportion")
 histogram(~Gewinn, data=zahlspiele2)
 ```
 
@@ -138,9 +138,9 @@ tally(~simentscheidung)
 ```
 Hier wären also zufällig `r tally(~simentscheidung)["Positiv"]` der 151 Entscheidungen des Typ A Positiv gewesen -- wenn es keinen Zusammanhang zwischen Entscheidungstyp und Ratingentscheidung gibt. `sample` bedeutet Ziehen ohne Zurücklegen, d. h., jeder der Entscheidungen kann nur einmal gezogen werden.
 
-Wir oft kommt also zufällig heraus, dass höchstens 79 der 151 Entscheidungen des Typs A (alleinige Entscheider) positiv zugeordnet werden? Simulieren wir das z. B. 1000-mal:
+Wir oft kommt also zufällig heraus, dass höchstens 79 der 151 Entscheidungen des Typs A (alleinige Entscheider) positiv zugeordnet werden? Simulieren wir das z. B. 10000-mal:
 ```{r}
-entsim <- do(1000)*tally(~sample(entscheidungen, size=151))
+entsim <- do(10000)*tally(~sample(entscheidungen, size=151))
 prop(entsim$Positiv<=79)
 ```
 
@@ -156,11 +156,11 @@ erzeugen wir uns einen Vektor, der die $79$ positiven und $151-79$ nicht positiv
 ```{r}
 tally(~ typA)
 ```
-Wenn wir jetzt diesen Vektor z. B. 1000-mal resampeln:
+Wenn wir jetzt diesen Vektor z. B. 10000-mal resampeln:
 ```{r}
-typAboot <- do(1000)*tally(~resample(typA), format="proportion")
+typAboot <- do(10000)*tally(~resample(typA), format="proportion")
 ```
-erhalten wir 1000 (resampelte) Stichproben, die jeweils einen zufälligen Stichprobenanteil haben:
+erhalten wir 10000 (resampelte) Stichproben, die jeweils einen zufälligen Stichprobenanteil haben:
 ```{r}
 # 79/151: Anteil der Originalstichprobe
 histogram(~Positiv, data=typAboot, v=79/151) 

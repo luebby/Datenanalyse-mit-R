@@ -2,7 +2,7 @@
 title: Wissenschaftliche Methoden -- Quantitative Datenanalyse -- \newline Übung Quantitative
   Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: "Stand SoSe 2018"
+date: "Stand WiSe 2018/19"
 output:
   pdf_document:
     includes:

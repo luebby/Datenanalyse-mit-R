@@ -24,7 +24,7 @@ load(url(meine_url)) # Einlesen
 
 Einen Überblick erhält man wie immer über:
 ```{r}
-str(atheism) # Datenstruktur
+inspect(atheism) # Datenstruktur
 head(atheism) # Erste Beobachtungen
 tail(atheism) # letzte Beobachtungen
 ```
@@ -118,13 +118,13 @@ a05 <- tally(~response, data=de05)["atheist"] # Anzahl Atheisten 2005
 n05 <- nrow(de05) # Anzahl Studienteilnehmer 2005
 p05 <- a05/n05 # Anteil Atheisten 2005
 # Punktschätzer Differenz Population
-pdiff <- p12-p05
+pdiff <- p12 - p05
 pdiff
 # Pooling zur Berechnung Standardfehler unter H_0
-ppool <- (a12 + a05)/(n12+n05)
+ppool <- (a12 + a05)/(n12 + n05)
 ppool
 # Standardfehler se
-se0 <- sqrt( (ppool * (1-ppool) / n12) + (ppool * (1-ppool) / n05) )
+se0 <- sqrt( (ppool * (1 - ppool) / n12) + (ppool * (1 - ppool) / n05) )
 se0
 # z-Wert z
 z <- (pdiff - 0)/se0
@@ -152,16 +152,16 @@ Hier wird die Alternativhypothese `less` verwendet: $H_0: p_1 \geq p_2$, gegen $
 Mit dem Paket mosaic können Sie das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d. h., zweiseitig getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch ein Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
 ```{r}
 # Beobachtete Differenz
-pdiff <- diff(tally( ~ response | year, format="proportion", data=de)["atheist",])
+pdiff <- diffprop( ~ response | year, data = de)
 pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
-# 1000-mal das Jahr permutieren: Nullhypothese kein Unterschied
-pdiff.null <- do(1000) * diff(tally( ~ response | shuffle(year), data=de, format="proportion") ["atheist",])
+# 10000-mal das Jahr permutieren: Nullhypothese kein Unterschied
+pdiff.null <- do(10000) * diffprop( ~ response | shuffle(year), data = de)
 # Histogramm
-histogram(~ X2012, data=pdiff.null, v=c(pdiff, -pdiff))
+histogram(~ diffprop, data = pdiff.null, v = c(pdiff, -pdiff))
 # p-Wert
-prop(abs(pdiff.null$X2012) >= abs(pdiff))
+prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
 ```
 
 ***

@@ -7,8 +7,16 @@ knitr::include_graphics("Inhalte/images/Datenjudo/Aufbereiten.pdf")
 
 In diesem Kapitel benötigte Pakete: 
 ```{r, message=FALSE}
-library(tidyverse)  # Datenjudo
-library(stringr)   # Texte bearbeiten
+# library(tidyverse)
+# Hinweis: tidyverse durch die einzelnen tidy core Pakete ersetzt, da (noch) nicht alle Pakete von tidyverse, die sonst noch mitgeladen werden, unter R 3.5 verfügbar sind
+library(ggplot2) # Datenjudo
+library(dplyr)
+library(tidyr)
+library(readr)
+library(purrr)
+library(tibble)
+library(stringr)
+library(forcats) # Ende Einzelpakete
 library(car)  # für 'recode'
 ```
 

@@ -19,7 +19,16 @@ detachAllPackages()
 
 In diesem Kapitel werden folgende Pakete benötigt::
 ```{r libs_visualisieren, message=FALSE} 
-library(tidyverse)  # Zum Plotten
+# library(tidyverse)
+# Hinweis: tidyverse durch die einzelnen tidy core Pakete ersetzt, da (noch) nicht alle Pakete von tidyverse, die sonst noch mitgeladen werden, unter R 3.5 verfügbar sind
+library(ggplot2) # Datenjudo
+library(dplyr)
+library(tidyr)
+library(readr)
+library(purrr)
+library(tibble)
+library(stringr)
+library(forcats) # Ende Einzelpakete
 library(car)  # Umkodieren
 library(knitr)  # HTML-Tabellen
 
