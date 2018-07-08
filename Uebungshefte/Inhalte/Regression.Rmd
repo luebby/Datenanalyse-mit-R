@@ -184,7 +184,7 @@ In der 4. Spalte der mit Zeilennamen versehenen Tabelle `Coefficients` stehen di
 
 Zur schnelleren Übersicht finden sich dahinter "Sternchen" und "Punkte", die die entsprechenden Signifikanzniveaus symbolisieren: `***` bedeutet eine Irrtumswahrscheinlichkeit, Wahrscheinlichkeit für Fehler 1. Art, von unter 0.001, d. h. unter 0,1$\,$%. `**` entsprechend 1$\,$%, `*` 5$\,$% und `.` 10$\,$%. 
 
-Zum Signifikanzniveau von 10$\,$% sind hier also zwei Faktoren und der Achsenabschnitt (`(Intercept)`) signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R^2^ (`Multiple R-squared:`) liegt bei 
+Zum Signifikanzniveau von 10$\,$% sind hier also zwei Faktoren signifikant -- nicht notwendigerweise relevant: Rechnungshöhe `total_bill` sowie Anzahl Personen `size`. Beides wirkt sich linear positiv auf die Trinkgeldhöhe aus: Mit jedem Dollar Rechnungshöhe steigt im Mittelwert die Trinkgeldhöhe um `r round(coef(LinMod.4)[2],2)` Dollar, mit jeder Person um `r round(coef(LinMod.4)[3],2)` Dollar -- gegeben alle anderen Faktoren bleiben konstant. Das Bestimmtheitsmaß R^2^ (`Multiple R-squared:`) liegt bei 
 `r round(summary(LinMod.4)$r.squared,2)`, also `r round(summary(LinMod.4)$r.squared*100)`$\,$% der Variation des Trinkgeldes wird im Modell erklärt.
 
 Außerdem wird getestet, ob alle Koeffizienten der unabhängigen Variablen gleich Null sind:
