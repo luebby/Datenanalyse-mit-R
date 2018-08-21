@@ -1,0 +1,153 @@
+# Kapitel `r kap <- kap+1; kap`: Regressionsdiagnostik
+
+## Vorbereitung
+
+Für diese Übung wird der *DAX_S&P_Ret* Datensatz analysiert. Der Datensatz enthält Tagesrenditen vom DAX und vom S&P500 vom 6. Januar 1998 bis zum 28. Juni 2013. Variablen:
+
+Variable  |   Bedeutung    
+----------|-------------------------------
+Datum	    |	Datum
+Dax30		  |	DAX Tagesrendite
+Dax30lag  |	DAX Tagesrendite vom Vortag
+S.P500	  |	S&P500 Tagesrendite
+S.P500lag	|	S&P500 Tagesrendite vom Vortag
+
+
+Sie können den Datensatz [hier](https://goo.gl/9xbBrt) als `csv`-Datei herunterladen:
+```{r }
+download.file("https://goo.gl/9xbBrt", destfile = "DAX_S&P_Ret.csv")
+```
+
+Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, über:
+```{r}
+daxSP <- read.csv2("DAX_S&P_Ret.csv")
+```
+
+Zur Unterstützung der Analyse wird (wieder) `mosaic` verwendet; außerdem werden die Pakete `car`, `lmtest`, `tseries` und `sandwich` benötigt:
+```{r, message = FALSE}
+library(mosaic)
+library(car)
+library(lmtest)
+library(tseries)
+library(sandwich)
+```
+
+## Übung 1
+Regressieren Sie zunächt die Rendite des DAX-30-Indexes auf die Rendite des S&P-500-Indexes und interpretieren Sie Ihr Ergebnis. Gehen Sie dabei auf die Regressionskoeffizienten, deren t- bzw. p-Werte, den F-Wert und das Bestimmtheitsmaß $R^2$ ein.
+```{r}
+linreg <- lm(Dax30 ~ S.P500, data = daxSP)
+summary(linreg)
+```
+
+## Übung 2
+Stellen Sie die DAX-30-Rendite und die S&P-500-Rendite in einem Streudiagramm graphisch dar und beurteilen Sie visuell, ob die Annahme eines linearen Zusammenhangs zwischen Regressand und Regressor aufrechterhalten werden kann. 
+
+```{r, fig.height = 3, fig.width = 3}
+plotModel(linreg, xlab="S&P-Rendite",ylab="DAX-Rendite", abline = c(h = 0, v = 0))
+
+```
+
+Stellen Sie zusätzlich die Residuen und die fitted values in einem Streudiagramm dar und führen Sie den RESET-Test durch. Beurteilen Sie erneut, ob die Annahme eines linearen Zusammenhangs zwischen Einflussgröße und Zielgröße aufrechterhalten werden kann. 
+
+```{r, fig.height = 3, fig.width = 3}
+xyplot(resid(linreg) ~ fitted(linreg))
+
+# RESET-Test auf Fehlspezifikation
+resettest(linreg, 2:4, type="fitted")
+```
+
+Überprüfen Sie ferner die Robustheit des Modells.
+
+```{r, fig.height = 3, fig.width = 3}
+# Cook's Distance
+cook <- cooks.distance(linreg)
+plot(cook, main="Cook's Distance")
+daxSP[cook > 0.5,] # Zum Anschauen der Daten bei auffälligen Werten
+
+# Leverage Werte
+lev <- hat(model.matrix(linreg))
+plot(lev, main="Leverage Values")
+daxSP[lev > 0.5,] # Zum Anschauen der Daten bei auffälligen Werten
+```
+
+
+## Übung 3
+Überprüfen Sie, ob Autokorrelation in den Regressionsresiduen vorliegt, indem Sie den Durbin-Watson-Test durchführen.
+
+```{r}
+# Durbin-Watson-Test auf Autokorrelation
+dwtest(linreg, alternative="two.sided")
+```
+
+
+## Übung 4
+Überprüfen Sie, ob Heteroskedastizität in den Regressionsresiduen vorliegt, indem Sie wieder die graphische Darstellung der Residuen gegen die fitted values heranziehen sowie den Goldfeldt-Quandt-Test durchführen.
+
+```{r}
+# Goldfeld-Quandt-Test auf Heteroskedastizität
+gqtest(linreg, point = 0.5, fraction = 0.05, alternative = "two.sided", order.by = daxSP$Datum)
+```
+
+
+## Übung 5
+Prüfen Sie, ob die Residuen als normalverteilt angenommen werden können, indem Sie ein Histogramm, ein Stamm-Blatt-Diagramm und einen Normal Probability Plot erzeugen. Führen Sie einen Test auf Normalverteilung durch.
+
+```{r, fig.height = 3, fig.width = 3}
+#Histogramm
+histogram( ~ resid(linreg), freq=FALSE, ylim=c(0,0.5), 
+           main="Histogramm für die Residuen", 
+           ylab="Relative Häufigkeit", xlab="Residuen")
+
+# Stamm-Blatt-Diagramm
+stem(resid(linreg))
+
+# Normal-Probability-Plot
+qqmath( ~ resid(linreg), distribution = qnorm)
+
+# Shapiro-Wilk-Test
+shapiro.test(resid(linreg))
+
+# Jarque Bera Test
+jarque.bera.test(resid(linreg))
+```
+
+
+## Übung 6	
+Regressieren Sie nun die Rendite des DAX-30-Indexes auf seine eigene Vortags-Rendite sowie die kontemporäre und die Vortags-Rendite des S&P-500-Indexes und interpretieren Sie Ihr Ergebnis. Vergleichen Sie auch das adjustierte Bestimmtheitsmaß mit dem aus Aufgabenteil a) und beurteilen Sie, ob die Aufnahme der zusätzlichen Regressoren die Erklärungsgüte des Modells erhöht.
+
+```{r}
+linreg2 <- lm(Dax30 ~ Dax30lag + S.P500 + S.P500lag, data = daxSP)
+summary(linreg2)
+```
+
+
+## Übung 7	
+Erstellen Sie paarweise Streudiagramme und berechnen Sie die Korrelationsmatrix nach Bravais-Pearson zwischen den Regressoren. 
+
+```{r}
+# Grafische Darstellung paarweiser Streudiagramme
+car::scatterplotMatrix( ~ Dax30 + Dax30lag + S.P500 + S.P500lag,
+                  regLine=TRUE, smooth=FALSE, data=daxSP)
+
+# Berechnung der paarweisen Korrelationen, gerundet auf drei Nachkommastellen
+round(cor(daxSP[,-1]),3)
+
+```
+
+Berechnen Sie anschließend die entsprechenden Variance Inflation Factors und beurteilen Sie, ob Multikollinearität ein Problem darstellt.
+
+```{r}
+# Variance Inflation Factors
+round(vif(linreg2),3)
+```
+
+
+### Lizenz
+Diese Übung wurde von Patrick Stephan entwickelt und von Bianca Krol angpasst. Sie steht unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).  
+
+### Versionshinweise:
+* Datum erstellt: `r Sys.Date()`
+* R Version: `r getRversion()`
+* `mosaic` Version: `r packageVersion("mosaic")`
+
+
