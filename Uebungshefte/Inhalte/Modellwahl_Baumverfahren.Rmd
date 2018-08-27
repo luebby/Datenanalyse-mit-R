@@ -11,7 +11,7 @@ $$y=f(x)+\epsilon$$
 
 Dabei sollten wir laut Hand (2014)^[Hand, D. J. (2014). Wonderful Examples, but Let’s not Close Our Eyes. Statistical Science 29(1)(2014), 98-100] folgendes nicht vergessen:
 
-> [...] In general, when building statistical models, we must not forget that the aim is to understand something about the real world. Or predict, choose an action, make a decision, summarize evidence, and so on, but always about the real world, not an abstract mathematical world: our models are not the reality -- a point well made by George Box in his oft-cited remark that "all models are wrong, but some are useful" [...]
+> [...] In general, when building statistical models, we must not forget that the aim is to understand something about the real world. Or predict, choose an action, make a decision, summarize evidence, and so on, but always about the real world, not an abstract mathematical world: our models are not the reality -- a point well made by George Box in his oft-cited remark that 'all models are wrong, but some are useful' [...]
 
 Dabei stellen sich natürlich Fragen:
 
@@ -339,7 +339,7 @@ mean(ercvl)
 ```
 In der *Prognosegüte* ist hier -- anders als in der Anpassungsgüte -- die Lineare Diskriminanzanalyse besser.
 
-Die Funktion `partimat()` aus dem Paket `klaR` ermöglicht einen visuellen Vergleich der Auteilungen von `lda()` und `rpart()`, hier nur für die Variablen `CP91JW + IAU91JW`. Die Option `gs=c("1",  "2", "3", "4"))` legt die numerische Codierung der Phasen als Symbol für die Beobachtungen fest. `app. error rate` ist die (Trainings-)Fehlklassifikationsrate mit den zwei unabhängigen Variablen.
+Die Funktion `partimat()` aus dem Paket `klaR` ermöglicht einen visuellen Vergleich der Auteilungen von `lda()` und `rpart()`, hier nur für die Variablen `CP91JW + IAU91JW`. `app. error rate` ist die (Trainings-)Fehlklassifikationsrate mit den zwei unabhängigen Variablen.
 
 ```{r}
 # Einmalig installieren
