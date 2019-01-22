@@ -430,7 +430,7 @@ $(document).ready(function () {
 <p>Für die Vorlesung werden wir das Zusatzpaket (“package”) <code>mosaic</code> verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl</p>
 <pre class="r"><code>install.packages(&quot;mosaic&quot;)</code></pre>
 <p>eingeben und <code>Enter</code> oder <code>Return</code> drücken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evtl. eine Weile dauern.</p>
-<p><a href="https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf">Hier</a> gibt es eine englischsprachige Kurzübersicht über die Befehle in mosaic. Eine ausführlichere Beschreibung gibt es <a href="https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf">hier</a>.</p>
+<p><a href="https://projectmosaic.github.io/mosaic/">Hier</a> gibt es eine englischsprachige Übersicht zu mosaic. Eine ausführlichere Beschreibung gibt es <a href="https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf">hier</a>.</p>
 <p>Wenn die Installation erfolgreich war, können Sie <code>mosaic</code> in R laden. Die angegebenen Meldungen sind <strong>keine</strong> Fehler.</p>
 <pre class="r"><code>library(mosaic)</code></pre>
 <pre><code>## Loading required package: dplyr</code></pre>
@@ -503,25 +503,25 @@ $(document).ready(function () {
 <p>wurde Serverseitig hier das (abhängige) Paket <code>Rcpp</code> (<em>Beispiel</em>: <code>es gibt kein Paket namens ‘Rcpp’</code>) nicht installiert. Installieren Sie dies bitte über</p>
 <pre class="r"><code>install.packages(&quot;Rcpp&quot;)</code></pre>
 <p>entsprechend nach.</p>
-<p>Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket yaml. Nach folgender Fehlermeldung:</p>
+<p>Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket <code>yaml</code>. Nach folgender Fehlermeldung:</p>
 <pre class="r"><code>## Error in loadNamespace(name): there is no package called ‘yaml’</code></pre>
 <p>installieren Sie bitte über</p>
 <pre class="r"><code>install.packages(&quot;yaml&quot;)</code></pre>
 <p>das Paket nach.</p>
 <p>Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen:</p>
 <pre class="r"><code>install.packages(&quot;Rcpp&quot;)
-## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.3’
+## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.5’
 ## (as ‘lib’ is unspecified)
 ## 
-## trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.3/Rcpp_0.12.7.zip'
+## trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/Rcpp_1.0.0.zip'
 ## Content type 'application/zip' length 3265072 bytes (3.1 MB)
 ## downloaded 3.1 MB
 ## 
 ## package ‘Rcpp’ successfully unpacked and MD5 sums checked
 ## 
 ## Warning in install.packages :
-## unable to move temporary installation ‘C:\Users\karsten\Documents\R\win-library\3.3\file175c5c02336c\Rcpp’ to 
-## ‘C:\Users\karsten\Documents\R\win-library\3.3\Rcpp’
+## unable to move temporary installation ‘C:\Users\karsten\Documents\R\win-library\3.5\file175c5c02336c\Rcpp’ to 
+## ‘C:\Users\karsten\Documents\R\win-library\3.5\Rcpp’
 ## 
 ## The downloaded binary packages are in
 ##         C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages</code></pre>
@@ -537,7 +537,7 @@ $(document).ready(function () {
 <ul>
 <li>Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung <code>The downloaded binary packages are in</code>): <code>C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages</code>. Sollte der Ordner <code>AppData</code> nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.</li>
 <li>Doppelklick auf die zip-Datei, rechtsklick auf den Ornder (hier <code>Rcpp</code>), rechte Maustaste, kopieren</li>
-<li>Einfügen in (hier) <code>C:\Users\karsten\Documents\R\win-library\3.3\</code> (<code>unable to move temporary installation [...] to</code>)</li>
+<li>Einfügen in (hier) <code>C:\Users\karsten\Documents\R\win-library\3.5\</code> (<code>unable to move temporary installation [...] to</code>)</li>
 </ul>
 <p>Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <a href="mailto:R@fom.de">R@fom.de</a>.</p>
 <div id="versionshinweise" class="section level3">

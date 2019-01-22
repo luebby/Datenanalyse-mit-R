@@ -91,7 +91,7 @@ install.packages("mosaic")
 ```
 eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evtl. eine Weile dauern.
 
-[Hier](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) gibt es eine englischsprachige Kurzübersicht über die Befehle in mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
+[Hier](https://projectmosaic.github.io/mosaic/) gibt es eine englischsprachige Übersicht zu mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
 Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. Die angegebenen Meldungen sind **keine** Fehler.
 
@@ -132,7 +132,7 @@ install.packages("Rcpp")
 ```
 entsprechend nach. 
 
-Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket yaml. Nach folgender Fehlermeldung:
+Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket `yaml`. Nach folgender Fehlermeldung:
 ```{r, eval=FALSE}
 ## Error in loadNamespace(name): there is no package called ‘yaml’
 ```
@@ -146,18 +146,18 @@ das Paket nach.
 Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen:
 ```{r, eval=FALSE}
 install.packages("Rcpp")
-## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.3’
+## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.5’
 ## (as ‘lib’ is unspecified)
 ## 
-## trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.3/Rcpp_0.12.7.zip'
+## trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/Rcpp_1.0.0.zip'
 ## Content type 'application/zip' length 3265072 bytes (3.1 MB)
 ## downloaded 3.1 MB
 ## 
 ## package ‘Rcpp’ successfully unpacked and MD5 sums checked
 ## 
 ## Warning in install.packages :
-## unable to move temporary installation ‘C:\Users\karsten\Documents\R\win-library\3.3\file175c5c02336c\Rcpp’ to 
-## ‘C:\Users\karsten\Documents\R\win-library\3.3\Rcpp’
+## unable to move temporary installation ‘C:\Users\karsten\Documents\R\win-library\3.5\file175c5c02336c\Rcpp’ to 
+## ‘C:\Users\karsten\Documents\R\win-library\3.5\Rcpp’
 ## 
 ## The downloaded binary packages are in
 ##         C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages
@@ -177,7 +177,7 @@ Sollte wieder die Fehlermeldung erscheinen (`unable to move temporary installati
 
 - Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung `The downloaded binary packages are in`): `C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages`. Sollte der Ordner `AppData` nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.
 - Doppelklick auf die zip-Datei, rechtsklick auf den Ornder (hier `Rcpp`), rechte Maustaste, kopieren
-- Einfügen in (hier) `C:\Users\karsten\Documents\R\win-library\3.3\` (`unable to move temporary installation [...] to`)
+- Einfügen in (hier) `C:\Users\karsten\Documents\R\win-library\3.5\` (`unable to move temporary installation [...] to`)
 
 
 
