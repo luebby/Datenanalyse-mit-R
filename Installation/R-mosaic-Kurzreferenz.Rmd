@@ -1,9 +1,30 @@
 ---
 title: "R Kurzreferenz"
-author: "Karsten Lübke"
-date: ''
+author: "Prof. Dr. Karsten Lübke"
+date: 'SoSe 2019'
+lang: de-De
+colorlinks: yes
+template: NULL
+documentclass: scrreprt
+classoption: 
+    - paper=a4
+    - pagesize
+    - DIV=13  # oder 14
+link-citations: yes
+fontsize: 12pt
 output:
   pdf_document:
+    includes:
+      in_header: preamble.tex
+    latex_engine: pdflatex
+    keep_tex: yes
+    template: NULL
+    pandoc_args:
+        - --standalone
+  #            - --filter
+  #            - ./pandocfilter/typography.py
+        - -V
+        - graphics=TRUE
     fig_height: 3
     fig_width: 5
   html_document:
@@ -12,8 +33,7 @@ output:
   word_document:
     fig_height: 3
     fig_width: 5
-documentclass: article
-classoption: a4paper
+
 ---
 
 ```{r setup, include=FALSE}
@@ -21,31 +41,38 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Vorbemerkungen
+
 Eine Übersicht von nützlichen R Funktionen innerhalb der Datenanalyse. 
 
 Diese Kurzreferenz beschreibt ein kleinen Teil der R Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert größtenteils auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
 
 Weitere Hilfe und Beispiele finden Sie, wenn Sie
+
 ```{r eval=FALSE}
 ?Befehl
 ```
+
 eingeben.
 
 * R unterscheidet zwischen Groß- und Kleinbuchstaben
 * R verwendet den Punkt `.` als Dezimaltrennzeichen
 * Fehlende Werte werden in R durch `NA` kodiert
-* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
+* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert
 * R wendet Befehle direkt an
+* R Befehle haben Ihre Argumente immer innerhalb von Klammern, und Optionen etc. werden durch Komma getrennt
 * R ist objektorientiert, d. h. dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen
-* Eine Ergebniszuweiseung erfolgt über `<-`
+* Eine Ergebniszuweisung erfolgt über `<-`
+* Ein `+` heißt, das R auf eine weitere Eingabe wartet (Anführungsstriche, Klammer zu ...)
+* Befehle können über `Esc` abgebrochen werden
+
 
 Innerhalb von `mosaic`:
 ```{r eval=FALSE} 
 analysiere(y ~ x | z , data=Daten)
 ```
-d. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.
+d. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.^[Beim Mac ist `~` die Tastenkombination `alt`+`n`, `|` die Tastenkombination `alt`+`7`] 
 
 Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und geladen werden:
 ```{r, eval=FALSE}
@@ -56,9 +83,11 @@ library(Paket) # Laden, einmalig in jeder Sitzung
 
 
 ## Daten
+
 Daten einlesen und Datenvorverarbeitung sind häufig der (zeitlich) aufwendigste Teil einer Datenanalyse. Da die Daten die Grundlage sind, sollte auch hier sorgfältig gearbeitet und überprüft werden.
 
 ### Daten einlesen
+
 ```{r eval=FALSE}
 read.table() # Allgemeinen Datensatz einlesen. Achtung: Optionen anpassen
 read.csv2() # csv Datensatz einlesen (aus deutschsprachigem Excel)
@@ -67,13 +96,16 @@ meineDaten <- read.csv2(file.choose())
 ```
 
 U. a. mit Hilfe des Zusatzpaketes `readxl` können Excel Dateien eingelesen werden:
+
 ```{r eval=FALSE}
 meineDaten <- read_excel(file.choose()) 
 ```
 
 ### Daten verarbeiten
+
 ```{r eval=FALSE}
 str() # Datenstruktur
+insprect() # Datenübersicht
 head() # Obere Zeilen
 tail() # Untere Zeilen
 nrow(); ncol() # Anzahl Zeilen; Spalten 
@@ -81,7 +113,9 @@ rownames(); colnames() # Zeilennamen, Spaltennamen
 ```
 
 ### Daten transformieren
+
 Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i. Zeile und j. Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt.
+
 ```{r eval=FALSE}
 as.factor() # Daten als Faktoren definieren
 relevel() # Faktorstufen umordnen
@@ -103,24 +137,34 @@ rowMeans() # Zeilenmittelwert
 ```
 
 Innerhalb des Paketes `dplyr` (wird mit `mosaic` geladen) gibt es u. a. folgende Funktionen:
+
 ```{r eval=FALSE}
 filter() # Filtert Beobachtungen eines Datensatzes
 select() # Wählt Variablen eines Datensatzes aus
 mutate() # Erzeugt neue Variable bzw. verändert bestehende
-rename() # Benennt Variablen um
-arrage() # Sortiert Beobachtungen eines Datensatzes
+arrange() # Sortiert Beobachtungen eines Datensatzes
+mutate() # Variablen verändern, neu erzeunge
+summarise() # Beobachtungen zusammenfassen
+group_by() # Beobachtungen gruppieren
+%>% # Übergebe das Ergebnis der vorhergehenden Funktion an die folgende
 ```
-Dabei übergibt die "Pfeife" `%>%` das Ergebnis der vorhergehenden Funktion an die folgende.
+
 
 ## Grafische Verfahren
-Vor jeder mathematisch-statistischen Analyse sollte eine explorative, grafische Analyse erfolgen. Die folgenden Befehle sind aus dem Paket `mosaic`.
+
+Vor jeder mathematisch-statistischen Analyse sollte eine explorative, grafische Analyse erfolgen. Die folgenden Befehle sind aus dem Paket `mosaic` (resp. `ggformula`):
+
 ```{r eval=FALSE}
-bargraph() # Balkendiagramm
-histogram() # Histogramm
-bwplot() # Boxplot
-xyplot() # Streudiagrmm
+gf_bar()  # Balkendiagramm (Anzahl)
+gf_percents  # Balkendiagramm (Prozentangabe)
+gf_props  # Balkendiagramm (Anteilswertsangabe)
+gf_histogram()  # Histogramm
+gf_boxplot()  # Boxplot
+gf_point()  # Streudiagrmm
 ```
+
 Nicht aus dem Paket `mosaic` sind:
+
 ```{r eval=FALSE}
 mosaicplot() # Mosaicplot
 corrplot() # Korrelationsplot, Paket corrplot
@@ -128,18 +172,26 @@ ggpairs() # Matrixplot, Paket GGally
 heatmap() # Heatmap
 ```
 
-\pagebreak 
+\pagebreak
 
 ## Deskriptive Statistik
-Eine gute Zusammenfassung liefert der `mosaic` Befehl:
+
+Eine gute Zusammenfassung numerischer Variablen liefert der `mosaic` Befehl:
+
 ```{r eval=FALSE}
 favstats()
 ```
+
 Ansonsten (`mosaic` angepasst):
+
 ```{r eval=FALSE}
 tally() # Tabellierung, Häufigkeiten 
+prop() # Anteile
+diffprop() # Differenz Anteile
 mean() # Arithmetischer Mittelwert
+diffmean() # Differenz Mittelwerte
 median() # Median
+quantile() # Quantile
 sd() # Standardabweichung
 var() # Varianz
 IQR() # Interquartilsabstand
@@ -150,30 +202,40 @@ cor() # Korrelationskoefizient
 ## Inferenzstatistik
 
 ### Randomisierung, Simulationen
+
 Größtenteils `mosaic`:
+
 ```{r, eval=FALSE}
 set.seed() # Zufallszahlengenerator setzen
 rflip() # Münzwurf
-do() # Wiederholung (Schleife)
+do() * # Wiederholung (Schleife)
 sample() # Stichprobe ohne Zurücklegen
 resample() # Stichprobe mit Zurücklegen
+shuffle() # Permutation
 rnorm() # Normalverteilte Zufallszahlen
 ```
 
+\pagebreak 
+
 ### Verteilungen
-Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=`, bzw. `df=` angepasst werden.
+
+Innerhalb der Funktionen müssen ggf. die Parameter, d.h. `mean=`, `sd=`, bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
+
 ```{r, eval=FALSE}
-pchisq() # Verteilungsfunktion Chi² Verteilung
-qchisq() # Quantilsfunktion Chi² Verteilung
-pnorm() # Verteilungsfunktion Normalverteilung
-qnorm() # Quantilsfunktion Normalverteilung
-pt() # Verteilungsfunktion t-Vverteilung
-qt() # Quantilsfunktion t-Vverteilung
+xpchisq() # Verteilungsfunktion Chi² Verteilung
+xqchisq() # Quantilsfunktion Chi² Verteilung
+xpnorm() # Verteilungsfunktion Normalverteilung
+xqnorm() # Quantilsfunktion Normalverteilung
+xpt() # Verteilungsfunktion t-Verteilung
+xqt() # Quantilsfunktion t-Verteilung
 ```
-Analoger Aufbau für weitere Verteilungen, z. B. `_pniom()`, `_f()`.
+
+Analoger Aufbau für weitere Verteilungen, z.B. `_pbinom()`, `_f()`.
 
 ### Testverfahren
+
 Einige der Testverfahren wurden von `mosaic` angepasst.
+
 ```{r eval=FALSE}
 t.test() # t-Test
 prop.test() # Binomialtest (approximativ)
@@ -181,31 +243,60 @@ xchisq.test() # Chi²-Test
 aov() # Varianzanalyse
 ```
 
-Der Nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic`, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. 
+Der Nicht-parametrische *Wilcoxon-Test* `wilcox.test()` ist nicht im Paket `mosaic`, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der *Shapiro-Wilk Test* durch: `shapiro.test()`. `cohensD()` aus dem Paket `lsr` berechnet die Effektgröße *Cohens D*. 
 
 
 ## Multivariate Verfahren
+
 ```{r eval=FALSE}
 lm() # Lineare Regression
 glm(, family="binomial") # Logistische Regression
+plotModel() # Modell zeichnen
+coef() # Koeffizienten extrahieren
 residuals() # Residuen einer Regression
 fitted() # Angepasste Werte einer Regression
+predict() # Vorhersagen
+summary() # Zusammenfassung
+anova() # ANOVA Tabelle
 ```
+
 In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine einfache mathematische Funktion überführt werden. `plotFun()` zeichnet das Ergebnis. `step()` führt eine Variablenselektion durch. 
 
 Weitere Verfahren - nicht `mosaic`:
+
 ```{r eval=FALSE}
+prcomp() # Hauptkomponentenanalyse (PCA)
+alpha() # Reliabilitätsanalys, Paket psych
+dist() # Distanzen
 hclust() # Hierachsiche Clusteranalyse
 kmeans() # k-Means Clusterverfahren
-prcomp() # Hauptkomponentenanalyse (PCA)
 rpart() # Klassifikations- und Regressionsbäume, Paket rpart
 ```
 
+## Weitere Themen
+
+### Disparitäts- und Konzentrationsmessung
+
+Paket `ineq`:
+
+```{r, eval=FALSE}
+Lc() # Loremzkurve
+ineq() # Gini Koeffizient (u. a.)
+```
 
 
+### Zeitreihen
+
+```{r, eval=FALSE}
+ma() # Gleitende Durchschnitte, Paket forecast
+stl() # Zeitreihe zerlegen
+```
+
+\pagebreak
 
 ### Versionshinweise:
-Erstellt von Karsten Lübke unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+Erstellt von Karsten Lübke unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).
+Kleinere Ändungen von Norman Markgraf.
 
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`

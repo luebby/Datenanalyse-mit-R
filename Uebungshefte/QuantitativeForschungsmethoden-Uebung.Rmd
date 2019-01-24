@@ -1,0 +1,77 @@
+---
+title: "Quantitative Forschungsmethoden -- \\newline Übung Quantitative Datenanalyse mit R"
+author: "erstellt von Professor*innen des ifes"
+date: "Stand SoSe 2018"
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+documentclass: article
+classoption: a4paper, 10pt
+---
+\setstretch{1.44}
+
+<!-- \begin{center} -->
+<!-- \includegraphics{ifes.jpg} -->
+<!-- \end{center} -->
+
+\fancyhead{}
+\fancyhead[LE,RO]{\textup{\nouppercase{\leftmark}}}   
+
+\tableofcontents
+\newpage 
+
+\fancyhead[LO,RE]{\textsl{\rightmark}}  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Initiale Paket Installation
+needed_pkgs <- c("mosaic", "corrplot", 
+                 "lsr", "effects",
+                 "SDMTools","ROCR", "lmtest", "BaylorEdPsych",
+                 "gplots","nFactors", "scatterplot3d",
+                 "tidyverse", "stringr", "car", "okcupiddata", 
+                 "knitr", "nycflights13", 
+                 "fpp")
+new.pkgs <- needed_pkgs[!(needed_pkgs %in% installed.packages())]
+
+if(length(new.pkgs)) {
+  install.packages(new.pkgs, repos = "https://cran.rstudio.com")
+}
+
+
+require(mosaic)
+require(corrplot)
+kap <- -1
+anh <- 0
+```
+
+```{r child = 'Inhalte/ErsteSchritte.Rmd'}
+```
+
+```{r child = 'Inhalte/EinfuehrungDaten.Rmd'}
+```
+
+```{r child = 'Inhalte/EinfuehrungWkeitInferenz.Rmd'}
+```
+
+```{r child = 'Inhalte/Inferenz-Kategorial.Rmd'}
+```
+
+```{r child = 'Inhalte/Inferenz-Metrisch.Rmd'}
+```
+
+```{r child = 'Inhalte/Regression.Rmd'}
+```
+
+\newpage
+
+```{r child = 'Inhalte/R-mosaic-Kurzreferenz.Rmd'}
+```
+
+```{r child = 'Inhalte/Datenjudo.Rmd'}
+```
+
+```{r child = 'Inhalte/Daten_visualisieren.Rmd'}
+```

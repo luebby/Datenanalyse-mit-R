@@ -1,0 +1,206 @@
+# Anhang `r anh <- anh+1; anh`: R Kurzreferenz
+
+## Vorbemerkungen
+Eine Übersicht von nützlichen R Funktionen innerhalb der Datenanalyse. 
+
+Diese Kurzreferenz beschreibt ein kleinen Teil der R Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert weitgehend auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
+
+Weitere Hilfe und Beispiele finden Sie, wenn Sie
+```{r eval=FALSE}
+> ?plot
+```
+eingeben.
+
+* R unterscheidet zwischen Groß- und Kleinbuchstaben.
+* R verwendet den Punkt `.` als Dezimaltrennzeichen.
+* Fehlende Werte werden in R durch `NA` kodiert.
+* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
+* R wendet Befehle direkt an.
+* R ist objektorientiert, d. h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte.
+* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden.
+* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen.
+* Eine Ergebniszuweisung erfolgt über `<-`
+
+Innerhalb von `mosaic`:
+```{r eval=FALSE} 
+analysiere(y ~ x | z , data=Daten)
+```
+
+d\. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.^[Beim Mac ist `~` die Tastenkombination `alt`+`n`, `|` die Tastenkombination `alt`+`7`] 
+
+Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und nach jedem Neustart von R geladen werden:
+```{r, eval=FALSE}
+install.packages("Paket") # Einmalig installieren
+library(Paket) # Laden, einmalig in jeder Sitzung
+
+```
+
+
+## Daten
+Daten einlesen und Datenvorverarbeitung sind häufig der (zeitlich) aufwendigste Teil einer Datenanalyse. Da die Daten die Grundlage sind, sollte auch hier sorgfältig gearbeitet und überprüft werden.
+
+### Daten einlesen
+```{r eval=FALSE}
+read.table() # Allgemeinen Datensatz einlesen. Achtung: Optionen anpassen
+read.csv2() # csv Datensatz einlesen (aus deutschsprachigem Excel)
+file.choose() # Datei auswählen
+meineDaten <- read.csv2(file.choose())
+```
+
+U\. a. mit Hilfe des Zusatzpaketes `readxl` können Excel Dateien eingelesen werden:
+```{r eval=FALSE}
+meineDaten <- read_excel(file.choose()) 
+```
+
+### Daten verarbeiten
+```{r eval=FALSE}
+str() # Datenstruktur
+head() # Obere Zeilen
+tail() # Untere Zeilen
+nrow(); ncol() # Anzahl Zeilen; Spalten 
+rownames(); colnames() # Zeilennamen, Spaltennamen
+```
+
+### Daten transformieren
+Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i-te Zeile und j-te Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt. Mit `-` vor der Auswahl werden der Rest ohne die Auswahl ausgewählt.
+```{r eval=FALSE}
+as.factor() # Daten als Faktoren definieren
+relevel() # Faktorstufen umordnen
+droplevels() # Ungenutzte Faktorstufen entfernen
+recode() # Umkodierung von Werten, Paket car
+as.numeric() # Faktorstufen als numerische Daten verwenden
+cut() # Aufteilung numerischer Werte in Intervalle
+
+subset() # Teilmenge der Daten auswählen
+na.omit() # Zeilen mit fehlenden Werten entfernen
+
+log() # Logarithmusfunktion
+exp() # Exponentialfunktion
+sqrt() # Quadratwurzelfunktion
+abs() # Betragsfunktion
+
+rowSums() # Zeilensumme
+rowMeans() # Zeilenmittelwert
+```
+
+Innerhalb des Paketes `dplyr` (wird mit `mosaic` geladen) gibt es u. a. folgende Funktionen:
+```{r eval=FALSE}
+filter() # Filtert Beobachtungen eines Datensatzes
+select() # Wählt Variablen eines Datensatzes aus
+mutate() # Erzeugt neue Variable bzw. verändert bestehende
+rename() # Benennt Variablen um
+arrange() # Sortiert Beobachtungen eines Datensatzes
+%>% # Übergebe das Ergebnis der vorhergehenden Funktion an die folgende
+```
+
+
+## Grafische Verfahren
+Vor jeder mathematisch-statistischen Analyse sollte eine explorative, grafische Analyse erfolgen. Die folgenden Befehle sind aus dem Paket `mosaic`.
+```{r eval=FALSE}
+bargraph() # Balkendiagramm
+histogram() # Histogramm
+bwplot() # Boxplot
+xyplot() # Streudiagrmm
+```
+Nicht aus dem Paket `mosaic` sind:
+```{r eval=FALSE}
+mosaicplot() # Mosaicplot
+corrplot() # Korrelationsplot, Paket corrplot
+ggpairs() # Matrixplot, Paket GGally
+heatmap() # Heatmap
+```
+
+\pagebreak 
+
+## Deskriptive Statistik
+Eine gute Zusammenfassung liefert der `mosaic` Befehl:
+```{r eval=FALSE}
+favstats()
+```
+Ansonsten (`mosaic` angepasst):
+```{r eval=FALSE}
+tally() # Tabellierung, Häufigkeiten 
+prop() # Anteile
+mean() # Arithmetischer Mittelwert
+median() # Median
+quantile() # Quantile
+sd() # Standardabweichung
+var() # Varianz
+IQR() # Interquartilsabstand
+cov() # Kovarianz
+cor() # Korrelationskoefizient
+```
+
+## Inferenzstatistik
+
+### Randomisierung, Simulationen
+Größtenteils `mosaic`:
+```{r, eval=FALSE}
+set.seed() # Zufallszahlengenerator setzen
+rflip() # Münzwurf
+do() # Wiederholung (Schleife)
+sample() # Stichprobe ohne Zurücklegen
+resample() # Stichprobe mit Zurücklegen
+shuffle() # Permutation
+rnorm() # Normalverteilte Zufallszahlen
+```
+
+### Verteilungen
+Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=` bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
+```{r, eval=FALSE}
+xpchisq() # Verteilungsfunktion Chi² Verteilung
+xqchisq() # Quantilsfunktion Chi² Verteilung
+xpnorm() # Verteilungsfunktion Normalverteilung
+xqnorm() # Quantilsfunktion Normalverteilung
+xpt() # Verteilungsfunktion t-Vverteilung
+xqt() # Quantilsfunktion t-Vverteilung
+```
+Analoger Aufbau für weitere Verteilungen, z. B. `_binom()` (Binomialverteilung), `_f()` (F_Verteilung).
+
+### Testverfahren
+Einige der Testverfahren wurden von `mosaic` angepasst.
+```{r eval=FALSE}
+t.test() # t-Test
+prop.test() # Binomialtest (approximativ)
+xchisq.test() # Chi²-Test
+aov() # Varianzanalyse
+```
+
+Der nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic` enthalten, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. 
+
+
+## Multivariate Verfahren
+```{r eval=FALSE}
+lm() # Lineare Regression
+glm(, family="binomial") # Logistische Regression
+plotModel() # Modell zeichnen
+coef() # Koeffizienten extrahieren
+residuals() # Residuen einer Regression
+fitted() # Angepasste Werte einer Regression
+predict() # Vorhersagen
+```
+In `mosaic` kann das Ergebnis einer solchen Regression über `makeFun()` in eine einfache mathematische Funktion überführt werden. `plotFun()` zeichnet das Ergebnis. `step()` führt eine Variablenselektion durch. 
+
+Weitere Verfahren -- nicht `mosaic`:
+```{r eval=FALSE}
+prcomp() # Hauptkomponentenanalyse (PCA)
+alpha() # Reliabilitätsanalys, Paket psych
+dist() # Distanzen
+hclust() # Hierachische Clusteranalyse
+kmeans() # k-Means Clusterverfahren
+rpart() # Klassifikations- und Regressionsbäume, Paket rpart
+
+```
+
+
+
+
+### Versionshinweise:
+Erstellt von Karsten Lübke unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+
+* Datum erstellt: `r Sys.Date()`
+* R Version: `r getRversion()`
+* `mosaic` Version: `r packageVersion("mosaic")`
+
+
+
