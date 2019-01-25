@@ -301,6 +301,3 @@ Kleinere Ändungen von Norman Markgraf.
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`
 * `mosaic` Version: `r packageVersion("mosaic")`
-
-
-
