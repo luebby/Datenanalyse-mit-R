@@ -39,14 +39,14 @@ Bevor evtl. wichtige Information in zusammenfassenden Kennzahlen verloren geht, 
 ### Balkendiagramm
 Balkendiagramme eignen sich am besten um Häufigkeiten darzustellen, also für kategorielle Variablen (`factor`) oder für metrische Variablen (`numeric`) mit wenigen Merkmalsausprägungen. 
 
-Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die Funktion `bargraph` aus dem Paket `mosaic` verwendet werden:
+Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die Funktion `gf_bar` aus dem Paket `mosaic` verwendet werden:
 ```{r}
-bargraph(~ sex, data=tips)
+gf_bar(~ sex, data=tips)
 ```
 
 In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` in Abhängigkeit von `x` (`y` wird modelliert durch `x`), gruppiert nach den Werten von `z`, wobei einzelne Teile fehlen können, so wie im Beispiel `y` und `z`. Aber um z. B. die Verteilung des Geschlechts des Zahlenden je Tageszeit `time` darzustellen muss hier eingegeben werden:
 ```{r}
-bargraph(~ sex | time, data=tips)
+gf_bar(~ sex | time, data=tips)
 ```
 
 
@@ -67,7 +67,7 @@ Histogramme werden für metrische Daten verwendet, der Befehl lautet `histogram`
 
 2.  Welche Abbildung wird über
 ```{r eval=FALSE}
-histogram(~ total_bill | sex, data=tips)
+gf_histogram(~ total_bill | sex, data=tips)
 ```
 erzeugt?
 
@@ -76,21 +76,21 @@ erzeugt?
 **Punktdiagramme** sind eine Variante von Histogrammen, die besonders für metrische Variablen mit wenigen Merkmalsausprägungen geeignet sind.
 
 ```{r}
-dotPlot(~ size, nint=6, data=tips)
+gf_dotplot(~ size, binwidth=1/55, data=tips)
 ```
 
-Hier wurde ein zusätzliche Parameter der Funktion `dotPlot` übergeben: `nint=6`. Dieser Parameter wurde wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?dotPlot`, erfahren.
+Hier wurde ein zusätzliche Parameter der Funktion `gf_dotplot` übergeben: `binwidth=1/55`. Dieser Parameter wurde wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?gf_dotplot`, erfahren.
 
 ### Boxplots
 Boxplots zeigen nicht nur den Median (50%-Quantil) sowie das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand -, sondern geben auch Hinweise auf potentielle Ausreißer:
 
 ```{r}
-bwplot(total_bill ~ sex, data=tips)
+gf_boxplot(total_bill ~ sex, data=tips)
 ```
 
 und gruppiert nach Tageszeit:
 ```{r}
-bwplot(total_bill ~ sex | time, data=tips)
+gf_boxplot(total_bill ~ sex | time, data=tips)
 ```
 
 
@@ -105,7 +105,7 @@ bwplot(total_bill ~ sex | time, data=tips)
 Streudiagramme sind besonders gut geeignet, um einen Überblick auf den Zusammenhang zweier metrischer Merkmale zu erhalten; beispielsweise um den Zusammenhang von `tip` und `total_bill` zu analysieren.
 
 ```{r}
-xyplot(tip ~ total_bill, data=tips)
+gf_point(tip ~ total_bill, data=tips)
 ```
 
 Wenig überraschend steigt die Trinkgeldhöhe mit der Rechnung. Wie sieht es relativ aus?
@@ -204,10 +204,10 @@ Diese unterscheiden sich:
 ```{r}
 meantb <- mean(~ total_bill, data=tips) # Mittelwert
 mediantb <- median(~ total_bill, data=tips) # Median
-histogram(~ total_bill, v=c(meantb, mediantb), data=tips)
+gf_histogram(~ total_bill, data=tips) %>% gf_vline(xintercept = c(meantb, mediantb))
 ```
 
-Über die Option `v=` werden vertikale Linien an den entsprechenden Stellen gezeichnet. Mit `h=` können horizontale Linien gezeichnet werden.
+Mit Hilfe von `%>% gf_vline(xintercept = c(meantb, mediantb))` werden vertikale Linien an den entsprechenden Stellen gezeichnet. Mit `gf_hline(yintercept = ...)` können horizontale Linien gezeichnet werden.
 
 
 ***
@@ -327,6 +327,7 @@ Sie können ihn von [https://goo.gl/6Y3KoK](https://goo.gl/6Y3KoK) herunterladen
 
 ### Lizenz
 Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und Mark Hansen und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+Kleinere Ergänzungen stammen von Norman Markgraf
 
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`

@@ -1,0 +1,87 @@
+%
+%
+% Copyright note: (C) by Norman Markgraf in 2018
+\ProvidesPackage{FOMTexteTitle}[2018/12/19 Version 1.0 FOM CD Title]
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+
+\definecolor{FOMTitelColorLight}{HTML}{00998A}  % FOMTitelColor
+\definecolor{FOMTitelColor}{HTML}{128977} % FOMFrametitelColor
+\definecolor{FOMSubTitelColor}{HTML}{32373D}
+
+%\usepackage[automark,headsepline,plainheadsepline]{scrlayer-scrpage}
+\KOMAoptions{twoside=false}  % Einseitig!
+
+\usepackage[
+    autooneside,
+    headsepline,    % Trennlinie oben
+    plainheadsepline, % wieso auch immer
+    plainfootsepline,
+    footsepline     % Trennlinie unten
+  ]{scrlayer-scrpage}
+  
+\automark[section]{chapter}
+%\renewcommand*{\partmark}[1]{}
+\setkomafont{pageheadfoot}{\normalcolor\normalsize}
+\setkomafont{pagenumber}{\normalfont\normalsize}
+
+\setheadsepline{1pt} 
+\setkomafont{headsepline}{\color{FOMTitelColor}}
+\setfootsepline{1pt} 
+\setkomafont{footsepline}{\color{FOMTitelColor}}
+
+\renewcommand*{\chapterpagestyle}{scrheadings} 
+
+\clearpairofpagestyles
+\ohead{\headmark}
+%\ohead*{\pagemark}
+%\ifoot*{\authorname}
+\ofoot[]{\normalfont\normalsize\@title\xspace | \color{FOMTitelColor}\pagemark}
+%\ModifyLayer[addvoffset=-.6ex]{scrheadings.foot.above.line}% Linie verschieben
+
+
+%
+% ---------------------------------------------------------------------------
+%
+\def\and{%                  % \begin{tabular}
+  \end{tabular}%
+  \hskip 0.25em \@plus.17fil%
+  \begin{tabular}[t]{p{8.5cm}}
+  \color{FOMSubTitelColor}\bfseries}%   % \end{tabular}
+%
+% ---------------------------------------------------------------------------
+%
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
+\begin{center}
+  \includegraphics[width=4.3cm]{img/logo.pdf}
+\end{center}
+\vspace{1.25cm}
+%\vspace{1cm}
+\vskip 2.5em
+{\titlefont\LARGE\color{FOMSubTitelColor} \@title\par}%
+\vskip 0.75em
+{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\huge\color{FOMTitelColor}\@subtitle\par\fi}%
+\vspace{1.5cm}
+
+\begin{raggedleft}
+  \vskip 1.5em
+    \begin{tabular}[t]{p{8.5cm}}
+      {\Large\color{FOMTitelColor}\bfseries Autor*innen:}
+    \end{tabular}\par
+  {\Large \lineskip 0.10em
+    \begin{tabular}[t]{p{8.5cm}}
+      \color{FOMSubTitelColor}\bfseries\@author
+    \end{tabular}\par
+  }%
+  \vskip 1.75em
+\vspace{1.05cm}
+  {\titlefont\Large\color{FOMTitelColor}Stand \@date \par}%
+  \vfill
+\end{raggedleft}\par
+\end{titlepage}
+}
+\endinput
+%
+% ---------------------------------------------------------------------------
+%

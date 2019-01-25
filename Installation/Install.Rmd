@@ -1,19 +1,38 @@
 ---
 title: "Installation von R und RStudio"
-author: "ifes"
-date: ''
+author: "Professor*innen des ifes"
+date: 'SoSe 2019'
+lang: de-De
+colorlinks: yes
+template: NULL
+documentclass: scrreprt
+classoption: 
+    - paper=a4
+    - pagesize
+    - DIV=13  # oder 14
+link-citations: yes
+fontsize: 12pt
 output:
-  html_document:
+  pdf_document:
+    includes:
+      in_header: preamble.tex
+    latex_engine: pdflatex
+    keep_tex: yes
+    template: NULL
+    pandoc_args:
+        - --standalone
+  #            - --filter
+  #            - ./pandocfilter/typography.py
+        - -V
+        - graphics=TRUE
     fig_height: 3
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 3
     fig_width: 5
   word_document:
     fig_height: 3
     fig_width: 5
-documentclass: article
-classoption: a4paper
 ---
 
 ```{r setup, include=FALSE}
@@ -122,7 +141,9 @@ Vereinzelt kann es zu Problemen bei der Installation bzw. beim erstmaligen Start
 ```{r, eval=FALSE}
 library(mosaic)
 ##Lade nötiges Paket: dplyr
-##Fehler: package or namespace load failed for ‘dplyr’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = ##vI[[j]]):
+##Fehler: package or namespace load failed for ‘dplyr’ in 
+##loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), 
+##versionCheck = ##vI[[j]]):
 ## es gibt kein Paket namens ‘Rcpp’
 ##Fehler: Paket ‘dplyr’ konnte nicht geladen werden
 ```
@@ -175,7 +196,9 @@ Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Mau
 
 Sollte wieder die Fehlermeldung erscheinen (`unable to move temporary installation`) verschieben Sie das Paket bitte manuell:
 
-- Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung `The downloaded binary packages are in`): `C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages`. Sollte der Ordner `AppData` nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.
+- Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung `The downloaded binary packages are in`):
+
+  `C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages`. Sollte der Ordner `AppData` nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.
 - Doppelklick auf die zip-Datei, rechtsklick auf den Ornder (hier `Rcpp`), rechte Maustaste, kopieren
 - Einfügen in (hier) `C:\Users\karsten\Documents\R\win-library\3.5\` (`unable to move temporary installation [...] to`)
 

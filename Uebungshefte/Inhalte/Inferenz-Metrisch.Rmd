@@ -25,7 +25,7 @@ library(mosaic)
 Wie sah die (jährliche, quartalsweise) Entwicklung des Bruttosozialproduktes (`BSP91JW`) in dem Zeitraum (1955-1994) aus?
 
 ```{r}
-histogram( ~ BSP91JW, data = B3)
+gf_histogram( ~ BSP91JW, data = B3)
 favstats( ~ BSP91JW, data = B3)
 ```
 
@@ -34,7 +34,7 @@ Liefern die Daten Belege für die Forschungsthese, dass der Mittelwert nicht zuf
 Zunächst ein Konfidenzintervall für den unbekannten Wert $\mu$:
 ```{r}
 BootBSP91JW <- do(10000) * mean( ~ BSP91JW, data = resample(B3))
-histogram( ~ mean, data = BootBSP91JW)
+gf_histogram( ~ mean, data = BootBSP91JW)
 quantile( ~ mean, data = BootBSP91JW, probs = c(0.025, 0.975))
 ```
 
@@ -52,13 +52,13 @@ n <-  length( B3$BSP91JW)
 set.seed(1896)
 
 simBSP <- rnorm(n = n, mean = 0, sd = sdBSP)
-histogram( ~ simBSP)
+gf_histogram( ~ simBSP)
 ```
 
-Für die Simulation der Verteilung unter $H_0$ wird dies jetzt z. B. $10000$-mal wiederholt -- und der Mittelwert berechnet:
+Für die Simulation der Verteilung unter $H_0$ wird dies jetzt z.B. $10000$-mal wiederholt -- und der Mittelwert berechnet:
 ```{r}
 SimBSP91JW <- do(10000) * mean( ~ rnorm(n = n, mean = 0, sd = sdBSP))
-histogram( ~ mean, SimBSP91JW)
+gf_histogram( ~ mean, data=SimBSP91JW)
 ```
 
 Der Anteil der unter $H_0$ simulierten Daten, die einen größeren Mittelwert als den beobachteten aufweisen ist sehr klein:
@@ -136,7 +136,7 @@ B3AufAb <- droplevels(B3AufAb)
 
 In der politischen Diskussion werden immer niedrige Zinsen gefordert. Schauen wir mal, wie die Zinsen in den Konjunkturphasen in der Vergangenheit (1955-1994) verteilt waren:
 ```{r}
-bwplot(ZINSK ~ PHASEN, data = B3AufAb)
+gf_boxplot(ZINSK ~ PHASEN, data = B3AufAb)
 ```
 
 Anscheinend waren die Zinsen in Zeiten des Aufschwungs niedriger. 
@@ -239,14 +239,14 @@ cohensD(ZINSK ~ PHASEN, data = B3AufAb)
 Bei mehr als zwei Gruppen funktionieren die Techniken des t-Tests nicht mehr. Um Lagemaßunterschiede zu testen, wird anstelle der Mittelwerte die Streuung verglichen: Ist die Streuung zwischen den Gruppen groß im Vergleich zur Streuung innerhalb der Gruppen?
 
 ```{r}
-xyplot(DEFRATE ~ PHASEN, data = B3)
+gf_point(DEFRATE ~ PHASEN, data = B3)
 ```
 
 Es gilt, dass sich die Gesamtstreung ($SST$) zusammensetzt aus der Streuung zwischen den Gruppen ($SSG$) und innerhalb der Gruppen ($SSE$), d. h., $$SST=SSG+SSE.$$
 
 Unterscheidet sich der mittlere Anteil des Staatsdefizits `DEFRATE` nicht zufällig zwischen den Konjunkturphasen?
 ```{r}
-bwplot(DEFRATE ~ PHASEN, data = B3)
+gf_boxplot(DEFRATE ~ PHASEN, data = B3)
 favstats(DEFRATE ~ PHASEN, data = B3)
 ```
 
@@ -269,7 +269,7 @@ $$F=\frac{MSG}{MSE}=\frac{`r round(summary(DEFaov)[[1]]$"Mean Sq"[1],4)`}{`r rou
 
 Unterscheidet sich das Lagemaß der Veränderung der Lohnstückkosten `LSTKJW` nicht zufällig?
 ```{r}
-bwplot(LSTKJW ~ PHASEN, data = B3)
+gf_boxplot(LSTKJW ~ PHASEN, data = B3)
 favstats(LSTKJW ~ PHASEN, data = B3)
 LSTKaov <- aov(LSTKJW ~ PHASEN, data = B3)
 summary(LSTKaov)
@@ -360,6 +360,7 @@ Sie können ihn, sofern noch nicht geschehen, von [https://goo.gl/6Y3KoK](https:
 
 ### Lizenz
 Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).  
+Kleinere Ergänzungen stammen von Norman Markgraf
 
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`

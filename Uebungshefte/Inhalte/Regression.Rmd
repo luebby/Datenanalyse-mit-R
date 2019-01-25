@@ -23,7 +23,7 @@ $$tip_i=\beta_0+\beta_1\cdot total\_bill_i+\epsilon_i$$
 
 Zunächst eine visuelle Analyse mi Hilfe eines Scatterplots (Streudiagramms).
 ```{r}
-xyplot(tip ~ total_bill, data=tips)
+gf_point(tip ~ total_bill, data=tips)
 ```
 
 Es scheint einen positiven Zusammenhang zu geben. Modellieren wir die **abhängige** Variable `tip` (inhaltliche Entscheidung!) als lineare Funktion der **unabhängigen** Variable `total_bill`:
@@ -60,7 +60,7 @@ Aber wie sieht es mit den Annahmen aus?
 - Die Linearität des Zusammenhangs haben wir zu Beginn mit Hilfe des Scatterplots "überprüft".
 - Zur Überprüfung der Normalverteilung der Residuen zeichnen wir ein Histogramm. Die Residuen können über den Befehl `resid()` aus einem Linearen Modell extrahiert werden. Hier scheint es zu passen:
 ```{r}
-histogram( ~ resid(LinMod.1))
+gf_histogram( ~ resid(LinMod.1))
 
 ```
 
@@ -68,7 +68,7 @@ histogram( ~ resid(LinMod.1))
 - Konstante Varianz: Dies kann z. B. mit einem Scatterplot der Residuen auf der y-Achse und den angepassten Werten auf der x-Achse überprüft werden. Die angepassten Werte werden über den Befehl `fitted()` extrahiert. Diese Annahme scheint verletzt zu sein (siehe unten): je größer die Prognose des Trinkgeldes, desto größer wirkt die Streuung der Residuen. Dieses Phänomen ließ sich schon aus dem ursprünglichen Scatterplot `xyplot(tip ~ total_bill, data=tips)` erahnen. Das ist auch inhaltlich plausibel: je höher die Rechnung, desto höher die Varianz beim Trinkgeld. Die Verletzung dieser Annahme beeinflusst *nicht* die Schätzung der Steigung, sondern die Schätzung des Standardfehlers, also des p-Wertes des Hypothesentests, d. h., $H_0:\beta_1=0$. 
 
 ```{r}
-xyplot(resid(LinMod.1) ~ fitted(LinMod.1))
+gf_point(resid(LinMod.1) ~ fitted(LinMod.1))
 ```
 
 - Extreme Ausreißer: Wie am Plot der Linearen Regression `plotModel(LinMod.1)` erkennbar, gibt es vereinzelt Ausreißer nach oben, allerdings ohne einen extremen Hebel.
@@ -76,13 +76,13 @@ xyplot(resid(LinMod.1) ~ fitted(LinMod.1))
 
 Hängt die Rechnungshöhe von der Anzahl der Personen ab? Bestimmt, aber wie?
 ```{r}
-xyplot(total_bill ~ size, data=tips)
+gf_point(total_bill ~ size, data=tips)
 ```
 
 Da bei diskreten metrischen Variablen (hier `size`) Punkte übereinander liegen können, sollte man "jittern", d. h., eine (kleine) Zufallszahl addieren:
 ```{r}
 set.seed(1896) # Zufallszahlengenerater setzen
-xyplot(total_bill ~ jitter(size), data=tips)
+gf_point(total_bill ~ jitter(size), data=tips)
 ```
 
 
@@ -99,7 +99,7 @@ Der Wochentag `day` ist eine kategoriale Variable. Wie sieht eine Regression des
 
 Zunächst grafisch:
 ```{r}
-xyplot(tip ~ day, data=tips)
+gf_point(tip ~ day, data=tips)
 ```
 
 Und als Lineares Modell:
@@ -195,9 +195,11 @@ Das Ergebnis des zugrundeliegenden F-Tests (vgl. Varianzanalyse) wird in der let
 
 ### Modellwahl
 Das Modell mit allen Variablen des Datensatzes, d. h. mit 6 unabhängigen (`LinMod.4`), erklärt `r round(summary(LinMod.4)$r.squared*100,2)`$\,$% der Variation, das Modell *nur* mit der Rechnungshöhe als erklärende Variable (`LinMod.1`) schon `r round(summary(LinMod.1)$r.squared*100,2)`$\,$%, der Erklärungszuwachs liegt also gerade einmal bei `r round(summary(LinMod.4)$r.squared*100,2) - round(summary(LinMod.1)$r.squared*100,2)` Prozentpunkten. In der Statistik ist die Wahl des *richtigen* Modells eine der größten Herausforderungen, auch deshalb, weil das wahre Modell in der Regel nicht bekannt ist und es schwer ist, die richtige Balance zwischen Einfachheit und Komplexität zu finden. Aufgrund des Zufalls kann es immer passieren, dass das Modell sich zu sehr an die *zufälligen* Daten anpasst (Stichwort: Overfitting). Es gibt unzählige Modellwahlmethoden, und leider garantiert keine, dass immer das beste Modell gefunden wird. Eine Möglichkeit ist die sogenannte Schrittweise-Rückwärtsselektion auf Basis des Akaike-Informationskriteriums (AIC)^[siehe z. B. Rob J Hyndman & George Athanasopoulos, Forecasting: principles and practice, Kapitel 5.3: Selecting predictors,   [https://www.otexts.org/fpp/5/3](https://www.otexts.org/fpp/5/3)]. Diese ist nicht nur recht weit verbreitet -- und liefert unter bestimmten Annahmen das "richtige" Modell -- sondern in R durch den Befehl `step()` einfach umsetzbar:
+
 ```{r}
 step(LinMod.4)
 ```
+
 In den letzten Zeilen der Ausgabe steht das beste Modell, das diese Methode (schrittweise, rückwärts) mit diesem Kriterium (AIC) bei diesen Daten findet (Punktprognose, d. h. ohne Residuum):
 
 ```{r include=FALSE}
@@ -316,7 +318,8 @@ Versuchen Sie, das Evaluierungsergebnis als abhängige Variable anhand geeignete
 - Daniel Wollschläger (2014): *Grundlagen der Datenanalyse mit R*, Kapitel 6
 
 ### Lizenz
-Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).  
+Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0).
+Kleinere Ergänzungen stammen von Norman Markgraf
 
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`

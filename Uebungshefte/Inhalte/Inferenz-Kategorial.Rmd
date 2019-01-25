@@ -159,7 +159,7 @@ set.seed(1896)
 # 10000-mal das Jahr permutieren: Nullhypothese kein Unterschied
 pdiff.null <- do(10000) * diffprop( ~ response | shuffle(year), data = de)
 # Histogramm
-histogram(~ diffprop, data = pdiff.null, v = c(pdiff, -pdiff))
+gf_histogram(~ diffprop, data = pdiff.null) %>% gf_vline(xintercept = c(pdiff, -pdiff))
 # p-Wert
 prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
 ```
@@ -174,7 +174,8 @@ prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
 
 ## Chi-Quadrat Unabhängigkeitstest
 
-Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi^2^-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z. B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
+Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi^2^-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z.B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
+
 ```{r}
 G7 <- c("United States", "Canada", "Germany", "France", "Italy", "Japan")
 G7.12 <- filter(atheism, nationality %in% G7 & year == 2012)
@@ -241,7 +242,6 @@ tips <- read.csv2("tips.csv")
 
 ### Lizenz
 Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
-
 
 ### Versionshinweise:
 * Datum erstellt: `r Sys.Date()`

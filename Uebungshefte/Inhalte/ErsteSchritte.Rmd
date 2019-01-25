@@ -146,7 +146,7 @@ erscheinen, muss das Paket `xyz` zunächst installiert werden (siehe oben).
 Der Grundgedanke von `mosaic` ist *Modellierung*. In R und insbesondere in mosaic wird dafür die Tilde `~` verwendet. `y~x` kann dabei gelesen werden wie "y ist eine Funktion von x". Um beispielsweise eine Abbildung (Scatterplot) des Trinkgeldes `tip` (auf der Y-Achse) und Rechnungshöhe `total_bill` (auf der X-Achse) zu erhalten, kann man in R folgenden Befehl eingeben:
 
 ```{r}
-xyplot(tip ~ total_bill, data=tips)
+gf_point(tip ~ total_bill, data=tips)
 ```
 
 
@@ -244,6 +244,7 @@ meineDaten <- read_excel(file.choose())  # Datei auswählen und in R einlesen
 
 ### Lizenz
 Diese Übung wurde von Karsten Lübke entwickelt und orientiert sich an der Übung zum Buch [OpenIntro](https://www.openintro.org/stat/index.php?stat_book=isrs) von Andrew Bray, Mine &Ccedil;etinkaya-Rundel und Mark Hansen und steht wie diese unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0). 
+Kleinere Ergänzungen stammen von Norman Markgraf
 
 
 ### Versionshinweise:
