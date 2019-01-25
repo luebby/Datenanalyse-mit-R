@@ -50,7 +50,11 @@ plotModel(linreg, xlab="S&P-Rendite",ylab="DAX-Rendite", abline = c(h = 0, v = 0
 Stellen Sie zusätzlich die Residuen und die fitted values in einem Streudiagramm dar und führen Sie den RESET-Test durch. Beurteilen Sie erneut, ob die Annahme eines linearen Zusammenhangs zwischen Einflussgröße und Zielgröße aufrechterhalten werden kann. 
 
 ```{r, fig.height = 3, fig.width = 3}
+<<<<<<< HEAD
 gf_point(resid(linreg) ~ fitted(linreg))
+=======
+xyplot(resid(linreg) ~ fitted(linreg))
+>>>>>>> d28272673daea42af6db1d444db689badf40f008
 
 # RESET-Test auf Fehlspezifikation
 resettest(linreg, 2:4, type="fitted")

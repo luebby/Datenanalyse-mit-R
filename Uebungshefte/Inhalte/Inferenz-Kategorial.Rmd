@@ -175,6 +175,7 @@ prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
 ## Chi-Quadrat Unabhängigkeitstest
 
 Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi^2^-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z.B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
+
 ```{r}
 G7 <- c("United States", "Canada", "Germany", "France", "Italy", "Japan")
 G7.12 <- filter(atheism, nationality %in% G7 & year == 2012)
