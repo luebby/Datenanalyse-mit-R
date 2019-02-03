@@ -8,5 +8,5 @@
 *_files
 *.pdf
 .DS_Store
-Uebungshefte/*.pdf
 *.pdf
+*.aux
