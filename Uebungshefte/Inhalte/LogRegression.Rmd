@@ -23,7 +23,7 @@ library(mosaic)
 Können wir anhand der Risikobereitschaft abschätzen, ob die Wahrscheinlichkeit für einen Aktienkauf steigt? Schauen wir uns zunächst ein Streudiagramm an:
 
 ```{r}
-xyplot(Aktienkauf ~ Risikobereitschaft, data = Aktien)
+gf_point(Aktienkauf ~ Risikobereitschaft, data = Aktien)
 ```
 
 Der Zusammenhang scheint nicht sehr ausgeprägt zu sein. Lassen Sie uns dennoch ein lineare Regression durchführen und das Ergebnis auswerten und graphisch darstellen.
@@ -53,7 +53,7 @@ y <- 1/(1+exp(-eta))        # exp() ist die e-Funktion
 # für das Label der x-Achse wird ein mathematisches Symbol genutzt
 # Label der y-Achse wird nicht angezeigt
 # statt Punkten wird eine Liniengraphik ausgegeben
-xyplot(y ~ eta, xlab = expression(eta), ylab = "", type = "l")   
+gf_line(y ~ eta, xlab = expression(eta), ylab = "")   
 ```
 
 ## Logistische Regression
@@ -127,7 +127,7 @@ download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 Zunächst ein Plot:
 ```{r}
 tips <- read.csv2("tips.csv")
-xyplot(jitter(as.numeric(smoker)) ~ day, data = tips)
+gf_point(jitter(as.numeric(smoker)) ~ day, data = tips)
 ```
 
 **Hinweis:** Um zu sehen, ob es an manchen Tagen mehr Raucher gibt, sollten Sie zumindest eine Variable "verrauschen" ("*jittern*"). Da die Variable `smoker` eine nominale Variable ist und die Funktion `jitter()` nur mit numerischen Variablen arbeitet, muss sie mit `as.numeric()` in eine numerische Variable umgewandelt werden.
@@ -222,8 +222,9 @@ library(ROCR)
 pred <- prediction(glm1$fitted.values, Aktien$Aktienkauf)
 # ROC Kurve
 perf <- performance(pred,"tpr","fpr")
-plot(perf)
-abline(0,1, col = "grey")
+# autoplot möglich, dazu muss das Paket ggfortify geladen werden
+library(ggfortify)
+autoplot(perf) %>% gf_abline(intercept = 0, slope = 1, color = "grey")
 # Area under curve (ROC-Wert)
 performance(pred,"auc")@y.values
 
