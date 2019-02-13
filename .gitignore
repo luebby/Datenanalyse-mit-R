@@ -10,3 +10,12 @@
 .DS_Store
 *.pdf
 *.aux
+
+*_files/
+*_files/*/
+*_files/*
+*_files
+
+
+
+
