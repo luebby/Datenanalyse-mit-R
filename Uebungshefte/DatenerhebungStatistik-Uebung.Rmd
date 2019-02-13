@@ -1,7 +1,6 @@
 ---
 title: "Datenerhebung und Statistik -- \\newline Übung Quantitative Datenanalyse mit R"
 author: "erstellt von Professor*innen des ifes"
-<<<<<<< HEAD
 date: 'SoSe 2019'
 lang: de-De
 colorlinks: yes
@@ -35,32 +34,12 @@ output:
     fig_height: 3
     fig_width: 5
 ---
-=======
-date: "Stand WiSe 2018/19"
-output:
-  pdf_document:
-    includes:
-      in_header: header.tex
-documentclass: article
-classoption: a4paper, 10pt
----
-\setstretch{1.44}
-
-<!-- \begin{center} -->
-<!-- \includegraphics{ifes.jpg} -->
-<!-- \end{center} -->
-
-\fancyhead{}
-\fancyhead[LE,RO]{\textup{\nouppercase{\leftmark}}}   
->>>>>>> d28272673daea42af6db1d444db689badf40f008
 
 \tableofcontents
 \newpage 
 
-<<<<<<< HEAD
-=======
-\fancyhead[LO,RE]{\textsl{\rightmark}}  
->>>>>>> d28272673daea42af6db1d444db689badf40f008
+
+<!-- \fancyhead[LO,RE]{\textsl{\rightmark}}   -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
