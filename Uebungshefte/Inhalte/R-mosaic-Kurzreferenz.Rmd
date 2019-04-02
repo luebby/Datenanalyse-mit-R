@@ -1,9 +1,9 @@
 # Anhang `r anh <- anh+1; anh`: R Kurzreferenz
 
 ## Vorbemerkungen
-Eine Übersicht von nützlichen R Funktionen innerhalb der Datenanalyse. 
+Eine Übersicht von nützlichen R-Funktionen innerhalb der Datenanalyse. 
 
-Diese Kurzreferenz beschreibt ein kleinen Teil der R Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert weitgehend auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
+Diese Kurzreferenz beschreibt einen kleinen Teil der R-Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert weitgehend auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
 
 Weitere Hilfe und Beispiele finden Sie, wenn Sie
 ```{r eval=FALSE}
@@ -14,9 +14,9 @@ eingeben.
 * R unterscheidet zwischen Groß- und Kleinbuchstaben.
 * R verwendet den Punkt `.` als Dezimaltrennzeichen.
 * Fehlende Werte werden in R durch `NA` kodiert.
-* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
+* Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile wird von R dann ignoriert.
 * R wendet Befehle direkt an.
-* R ist objektorientiert, d. h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte.
+* R ist objektorientiert, d.h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte.
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden.
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl in der Konsole wieder aufrufen.
 * Eine Ergebniszuweisung erfolgt über `<-`
@@ -26,7 +26,7 @@ Innerhalb von `mosaic`:
 analysiere(y ~ x | z , data=Daten)
 ```
 
-d\. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z. B. `y` und/ oder `z`) fehlen.^[Beim Mac ist `~` die Tastenkombination `alt`+`n`, `|` die Tastenkombination `alt`+`7`] 
+d\. h., modelliere `y` in Abhängigkeit von `x` getrennt bzw. bedingt für `z` aus dem Datensatz `Daten`. Dabei können Teile (z.B. `y` und/oder `z`) fehlen.^[Beim Mac ist `~` die Tastenkombination `alt`+`n`, `|` die Tastenkombination `alt`+`7`] 
 
 Zusatzpakete müssen vor der ersten Benutzung einmalig installiert und nach jedem Neustart von R geladen werden:
 ```{r, eval=FALSE}
@@ -52,7 +52,7 @@ U\. a. mit Hilfe des Zusatzpaketes `readxl` können Excel Dateien eingelesen wer
 meineDaten <- read_excel(file.choose()) 
 ```
 
-### Daten verarbeiten
+### Datenübersicht
 ```{r eval=FALSE}
 str() # Datenstruktur
 head() # Obere Zeilen
@@ -62,7 +62,7 @@ rownames(); colnames() # Zeilennamen, Spaltennamen
 ```
 
 ### Daten transformieren
-Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i-te Zeile und j-te Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt. Mit `-` vor der Auswahl werden der Rest ohne die Auswahl ausgewählt.
+Einzelne Variablen eines Datensatzes können über `$` ausgewählt werden: `Daten$Variable`. Allgemein kann über `Daten[i,j]` die i-te Zeile und j-te Spalte ausgewählt werden, wobei auch mehrere oder keine Zeile(n) bzw. Spalte(n) ausgewählt werden können. Über `c()` wird ein Vektor erzeugt. Mit **`-`** vor der Auswahl werden der Rest ohne die Auswahl ausgewählt.
 ```{r eval=FALSE}
 as.factor() # Daten als Faktoren definieren
 relevel() # Faktorstufen umordnen
@@ -83,7 +83,7 @@ rowSums() # Zeilensumme
 rowMeans() # Zeilenmittelwert
 ```
 
-Innerhalb des Paketes `dplyr` (wird mit `mosaic` geladen) gibt es u. a. folgende Funktionen:
+Innerhalb des Paketes `dplyr` (wird mit `mosaic` geladen) gibt es u.a. folgende Funktionen:
 ```{r eval=FALSE}
 filter() # Filtert Beobachtungen eines Datensatzes
 select() # Wählt Variablen eines Datensatzes aus
@@ -146,7 +146,7 @@ rnorm() # Normalverteilte Zufallszahlen
 ```
 
 ### Verteilungen
-Innerhalb der Funktionen müssen ggf. die Parameter, d. h. `mean=`, `sd=` bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
+Innerhalb der Funktionen müssen ggf. die Parameter, d.h. `mean=`, `sd=` bzw. `df=` angepasst werden. (Das vorgestellte `x` steht für in `mosaic` angepasste Versionen.)
 ```{r, eval=FALSE}
 xpchisq() # Verteilungsfunktion Chi² Verteilung
 xqchisq() # Quantilsfunktion Chi² Verteilung
@@ -155,7 +155,7 @@ xqnorm() # Quantilsfunktion Normalverteilung
 xpt() # Verteilungsfunktion t-Vverteilung
 xqt() # Quantilsfunktion t-Vverteilung
 ```
-Analoger Aufbau für weitere Verteilungen, z. B. `_binom()` (Binomialverteilung), `_f()` (F_Verteilung).
+Analoger Aufbau für weitere Verteilungen, z.B. `_binom()` (Binomialverteilung), `_f()` (F_Verteilung).
 
 ### Testverfahren
 Einige der Testverfahren wurden von `mosaic` angepasst.
@@ -166,7 +166,7 @@ xchisq.test() # Chi²-Test
 aov() # Varianzanalyse
 ```
 
-Der nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic` enthalten, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk Test durch: `shapiro.test()`. 
+Der nicht-parametrische Wilcoxon-Test `wilcox.test()` ist nicht im Paket `mosaic` enthalten, hat daher einen leicht anderen Funktionsaufruf. Einen Test auf Normalverteilung führt der Shapiro-Wilk-Test durch: `shapiro.test()`. 
 
 
 ## Multivariate Verfahren

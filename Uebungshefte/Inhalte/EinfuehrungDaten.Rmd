@@ -5,7 +5,7 @@
 
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* näher analysieren.
 
-Sofern noch nicht geschehen, können Sie ihn z. B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
+Sofern noch nicht geschehen, können Sie ihn z.B. [hier](https://goo.gl/whKjnl) als `csv`-Datei direkt nach R herunterladen:
 ```{r}
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
@@ -44,7 +44,7 @@ Um einen Überblick über die Geschlechterverteilung `sex` zu bekommen kann die 
 gf_bar(~ sex, data=tips)
 ```
 
-In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` in Abhängigkeit von `x` (`y` wird modelliert durch `x`), gruppiert nach den Werten von `z`, wobei einzelne Teile fehlen können, so wie im Beispiel `y` und `z`. Aber um z. B. die Verteilung des Geschlechts des Zahlenden je Tageszeit `time` darzustellen muss hier eingegeben werden:
+In mosaic wird (fast) immer die Formeldarstellung `y ~ x | z` verwendet: `y` in Abhängigkeit von `x` (`y` wird modelliert durch `x`), gruppiert nach den Werten von `z`, wobei einzelne Teile fehlen können, so wie im Beispiel `y` und `z`. Aber um z.B. die Verteilung des Geschlechts des Zahlenden je Tageszeit `time` darzustellen muss hier eingegeben werden:
 ```{r}
 gf_bar(~ sex | time, data=tips)
 ```
@@ -79,7 +79,7 @@ erzeugt?
 gf_dotplot(~ size, binwidth=1/55, data=tips)
 ```
 
-Hier wurde ein zusätzliche Parameter der Funktion `gf_dotplot` übergeben: `binwidth=1/55`. Dieser Parameter wurde wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?gf_dotplot`, erfahren.
+Hier wurde ein zusätzliche Parameter der Funktion `gf_dotplot` übergeben: `binwidth=1/55`. Dieser Parameter wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?gf_dotplot`, erfahren.
 
 ### Boxplots
 Boxplots zeigen nicht nur den Median (50%-Quantil) sowie das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand -, sondern geben auch Hinweise auf potentielle Ausreißer:
@@ -109,7 +109,7 @@ gf_point(tip ~ total_bill, data=tips)
 ```
 
 Wenig überraschend steigt die Trinkgeldhöhe mit der Rechnung. Wie sieht es relativ aus?
-Dazu müssen wir zunächst ein neues Merkmal im Datensatz erzeugen, z. B.:
+Dazu müssen wir zunächst ein neues Merkmal im Datensatz erzeugen, z.B.:
 ```{r}
 tips$tip_relativ <- tips$tip / tips$total_bill
 ```
@@ -118,7 +118,7 @@ Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Tri
 ***
 **Übung:** 
 
-4.  Erstellen Sie eine Abbildung, mit der Sie visuell gucken können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
+4.  Erstellen Sie eine Abbildung, mit der Sie visuell betrachten können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
 
 ***
 
@@ -257,10 +257,10 @@ Um die Standardabweichung in Abhängigkeit der Gruppengröße zu berechnen genü
 sd(~total_bill | size, data=tips)
 ```
 
-Bei 4 Personen lag die Standardabweichung als bei `r round(sd(~total_bill|size, data=tips)["4"], 2)`$.
+Bei 4 Personen lag die Standardabweichung also bei `r round(sd(~total_bill|size, data=tips)["4"], 2)`$.
 
 
-Um jetzt z. B. den Variationskoeffizienten zu berechnen, wird 
+Um jetzt z.B. den Variationskoeffizienten zu berechnen, wird 
 ```{r}
 sd(~total_bill | size, data=tips) / mean(~total_bill | size, data=tips)
 ```
@@ -287,7 +287,7 @@ cov(tip ~ total_bill, data=tips)
 cor(tip ~ total_bill, data=tips)
 ```
 
-Für kategorielle Variablen wird in diesen Abschnitt zunächst nur die Kreuztabelle verwendet:
+Für kategorielle Variablen wird in diesem Abschnitt zunächst nur die Kreuztabelle verwendet:
 ```{r}
 tally(smoker~sex, format="proportion", data=tips)
 ```
@@ -301,7 +301,7 @@ tally(smoker~sex, format="proportion", data=tips)
 
 
 ## Übung: Teaching Rating
-Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
+Dieser Datensatz analysiert u.a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis von Dozenten:
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 

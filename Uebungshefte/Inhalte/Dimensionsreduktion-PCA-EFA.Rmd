@@ -1,12 +1,11 @@
 # Kapitel `r kap <- kap+1; kap`: Dimensionsreduktion mit PCA und EFA
 
 
-
 ## Dimensionsreduktion
 
-Datensätze in den Sozialwissenschaften, und damit auch in der Wirtschaftspsychologie, haben oft viele Variablen - oder auch Dimensionen - und es ist vorteilhaft, diese auf eine kleinere Anzahl von Variablen (oder Dimensionen) zu reduzieren. Zusammenhänge zwischen verschiedenen Dimensionen oder Unterschiede zwischen verschiedenen Gruppen bezüglich einer oder mehrerer Dimensionen (z. B. bei Experimenten) können so klarer und einfacher identifiziert werden. Dimensionen mit konkreten Sachverhalten werden in der Sprache der Wissenschaft häufig als **Konstrukte** bezeichnet. 
+Datensätze in den Sozialwissenschaften, und damit auch in der Wirtschaftspsychologie, haben oft viele Variablen - oder auch Dimensionen - und es ist vorteilhaft, diese auf eine kleinere Anzahl von Variablen (oder Dimensionen) zu reduzieren. Zusammenhänge zwischen verschiedenen Dimensionen oder Unterschiede zwischen verschiedenen Gruppen bezüglich einer oder mehrerer Dimensionen (z.B. bei Experimenten) können so klarer und einfacher identifiziert werden. Dimensionen mit konkreten Sachverhalten werden in der Sprache der Wissenschaft häufig als **Konstrukte** bezeichnet. 
 
-##Konstrukte
+## Konstrukte
 
 Konstrukte stellen in den Sozialwissenschaften gedankliche bzw. theoretische Sachverhalt dar, die nicht direkt beobachtbar und damit nicht direkt messbar sind. Nehmen wir beispielsweise an, es soll das Konstrukt `Anerkennung` im Rahmen einer sozialwissenschaftlichen Studie gemessen werden. Dabei gibt es zunächst zwei Fragestellungen:
 
@@ -19,7 +18,7 @@ Liest man bei Wikipediea diesen Begriff nach, kommt folgende Antwort: "Anerkennu
 
 ## Messung von Anerkennung
 
-Gut, wir kennen nun die Bedeutung von Anerkennung, aber wir wissen immer noch nicht, wie wir Anerkennung messen können. Da die Suche nach Anerkennung in der Psychologie kein neues `Konstrukt` darstellt, sondern schon vielfach gemessen wurde, müssen wir nur in bisherigen Forschungsergebnissen nachlesen. Dies führt unweigerlich dazu, dass wir auf bisherige Forschungen stoßen, die das Konstrukt Anerkennung als ein `multidimensionales Konstrukt` definieren und mit mehr als einem **Item (Indikator)** messen. Mehr zur Messung von Anerkennung weiter unten im Datenbeispiel. D. h., der Sachverhalt `Anerkennung` wird aus anderen, messbaren Sachverhalten `(Indikatoren)` messbar gemacht. Der Prozess des **Messbarmachens** heißt Operationalisierung. Mehr zur Operationalisierung von Anerkennung und anderen Konstrukten betrachten wir weiter unten im Datenbeispiel. 
+Gut, wir kennen nun die Bedeutung von Anerkennung, aber wir wissen immer noch nicht, wie wir Anerkennung messen können. Da die Suche nach Anerkennung in der Psychologie kein neues `Konstrukt` darstellt, sondern schon vielfach gemessen wurde, müssen wir nur in bisherigen Forschungsergebnissen nachlesen. Dies führt unweigerlich dazu, dass wir auf bisherige Forschungen stoßen, die das Konstrukt Anerkennung als ein `multidimensionales Konstrukt` definieren und mit mehr als einem **Item (Indikator)** messen. Mehr zur Messung von Anerkennung weiter unten im Datenbeispiel. D.h., der Sachverhalt `Anerkennung` wird aus anderen, messbaren Sachverhalten `(Indikatoren)` messbar gemacht. Der Prozess des **Messbarmachens** heißt Operationalisierung. Mehr zur Operationalisierung von Anerkennung und anderen Konstrukten betrachten wir weiter unten im Datenbeispiel. 
 
 
 ## Zwei Methoden der Dimensionsreduktion
@@ -27,13 +26,13 @@ Gut, wir kennen nun die Bedeutung von Anerkennung, aber wir wissen immer noch ni
 In diesem Kapitel betrachten wir zwei gängige Methoden, um die Komplexität von multivarianten, metrischen Daten zu reduzieren, indem wir die Anzahl der Dimensionen in den Daten reduzieren. 
 
 * Die *Hauptkomponentenanalyse (PCA)* versucht, unkorrelierte Linearkombinationen zu finden, die die maximale Varianz in den Daten erfassen. Die PCA beinhaltet also das Extrahieren von linearen Zusammenhängen der beobachteten Variablen. 
-* Die *Exploratorische Faktorenanalyse (EFA)* versucht, die Varianz auf Basis einer kleinen Anzahl von Dimensionen zu modellieren, während sie gleichzeitig versucht, die Dimensionen in Bezug auf die ursprünglichen Variablen interpretierbar zu machen. Es wird davon ausgegangen, dass die Daten einem Faktoren Modell entsprechen, bei der die beobachteten Korrelationen auf `latente` Faktoren zurückführen. Mit der EFA wird nicht die gesamte Varianz erklärt.  
+* Die *Explorative Faktorenanalyse (EFA)* versucht, die Varianz auf Basis einer kleinen Anzahl von Dimensionen zu modellieren, während sie gleichzeitig versucht, die Dimensionen in Bezug auf die ursprünglichen Variablen interpretierbar zu machen. Es wird davon ausgegangen, dass die Daten einem Faktorenmodell entsprechen, bei der die beobachteten Korrelationen auf `latente` Faktoren zurückführen. Mit der EFA wird nicht die gesamte Varianz erklärt.  
 
 ## Welches ist die bessere Methode?
 
 In der Psychologie werden diese beiden Methoden oft in der Konstruktion von mehrstufigen Tests angewendet, um festzustellen, welche `Items` auf welche Konstrukte laden. Sie ergeben in der Regel ähnliche inhaltliche Schlussfolgerungen. Dies erklärt, warum einige Statistik-Software-Programme beide Methoden zusammenpacken. So wird die PCA als Standard-Extraktionsmethode in den SPSS-Faktoranalyse-Routinen verwendet. Dies führt zweifellos zu einer gewissen Verwirrung über die Unterscheidung zwischen den beiden Methoden. Die EFA wird oft als `Common Factor Analysis oder principal axis factoring (Hauptachsenanalyse)` bezeichnet. EFA verwendet eine Vielzahl von Optimierungsroutinen und das Ergebnis, im Gegensatz zu PCA, hängt von der verwendeten Optimierungsroutine und Ausgangspunkten für diese Routinen ab. Es gibt also keine einzigartige Lösung bei der EFA.
 
-##Faustregeln
+## Faustregeln
 
 Eine einfache Faustregel für die Entscheidung zwischen diesen beiden Methoden:
 
@@ -43,8 +42,8 @@ Eine einfache Faustregel für die Entscheidung zwischen diesen beiden Methoden:
 
 ## Gründe für die Notwendigkeit der Datenreduktion
 
-* Im technischen Sinne der Dimensionsreduktion können wir statt Variablen-Sets die Faktor-/ Komponentenwerte verwenden (z. B. für Mittelwertvergleiche zwischen Experimental- und Kontrollgruppe, Regressionsanalyse und Clusteranalyse).
-* Wir können Unsicherheit verringern. Wenn wir glauben, dass ein Konstrukt nicht eindeutig messbar ist, dann kann mit einem Variablen-Set die Unsicherheit reduziert werden. 
+* Im technischen Sinne der Dimensionsreduktion können wir statt Variablensets die Faktor-/ Komponentenwerte verwenden (z.B. für Mittelwertvergleiche zwischen Experimental- und Kontrollgruppe, Regressionsanalyse und Clusteranalyse).
+* Wir können Unsicherheit verringern. Wenn wir glauben, dass ein Konstrukt nicht eindeutig messbar ist, dann kann mit einem Variablenset die Unsicherheit reduziert werden. 
 * Wir können den Aufwand bei der Datenerfassung vereinfachen, indem wir uns auf Variablen konzentrieren, von denen bekannt ist, dass sie einen hohen Beitrag zum interessierenden Faktor/ Komponente leisten. Wenn wir feststellen, dass einige Variablen für einen Faktor nicht wichtig sind, können wir sie aus dem Datensatz eliminieren.
 
 ## Benötigte Pakete
@@ -60,11 +59,11 @@ Pakete, die für diese Datenanalyse benötigt werden, müssen vorher einmalig in
 
 ## Daten
 
-Wir untersuchen die Dimensionalität mittels einer auf 1000 Fälle reduzierten Zufallsauswahl von 15 Variablen zur Messung der grundlegenden Wertorientierungen von Menschen. Die Daten wurden im Sommersemester 2017 von FOM Studierenden im ersten Semester an der FOM bundesweit erhoben. Die Variablen zu Wertorientierungen wurden ursprünglich aus dem 40-Item-Set des «Portraits Value Questionnaire» (PVQ) von Schwartz adaptiert und durch die Studien an der FOM seit 2014 stufenweise bis auf 15 relevante Variablen reduziert. Alle Variablen wurden auf einer Skala von 1 bis 7 (wobei 1 am wenigsten und 7 am meisten zutrifft) abgefragt. 
+Wir untersuchen die Dimensionalität mittels einer auf 1000 Fälle reduzierten Zufallsauswahl von 15 Variablen zur Messung der grundlegenden Wertorientierungen von Menschen. Die Daten wurden im Sommersemester 2017 von FOM Studierenden im ersten Semester bundesweit erhoben. Die Variablen zu Wertorientierungen wurden ursprünglich aus dem 40-Item-Set des «Portraits Value Questionnaire» (PVQ) von Schwartz adaptiert und durch die Studien an der FOM seit 2014 stufenweise bis auf 15 relevante Variablen reduziert. Alle Variablen wurden auf einer Skala von 1 bis 7 (wobei 1 am wenigsten und 7 am meisten zutrifft) abgefragt. 
 
 ## Einlesen
 
-Download und Einlesen der Daten mit dem Befehl read.csv2.
+Download und Einlesen der Daten mit dem Befehl `read.csv2()`:
 ```{r}
 download.file("https://osf.io/teymq/download", destfile = "Werte.csv")
 Werte <- read.csv2("Werte.csv", encoding="UTF-8")
@@ -79,7 +78,7 @@ summary(Werte)
 
 ```
 
-Wir sehen in der `summary ()`, dass die Bereiche der Bewertungen für jede Variable 1-7 sind. In `str()` sehen wir, dass die Bewertungen als numerisch (Integer, also ganzzahlig) eingelesen wurden. Die Daten sind somit richtig formatiert.
+Wir sehen in der `summary()`, dass die Bereiche der Bewertungen für jede Variable 1-7 sind. In `str()` sehen wir, dass die Bewertungen als numerisch (Integer, also ganzzahlig) eingelesen wurden. Die Daten sind somit richtig formatiert.
 
 ## Neuskalierung der Daten 
 
@@ -123,7 +122,7 @@ corrplot(cor(na.omit((Werte.sc), order="hclust"))
 
 Da wir in unserem Datensatz vollständige Daten verwenden, gibt es auch keine Leerzellen. 
 
-**Hinweis:** In vielen Funktionen gibt es auch die Option `na.rm = TRUE`, die fehlende Werte entfernt, z. B.:
+**Hinweis:** In vielen Funktionen gibt es auch die Option `na.rm = TRUE`, die fehlende Werte entfernt, z.B.:
 ```{r, eval=FALSE}
 var(Werte.sc, na.rm = TRUE)
 ```
@@ -131,7 +130,7 @@ var(Werte.sc, na.rm = TRUE)
 
 ## Hauptkomponentenanalyse (PCA)
 
-Die PCA berechnet ein Variablenset (Komponenten) in Form von linearen Gleichungen, die die linearen Beziehungen in den Daten erfassen. Die erste Komponente erfasst so viel Streuung (Varianz) wie möglich von allen Variablen als eine einzige lineare Funktion. Die zweite Komponente erfasst unkorreliert zur ersten Komponente so viel Streuung wie möglich, die nach der ersten Komponente verbleibt. Das geht so lange weiter, bis es so viele Komponenten gibt wie Variablen. 
+Die PCA berechnet ein Variablenset (Komponenten) in Form von linearen Gleichungen, die die linearen Beziehungen in den Daten erfassen. Die erste Komponente erfasst als eine einzige lineare Funktion von allen Variablen so viel Streuung (Varianz) wie möglich. Die zweite Komponente erfasst unkorreliert zur ersten Komponente so viel Streuung wie möglich, die nach der ersten Komponente verbleibt. Das geht so lange weiter, bis es so viele Komponenten gibt wie Variablen. 
 
 ## Bestimmung der Anzahl der Hauptkomponenten
 
@@ -168,11 +167,11 @@ Wir sehen anhand des Scree-Plots, dass bei den Werte-Daten der Anteil der Streuu
 
 ## Elbow-Kriterium
 
-Nach diesem Kriterium werden alle Hauptkomponenten berücksichtigt, die links von der Knickstelle im Scree-Plot liegen. Gibt es mehrere Knicks, dann werden jene Hauptkomponenten ausgewählt, die links vom rechtesten Knick liegen. Gibt es keinen Knick, dann hilft der Scree-Plot nicht weiter. Bei den Werte-Daten tritt der Ellbogen, je nach Betrachtungsweise, entweder bei vier oder sechs Komponenten auf. Dies deutet darauf hin, dass die ersten fünf Komponenten die meiste Streuung in den Werte-Daten erklären. 
+Nach diesem Kriterium werden alle Hauptkomponenten berücksichtigt, die links von der Knickstelle im Scree-Plot liegen. Gibt es mehrere Knicks, dann werden jene Hauptkomponenten ausgewählt, die links vom rechtesten Knick liegen. Gibt es keinen Knick, dann hilft der Scree-Plot nicht weiter. Bei den Werte-Daten tritt der *Elbow*, je nach Betrachtungsweise, entweder bei vier oder sechs Komponenten auf. Dies deutet darauf hin, dass die ersten fünf Komponenten die meiste Streuung in den Werte-Daten erklären. 
 
 ## Eigenwert-Kriterium
 
-Der Eigenwert ist eine Metrik für den Anteil der erklärten Varianz. Die Anzahl Eigenwerte können wir über den Befehl `eigen()` ausgeben. An dieser Stelle können wir die original Daten nehmen, da wir keine unterschiedlichen Skalenstufen haben.     
+Der Eigenwert ist eine Metrik für den Anteil der erklärten Varianz. Die Anzahl Eigenwerte können wir über den Befehl `eigen()` ausgeben. An dieser Stelle können wir die Originaldaten nehmen, da wir keine unterschiedlichen Skalenstufen haben.     
 
 ```{r}
 eigen(cor(Werte))
@@ -199,11 +198,11 @@ Dazu verwenden wir `biplot()`:
 biplot(Werte.pc)
 ```
 
-Die Variablen-Gruppierungen sind als rote Ladungspfeile sichtbar. Zusätzlich erhalten wir einen Einblick in die Bewertungscluster (als dichte Bereiche von Beobachtungspunkten). Der Biplot ist hier durch die große Anzahl an Beobachtung recht unübersichtlich. 
+Die Variablen-Gruppierungen sind als rote Ladungspfeile sichtbar. Zusätzlich erhalten wir einen Einblick in die Bewertungs-Cluster (als dichte Bereiche von Beobachtungspunkten). Der Biplot ist hier durch die große Anzahl an Beobachtung recht unübersichtlich. 
 
 ## Extraktion der Komponenten
 
-Am einfachsten lassen sich die Komponenten extrahieren mit dem `principal`-Befehl aus dem psych-Paket (ist durch das Paket nFactors bereits geladen)
+Am einfachsten lassen sich die Komponenten extrahieren mit dem `principal`-Befehl aus dem `psych`-Paket (ist durch das Paket `nFactors` bereits geladen)
 ```{r}
 Werte.pca<-principal(Werte, nfactors=5)
 print(Werte.pca, cut=0.5, sort = TRUE, digits=2)
@@ -212,8 +211,8 @@ print(Werte.pca, cut=0.5, sort = TRUE, digits=2)
 
 ## Interpretation der Ergebnisse der PCA I: 
 
-* Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate='none'`), dann ist die Voreinstellung eine `Varimax-Rotation`.   
-* Es gibt keine Items die auf mehr als einer Komponente hoch laden. Die Ladungen sind Korrelationskoeffizienten zwischen den Items und den Hauptkomponenten. 
+* Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate='none'`), dann ist die Voreinstellung eine `Varimax-Rotation` (das Koordinatensystem der Faktoren wird so rotiert, das eine optimale Zuordnung zu den Variablen erfolgt).   
+* Es gibt keine Items die auf mehr als einer Komponente hochladen. Die Ladungen sind Korrelationskoeffizienten zwischen den Items und den Hauptkomponenten. 
 * In der Zeile SS loadings finden wir die Eigenwerte der fünf Hauptkomponenten. Den Anteil an der Gesamtvarianz, den sie erklären, findet man in der Zeile `Proportion Var`. Aufsummiert sind die Anteile in der Zeile `Cumlative Var`. Insgesamt werden durch die fünf Hauptkomponenten 64% der Gesamtvarianz erklärt. 
 * Einzig das Item `Unabhängigkeit` lädt auf keine der Hauptkomponenten hoch. 
 * Die Erste Komponenten (RC1) könnte mit **Genuss**, die zweite (RC2) mit **Sicherheit**, die dritte (RC3) mit **Annerkennung**, die vierte (RC4) mit **Konformismus** und die fünfte mit **Bewusstsein** bezeichnet werden. 
@@ -229,18 +228,18 @@ fa.diagram(Werte.pca)
 
 ## Exploratorische Faktorenanalyse (EFA)
 
-EFA ist eine Methode, um die Beziehung von Konstrukten (Konzepten), d. h. Faktoren zu Variablen zu beurteilen. Dabei werden die Faktoren als **latente Variablen** betrachtet, die nicht direkt beobachtet werden können. Stattdessen werden sie empirisch durch mehrere Variablen beobachtet, von denen jede ein Indikator der zugrundeliegenden Faktoren ist. Diese beobachteten Werte werden als **manifeste Variablen** bezeichnet und umfassen Indikatoren. Die EFA versucht den Grad zu bestimmen, in dem Faktoren die beobachtete Streuung der manifesten Variablen berücksichtigen.
+EFA ist eine Methode, um die Beziehung von Konstrukten (Konzepten), d.h. Faktoren zu Variablen zu beurteilen. Dabei werden die Faktoren als **latente Variablen** betrachtet, die nicht direkt beobachtet werden können. Stattdessen werden sie empirisch durch mehrere Variablen beobachtet, von denen jede ein Indikator der zugrundeliegenden Faktoren ist. Diese beobachteten Werte werden als **manifeste Variablen** bezeichnet und umfassen Indikatoren. Die EFA versucht den Grad zu bestimmen, in dem Faktoren die beobachtete Streuung der manifesten Variablen berücksichtigen.
 
 ## Vergleich zur PCA
 
-Das Ergebnis der EFA ist ähnlich zur PCA: eine Matrix von Faktoren (ähnlich zu den PCA-Komponenten) und ihre Beziehung zu den ursprünglichen Variablen (Ladung der Faktoren auf die Variablen). Im Gegensatz zur PCA versucht die EFA, Lösungen zu finden, die in den **manifesten variablen maximal interpretierbar** sind. Im Allgemeinen versucht sie, Lösungen zu finden, bei denen eine kleine Anzahl von Ladungen für jeden Faktor sehr hoch ist, während andere Ladungen für diesen Faktor gering sind. Wenn dies möglich ist, kann dieser Faktor mit diesem Variablen-Set interpretiert werden. 
+Das Ergebnis der EFA ist ähnlich zur PCA: eine Matrix von Faktoren (ähnlich zu den PCA-Komponenten) und ihre Beziehung zu den ursprünglichen Variablen (Ladung der Faktoren auf die Variablen). Im Gegensatz zur PCA versucht die EFA, Lösungen zu finden, die in den **manifesten Variablen maximal interpretierbar** sind. Im Allgemeinen versucht sie Lösungen zu finden, bei denen eine kleine Anzahl von Ladungen für jeden Faktor sehr hoch ist, während andere Ladungen für diesen Faktor gering sind. Wenn dies möglich ist, kann dieser Faktor mit diesem Variablenset interpretiert werden. 
 
 
 ## Finden einer EFA Lösung
 
-Als erstes muss die Anzahl der zu schätzenden Faktoren bestimmt werden. Hierzu verwenden wir wieder das Ellbow-Kriterium und das Eigenwert-Kriterium. Beide Kriterien haben wir schon bei der PCA verwendet, dabei kommen wir auf 5 Faktoren. 
+Als erstes muss die Anzahl der zu schätzenden Faktoren bestimmt werden. Hierzu verwenden wir wieder das Elbow-Kriterium und das Eigenwert-Kriterium. Beide Kriterien haben wir schon bei der PCA verwendet, dabei kommen wir auf 5 Faktoren. 
 
-Durch das Paket `nFactors` bekommen wir eine formalisierte Berechnung der Scree-Plot Lösung mit dem Befehl `nScree()`
+Durch das Paket `nFactors` bekommen wir eine formalisierte Berechnung der Scree-Plot-Lösung mit dem Befehl `nScree()`
 
 ```{r}
 library(nFactors)
@@ -260,7 +259,7 @@ Werte.fa<-factanal(Werte, factors=5)
 Werte.fa
 ```
 
-Eine übersichtlichere Ausgabe bekommen wir mit dem `print` Befehl, in dem wir zusätzlich noch die Dezimalstellen kürzen mit `digits=2`, alle Ladungen kleiner als 0,5 ausblenden mit `cutoff=.4` und die Ladungen mit `sort=TRUE` so sortieren, dass die Ladungen, die auf einen Faktor laden, untereinander stehen.
+Eine übersichtlichere Ausgabe bekommen wir mit dem `print` Befehl, indem wir zusätzlich noch die Dezimalstellen mit `digits=2` kürzen, alle Ladungen kleiner als 0,5 mit `cutoff=.4` ausblenden und die Ladungen mit `sort=TRUE` so sortieren, dass diejenigen, die auf denselben Faktor laden, untereinander stehen.
 ```{r}
 print(Werte.fa, digits=2, cutoff=.4, sort=TRUE)
 ```
@@ -283,7 +282,7 @@ Das Ergebnis aus der Heatmap zeigt eine deutliche Trennung der Items in 5 Faktor
 
 ## Berechnung der Faktor-Scores
 
-Zusätzlich zur Schätzung der Faktorstruktur kann die EFA auch die latenten Faktorwerte für jede Beobachtung schätzen. Die gängige Extraktionsmethode ist die Bartlett-Methode.
+Zusätzlich zur Schätzung der Faktorstruktur kann die EFA auch die latenten Faktorwerte für jede Beobachtung schätzen. Die gängige Extraktionsmethode ist die Bartlett-Methode:
 
 ```{r}
 Werte.ob <- factanal(Werte, factors=5, scores="Bartlett")

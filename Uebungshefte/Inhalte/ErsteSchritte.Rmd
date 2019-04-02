@@ -11,18 +11,18 @@ Nach dem Start von RStudio erscheint folgender Bildschirm, wobei die Version neu
 knitr::include_graphics("Inhalte/images/RStudio-Screenshot-3-4.png")
 ```
 
-Links, in der *Console* werden die Befehle eingegeben. Rechts oben können Sie z. B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
+Links, in der *Console* werden die Befehle eingegeben. Rechts oben können Sie z.B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u.a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
 Wir werden zunächst in der Konsole arbeiten.
 
 Ein paar Anmerkungen vorweg:
 
-* R unterscheidet zwischen Groß- und Kleinbuchstaben, d. h., `Oma` und `oma` sind zwei verschiedene Dinge für R!
+* R unterscheidet zwischen Groß- und Kleinbuchstaben, d.h., `Oma` und `oma` sind zwei verschiedene Dinge für R!
 * R verwendet den Punkt `.` als Dezimaltrennzeichen,
 * Fehlende Werte werden in R durch `NA` kodiert,
 * Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
 * R wendet Befehle direkt an.
-* R ist objektorientiert, d. h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
+* R ist objektorientiert, d.h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
 * Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
 * Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden,
 * Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen,
@@ -78,7 +78,7 @@ getwd()
 ```
 erfahren.
 
-Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster rechts oben in RStudio auf. Durch Klicken auf den Namen können Sie diese betrachten.
+Der Datensatz `tips` taucht jetzt im `Enviroment` Fenster rechts oben in RStudio auf. Durch Klicken auf den Namen können Sie diesen betrachten.
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("Inhalte/images/tips-Enviroment.png")
@@ -91,7 +91,7 @@ Dieser Datensatz aus
 
 *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing*
 
-enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl 
+enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d.h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl 
 `str()` ein:
 ```{r}
 str(tips)
@@ -103,7 +103,7 @@ dim(tips)
 ```
 erhalten.
 
-Numerische (metrische) Variablen sind in R in der Regel vom Typ `numeric` (stetig) oder `int` (Ganze Zahlen), kategorielle (nominale, ordinale) Variablen vom Typ `factor` (bei ordinal: Option `ordered = TRUE`) oder `character`. `str()` und `dim()` sind erste Befehle, d. h., Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+Numerische (metrische) Variablen sind in R in der Regel vom Typ `numeric` (stetig) oder `int` (Ganze Zahlen), kategorielle (nominale, ordinale) Variablen vom Typ `factor` (bei ordinal: Option `ordered = TRUE`) oder `character`, `str()` und `dim()` sind erste Befehle, d.h. Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
 ```{r eval=FALSE}
 head(tips) # Obere Zeilen
 tail(tips) # Untere Zeilen 
@@ -159,7 +159,7 @@ Das Argument `data=tips` stellt klar, aus welchen Datensatz die Variablen kommen
 
 ***
 
-Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D. h. 
+Wie oben erwähnt können wir R auch gut als Taschenrechner benutzen, sollten aber bedenken, dass R vektorweise arbeitet. D.h. 
 ```{r eval=FALSE}
 tips$tip/tips$total_bill
 ```
@@ -167,17 +167,17 @@ gibt für *jede Beobachtung* die relative Trinkgeldhöhe bezogen auf die Rechnun
 ```{r eval=FALSE}
 (tips$tip/tips$total_bill)<0.10
 ```
-erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`, je nach dem, ob der jeweilige Wert kleiner als 0.10 ist oder nicht. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch die Prüfung auf Gleichheit. Hierfür werden in R gleich *zwei* Gleichheitszeichen verwendet, also `==`.
+erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`, je nachdem, ob der jeweilige Wert kleiner als 0.10 ist oder nicht. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch die Prüfung auf Gleichheit. Hierfür werden in R gleich *zwei* Gleichheitszeichen verwendet, also `==`.
 
 ***
-**Übung:** Was gibt folgender der Befehl zurück?
+**Übung:** Was gibt folgender Befehl zurück?
 ```{r eval=FALSE}
 tips$sex=="Female" 
 ```
 
 ***
 
-Logische Vektoren können z. B. mit "und" `&` oder "oder" `|` verknüpft werden:
+Logische Vektoren können z.B. mit "und" `&` oder "oder" `|` verknüpft werden:
 ```{r eval=FALSE}
 tips$sex=="Female" & tips$smoker=="Yes"
 ```
@@ -202,7 +202,7 @@ sum(tips$sex=="Female" & tips$smoker=="Yes") / sum(tips$sex=="Female")
 ***
 
 ## Übung: Teaching Rating
-Dieser Datensatz analysiert u. a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis:
+Dieser Datensatz analysiert u.a. den Zusammenhang zwischen Schönheit und Evaluierungsergebnis:
 
 *Hamermesh, D.S., and Parker, A. (2005). Beauty in the Classroom: Instructors' Pulchritude and Putative Pedagogical Productivity. Economics of Education Review, 24, 369–376.*
 
@@ -222,11 +222,11 @@ meineDaten <- read.csv2(file.choose()) # Datei auswählen
 ```
 erfolgen.
 
-Der Befehl `file.choose()` öffnet dabei den Dateiordner. Bei "internationalen" `csv` Dateien ist das Datentrennzeichen i. d. R. ein Komma `,`, das Dezimaltrennzeichen ein Punkt `.`. Hier funktioniert der Import in R dann über den Befehl `read.csv`.
+Der Befehl `file.choose()` öffnet dabei den Dateiordner. Bei "internationalen" `csv` Dateien ist das Datentrennzeichen i.d.R. ein Komma `,`, das Dezimaltrennzeichen ein Punkt `.`. Hier funktioniert der Import in R dann über den Befehl `read.csv`.
 
 In R Studio gibt es im Reiter `Environment` im Fenster Rechts oben einen Menüpunkt `Import Dataset` der mehr Einstellmöglichkeiten bietet.
 
-Excel Dateien können unter anderem mit Hilfe des Zusatzpaketes `readxl` können eingelesen werden:
+Excel Dateien können unter anderem mit Hilfe des Zusatzpaketes `readxl` eingelesen werden:
 ```{r eval=FALSE}
 library(readxl) # Paket laden
 meineDaten <- read_excel(file.choose())  # Datei auswählen und in R einlesen

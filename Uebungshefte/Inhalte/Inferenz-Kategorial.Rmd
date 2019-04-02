@@ -36,10 +36,10 @@ Zur Analyse wird wieder das Paket mosaic verwendet:
 library(mosaic)
 ```
 
-## Inferenz eines Anteilswerts
-In Tabelle 6 der Pressemitteilung wird der Anteil der Atheisten für Deutschland mit 15$\,$% angegeben. Dies ist eine *Statistik* der Stichprobe, nicht der Parameter der *Population*. Es wird also die Frage beantwortet "Wie hoch ist der Anteil der Atheisten in der Stichprobe?". Um die Frage "Wie hoch ist der Anteil der Atheisten in der Population?" zu beantworten, muss von der Stichprobe auf die Population geschlossen werden, d. h., es wird z. B. der Anteilswert *geschätzt*. 
+## Inferenz eines Anteilswertes
+In Tabelle 6 der Pressemitteilung wird der Anteil der Atheisten für Deutschland mit 15$\,$% angegeben. Dies ist eine *Statistik* der Stichprobe, nicht der Parameter der *Population*. Es wird also die Frage beantwortet "Wie hoch ist der Anteil der Atheisten in der Stichprobe?". Um die Frage "Wie hoch ist der Anteil der Atheisten in der Population?" zu beantworten, muss von der Stichprobe auf die Population geschlossen werden, d.h., es wird z.B. der Anteilswert *geschätzt*. 
 
-Der folgende Befehl filtert den Datensatz auf das Ergebnis für Deutschland im Jahr 2012, d. h., es werden nur die gewünschten Zeilen im Datensatz belassen:
+Der folgende Befehl filtert den Datensatz auf das Ergebnis für Deutschland im Jahr 2012, d.h., es werden nur die gewünschten Zeilen im Datensatz belassen:
 ```{r}
 de12 <- filter(atheism, nationality == "Germany", year == "2012")
 ```
@@ -57,7 +57,7 @@ n <- nrow(de12) # Anzahl Beobachtungen
 se <- sqrt( pdach * (1-pdach) / n)
 se
 ```
-Der Standardfehler, d. h., die Standardabweichung des Anteilswertes liegt hier also bei `r round(se*100,2)`$\,$%. Zusammen mit dem 2,5$\,$% und 97,5$\,$% Quantil der Standardnormalverteilung ergibt sich folgendes Konfidenzintervall:
+Der Standardfehler, d.h., die Standardabweichung des Anteilswertes liegt hier also bei `r round(se*100,2)`$\,$%. Zusammen mit dem 2,5$\,$% und 97,5$\,$% Quantil der Standardnormalverteilung ergibt sich folgendes Konfidenzintervall:
 ```{r}
 pdach + qnorm(c(0.025, 0.975)) * se
 ```
@@ -79,7 +79,7 @@ Beachte, dass das Konfidenzintervall, anders als bei der *Approximation* über d
 
 ***
 
-Um für Deutschland die Nullhypothese "Der Anteil der Atheisten liegt nicht über 10$\,$%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10$\,$%" können entweder wieder Simulations- und Resamplingtechniken verwendet werden oder die Approximation durch die Normalverteilung:
+Um für Deutschland die Nullhypothese "Der Anteil der Atheisten liegt nicht über 10$\,$%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10$\,$%" zu testen, können entweder wieder Simulations- und Resamplingtechniken verwendet werden oder die Approximation durch die Normalverteilung:
 ```{r}
 se0 <- sqrt( (0.1 * (1-0.1)) /n)
 z <- (pdach - 0.10) / se0
@@ -94,9 +94,9 @@ prop.test(~response, p=0.1, alternative="greater", data=de12)
 ```
 Je nach Alternativhypothese ergeben sich unterschiedliche Tests:
 
-- `alternative='two.sided'`: ungerichtet, d. h. zweiseitig: $H_0: p=0.1$ gegen $H_A: p\neq0.1$
-- `alternative='less'`: gerichtet, d. h. einseitig:  $H_0: p\geq 0.1$ gegen $H_A: p<0.1$
-- `alternative='greater'`: gerichtet, d. h. einseitig:  $H_0: p\leq 0.1$ gegen $H_A: p>0.1$
+- `alternative='two.sided'`: ungerichtet, d.h. zweiseitig: $H_0: p=0.1$ gegen $H_A: p\neq0.1$
+- `alternative='less'`: gerichtet, d.h. einseitig:  $H_0: p\geq 0.1$ gegen $H_A: p<0.1$
+- `alternative='greater'`: gerichtet, d.h. einseitig:  $H_0: p\leq 0.1$ gegen $H_A: p>0.1$
 
 ## Differenz zweier Anteilswerte
 In den Daten liegen außerdem die Ergebnisse aus 2005 vor:
@@ -132,7 +132,7 @@ z <- (pdiff - 0)/se0
 xpnorm(z, lower.tail = FALSE)
 ```
 
-Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit, *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten, ist also gering -- wenn die $H_0$ gilt! D. h., es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
+Der p-Wert ist klein und das Ergebnis damit *statistisch signifikant*. Die Wahrscheinlichkeit, *zufällig* eine solche Erhöhung der Anteilswerte zu beobachten, ist also gering -- wenn die $H_0$ gilt! D.h., es wird auf eine Veränderung des Anteilswertes in der *Population* geschlossen.
 
 Auch dies kann direkt durch den Befehl `prop.test` gestestet werden. Dazu wird zunächst ein gemeinsamer Datensatz erzeugt:
 ```{r}
@@ -149,14 +149,14 @@ Hier wird die Alternativhypothese `less` verwendet: $H_0: p_1 \geq p_2$, gegen $
 
 
 *Exkurs:* 
-Mit dem Paket mosaic können Sie das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d. h., zweiseitig getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch ein Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
+Mit dem Paket mosaic können Sie das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d.h. zweiseitig, getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch eine Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
 ```{r}
 # Beobachtete Differenz
 pdiff <- diffprop( ~ response | year, data = de)
 pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
-# 10000-mal das Jahr permutieren: Nullhypothese kein Unterschied
+# 10000-mal das Jahr permutieren - Nullhypothese: kein Unterschied
 pdiff.null <- do(10000) * diffprop( ~ response | shuffle(year), data = de)
 # Histogramm
 gf_histogram(~ diffprop, data = pdiff.null) %>% gf_vline(xintercept = c(pdiff, -pdiff))
@@ -167,14 +167,14 @@ prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
 ***
 **Übung:**
 
-5.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5$\,$% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und den Niederlanden (`Netherlands`) in der Population gibt.
-6.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5$\,$% signifikante Differenz zwischen den Anteil der Atheisten in Deutschland und Polen (`Poland`) in der Population gibt.
+5.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5$\,$% signifikante Differenz zwischen dem Anteil der Atheisten in Deutschland und den Niederlanden (`Netherlands`) in der Population gibt.
+6.  Überprüfen Sie für das Jahr 2012, ob es eine zum Niveau 5$\,$% signifikante Differenz zwischen dem Anteil der Atheisten in Deutschland und Polen (`Poland`) in der Population gibt.
 
 ***
 
 ## Chi-Quadrat Unabhängigkeitstest
 
-Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der Chi^2^-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z.B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
+Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variablen untersucht werden, wird der $\chi^2$-Unabhängigkeitstest verwendet. Diese testet die Nullhypothese der Unabhängigkeit gegen die Alternativhypothese des Zusammenhangs. Im vorliegenden Datensatz können wir z.B. testen, ob die Verteilung (Anteil) der Atheisten in den teilnehmenden G7 Ländern gleich ist:
 
 ```{r}
 G7 <- c("United States", "Canada", "Germany", "France", "Italy", "Japan")
@@ -185,16 +185,16 @@ G7atheist
 ```
 (Der Befehl `droplevels` sorgt dafür, dass die nicht mehr benötigten Ausprägungen der kategoriellen Variablen (`factor`) gelöscht werden.)
 
-Der Test selber erfolgt in mosaic über `xchisq.test`, d. h.:
+Der Test selber erfolgt in mosaic über `xchisq.test`, d.h.:
 ```{r}
 xchisq.test(G7atheist)
 ```
 ```{r, include=FALSE}
 G7chi <- xchisq.test(G7atheist)
 ```
-Der Wert der Teststatistik Chi^2^ liegt bei `r round(G7chi$statistic, 2)`, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei `r G7chi$parameter`, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
+Der Wert der Teststatistik $\chi^2$ liegt bei `r round(G7chi$statistic, 2)`, die Anzahl der Freiheitsgrade ("degrees of freedom", df) bei `r G7chi$parameter`, der p-Wert ist sehr klein, die Nullhypothese der Unabhängigkeit von Nationalität und Verteilung Atheismus wird für die *Population* verworfen.
 
-Die Formel zur Berechnung der $\chi^2$ Teststatistik lautet:
+Die Formel zur Berechnung der $\chi^2$-Teststatistik lautet:
 $$\chi^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{(h_{ij}-e_{ij})^{2}}{e_{ij}}$$
 mit den erwarteten Häufigkeiten $e_{ij}=\frac{h_{i\cdot}h_{\cdot j}}{n}$ wobei für die Zeilensumme $h_{i\cdot}=\sum_{j=1}^{m}h_{ij}$ und für die Spaltensumme $h_{\cdot j}=\sum_{i=1}^{k}h_{ij}$ gilt.
 
@@ -215,7 +215,7 @@ pchisq(504, 5, lower.tail = FALSE)
 ## Übung: Trinkgelddaten
 Wir werden jetzt den *tips* Datensatz aus *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing* weiter analysieren.
 
-Sofern noch nicht geschehen, können Sie diesen als `csv` Datei herunterladen:
+Sofern noch nicht geschehen, können Sie diesen als `csv`-Datei herunterladen:
 ```{r, eval=FALSE}
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
