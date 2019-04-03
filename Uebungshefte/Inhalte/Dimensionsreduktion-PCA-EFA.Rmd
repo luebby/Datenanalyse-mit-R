@@ -14,7 +14,7 @@ Konstrukte stellen in den Sozialwissenschaften gedankliche bzw. theoretische Sac
 
 ## Was bedeutet Anerkennung?
 
-Liest man bei Wikipediea diesen Begriff nach, kommt folgende Antwort: "Anerkennung bedeutet die Erlaubnis einer Person oder einer Gruppe gegenüber einer anderen Person, Gruppe oder Institution, sich mit ihren derzeitigen spezifischen Eigenschaften an der Kommunikation, an Entscheidungsprozessen oder anderen gesellschaftlichen Prozessen zu beteiligen. Der Begriff Anerkennung wird auch als Synonym für Akzeptanz, Lob oder Respekt verwendet." 
+Liest man bei Wikipedia diesen Begriff nach, kommt folgende Antwort: "Anerkennung bedeutet die Erlaubnis einer Person oder einer Gruppe gegenüber einer anderen Person, Gruppe oder Institution, sich mit ihren derzeitigen spezifischen Eigenschaften an der Kommunikation, an Entscheidungsprozessen oder anderen gesellschaftlichen Prozessen zu beteiligen. Der Begriff Anerkennung wird auch als Synonym für Akzeptanz, Lob oder Respekt verwendet." 
 
 ## Messung von Anerkennung
 
@@ -211,11 +211,11 @@ print(Werte.pca, cut=0.5, sort = TRUE, digits=2)
 
 ## Interpretation der Ergebnisse der PCA I: 
 
-* Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate='none'`), dann ist die Voreinstellung eine `Varimax-Rotation` (das Koordinatensystem der Faktoren wird so rotiert, das eine optimale Zuordnung zu den Variablen erfolgt).   
+* Das Ergebnis sieht sehr gut aus. Es laden immer mehrere Items (mindestens 2) hoch (> 0,5) auf einer Komponente (die mit RC1 bis RC5 bezeichnet werden, RC steht für Rotated Component). Innerhalb einer PCA kann die Interpretierbarkeit über eine **Rotation** erhöht werden. Wenn die Rotation nicht ausgeschlossen wird (mit dem Argument `rotate='none'`), dann ist die Voreinstellung eine `Varimax-Rotation` (das Koordinatensystem der Faktoren wird so rotiert, das eine optimale Zuordnung zu den Variablen erfolgt).
 * Es gibt keine Items die auf mehr als einer Komponente hochladen. Die Ladungen sind Korrelationskoeffizienten zwischen den Items und den Hauptkomponenten. 
-* In der Zeile SS loadings finden wir die Eigenwerte der fünf Hauptkomponenten. Den Anteil an der Gesamtvarianz, den sie erklären, findet man in der Zeile `Proportion Var`. Aufsummiert sind die Anteile in der Zeile `Cumlative Var`. Insgesamt werden durch die fünf Hauptkomponenten 64% der Gesamtvarianz erklärt. 
+* In der Zeile `SS loadings` finden wir die Eigenwerte der fünf Hauptkomponenten. Den Anteil an der Gesamtvarianz, den sie erklären, findet man in der Zeile `Proportion Var`. Aufsummiert sind die Anteile in der Zeile `Cumulative Var`. Insgesamt werden durch die fünf Hauptkomponenten 64% der Gesamtvarianz erklärt. 
 * Einzig das Item `Unabhängigkeit` lädt auf keine der Hauptkomponenten hoch. 
-* Die Erste Komponenten (RC1) könnte mit **Genuss**, die zweite (RC2) mit **Sicherheit**, die dritte (RC3) mit **Annerkennung**, die vierte (RC4) mit **Konformismus** und die fünfte mit **Bewusstsein** bezeichnet werden. 
+* Die Erste Komponente (RC1) könnte mit **Genuss**, die zweite (RC2) mit **Sicherheit**, die dritte (RC3) mit **Annerkennung**, die vierte (RC4) mit **Konformismus** und die fünfte mit **Bewusstsein** bezeichnet werden. 
 
 ##  Grafische Darstellung
 
@@ -237,7 +237,7 @@ Das Ergebnis der EFA ist ähnlich zur PCA: eine Matrix von Faktoren (ähnlich zu
 
 ## Finden einer EFA Lösung
 
-Als erstes muss die Anzahl der zu schätzenden Faktoren bestimmt werden. Hierzu verwenden wir wieder das Elbow-Kriterium und das Eigenwert-Kriterium. Beide Kriterien haben wir schon bei der PCA verwendet, dabei kommen wir auf 5 Faktoren. 
+Als erstes muss die Anzahl der zu schätzenden Faktoren bestimmt werden. Hierzu verwenden wir wieder das *Elbow*-Kriterium und das Eigenwert-Kriterium. Beide Kriterien haben wir schon bei der PCA verwendet, dabei kommen wir auf 5 Faktoren. 
 
 Durch das Paket `nFactors` bekommen wir eine formalisierte Berechnung der Scree-Plot-Lösung mit dem Befehl `nScree()`
 
@@ -294,7 +294,7 @@ head(Werte.scores)
 
 Wir haben nun anstatt der 15 Variablen 5 Faktoren mit Scores. Die Dimensionen wurden um ein Drittel reduziert. 
 
-## Bildung der Konstukte durch Mittelwertbildung 
+## Bildung der Konstrukte durch Mittelwertbildung 
 
 Eine andere Möglichkeit ist die Bildung der Konstrukte über die Mittelwerte der Items. Dies ist jedoch nur sinnvoll, wenn einheitliche Skalen über alle Items hinweg vorliegen. Wir verwenden hierfür den Befehl `rowMeans`.
 
