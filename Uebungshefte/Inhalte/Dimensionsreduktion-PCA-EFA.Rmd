@@ -117,7 +117,7 @@ Wenn in den Daten leere Zellen, also fehlende Werte, vorhanden sind, dann kann e
 
 Beispiel: 
 ```{r, eval=FALSE}
-corrplot(cor(na.omit((Werte.sc), order="hclust"))
+corrplot(cor(na.omit(Werte.sc, order="hclust")))
 ```
 
 Da wir in unserem Datensatz vollständige Daten verwenden, gibt es auch keine Leerzellen. 
