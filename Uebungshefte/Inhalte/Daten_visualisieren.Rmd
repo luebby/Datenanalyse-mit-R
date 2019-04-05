@@ -105,7 +105,8 @@ Unter den vielen Arten von Diagrammen und vielen Arten, diese zu klassifizieren,
 Schauen wir uns die Verteilung der Schuhgrößen von Studierenden an.
 
 ```{r}
-wo_men <- read.csv("./data/wo_men.csv")
+download.file("https://raw.githubusercontent.com/sebastiansauer/modar/master/datasets/wo_men.csv", "wo_men.csv")
+wo_men <- read.csv("wo_men.csv")
 
 qplot(x = shoe_size, data = wo_men)
 ```
@@ -261,7 +262,7 @@ In Worten sagt der `recode`-Befehl hier in etwa: "Kodiere `wo_men$height` um, di
 
 Hier haben wir `qplot` gesagt, dass die Balken entsprechend der Häufigkeit von `groesse_gruppe` gefüllt werden sollen. Wie wir sehen, sind die Werte `klein` bei den Frauen bei dieser Variable häufig; bei den Männern hingegen die Werte `gross`.
 
-Schön wäre noch, wenn die Balken Prozentwerte angeben würden. Das geht mit `qplot` (so) nicht; wir schwenken auf `ggplot` um^[Cleveland fände diese Idee nicht so gut.]:
+Schön wäre noch, wenn die Balken Prozentwerte angeben würden. Das geht mit `qplot` (so) nicht; wir schwenken auf `ggplot` um^[Cleveland fände diese Idee nicht so gut. Vgl. @Cleveland]:
 
 ```{r}
 wo_men2 %>% 
