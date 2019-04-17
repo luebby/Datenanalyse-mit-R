@@ -1,7 +1,7 @@
 # Kapitel `r kap <- kap+1; kap`: Einführung Inferenz kategoriale Werte
 
 ## Globaler Index der Religiösität und Atheismus
-Im Jahre 2012 führte das [WIN/Gallup International Institut](http://www.wingia.com/) in 57 Ländern eine Untersuchung zur Religiosität durch. Die Pressemitteilung zur Studie finden Sie [hier](http://www.wingia.com/web/files/richeditor/filemanager/Global_INDEX_of_Religiosity_and_Atheism_PR__6.pdf). 
+Im Jahre 2012 führte das heutige [Gallup International Institut](http://www.gallup-international.com/) in 57 Ländern eine Untersuchung zur Religiosität durch. 
 
 Dabei wurde die Frage gestellt:
 *Unabhängig davon, ob Sie an Gottesdiensten teilnehmen oder nicht ("attend place of worship"), würden Sie sagen, dass Sie ein religiöser Mensch sind, eine nicht religiöse Person oder ein überzeugter Atheist?*
