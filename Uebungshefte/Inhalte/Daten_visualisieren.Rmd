@@ -54,12 +54,7 @@ data(flights, package = "nycflights13")
 und erstellen eine erste Grafik:
 
 ```{r message = FALSE}
-<<<<<<< HEAD
 gf_boxplot(arr_delay ~ carrier, data = flights)
-=======
-qplot(x = carrier, y = arr_delay, geom = "boxplot", 
-      data = flights)
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 ```
 
 Schauen wir uns den Befehl `gf_boxplot` etwas näher an. Wie ist er aufgebaut?
@@ -79,12 +74,7 @@ Die Syntax für die Übergabe der Variablen bzw. der Formel in `gformula` ist an
 Offenbar gibt es viele Extremwerte, was die Verspätung betrifft. Das erscheint nicht unplausibel (Schneesturm im Winter, Flugzeug verschwunden...). Vor dem Hintergrund der Extremwerte erscheinen die mittleren Verspätungen (Mediane) in den Boxplots als ähnlich. Vielleicht ist der Unterschied zwischen den Monaten ausgeprägter?
 
 ```{r}
-<<<<<<< HEAD
 gf_boxplot(arr_delay ~ factor(month), data = flights)
-=======
-qplot(x = factor(month), y = arr_delay, geom = "boxplot", 
-      data = flights)
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 ```
 
 Kaum Unterschied; das spricht gegen die Schneesturm-Idee als Grund für Verspätung. Aber schauen wir uns zuerst die Syntax von `ggformula`-Funktionen näher an. "gf" in `gf_boxplot` steht für "ggplot2 formula". 
@@ -92,12 +82,7 @@ Kaum Unterschied; das spricht gegen die Schneesturm-Idee als Grund für Verspät
 Beginnen wir mit der allgemeinen Syntax der Grafik-Befehle:
 
 ```{r, eval = FALSE}
-<<<<<<< HEAD
 gf_plottype(formula, data = my_dataframe)
-=======
-qplot (x = X_Achse, y = Y_Achse, data = mein_dataframe, 
-       geom = "ein_geom")
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 ```
 
 Wir definieren mit `formula`, welche Variable der X- und Y-Achse des Diagramms zugewiesen werden sollen, z.B. `month` und `carrier`. Mit `data` sagen wir, in welchem Dataframe die Spalten "wohnen" und mit `plottype` im Funktionsnamen wird die Art der Grafik angegeben; also Punkte, Linien, Boxplots, Balken...
@@ -112,14 +97,8 @@ Schauen wir uns die Verteilung der Schuhgrößen von Studierenden an. Zuerst lad
 
 ::: {.small}
 ```{r}
-<<<<<<< HEAD
-download.file(
-  "https://raw.githubusercontent.com/sebastiansauer/modar/master/datasets/wo_men.csv", 
-  "wo_men.csv")
-=======
 download.file("https://tinyurl.com/y67yy2xx", 
               "wo_men.csv")
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 wo_men <- read.csv("wo_men.csv")
 gf_histogram(~shoe_size, data = wo_men)
 ```
@@ -135,14 +114,8 @@ gf_density(~shoe_size, data = wo_men)
 Vielleicht wäre es noch schön, beide Grafiken in einem Diagramm zu kombinieren.
 
 ```{r tidy.opts=list(width.cutoff=40)}
-<<<<<<< HEAD
 gf_density(~shoe_size, data = wo_men, colour="blue") %>% 
   gf_histogram(~shoe_size, data = wo_men)
-=======
-ggplot(data = wo_men) + aes(x = shoe_size) + 
-  geom_histogram(aes(y = ..density..), alpha = .7) + 
-  geom_density(color = "blue")
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 ```
 
 Ganz nach dem Prinzip des *Durchpfeifens* können die beiden Funktionen zur Erstellung des Histogramms und der Dichte einfach über den `%>%`-Operator hintereinandergeschaltet werden, um sie gemeinsam in einem Diagramm darzustellen.
@@ -150,30 +123,16 @@ Ganz nach dem Prinzip des *Durchpfeifens* können die beiden Funktionen zur Erst
 Wünsche sind ein Fass ohne Boden \dots Wäre es nicht schön, ein Diagramm für Männer und eines für Frauen zu haben, um die Verteilungen vergleichen zu können?
 
 ```{r}
-<<<<<<< HEAD
 gf_density(~shoe_size, data = wo_men, fill = ~sex)
-=======
-qplot(x = shoe_size, data = wo_men, geom = "density", 
-      color = sex)
-qplot(x = shoe_size, data = wo_men, geom = "density", 
-      fill = sex, alpha = I(.7))
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 ```
 
 Hier sollten vielleicht noch die Extremwerte entfernt werden, um den Blick auf das Gros der Werte nicht zu verstellen:
 
 ```{r}
-
 wo_men %>% 
   filter(shoe_size <= 47) -> wo_men2
 
-<<<<<<< HEAD
 gf_density(~shoe_size, data = wo_men2, fill = ~sex)
-=======
-qplot(x = shoe_size, data = wo_men2, geom = "density", 
-      fill = sex, alpha = I(.7))
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
-
 ```
 
 Man kann das Durchpfeifen auch bis zu `gf_density` weiterführen:
@@ -181,12 +140,7 @@ Man kann das Durchpfeifen auch bis zu `gf_density` weiterführen:
 ```{r}
 wo_men %>% 
   filter(shoe_size <= 47) %>% 
-<<<<<<< HEAD
   gf_density(~ shoe_size, data = ., fill = ~sex, alpha = 0.7)
-=======
-  qplot(x = shoe_size, data = ., geom = "density", 
-        fill = sex, alpha = I(.7))
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 
 ```
 
@@ -267,14 +221,9 @@ wo_men %>%
 Wir könnten uns jetzt die Frage stellen, wie viele kleine und wie viele große Menschen es bei Frauen und bei den Männern gibt. Dazu müssen wir zuerst eine Variable wie "Größe gruppiert" erstellen mit zwei Werten: "klein" und "groß". Nennen wir sie `groesse_gruppe`:
 
 ```{r tidy.opts=list(width.cutoff=50)}
-<<<<<<< HEAD
 wo_men$groesse_gruppe <- car::recode(wo_men$height, 
                                      "lo:175 = 'klein'; else = 'gross'")
-=======
-wo_men$groesse_gruppe <- car::recode(
-  wo_men$height, "lo:175 = 'klein'; else = 'gross'")
 
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 wo_men %>% 
   filter(height > 150, height < 210, shoe_size < 55) %>% 
   na.omit -> wo_men2
@@ -373,12 +322,7 @@ Das Diagramm besticht nicht gerade durch die Tiefe und Detaillierung. Wenn wir n
 ```{r}
 wo_men2 %>% group_by(sex, groesse_gruppe) %>% 
   summarise(Groesse_MW = mean(height)) %>% 
-<<<<<<< HEAD
   gf_point(Groesse_MW ~ sex, color = ~factor(groesse_gruppe))
-=======
-  qplot(x = sex, color = factor(groesse_gruppe), 
-        y = Groesse_MW, data = .)
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
 ```
 
 
@@ -402,12 +346,8 @@ Der Anhang *Daten visualisieren* mit `ggformula` wurde von Sebastian Sauer erste
 * Datum erstellt: `r Sys.Date()`
 * R Version: `r getRversion()`
 * `ggplot2` Version: `r packageVersion("ggplot2")`
-<<<<<<< HEAD
-=======
 
 
 
 ## Literatur
 
-
->>>>>>> 39aa425d7ea7e83e7788d4092737a360a6384853
