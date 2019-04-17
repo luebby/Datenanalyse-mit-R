@@ -289,8 +289,6 @@ Sie können ihn [hier](https://goo.gl/Dkd7nK) herunterladen. Die Originaldaten f
 
 Versuchen Sie anhand geeigneter Variablen Rot- und Weißweine zu klassifizieren.^[Anregungen zu dieser Übung stammen von [INTW Statistics](https://www.inwt-statistics.de/blog-artikel-lesen/Logistische_Regression_Beispiel_mit_R.html)]
 
-**Zusatzaufgabe:** Die Originaldaten bestehen aus einem Datensatz für Weißweine und einem für Rotweine. Laden Sie diese, beachten Sie die Fehlermeldung, beheben Sie die damit verbundenen Fehler und fassen beide Datensätze zu einem gemeinsamen Datensatz zusammen, indem eine zusätzliche Variable `color` aufgenommen wird (Rot = 0, Weiß = 1).
-
 
 ## Literatur
 
