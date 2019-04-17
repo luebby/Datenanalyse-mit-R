@@ -102,10 +102,11 @@ Unter den vielen Arten von Diagrammen und vielen Arten, diese zu klassifizieren,
 
 ### Eine kontinuierliche Variable
 
-Schauen wir uns die Verteilung der Schuhgrößen von Studierenden an.
+Schauen wir uns die Verteilung der Schuhgrößen von Studierenden an. Zuerst laden wir dazu die Daten herunter^[Die Langform der URL lautet: https://raw.githubusercontent.com/sebastiansauer/modar/master/datasets/wo_men.csv.]
 
 ```{r}
-download.file("https://raw.githubusercontent.com/sebastiansauer/modar/master/datasets/wo_men.csv", "wo_men.csv")
+download.file("https://tinyurl.com/y67yy2xx", 
+              "wo_men.csv")
 wo_men <- read.csv("wo_men.csv")
 
 qplot(x = shoe_size, data = wo_men)
@@ -126,7 +127,9 @@ Was man sich merken muss, ist, dass hier nur das *Geom* mit Anführungsstrichen 
 Vielleicht wäre es noch schön, beide *Geome* in einem Diagramm zu kombinieren. Das ist etwas komplizierter; wir müssen zum großen Bruder `ggplot` umsteigen, da `qplot` diese Funktionen nicht anbietet.
 
 ```{r tidy.opts=list(width.cutoff=40)}
-ggplot(data = wo_men) + aes(x = shoe_size) + geom_histogram(aes(y = ..density..), alpha = .7) + geom_density(color = "blue")
+ggplot(data = wo_men) + aes(x = shoe_size) + 
+  geom_histogram(aes(y = ..density..), alpha = .7) + 
+  geom_density(color = "blue")
 ```
 
 Zuerst haben wir mit dem Parameter `data` den Dataframe benannt. `aes` definiert, welche Variablen welchen Achsen (oder auch z.B. Füllfarben) zugewiesen werden. Hier sagen wir, dass die Schuhgröße auf der X-Achse stehen soll. Das `+`-Zeichen trennt die einzelnen Bestandteile des `ggplot`-Aufrufs voneinander. Als nächstes sagen wir, dass wir gerne ein Histogram hätten: `geom_histogram`. Dabei soll aber nicht wie gewöhnlich auf der X-Achse die Häufigkeit stehen, sondern die Dichte. `ggplot` berechnet selbständig die Dichte und nennt diese Variable `..density..`; die vielen Punkte sollen wohl klar machen, dass es sich nicht um eine "normale" Variable aus dem eigenen Datenframe handelt, sondern um eine "interne" Variable von `ggplot` -- die wir aber nichtsdestotrotz verwenden können. `alpha` bestimmt die "Durchsichtigkeit" eines *Geoms*; spielen Sie mal etwas damit herum. Schließlich malen wir noch ein blaues Dichtediagramm *über* das Histogramm.
@@ -135,7 +138,8 @@ Wünsche sind ein Fass ohne Boden \dots Wäre es nicht schön, ein Diagramm für
 
 ```{r}
 qplot(x = shoe_size, data = wo_men, geom = "density", color = sex)
-qplot(x = shoe_size, data = wo_men, geom = "density", fill = sex, alpha = I(.7))
+qplot(x = shoe_size, data = wo_men, geom = "density", 
+      fill = sex, alpha = I(.7))
 ```
 
 Hier sollten vielleicht noch die Extremwerte entfernt werden, um den Blick auf das Gros der Werte nicht zu verstellen:
@@ -145,7 +149,8 @@ Hier sollten vielleicht noch die Extremwerte entfernt werden, um den Blick auf d
 wo_men %>% 
   filter(shoe_size <= 47) -> wo_men2
 
-qplot(x = shoe_size, data = wo_men2, geom = "density", fill = sex, alpha = I(.7))
+qplot(x = shoe_size, data = wo_men2, geom = "density", 
+      fill = sex, alpha = I(.7))
 
 ```
 
@@ -154,7 +159,8 @@ Besser. Man kann das Durchpfeifen auch bis zu `qplot` weiterführen:
 ```{r}
 wo_men %>% 
   filter(shoe_size <= 47) %>% 
-  qplot(x = shoe_size, data = ., geom = "density", fill = sex, alpha = I(.7))
+  qplot(x = shoe_size, data = ., geom = "density", 
+        fill = sex, alpha = I(.7))
 
 ```
 
@@ -248,7 +254,8 @@ wo_men %>%
 Wir könnten uns jetzt die Frage stellen, wie viele kleine und viele große Menschen es bei Frauen und bei den Männern gibt. Dazu müssen wir zuerst eine Variable wie "Größe gruppiert" erstellen mit zwei Werten: "klein" und "groß". Nennen wir sie `groesse_gruppe`
 
 ```{r tidy.opts=list(width.cutoff=50)}
-wo_men$groesse_gruppe <- car::recode(wo_men$height, "lo:175 = 'klein'; else = 'gross'")
+wo_men$groesse_gruppe <- car::recode(
+  wo_men$height, "lo:175 = 'klein'; else = 'gross'")
 
 wo_men %>% 
   filter(height > 150, height < 210, shoe_size < 55) %>% 
@@ -350,7 +357,8 @@ Das Diagramm besticht nicht durch die Tiefe und Detaillierung. Wenn wir noch zus
 wo_men2 %>% 
   group_by(sex, groesse_gruppe) %>% 
   summarise(Groesse_MW = mean(height)) %>% 
-  qplot(x = sex, color = factor(groesse_gruppe), y = Groesse_MW, data = .)
+  qplot(x = sex, color = factor(groesse_gruppe), 
+        y = Groesse_MW, data = .)
 ```
 
 
