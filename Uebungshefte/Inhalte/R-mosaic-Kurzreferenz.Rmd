@@ -3,7 +3,7 @@
 ## Vorbemerkungen
 Eine Übersicht von nützlichen R-Funktionen innerhalb der Datenanalyse. 
 
-Diese Kurzreferenz beschreibt einen kleinen Teil der R-Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird. Sie basiert weitgehend auf der Vignette [Minimal R](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalR.pdf) von Randall Pruim.
+Diese Kurzreferenz beschreibt einen kleinen Teil der R-Funktionen, wobei größtenteils auf das Zusatzpaket `mosaic` zurückgegriffen wird.
 
 Weitere Hilfe und Beispiele finden Sie, wenn Sie
 ```{r eval=FALSE}
