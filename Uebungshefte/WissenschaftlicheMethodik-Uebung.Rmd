@@ -8,6 +8,7 @@ output:
       in_header: header.tex
 documentclass: article
 classoption: a4paper, 10pt
+bibliography: bib.bib
 ---
 \setstretch{1.44}
 
