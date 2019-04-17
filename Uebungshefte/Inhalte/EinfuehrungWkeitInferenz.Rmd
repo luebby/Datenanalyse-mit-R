@@ -263,7 +263,11 @@ xqnorm(0.01, mean=0.11, sd=1.62, lower.tail = FALSE)
 ***
 
 ## Übung: Achtsamkeit 
-In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmern der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels (Link/Bild) steigern.
+In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmern der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels steigern:  
+```{r echo=FALSE, out.width = "20%", fig.align="center", cache=FALSE}
+knitr::include_graphics("Inhalte/images/EinfuehrungWkeitInferenz/Necker-Cube-crop.png")
+```
+[https://www.sciencedirect.com/science/article/pii/S0191886911005939?via%3Dihub](https://www.sciencedirect.com/science/article/pii/S0191886911005939?via%3Dihub).
 
 1.  Kann diese Verbesserung bei fast 90$\,$ der Personen zufällig sein? Bestimmen Sie mit Hilfe einer Simulation die Wahrscheinlichkeit, dass zufällig mindestens 34 von 38 Personen eine Verbesserung erzielen.
 2.  Bestimmen Sie ein nicht-paramatrisches Bootstrap-Konfidenzintervall, dass den Anteilswert der Verbesserung in 95$\,$ der Fälle überdeckt.    
