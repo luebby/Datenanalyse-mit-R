@@ -25,7 +25,7 @@ bibliography: bib.bib
 \fancyhead[LO,RE]{\textsl{\rightmark}}  
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 # Initiale Paket Installation
 needed_pkgs <- c("mosaic", "corrplot", 
