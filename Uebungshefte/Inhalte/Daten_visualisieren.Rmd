@@ -63,7 +63,8 @@ data(flights, package = "nycflights13")
 
 
 ```{r message = FALSE}
-qplot(x = carrier, y = arr_delay, geom = "boxplot", data = flights)
+qplot(x = carrier, y = arr_delay, geom = "boxplot", 
+      data = flights)
 ```
 
 Schauen wir uns den Befehl `qplot` etwas näher an. Wie ist er aufgebaut?
@@ -82,7 +83,8 @@ Schauen wir uns den Befehl `qplot` etwas näher an. Wie ist er aufgebaut?
 Offenbar gibt es viele Extremwerte, was die Verspätung betrifft. Das erscheint mir nicht unplausibel (Schneesturm im Winter, Flugzeug verschwunden...). Vor dem Hintergrund der Extremwerte erscheinen die mittleren Verspätungen (Mediane) in den Boxplots als ähnlich. Vielleicht ist der Unterschied zwischen den Monaten ausgeprägter?
 
 ```{r}
-qplot(x = factor(month), y = arr_delay, geom = "boxplot", data = flights)
+qplot(x = factor(month), y = arr_delay, geom = "boxplot", 
+      data = flights)
 ```
 
 Kaum Unterschied; das spricht gegen die Schneesturm-Idee als Grund für Verspätung. Aber schauen wir uns zuerst die Syntax von `qplot` näher an. "q" in `qplot` steht für "quick". Tatsächlich hat `qplot` einen großen Bruder, `ggplot`^[Achtung: Nicht `qqplot`, nicht `ggplot2`, nicht `gplot`...], der deutlich mehr Funktionen aufweist -- und daher auch die umfangreichere (= komplexere) Syntax. Fangen wir mit `qplot` an.
@@ -91,7 +93,8 @@ Kaum Unterschied; das spricht gegen die Schneesturm-Idee als Grund für Verspät
 Diese Syntax des letzten Beispiels ist recht einfach, nämlich:
 
 ```{r, eval = FALSE}
-qplot (x = X_Achse, y = Y_Achse, data = mein_dataframe, geom = "ein_geom")
+qplot (x = X_Achse, y = Y_Achse, data = mein_dataframe, 
+       geom = "ein_geom")
 ```
 
 Wir definieren mit `x`, welche Variable der X-Achse des Diagramms zugewiesen werden soll, z.B. `month`; analog mit der Y-Achse. Mit `data` sagen wir, in welchem Dataframe die Spalten "wohnen" und als "geom" ist die Art des statistischen "*geom*etrischen Objekts" gemeint, also Punkte, Linien, Boxplots, Balken...
@@ -137,7 +140,8 @@ Zuerst haben wir mit dem Parameter `data` den Dataframe benannt. `aes` definiert
 Wünsche sind ein Fass ohne Boden \dots Wäre es nicht schön, ein Diagramm für Männer und eines für Frauen zu haben, um die Verteilungen vergleichen zu können?
 
 ```{r}
-qplot(x = shoe_size, data = wo_men, geom = "density", color = sex)
+qplot(x = shoe_size, data = wo_men, geom = "density", 
+      color = sex)
 qplot(x = shoe_size, data = wo_men, geom = "density", 
       fill = sex, alpha = I(.7))
 ```
@@ -386,5 +390,8 @@ Der Anhang *Daten visualisieren* mit ggplot wurde von Sebastian Sauer erstellt.
 * R Version: `r getRversion()`
 * `ggplot2` Version: `r packageVersion("ggplot2")`
 
+
+
+## Literatur
 
 
