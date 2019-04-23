@@ -46,60 +46,60 @@ kap <- -1
 anh <- 0
 ```
 
-```{r child = 'Inhalte/ErsteSchritte.Rmd'}
+```{r child = 'Inhalte/ErsteSchritte.Rmd', eval = FALSE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/EinfuehrungDaten.Rmd'}
+```{r child = 'Inhalte/EinfuehrungDaten.Rmd', eval = FALSE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/EinfuehrungWkeitInferenz.Rmd'}
+```{r child = 'Inhalte/EinfuehrungWkeitInferenz.Rmd', eval = FALSE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Inferenz-Kategorial.Rmd'}
+```{r child = 'Inhalte/Inferenz-Kategorial.Rmd', eval = FALSE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Inferenz-Metrisch.Rmd'}
+```{r child = 'Inhalte/Inferenz-Metrisch.Rmd', eval = FALSE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Regression.Rmd'}
+```{r child = 'Inhalte/Regression.Rmd', eval = TRUE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/LogRegression.Rmd'}
+```{r child = 'Inhalte/LogRegression.Rmd', eval = TRUE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd'}
+```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd', eval = TRUE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Clusteranalyse.Rmd'}
+```{r child = 'Inhalte/Clusteranalyse.Rmd', eval = TRUE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/R-mosaic-Kurzreferenz.Rmd'}
+```{r child = 'Inhalte/R-mosaic-Kurzreferenz.Rmd', eval = TRUE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Datenjudo.Rmd'}
+```{r child = 'Inhalte/Datenjudo.Rmd', eval = TRUE}
 ```
 
 \newpage
 
-```{r child = 'Inhalte/Daten_visualisieren.Rmd'}
+```{r child = 'Inhalte/Daten_visualisieren.Rmd', eval = TRUE}
 ```
