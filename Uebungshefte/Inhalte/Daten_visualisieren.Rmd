@@ -159,7 +159,7 @@ gf_point(shoe_size ~ height, data = wo_men)
 ```
 
 
-Wir weisen wieder der X-Achse und der Y-Achse eine Variable zu; wir sollten aber noch die Extremwerte herausnehmen:
+Wir weisen wieder der X-Achse und der Y-Achse eine Variable zu, sollten aber noch die Extremwerte herausnehmen:
 
 ```{r}
 wo_men %>% 
@@ -168,7 +168,7 @@ wo_men %>%
 
 ```
 
-Der Trend ist deutlich erkennbar: Je größer die Person, desto länger die Füß´. Zeichnen wir noch eine Trendgerade ein:
+Der Trend ist deutlich erkennbar: Je größer die Person, desto länger die Füße. Zeichnen wir noch eine Trendgerade ein:
 
 
 ```{r}
@@ -179,7 +179,7 @@ wo_men %>%
 ```
 
 
-Bei sehr großen Datensätzen sind Punkte unpraktisch, da sie sich überdecken ("overplotting"). Eine Abhilfe ist es, die Punkte nur "schwach" zu färben. Dazu stellt man die "Füllstärke" der Punkte über `alpha` ein: `gf_point(alpha = 1/100)`. Um einen passablen Alpha-Wert zu finden, bedarf es häufig etwas Probierens. Zu beachten ist, dass es mitunter recht lange dauert, wenn `ggplot` viele (>100.000) Punkte malen soll.
+Bei sehr großen Datensätzen sind Punkte unpraktisch, da sie sich überdecken ("overplotting"). Eine Abhilfe ist es, die Punkte nur "schwach" zu färben. Dazu stellt man die "Füllstärke" der Punkte über `alpha` ein: `gf_point(alpha = 1/100)`. Um einen passablen Alpha-Wert zu finden, bedarf es häufig etwas Probierens. Zu beachten ist, dass es mitunter recht lange dauert, wenn `ggplot` viele -- also mehr als 100.000 Punkte -- malen soll.
 
 Bei noch größeren Datenmengen bietet sich an, den Scatterplot als "Schachbrett" aufzufassen, und das Raster einzufärben, je nach Anzahl der Punkte pro Schachfeld; zwei Formeln dafür sind `gf_hex()` und `gf_bin2d()`. Dies können wir uns gut am Datensatz `nycflights13` anschauen:
 
@@ -199,16 +199,16 @@ wo_men %>%
   gf_point(shoe_size ~ height, color = ~sex)
 ```
 
-Mit `color = ~sex` sagen wir, dass die Linienfarbe (die Punkte) entsprechend der Ausprägungen von `sex` eingefärbt werden sollen. Die genaue Farbwahl übernimmt `ggplot2` für uns.
+Mit `color = ~ sex` sagen wir, dass die Linienfarbe (der Punkte) entsprechend der Ausprägungen von `sex` eingefärbt werden sollen. Die genaue Farbwahl übernimmt `ggplot2` für uns.
 
 ### Eine diskrete Variable
-Bei diskreten, vor allem nominalen Variablen, geht es in der Regel darum, Häufigkeiten auszuzählen. Wie viele Männer und Frauen sind in dem Datensatz?
+Bei diskreten und vor allem nominalen Variablen, geht es in der Regel darum, Häufigkeiten auszuzählen. Wie viele Männer und Frauen sind in dem Datensatz?
 
 ```{r}
 gf_histogram(~ sex, data = wo_men, stat = "count")
 ```
 
-Für ein Balkendiagramm bei einer Faktor- oder Textvariable muss hierbei der Parameter `stat` als "count" angegeben werden.
+Für ein Balkendiagramm bei einer Faktor- oder Textvariable muss hierbei der Parameter `stat` = "`count`" angegeben werden.
 
 Entfernen wir vorher noch die fehlenden Werte:
 
@@ -241,7 +241,7 @@ Schön wäre noch, wenn die Balken Prozentwerte angeben würden. Das geht mit `g
 ```{r}
 wo_men2 %>% 
   ggplot() +
-  aes(x = sex, fill = groesse_gruppe, alpha = 0.7) +
+  aes(x = sex, fill = groesse_gruppe) +
   geom_bar(position = "fill")
 ```
 
@@ -295,7 +295,7 @@ auf 90 Grad steht.
 
 ```
 
-Was sofort ins Auge sticht, ist, dass "soziales Trinken", nennen wir es mal so, am häufigsten ist; unabhängig von der Körperform. Ansonsten scheinen die Zusammenhänge nicht sehr stark zu sein.     
+Was sofort ins Auge sticht, ist, dass "soziales Trinken", nennen wir es mal so, am häufigsten ist, unabhängig von der Körperform. Ansonsten scheinen die Zusammenhänge nicht sehr stark zu sein.     
 
 ### Zusammenfassungen zeigen
 
@@ -326,7 +326,7 @@ wo_men2 %>% group_by(sex, groesse_gruppe) %>%
 ```
 
 
-Für weiterführende Informationen und Hintergründe sei im Folgenden auf die Literatur verwiesen:
+Für weiterführende Informationen und Hintergründe sei auf die folgende Literatur verwiesen:
 
 
 ## Verweise
@@ -347,7 +347,4 @@ Der Anhang *Daten visualisieren* mit `ggformula` wurde von Sebastian Sauer erste
 * R Version: `r getRversion()`
 * `ggplot2` Version: `r packageVersion("ggplot2")`
 
-
-
-## Literatur
 
