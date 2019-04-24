@@ -199,7 +199,7 @@ wo_men %>%
   gf_point(shoe_size ~ height, color = ~sex)
 ```
 
-Mit `color = ~ sex` sagen wir, dass die Linienfarbe (der Punkte) entsprechend der Ausprägungen von `sex` eingefärbt werden sollen. Die genaue Farbwahl übernimmt `ggplot2` für uns.
+Mit `color = ~ sex` sagen wir, dass die Punkte entsprechend der Ausprägungen von `sex` eingefärbt werden sollen. Die genaue Farbwahl übernimmt `ggplot2` für uns.
 
 ### Eine diskrete Variable
 Bei diskreten und insbesondere bei nominalen Variablen, geht es in der Regel darum, Häufigkeiten auszuzählen. Wie viele Männer und Frauen sind in dem Datensatz?
