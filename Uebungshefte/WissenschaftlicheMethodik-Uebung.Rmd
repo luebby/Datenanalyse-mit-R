@@ -21,8 +21,8 @@ output:
     template: NULL
     pandoc_args:
         - --standalone
-  #            - --filter
-  #            - ./pandocfilter/typography.py
+        - --filter
+        - ./pandocfilter/typography.py
         - -V
         - graphics=TRUE
     fig_height: 3
@@ -34,6 +34,7 @@ output:
     fig_height: 3
     fig_width: 5
 ---
+
 \tableofcontents
 \newpage 
 

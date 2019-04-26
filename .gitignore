@@ -11,11 +11,11 @@
 *.pdf
 *.aux
 
-*_files/
+**_files
 *_files/*/
 *_files/*
 *_files
 
-
+typography.log
 
 

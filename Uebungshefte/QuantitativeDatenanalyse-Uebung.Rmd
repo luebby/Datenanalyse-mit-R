@@ -2,26 +2,43 @@
 title: Wissenschaftliche Methoden -- Quantitative Datenanalyse -- \newline Übung Quantitative
   Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: "Stand SoSe 2019"
+date: 'SoSe 2019'
+lang: de-De
+colorlinks: yes
+template: NULL
+documentclass: scrreprt
+classoption: 
+    - paper=a4
+    - pagesize
+    - DIV=13  # oder 14
+link-citations: yes
+fontsize: 12pt
 output:
   pdf_document:
     includes:
-      in_header: header.tex
-classoption: a4paper, 10pt
+      in_header: preamble.tex
+    latex_engine: pdflatex
+    keep_tex: yes
+    template: NULL
+    pandoc_args:
+        - --standalone
+        - --filter
+        - ./pandocfilter/typography.py
+        - -V
+        - graphics=TRUE
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
 ---
-\setstretch{1.44}
-
-<!-- \begin{center} -->
-<!-- \includegraphics{ifes.jpg} -->
-<!-- \end{center} -->
-
-\fancyhead{}
-\fancyhead[LE,RO]{\textup{\nouppercase{\leftmark}}}   
 
 \tableofcontents
 \newpage 
 
-\fancyhead[LO,RE]{\textsl{\rightmark}}  
 
 ```{r setup, include=FALSE}
 # knitr::opts_chunk$set(echo = TRUE)
