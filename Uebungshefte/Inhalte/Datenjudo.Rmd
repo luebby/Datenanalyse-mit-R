@@ -9,8 +9,8 @@ In diesem Kapitel benötigte Pakete:
 ```{r, message=FALSE}
 # library(tidyverse)
 # Hinweis: tidyverse durch die einzelnen tidy core Pakete ersetzt, 
-# da (noch) nicht alle Pakete von tidyverse, die sonst noch mitgeladen werden, 
-# unter R 3.5 verfügbar sind
+# da (noch) nicht alle Pakete von tidyverse, die sonst noch mitgeladen 
+# werden, unter R 3.5 verfügbar sind
 library(ggplot2) # Datenjudo
 library(dplyr)
 library(tidyr)
@@ -195,7 +195,8 @@ Ein R-Befehl hierzu ist `arrange`; einige Beispiele zeigen die Funktionsweise am
 
 ```{r arrange-demo, eval = FALSE}
 
-arrange(stats_test, score) # liefert die *schlechtesten* Noten zuerst zurück
+arrange(stats_test, score) 
+# liefert die *schlechtesten* Noten zuerst zurück
 arrange(stats_test, -score) # liefert die *besten* Noten zuerst zurück
 arrange(stats_test, interest, score)
 ```

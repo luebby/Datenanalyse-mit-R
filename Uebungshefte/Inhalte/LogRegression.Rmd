@@ -234,9 +234,9 @@ AUC liegt zwischen $0.5$, wenn das Modell gar nichts erklärt (im Plot die graue
 
 
 ### Modellschätzung
-Das Modell wird nicht wie bei der lineare Regression über die Methode der kleinsten Quadrate (OLS) geschätzt, sondern über die *Maximum-Likelihood*-Methode. Die Koeffizienten werden so gewählt, dass die beobachteten Daten am wahrscheinlichsten (*Maximum Likelihood*) werden.
+Das Modell wird nicht wie bei der lineare Regression über die Methode der kleinsten Quadrate (MKQ) geschätzt, sondern über die *Maximum-Likelihood*-Methode. Die Koeffizienten werden so gewählt, dass die beobachteten Daten am wahrscheinlichsten (*Maximum- Likelihood*) werden.
 
-Das ist ein iteratives Verfahren (OLS erfolgt rein analytisch), daher wird in der letzten Zeile der Ausgabe auch die Anzahl der Iterationen (`Fisher Scoring Iterations`) ausgegeben.
+Das ist ein iteratives Verfahren (MKQ erfolgt rein analytisch), daher wird in der letzten Zeile der Ausgabe auch die Anzahl der Iterationen (`Fisher Scoring Iterations`) ausgegeben.
 
 Die Devianz des Modells (`Residual deviance`) ist $-2$ mal die logarithmierte Likelihood. Die Nulldevianz (`Null deviance`) ist die Devianz eines Nullmodells, d.h., alle $\beta$ außer der Konstanten sind null.
 

@@ -205,17 +205,17 @@ Mit `color = ~ sex` sagen wir, dass die Punkte entsprechend der Ausprägungen vo
 Bei diskreten und insbesondere bei nominalen Variablen, geht es in der Regel darum, Häufigkeiten auszuzählen. Wie viele Männer und Frauen sind in dem Datensatz?
 
 ```{r}
-gf_histogram(~ sex, data = wo_men, stat = "count")
+gf_bar(~ sex, data = wo_men)
 ```
 
-Für ein Balkendiagramm bei einer Faktor- oder Textvariable muss hierbei der Parameter `stat` = "`count`" angegeben werden.
+<!-- Für ein Balkendiagramm bei einer Faktor- oder Textvariable muss hierbei der Parameter `stat` = "`count`" angegeben werden.-->
 
 Entfernen wir vorher noch die fehlenden Werte:
 
 ```{r}
 wo_men %>% 
   na.omit() %>% 
-  gf_histogram(~ sex, stat="count")
+  gf_bar(~ sex)
 ```
 
 Wir könnten uns jetzt die Frage stellen, wie viele kleine und wie viele große Menschen es bei Frauen und bei den Männern gibt. Dazu müssen wir zuerst eine Variable wie "Größe gruppiert" erstellen mit zwei Werten: "klein" und "groß". Nennen wir sie `groesse_gruppe`:
@@ -228,37 +228,22 @@ wo_men %>%
   filter(height > 150, height < 210, shoe_size < 55) %>% 
   na.omit -> wo_men2
   
-gf_histogram(~ sex, data = wo_men2, stat="count", fill=~groesse_gruppe)
+gf_bar(~ sex, data = wo_men2, fill=~groesse_gruppe)
 
 ```
 
 In Worten sagt der `recode`-Befehl hier in etwa: "Kodiere `wo_men$height` um; die Werte vom kleinsten (`lo`) Wert bis 175 sollen den Wert `klein` bekommen, ansonsten den Wert `groß`".
 
-Hier haben wir `gf_histogram` gesagt, dass die Balken entsprechend der Häufigkeit von `groesse_gruppe` gefüllt werden sollen. Wie wir sehen, sind die Werte `klein` bei den Frauen bei dieser Variable häufig; bei den Männern hingegen die Werte `groß`.
+Hier haben wir `gf_bar` gesagt, dass die Balken entsprechend der Häufigkeit von `groesse_gruppe` gefüllt werden sollen. Wie wir sehen, sind die Werte `klein` bei den Frauen bei dieser Variable häufig; bei den Männern hingegen die Werte `groß`.
 
-Schön wäre noch, wenn die Balken Prozentwerte angeben würden. Das geht mit `gf_histogram` (so) nicht; wir schwenken auf `ggplot` um^[Cleveland fände diese Idee nicht so gut. Vgl. @Cleveland]:
+Schön wäre noch, wenn die Balken Prozentwerte angeben würden. 
 
 ```{r}
-wo_men2 %>% 
-  ggplot() +
-  aes(x = sex, fill = groesse_gruppe) +
-  geom_bar(position = "fill")
+gf_bar( ~ sex, 
+        fill = ~ groesse_gruppe, 
+        position = "fill", 
+        data = wo_men2)
 ```
-
-Schauen wir uns die Struktur des Befehls `ggplot` näher an.
-
-* `wo_men2`:  Hey R, nimm den Datensatz `wo_men2`
-* `ggplot()` : Hey R, male ein Diagramm vom Typ `ggplot` (mit dem Datensatz aus dem vorherigen *Pfeifen*-Schritt, d.h. aus der vorherigen Zeile, also `wo_men2`)!
-* `+`:  Das Pluszeichen grenzt die Teile eines ggplot-Befehls voneinander ab.
-* `aes`:  von "aethetics", also welche Variablen des Datensatzes den sichtbaren Aspekten (v.a. Achsen, Farben, etc.) zugeordnet werden.
-* `x`: Der X-Achse (Achtung, `x` wird hier klein geschrieben) wird die Variable `sex` zugeordnet.
-* `y`: gibt es nicht??? Wenn in einem ggplot-Diagramm *keine* Y-Achse definiert wird, wird ggplot automatisch ein Histogramm bzw. ein Balkendiagramm erstellen. Bei diesen Arten von Diagrammen steht auf der Y-Achse keine eigene Variable, sondern meist die Häufigkeit des entsprechenden X-Wertes (oder eine Funktion der Häufigkeit, wie relative Häufigkeit). 
-* `geom_XYZ`: Als *Geom* (geometrisches Objekt) soll ein Balken (*bar*) gezeichnet werden. 
-  * Ein *Geom* ist in ggplot2 das zu zeichnende Objekt, also ein Boxplot, ein Balken, Punkte, Linien etc. Entsprechend wird das gewünschte *Geom* mit `geom_bar`, `geom_boxplot`, `geom_point`, `geom_line` etc. gewählt.
-* `position = 'fill'`: Dieser Parameter will sagen, dass die Balken alle eine Höhe von 100% (1) haben. Die Balken zeigen also nur die Anteile der Werte der `fill`-Variablen.
-  * `fill`: Das Diagramm (die Balken) soll(en) so gefüllt werden, dass sich die Häufigkeit der Werte von `groesse_gruppe` darin widerspiegelt.
-
-
 
 Wir sehen, dass die Anteile von großen bzw. kleinen Menschen bei den beiden Gruppen (Frauen vs. Männer) *unterschiedlich hoch* sind. Dies spricht für einen *Zusammenhang* der beiden Variablen; man sagt, die Variablen sind *abhängig* (im statistischen Sinne).
 
@@ -310,16 +295,25 @@ wo_men3
 ```
 
 
-Diese Tabelle schieben wir jetzt in `ggplot2` über das `gformula`-Interface; natürlich hätten wir das gleich in einem Rutsch *durchpfeifen* können.
+Diese Tabelle schieben wir jetzt in `ggplot2` über das `gformula`-Interface:
 
 ```{r}
-wo_men3 %>% 
+gf_point(Groesse_MW ~ sex, data = wo_men3)
+```
+
+
+Natürlich hätten wir das gleich in einem Rutsch *durchpfeifen* können.
+
+```{r, tidy=FALSE}
+wo_men2 %>% 
+  group_by(sex) %>% 
+  summarise(Groesse_MW = mean(height)) %>% 
   gf_point(Groesse_MW ~ sex, data = .)
 ```
 
 Das Diagramm besticht nicht gerade durch die Tiefe und Detaillierung. Wenn wir noch zusätzlich die Mittelwerte nach `groesse_gruppe` ausweisen, wird das ebenfalls noch überschaubar bleiben.
 
-```{r}
+```{r, tidy=FALSE}
 wo_men2 %>% group_by(sex, groesse_gruppe) %>% 
   summarise(Groesse_MW = mean(height)) %>% 
   gf_point(Groesse_MW ~ sex, color = ~factor(groesse_gruppe))

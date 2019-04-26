@@ -173,13 +173,13 @@ ki
 gf_histogram(~Positiv, data=typAboot) %>% gf_vline(xintercept=ki)
 ```
 
-Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
+Dies ist das **nicht-parametrische Bootstrap-Konfidenzintervall**.
 
 
 ***
 **Übung:** 
 
-3.  Bestimmen Sie das 90$\,$% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-Positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $\pi=0.5$ zum Signifikanzniveau 10$\,$% vermutlich verworfen werden?
+3.  Bestimmen Sie das 90$\,$% nicht-parametrische Bootstrap-Konfidenzintervall für eine nicht-positive Einschätzung im Fall Entscheidungsvorlage (Typ B). Würde damit eine Nullyhpothese $\pi=0.5$ zum Signifikanzniveau 10$\,$% vermutlich verworfen werden?
 
 ***
 
@@ -192,7 +192,7 @@ Dies ist das **Nicht-parametrische Bootstrap-Konfidenzintervall**.
 Beim Glücksspiel ist es offensichtlich, aber auch an vielen, vielen anderen Stellen im Leben begegnen wir dem *Zufall*. Daten, Beobachtungen sind häufig Realisationen von sogenannten Zufallsvariablen. Das sind Variablen, deren Werte vom Zufall (und damit auch seinen Modellen und Gesetzen) abhängen. So werden Aktienkurse und -renditen häufig als Random Walk aufgefasst und modelliert - häufig unter der *Annahme* einer Normalverteilung.^[Sowohl die Annahme einer Normalverteilung, als auch die Annahme, dass die Renditen unabhängig voneinander sind (d.h., dass keine *Autokorrelation* vorliegt) und einer identischen Verteilung folgen (hier gleiche Varianz) sind in der Praxis kritisch zu hinterfragen.]
 
 
-Hier drei Kennzahlen der logarithmierten Tagesrenditen von Aktienunternehmen in 2015 in %.
+Hier drei Kennzahlen der logarithmierten Tagesrenditen von Aktienunternehmen in 2015 in Prozent.
 
 Anlage | AAPL | FB | GOOGL |
 -------|------|----|-------|

@@ -292,7 +292,7 @@ Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuf
 ```{r}
 LSTKposthoc <- TukeyHSD(LSTKaov)
 LSTKposthoc
-plot(LSTKposthoc)
+plot(LSTKposthoc, las=1)
 ```
 
 Hinweis: Da die einzelnen Faktorstufen hier unbalanciert sind (d.h. unterschiedliche Stichprobenumfänge haben) ist das Ergebnis hier nicht exakt.

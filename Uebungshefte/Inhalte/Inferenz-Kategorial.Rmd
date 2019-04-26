@@ -150,16 +150,18 @@ Hier wird die Alternativhypothese `less` verwendet: $H_0: p_1 \geq p_2$, gegen $
 
 *Exkurs:* 
 Mit dem Paket mosaic können Sie das auch einfach über Permutationen testen, indem das Erhebungsjahr zufällig gesampelt wird, wobei hier ungerichtet, d.h. zweiseitig, getestet wird. Mit anderen Worten ist sowohl eine Erhöhung als auch eine Verringerung des Anteils in der Alternativhypothese möglich, daher werden die Absolutwerte der Differenz (`abs()`) verwendet:
-```{r}
+```{r, tidy=FALSE}
 # Beobachtete Differenz
 pdiff <- diffprop( ~ response | year, data = de)
 pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
 # 10000-mal das Jahr permutieren - Nullhypothese: kein Unterschied
-pdiff.null <- do(10000) * diffprop( ~ response | shuffle(year), data = de)
+pdiff.null <- do(10000) * 
+  diffprop( ~ response | shuffle(year), data = de)
 # Histogramm
-gf_histogram(~ diffprop, data = pdiff.null) %>% gf_vline(xintercept = c(pdiff, -pdiff))
+gf_histogram(~ diffprop, data = pdiff.null) %>% 
+  gf_vline(xintercept = c(pdiff, -pdiff))
 # p-Wert
 prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
 ```
