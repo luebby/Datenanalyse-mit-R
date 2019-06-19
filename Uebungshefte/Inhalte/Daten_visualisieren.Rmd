@@ -1,4 +1,4 @@
-# Anhang `r anh <- anh+1; anh`: Daten visualisieren mit ggplot
+# Anhang `r anh <- anh+1; anh`: Daten visualisieren mit ggformula
 
 ```{r, echo=FALSE}
 detachAllPackages <- function() {
