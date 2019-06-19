@@ -19,14 +19,21 @@ Die Befragten hatten dabei drei Antwortmöglichkeiten: Religiöser Mensch ("A re
 Ein Teil der Daten kann direkt von OpenIntro als R Datensatz heruntergeladen werden, und anschließend in R eingelesen:
 ```{r, message=FALSE}
 meine_url <- "http://www.openintro.org/stat/data/atheism.RData"
-load(url(meine_url)) # Einlesen
+
+# Einlesen
+load(url(meine_url)) 
 ```
 
 Einen Überblick erhält man wie immer über:
 ```{r}
-inspect(atheism) # Datenstruktur
-head(atheism) # Erste Beobachtungen
-tail(atheism) # letzte Beobachtungen
+# Datenstruktur
+inspect(atheism) 
+
+# Erste Beobachtungen
+head(atheism) 
+
+# letzte Beobachtungen
+tail(atheism) 
 ```
 
 Hinweis: Die drei Antwortmöglichkeiten wurden im verwendeten Datensatz zu zwei Leveln (`atheist`, `non-atheist`) zusammengefasst.
@@ -41,12 +48,13 @@ In Tabelle 6 der Pressemitteilung wird der Anteil der Atheisten für Deutschland
 
 Der folgende Befehl filtert den Datensatz auf das Ergebnis für Deutschland im Jahr 2012, d.h., es werden nur die gewünschten Zeilen im Datensatz belassen:
 ```{r}
-de12 <- filter(atheism, nationality == "Germany", year == "2012")
+de12 <- filter(atheism, nationality == "Germany", 
+                        year == "2012")
 ```
 
 Die *Punktschätzung* des Anteilswertes der Atheisten für Deutschland im Jahr 2012 liegt dann bei
 ```{r}
-pdach <- tally(~response, data=de12, format='proportion')["atheist"]
+pdach <- tally(~response, data = de12, format = 'proportion')["atheist"]
 pdach
 ```
 also bei `r round(pdach*100)`$\,$%.
@@ -54,7 +62,7 @@ also bei `r round(pdach*100)`$\,$%.
 Um jetzt ein 95$\,$% Konfidenzintervall für den Populationsparameter zu konstruieren (*Bereichsschätzung*) muss der Standardfehler $se$ bestimmt werden, hier:
 ```{r}
 n <- nrow(de12) # Anzahl Beobachtungen
-se <- sqrt( pdach * (1-pdach) / n)
+se <- sqrt(pdach * (1 - pdach) / n)
 se
 ```
 Der Standardfehler, d.h., die Standardabweichung des Anteilswertes liegt hier also bei `r round(se*100,2)`$\,$%. Zusammen mit dem 2,5$\,$% und 97,5$\,$% Quantil der Standardnormalverteilung ergibt sich folgendes Konfidenzintervall:
@@ -65,7 +73,7 @@ Da der Populationsparameter unbekannt aber nicht zufällig ist, werden die 95$\,
 
 In `mosaic` besteht die Möglichkeit, Punkt- und Bereichsschätzungen mit dem Befehl `prop.test` durchzuführen. Sofern kein Wert für `p` angegeben wird lautet die Nullyhpothese $H_0: p=0.5$.
 ```{r}
-prop.test(~response, data=de12)
+prop.test(~response, data = de12)
 ```
 
 Beachte, dass das Konfidenzintervall, anders als bei der *Approximation* über die Normalverteilung hier nicht symmetrisch um den Punktschätzer ist.
@@ -81,8 +89,9 @@ Beachte, dass das Konfidenzintervall, anders als bei der *Approximation* über d
 
 Um für Deutschland die Nullhypothese "Der Anteil der Atheisten liegt nicht über 10$\,$%" gegen die Alternativhypothese (Forschungshypothese) "Der Anteil der Atheisten liegt über 10$\,$%" zu testen, können entweder wieder Simulations- und Resamplingtechniken verwendet werden oder die Approximation durch die Normalverteilung:
 ```{r}
-se0 <- sqrt( (0.1 * (1-0.1)) /n)
-z <- (pdach - 0.10) / se0
+se0 <- sqrt((0.1 * (1 - 0.1)) /n)
+z   <- (pdach - 0.10) / se0
+
 xpnorm(z, lower.tail = FALSE)
 ```
 
@@ -90,13 +99,18 @@ Der *p-Wert* liegt also bei `r round(pnorm(z, lower.tail = FALSE)*100, 4)`$\,$%,
 
 Auch hier direkt über `prop.test`:
 ```{r}
-prop.test(~response, p=0.1, alternative="greater", data=de12)
+prop.test(~response, p = 0.1, 
+                     alternative = "greater", 
+           data = de12)
 ```
 Je nach Alternativhypothese ergeben sich unterschiedliche Tests:
 
-- `alternative='two.sided'`: ungerichtet, d.h. zweiseitig: $H_0: p=0.1$ gegen $H_A: p\neq0.1$
-- `alternative='less'`: gerichtet, d.h. einseitig:  $H_0: p\geq 0.1$ gegen $H_A: p<0.1$
-- `alternative='greater'`: gerichtet, d.h. einseitig:  $H_0: p\leq 0.1$ gegen $H_A: p>0.1$
+- `alternative = 'two.sided'`: ungerichtet, d.h. zweiseitig: 
+    $H_0: p=0.1$ gegen $H_A: p\neq0.1$
+- `alternative = 'less'`: gerichtet, d.h. einseitig:  
+    $H_0: p\geq 0.1$ gegen $H_A: p<0.1$
+- `alternative = 'greater'`: gerichtet, d.h. einseitig:  
+    $H_0: p\leq 0.1$ gegen $H_A: p>0.1$
 
 ## Differenz zweier Anteilswerte
 In den Daten liegen außerdem die Ergebnisse aus 2005 vor:
@@ -105,29 +119,43 @@ de05 <- filter(atheism, nationality == "Germany" & year == "2005")
 ```
 Im Jahre 2005 lag der Anteil der Atheisten in Deutschland bei
 ```{r}
-tally(~response, data=de05, format="proportion")
+tally(~response, data = de05, 
+                 format = "proportion")
 ```
 Der Aneil lag also bei unter 10$\,$% -- in der *Stichprobe*! Können wir daraus auf eine Erhöhung des Anteils von 2005 zu 2012 in der *Population* schließen? 
 ```{r}
-# 2012
-a12 <- tally(~response, data=de12)["atheist"] # Anzahl Atheisten 2012
-n12 <- nrow(de12) # Anzahl Studienteilnehmer 2012
-p12 <- a12/n12 # Anteil Atheisten 2012
-# 2005 
-a05 <- tally(~response, data=de05)["atheist"] # Anzahl Atheisten 2005
-n05 <- nrow(de05) # Anzahl Studienteilnehmer 2005
-p05 <- a05/n05 # Anteil Atheisten 2005
+## 2012
+# Anzahl Atheisten 
+a12 <- tally(~response, data = de12)["atheist"] 
+# Anzahl Studienteilnehmer 
+n12 <- nrow(de12) 
+# Anteil Atheisten 
+p12 <- a12/n12 
+
+
+## 2005 
+# Anzahl Atheisten 
+a05 <- tally(~response, data=de05)["atheist"] 
+# Anzahl Studienteilnehmer 
+n05 <- nrow(de05) 
+# Anteil Atheisten 
+p05 <- a05/n05 
+
 # Punktschätzer Differenz Population
 pdiff <- p12 - p05
 pdiff
+
 # Pooling zur Berechnung Standardfehler unter H_0
 ppool <- (a12 + a05)/(n12 + n05)
 ppool
+
 # Standardfehler se
 se0 <- sqrt( (ppool * (1 - ppool) / n12) + (ppool * (1 - ppool) / n05) )
 se0
+
 # z-Wert z
 z <- (pdiff - 0)/se0
+
 # p-Wert
 xpnorm(z, lower.tail = FALSE)
 ```
@@ -141,7 +169,8 @@ de <- filter(atheism, nationality == "Germany")
 
 und anschließend geteset:
 ```{r}
-prop.test(response~year, alternative="less", data=de)
+prop.test(response ~ year, alternative = "less", 
+                         data = de)
 ```
 
 Hier wird die Alternativhypothese `less` verwendet: $H_0: p_1 \geq p_2$, gegen $H_A: p_1<p_2$.
@@ -156,14 +185,17 @@ pdiff <- diffprop( ~ response | year, data = de)
 pdiff
 # Zufallszahlengenerator setzen (Reproduzierbarkeit!)
 set.seed(1896)
+
 # 10000-mal das Jahr permutieren - Nullhypothese: kein Unterschied
 pdiff.null <- do(10000) * 
-  diffprop( ~ response | shuffle(year), data = de)
+                diffprop( ~response|shuffle(year), data = de)
+
 # Histogramm
 gf_histogram(~ diffprop, data = pdiff.null) %>% 
   gf_vline(xintercept = c(pdiff, -pdiff))
+
 # p-Wert
-prop(~abs(diffprop) >= abs(pdiff), data = pdiff.null)
+prop( ~ abs(diffprop) >= abs(pdiff), data = pdiff.null)
 ```
 
 ***
@@ -180,8 +212,10 @@ Soll allgemein der Zusammenhang zwischen zwei kategoriellen (nominalen) Variable
 
 ```{r}
 G7 <- c("United States", "Canada", "Germany", "France", "Italy", "Japan")
+
 G7.12 <- filter(atheism, nationality %in% G7 & year == 2012)
 G7.12 <- droplevels(G7.12)
+
 G7atheist <- tally(response ~ nationality, data = G7.12)
 G7atheist
 ```
