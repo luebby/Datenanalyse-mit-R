@@ -91,7 +91,7 @@ anh <- 0
 
 \newpage
 
-```{r child = 'Inhalte/LogRegression.Rmd', eval = TRUE}
+```{r child = 'Inhalte/LogRegression.Rmd', eval = FALSE}
 ```
 
 \newpage
@@ -101,7 +101,7 @@ anh <- 0
 
 \newpage
 
-```{r child = 'Inhalte/Clusteranalyse.Rmd', eval = TRUE}
+```{r child = 'Inhalte/Clusteranalyse.Rmd', eval = FALSE}
 ```
 
 \newpage
