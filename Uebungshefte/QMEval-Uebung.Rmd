@@ -2,7 +2,7 @@
 title: Quantitative Methoden und Evaluationsforschung -- \newline Übung Quantitative
   Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: "Stand WiSe 2018/19"
+date: "Stand WS 2019"
 output:
   pdf_document:
     includes:
