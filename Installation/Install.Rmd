@@ -56,7 +56,7 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
 ### macOS
-Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-gründen eine Aktualisierung auf macOS Sierra: [https://www.apple.com/de/macos/how-to-upgrade/](https://www.apple.com/de/macos/how-to-upgrade/). 
+Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssysteme: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
 
 Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. Nach der Installation muss der Computer neu gestartet werden.
 
