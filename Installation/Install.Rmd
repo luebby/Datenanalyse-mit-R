@@ -36,11 +36,16 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(
-  tidy=FALSE,     # display code as typed
-  size="small"    # slightly smaller font for code
+  echo = TRUE,
+  background = "#ECF2F8", # war mal: '#E0E0E0',
+  concordance = TRUE,
+  tidy = FALSE,           # display code as typed
+  size = "small",         # slightly smaller font for code
+  fig.align = "center",
+  width.cutoff = 70
 )
+
 ```
 
 ## Vorbereitungen und Hinweise

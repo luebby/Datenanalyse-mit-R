@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 %\usepackage[space]{grffile}
 \usepackage{FOMTexteTitle}
+\usepackage{setspace}
 
 \makeatletter
 \def\thm@space@setup{%
@@ -13,6 +14,9 @@
 }
 \makeatother
 
-\setstretch{1.44}
+\setstretch{1.44} % needs setspace if KOMA is used!
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+
 %\usepackage{fancyhdr, german, courier,amsmath, setspace}
 %\usepackage[utf8]{inputenc}
