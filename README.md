@@ -8,5 +8,5 @@ Bitte melden Sie Fehler und Verbesserungsvorschläge.
 
 
 ***
-Die Unterlagen werden von Karsten Lübke zusammen mit Matthias Gehrke, Bianca Krol, Oliver Gansser und Sebastian Sauer von der [FOM](https://www.fom.de/) unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0) entwickelt. 
+Die Unterlagen werden von Karsten Lübke zusammen mit Matthias Gehrke, Bianca Krol, Oliver Gansser und Sebastian Sauer von der [FOM](https://www.fom.de/) unter der Lizenz [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0) entwickelt. Technische Hilfestellung für die Autoren Norman Markgraf und Tabea Treppmann.
 
