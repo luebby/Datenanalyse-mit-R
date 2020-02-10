@@ -1,17 +1,7 @@
 ---
-title: "Wissenschaftliche Methodik -- \\newline Übung Quantitative Datenanalyse mit R"
+title: Wissenschaftliche Methodik -- \newline Übung Quantitative Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: 'SoSe 2019'
-lang: de-De
-colorlinks: yes
-template: NULL
-documentclass: scrreprt
-classoption: 
-    - paper=a4
-    - pagesize
-    - DIV=13  # oder 14
-link-citations: yes
-fontsize: 12pt
+date: "Stand WS 2019"
 output:
   pdf_document:
     includes:
@@ -37,6 +27,8 @@ output:
 
 \tableofcontents
 \newpage 
+
+\fancyhead[LO,RE]{\textsl{\rightmark}}  
 
 
 ```{r setup, include=FALSE}
@@ -97,7 +89,7 @@ anh <- 0
 
 \newpage
 
-```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd', eval = FALSE}
+```{r child = 'Inhalte/Dimensionsreduktion-PCA-EFA.Rmd', eval = TRUE}
 ```
 
 \newpage

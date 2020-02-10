@@ -2,6 +2,7 @@
 title: Ökonometrie -- \newline Übung Quantitative
   Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
+<<<<<<< HEAD
 date: 'SoSe 2019'
 lang: de-De
 colorlinks: yes
@@ -13,6 +14,9 @@ classoption:
     - DIV=13  # oder 14
 link-citations: yes
 fontsize: 12pt
+=======
+date: "Stand WiSe 2019"
+>>>>>>> 4176dbda838e786c4884df12031a8a86d7d210eb
 output:
   pdf_document:
     includes:

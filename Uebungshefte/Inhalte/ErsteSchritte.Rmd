@@ -165,7 +165,7 @@ tips$tip/tips$total_bill
 ```
 gibt für *jede Beobachtung* die relative Trinkgeldhöhe bezogen auf die Rechnungshöhe an. Über 
 ```{r eval=FALSE}
-(tips$tip/tips$total_bill)<0.10
+(tips$tip/tips$total_bill) < 0.10
 ```
 erhalten wir einen Vektor vom Typ `logical`. Dieser nimmt nur zwei Werte an, nämlich `TRUE` und `FALSE`, je nachdem, ob der jeweilige Wert kleiner als 0.10 ist oder nicht. Neben `<` und `>` bzw. `<=` und `>=` gibt es ja auch noch die Prüfung auf Gleichheit. Hierfür werden in R gleich *zwei* Gleichheitszeichen verwendet, also `==`.
 

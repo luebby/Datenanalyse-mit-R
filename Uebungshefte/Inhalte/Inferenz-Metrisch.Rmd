@@ -63,7 +63,7 @@ gf_histogram( ~ mean, data=SimBSP91JW)
 
 Der Anteil der unter $H_0$ simulierten Daten, die einen größeren Mittelwert als den beobachteten aufweisen ist sehr klein:
 ```{r}
-prop( mean( ~mean, data = SimBSP91JW)>= meandBSP)
+prop(mean( ~ mean, data = SimBSP91JW) >= meandBSP)
 ```
 
 Der beobachtete Wert der Teststatistik ist also unter $H_0: \mu \leq 0$ sehr unwahrscheinlich, $H_0$ würde also verworfen.
@@ -78,7 +78,7 @@ Oder eine Berechnung "per Hand":
 # Standardfehler
 se <- sdBSP/sqrt(n)
 # p-Wert
-xpnorm( meandBSP, mean = 0, sd = se, lower.tail = FALSE)
+xpnorm(meandBSP, mean = 0, sd = se, lower.tail = FALSE, xlim = c(-4, 4.0))
 ```
 
 
@@ -212,9 +212,9 @@ Cohen's d ist ein Maß der Überlappung der Verteilungen:
 xd <- seq(0,15, by = 0.1)
 d1 <- dnorm(xd, m1, sdpool)
 d2 <- dnorm(xd, m2, sdpool)
-plot(xd,d1, type = "l", ylab = "Dichte", xlab = "ZINSK", col = "blue", main = "Dichte bei Normalverteilung", lwd = 2, sub = "(Gepoolte Standardabweichung)")
+plot(xd, d1, type = "l", ylab = "Dichte", xlab = "ZINSK", col = "blue", main = "Dichte bei Normalverteilung", las = 2, lwd = 2, sub = "(Gepoolte Standardabweichung)")
 lines(xd, d2, type = "l", col = "red", lwd = 2)
-legend(10, 0.1625, legend = c("Aufschwung", "Abschwung"), col = c("blue", "red"), lwd = 2)
+legend(10.2, 0.17, legend = c("Aufschwung", "Abschwung"), col = c("blue", "red"), lwd = 2, cex = 0.75)
 ```
 
 Häufig werden Werte 
@@ -282,7 +282,7 @@ Im Paket `effects` gibt es übrigens eine schöne Plotfunktion für die Effekte:
 # Einmalig installieren:
 # install.packages("effects")
 library(effects)
-plot(allEffects(LSTKaov))
+plot(allEffects(LSTKaov), axes=list(x=list(rotate=25), scales=list(cex=.8)))
 ```
 
 Neben dem arithmetischen Mittelwert (Punktschätzer) wird in der Standardeinstellung das 95$\,$% Konfidenzintervall eingezeichnet.
@@ -292,7 +292,8 @@ Um nach einer signifikanten Varianzanalyse sogenannte Post-Hoc Analysen durchzuf
 ```{r}
 LSTKposthoc <- TukeyHSD(LSTKaov)
 LSTKposthoc
-plot(LSTKposthoc, las=1)
+par(mar=c(3.8, 13, 3, 4))
+plot(LSTKposthoc, las=1, cex.axis=0.75)
 ```
 
 Hinweis: Da die einzelnen Faktorstufen hier unbalanciert sind (d.h. unterschiedliche Stichprobenumfänge haben) ist das Ergebnis hier nicht exakt.

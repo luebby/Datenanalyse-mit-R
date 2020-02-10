@@ -135,7 +135,7 @@ Dem (neuen) R Objekt `tab_smoke_time` wird also das Ergebnis des `tally` Befehls
 print(tab_smoke_time)
 str(tab_smoke_time)
 ```
-Es handelt sich also um eine Tabelle (`table`) der Dimension `r dim(tab_smoke_time)`, also `r dim(tab_smoke_time)[1]` Zeilen, `r dim(tab_smoke_time)[2]` Spalten.
+Es handelt sich also um eine Tabelle (`table`) der Dimension (`r dim(tab_smoke_time)`), also `r dim(tab_smoke_time)[1]` Zeilen, `r dim(tab_smoke_time)[2]` Spalten.
 
 Der Befehl für einen Mosaicplot lautet `mosaicplot`:
 ```{r}
@@ -202,9 +202,14 @@ rank(tips$total_bill)
 
 Diese unterscheiden sich:
 ```{r}
-meantb <- mean(~ total_bill, data=tips) # Mittelwert
-mediantb <- median(~ total_bill, data=tips) # Median
-gf_histogram(~ total_bill, data=tips) %>% gf_vline(xintercept = c(meantb, mediantb))
+# Mittelwert
+meantb <- mean(~ total_bill, data=tips) 
+
+# Median
+mediantb <- median(~ total_bill, data=tips) 
+
+gf_histogram(~ total_bill, data=tips) %>% 
+  gf_vline(xintercept = c(meantb, mediantb))
 ```
 
 Mit Hilfe von `%>% gf_vline(xintercept = c(meantb, mediantb))` werden vertikale Linien an den entsprechenden Stellen gezeichnet. Mit `gf_hline(yintercept = ...)` können horizontale Linien gezeichnet werden.

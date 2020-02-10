@@ -1,4 +1,4 @@
-# Anhang `r anh <- anh+1; anh`: Daten visualisieren mit ggplot
+# Anhang `r anh <- anh+1; anh`: Daten visualisieren mit ggformula
 
 ```{r, echo=FALSE}
 detachAllPackages <- function() {
@@ -208,7 +208,6 @@ Bei diskreten und insbesondere bei nominalen Variablen, geht es in der Regel dar
 gf_bar(~ sex, data = wo_men)
 ```
 
-<!-- Für ein Balkendiagramm bei einer Faktor- oder Textvariable muss hierbei der Parameter `stat` = "`count`" angegeben werden.-->
 
 Entfernen wir vorher noch die fehlenden Werte:
 
