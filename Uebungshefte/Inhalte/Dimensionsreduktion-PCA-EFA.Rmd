@@ -271,7 +271,7 @@ Standardmäßig wird bei  `factanal()` eine Varimax-Rotation durchgeführt (das 
 
 In der obigen Ausgabe werden die Item-to-Faktor-Ladungen angezeigt. Im zurückgegebenen Objekt `Werte.fa` sind diese als  `$loadings` vorhanden. Wir können die Item-Faktor-Beziehungen mit einer Heatmap von `$loadings` visualisieren:
 
-```{r}
+```{r eval = FALSE}
 library (gplots)
 heatmap.2(Werte.fa$loadings)
 ```

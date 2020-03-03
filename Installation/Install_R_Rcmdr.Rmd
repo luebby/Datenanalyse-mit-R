@@ -63,11 +63,11 @@ Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror v
 Da der R Commander stabiler im sogenannten "single-document interface" (sdi) Modus läuft, sollten die Startoptionen entsprechend angepasst werden:
 
 ```{r echo=FALSE}
-knitr::include_graphics("Startoption_anpassen.jpg")
+knitr::include_graphics("Startoption_anpassen.jpg", error = FALSE)
 ```
 
 ```{r echo=FALSE}
-knitr::include_graphics("Startoption_anpassen-SDI.jpg")
+knitr::include_graphics("Startoption_anpassen-SDI.jpg", error = FALSE)
 ```
 
 ### Installation von Zusatzpaketen
@@ -76,7 +76,7 @@ Die Grundinstallation ist jetzt abgeschlossen. Und Sie können R durch klicken a
 Auf Ihrem Bildschirm sollte folgendes Bild zu sehen sein (Windows):
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("R.jpg")
+knitr::include_graphics("R.jpg", error = FALSE)
 ```
 
 
@@ -84,7 +84,7 @@ knitr::include_graphics("R.jpg")
 Bzw. Mac OS X:
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("R-Mac.png")
+knitr::include_graphics("R-Mac.png", error = FALSE)
 ```
 
 #### R Commander
@@ -111,7 +111,7 @@ Wenn die Installation erfolgreich war erscheint der R Commander:
 Windows:
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("Rcmdr.jpg")
+knitr::include_graphics("Rcmdr.jpg", error = FALSE)
 ```
 
 
@@ -119,7 +119,7 @@ knitr::include_graphics("Rcmdr.jpg")
 macOS:
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("Rcmdr-Mac.png")
+knitr::include_graphics("Rcmdr-Mac.png", error = FALSE)
 ```
 
 Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.), an <R@fom.de> wenden.

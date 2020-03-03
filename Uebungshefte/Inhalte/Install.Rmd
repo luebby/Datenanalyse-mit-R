@@ -80,7 +80,7 @@ Die Grundinstallation ist jetzt abgeschlossen. RStudio erkennt in der Regel auto
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("RStudio-Screenshot-3.4.png")
+knitr::include_graphics("RStudio-Screenshot-3.4.png", error = FALSEW)
 ```
 
 

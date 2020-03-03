@@ -311,7 +311,7 @@ xqnorm(0.01, mean = 0.11,
 ## Übung: Achtsamkeit 
 In einem Test zur Achtsamkeit *Sauer S, Lemke J, Wittmann M, Kohls N, Mochty U, and Walach H. (2012) How long is now for mindfulness meditators? Personality and Individual Differences 52(6), 750–754* konnten 34 von 38 Studienteilnehmende der Kontrollgruppe nach einer Instruktion die Dauer der Fixierung des Necker Würfels steigern:  
 ```{r echo=FALSE, out.width = "20%", fig.align="center", cache=FALSE}
-knitr::include_graphics("Inhalte/images/EinfuehrungWkeitInferenz/Necker-Cube-crop.png")
+knitr::include_graphics("Inhalte/images/EinfuehrungWkeitInferenz/Necker-Cube-crop.png", error = FALSE)
 ```
 [https://www.sciencedirect.com/science/article/pii/S0191886911005939?via%3Dihub](https://www.sciencedirect.com/science/article/pii/S0191886911005939?via%3Dihub).
 

@@ -26,7 +26,7 @@ library(car)  # Umkodieren
 
 
 ```{r echo = FALSE}
-knitr::include_graphics("Inhalte/images/visualisieren/Visualisieren.pdf")
+knitr::include_graphics("Inhalte/images/visualisieren/Visualisieren.pdf", error = FALSE)
 ```
 
 ## Ein Bild sagt mehr als 1000 Worte
@@ -36,7 +36,7 @@ Ein Bild sagt bekanntlich mehr als 1000 Worte. Schauen wir uns zur Verdeutlichun
 
 
 ```{r echo = FALSE, fig.align="center", out.width="80%"}
-knitr::include_graphics("Inhalte/images/visualisieren/AnscombeQuartet.png")
+knitr::include_graphics("Inhalte/images/visualisieren/AnscombeQuartet.png", error = FALSE)
 ```
 
 
