@@ -49,7 +49,8 @@ knitr::opts_chunk$set(
 ```
 
 ## Vorbereitungen und Hinweise
-Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung (z. B. Fehlermeldung, Betriebssystem etc.) an <R@fom.de> wenden.
+Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. 
+Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung, welche die Fehlermeldung (kann per copy & paste direkt aus der Konsole in die E-Mail kopiert werden), sowie die Ausgabe von 'sessionInfo()' bzw. mind. die Angabe des verwendeten Betriebssystems und der R-Version enthält, an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
 * [**RStudio (Desktop)**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
@@ -58,18 +59,22 @@ Während der gesamten Installation sollten Sie eine stabile Internetverbindung h
 
 
 ### Windows
-Sie müssen *keine* Administrationsrechte besitzen um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
+Sie müssen i. A. *keine* Administrationsrechte besitzen (Ausnahmen treten teilweise bei Windows 10 Betriebssystemen auf) um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
 ### macOS
-Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssysteme: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
+Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssystem: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
 
-Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. Nach der Installation muss der Computer neu gestartet werden.
+Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. **Nach der Installation muss der Computer neu gestartet werden.**
 
 Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie [`XCode`](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (`Command Line Tool`) installieren wollen dies bitte tun.
 
 1. Installation XQuartz
 2. Neustart Computer
 3. Fortfahren mit der Installation von R
+
+### IPad
+Eine Installation auf dem IPad ist leider nicht möglich. Es gibt alternativ aber online einen Clouddienst, der auch mit dem IPad genutzt werden kann:
+[RStudio Cloud](https://rstudio.cloud/)
 
 
 ## Installation 
@@ -99,7 +104,7 @@ entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. RStudio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von RStudio  starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, indem Sie RStudio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
+Die Grundinstallation ist jetzt abgeschlossen. RStudio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von RStudio starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, indem Sie RStudio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
@@ -109,27 +114,27 @@ knitr::include_graphics("RStudio-Screenshot-3.4.png", error = FALSE)
 
 
 #### mosaic
-Für die Vorlesung werden wir das Zusatzpaket ("package") `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket (*package*) `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
 ```{r eval=FALSE}
-install.packages("mosaic")
+install.packages("mosaic", type = "binary")
 ```
 eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evtl. eine Weile dauern.
 
 [Hier](https://projectmosaic.github.io/mosaic/) gibt es eine englischsprachige Übersicht zu mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
-Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. Die angegebenen Meldungen sind **keine** Fehler.
-
-```{r}
-library(mosaic)
-```
-
+Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. 
 
 ## Pakete verwenden
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic`. Jedes Zusatzpaket wird über den Befehle `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde. Starten Sie also `mosaic` und also zunächst mit den folgenden Befehlen
+In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic`. Jedes Zusatzpaket wird über den Befehl `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde wie eben beschrieben. Starten Sie also `mosaic` zunächst mit den folgenden Befehlen:
 ```{r eval=FALSE}
 library(mosaic)
 ```
 
+Die angegebenen Meldungen sind **keine** Fehler, auch wenn sie in roter Schrift dargestellt werden.
+
+```{r eval=TRUE, echo=FALSE}
+library(mosaic)
+```
 
 **Achtung:** R unterscheidet zwischen Groß- und Kleinbuchstaben, also resultiert
 ```{r error=TRUE}
@@ -137,7 +142,23 @@ library(Mosaic)
 ```
 entsprechend in einem Fehler.
 
+Bei einem echten Fehler beginnt die Meldung im Normalfall mit: 'Error' wie hier zu sehen ist.
 
+Jetzt, wo Sie das Paket 'mosaic' geladen haben, können Sie testen, ob es geklappt hat.
+Geben Sie folgende Befehle in der Konsole ein:
+```{r eval=FALSE}
+data(mtcars)
+favstats(~drat, data = mtcars)
+```
+
+Erhalten Sie folgende Ausgabe?:
+```{r eval=TRUE, echo=FALSE}
+favstats(~drat, data = mtcars)
+```
+
+Wenn ja: Super! Sie sind startklar zum Arbeiten mit R und 'mosaic'!
+
+Wenn nein: vielleicht finden Sie eine Lösung im folgenden Abschnitt.
 
 
 ## Fehlersuche
@@ -149,14 +170,14 @@ library(mosaic)
 ##Fehler: package or namespace load failed for ‘dplyr’ in 
 ##loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), 
 ##versionCheck = ##vI[[j]]):
-## es gibt kein Paket namens ‘Rcpp’
+## es gibt kein Paket namens ‘xyz’
 ##Fehler: Paket ‘dplyr’ konnte nicht geladen werden
 ```
-wurde Serverseitig hier das (abhängige) Paket `Rcpp` (*Beispiel*: `es gibt kein Paket namens ‘Rcpp’`) nicht installiert. Installieren Sie dies bitte über
+wurde Serverseitig hier das (abhängige) Paket `xyz` (*Beispiel*: `es gibt kein Paket namens ‘xyz’`) nicht installiert. Installieren Sie dies bitte über
 ```{r, eval=FALSE}
-install.packages("Rcpp")
+install.packages("xyz", type = "binary")
 ```
-entsprechend nach. 
+entsprechend nach. Beachten Sie, dass "xyz" hier nur als Platzhalter dient, welches Paket in diesem Fall tatsächlich noch installiert werden muss, besagt Ihre individuelle Fehlermeldung.
 
 Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket `yaml`. Nach folgender Fehlermeldung:
 ```{r, eval=FALSE}
@@ -164,14 +185,14 @@ Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket `
 ```
 installieren Sie bitte über
 ```{r, eval=FALSE}
-install.packages("yaml")
+install.packages("yaml", type = "binary")
 ```
-das Paket nach.
+das Paket nach. Auch hier sehen Sie an Ihrer Fehlermeldung, welches Paket bei Ihnen fehlt, 'yaml' ist lediglich beispielhaft gewählt.
 
 
-Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen:
+Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen, wie im folgenden am Beispiel von 'Rcpp' gezeigt:
 ```{r, eval=FALSE}
-install.packages("Rcpp")
+install.packages("Rcpp", type = "binary")
 ## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.5’
 ## (as ‘lib’ is unspecified)
 ## 
@@ -192,10 +213,10 @@ install.packages("Rcpp")
 In diesem Fall versuchen Sie bitte folgendes:
 
 1. R schließen, R neu starten
-2. `install.packages("Rcpp")`
+2. `install.packages("Rcpp", type = "binary")`
 3.  `library(mosaic)`
 
-Evt. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können. Evtl. sind hier leider mehrere Versuche nötig.
+Evtl. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können. Evtl. sind hier leider mehrere Versuche nötig.
 
 Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen")
 
@@ -218,5 +239,3 @@ Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>.
 
 ### Haftungsausschuss:
 Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Trotz sorgfältiger Prüfung können wir für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-
-
