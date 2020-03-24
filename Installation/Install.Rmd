@@ -120,6 +120,8 @@ install.packages("mosaic", type = "binary")
 ```
 eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evtl. eine Weile dauern.
 
+**Achtung:** In der R Cloud sowie unter Linux funktioniert es nur **ohne** `type = "binary"`, sprich der Befehl lautet dann nur `install.package("mosaic").`
+
 [Hier](https://projectmosaic.github.io/mosaic/) gibt es eine englischsprachige Übersicht zu mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
 Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. 
@@ -177,7 +179,8 @@ wurde Serverseitig hier das (abhängige) Paket `xyz` (*Beispiel*: `es gibt kein 
 ```{r, eval=FALSE}
 install.packages("xyz", type = "binary")
 ```
-entsprechend nach. Beachten Sie, dass "xyz" hier nur als Platzhalter dient, welches Paket in diesem Fall tatsächlich noch installiert werden muss, besagt Ihre individuelle Fehlermeldung.
+entsprechend nach. **Beachten Sie**, dass "xyz" hier nur als Platzhalter dient, welches Paket in diesem Fall tatsächlich noch installiert werden muss, besagt Ihre individuelle Fehlermeldung.
+**Beachten Sie** außerdem, dass auch hier wieder der Befehl für die R Cloud oder Linux ohne `type = "binary"` angegeben werden muss.
 
 Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket `yaml`. Nach folgender Fehlermeldung:
 ```{r, eval=FALSE}
@@ -188,6 +191,7 @@ installieren Sie bitte über
 install.packages("yaml", type = "binary")
 ```
 das Paket nach. Auch hier sehen Sie an Ihrer Fehlermeldung, welches Paket bei Ihnen fehlt, 'yaml' ist lediglich beispielhaft gewählt.
+**Auch hier:** der Befehl für die R Cloud oder Linux lautet `install.packages("yaml")`.
 
 
 Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen, wie im folgenden am Beispiel von 'Rcpp' gezeigt:
@@ -217,6 +221,8 @@ In diesem Fall versuchen Sie bitte folgendes:
 3.  `library(mosaic)`
 
 Evtl. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können. Evtl. sind hier leider mehrere Versuche nötig.
+
+**Denken Sie daran:** Unter Linux oder in der R Cloud wird der Befehl `install.packages` **ohne** `type = "binary"` angegeben!
 
 Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen")
 
