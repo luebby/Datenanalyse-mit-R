@@ -72,8 +72,8 @@ Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werd
 2. Neustart Computer
 3. Fortfahren mit der Installation von R
 
-### IPad
-Eine Installation auf dem IPad ist leider nicht möglich. Es gibt alternativ aber online einen Clouddienst, der auch mit dem IPad genutzt werden kann:
+### Tablet
+Eine Installation auf dem IPad und Co. (Android) ist leider nicht möglich. Es gibt alternativ aber online einen Clouddienst, der auch mit dem Tablet genutzt werden kann:
 [RStudio Cloud](https://rstudio.cloud/)
 
 
