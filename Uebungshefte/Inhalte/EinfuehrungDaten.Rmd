@@ -79,7 +79,7 @@ erzeugt?
 gf_dotplot(~ size, binwidth=1/55, data=tips)
 ```
 
-Hier wurde ein zusätzliche Parameter der Funktion `gf_dotplot` übergeben: `binwidth=1/55`. Dieser Parameter wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?gf_dotplot`, erfahren.
+Hier wurde ein zusätzlicher Parameter der Funktion `gf_dotplot` übergeben: `binwidth=1/55`. Dieser Parameter wurde verwendet, um die Abbildung schöner zu machen. Welche Optionen es gibt und was diese bedeuten, kann man in R häufig einfach über die Hilfe, hier also `?gf_dotplot`, erfahren.
 
 ### Boxplots
 Boxplots zeigen nicht nur den Median (50%-Quantil) sowie das obere (75%) und untere (25%) Quartil - und damit den Interquartilsabstand -, sondern geben auch Hinweise auf potentielle Ausreißer:
@@ -97,7 +97,7 @@ gf_boxplot(total_bill ~ sex | time, data=tips)
 ***
 **Übung:** 
 
-3.  Zeichen Sie einen Boxplot für die Trinkgeldhöhe `tip` in Abhängigkeit davon, ob geraucht wurde (`smoker`). Gibt es Unterschiede in der Trinkgeldhöhe und, wenn ja, in welchem Bereich?
+3.  Zeichen Sie einen Boxplot für die Trinkgeldhöhe (`tip`) in Abhängigkeit davon, ob geraucht wurde (`smoker`). Gibt es Unterschiede in der Trinkgeldhöhe und, wenn ja, in welchem Bereich?
 
 ***
 
@@ -109,7 +109,7 @@ gf_point(tip ~ total_bill, data=tips)
 ```
 
 Wenig überraschend steigt die Trinkgeldhöhe mit der Rechnung. Wie sieht es relativ aus?
-Dazu müssen wir zunächst ein neues Merkmal im Datensatz erzeugen, z.B.:
+Dazu müssen wir zunächst ein neues Merkmal im Datensatz erzeugen, z. B.:
 ```{r}
 tips$tip_relativ <- tips$tip / tips$total_bill
 ```
@@ -118,7 +118,7 @@ Im Datensatz `tips` wird der (neuen) Variable `tip_relativ` der Quotient aus Tri
 ***
 **Übung:** 
 
-4.  Erstellen Sie eine Abbildung, mit der Sie visuell betrachten können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (uanbhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
+4.  Erstellen Sie eine Abbildung, mit der Sie visuell betrachten können, wie der Zusammenhang zwischen der relativen Trinkgeldhöhe (abhängige Variable) und der Rechnungshöhe (unabhängige Variable) aussieht, und ob sich dieser je nach Geschlecht des Rechnungszahlers unterscheidet.
 
 ***
 
