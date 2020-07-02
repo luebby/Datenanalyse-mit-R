@@ -1,7 +1,7 @@
 ---
 title: "Übungen -- Grundlagen Statistik"
 author: "erstellt von Professor*innen des ifes"
-date: "Stand WiSe 2019/20"
+date: "Stand WiSe 2020/21"
 output:
   pdf_document:
     includes:

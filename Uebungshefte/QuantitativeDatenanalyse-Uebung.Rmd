@@ -2,7 +2,7 @@
 title: Wissenschaftliche Methoden -- Quantitative Datenanalyse -- \newline Übung Quantitative
   Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: 'SoSe 2020'
+date: 'WiSe 2020/21'
 lang: de-De
 colorlinks: yes
 template: NULL
