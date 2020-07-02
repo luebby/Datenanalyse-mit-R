@@ -108,15 +108,17 @@ LinMod.2 <- lm(tip ~ day, data=tips)
 summary(LinMod.2)
 ```
 
-Die im Modell angegebenen Schätzwerte sind die Änderung der Trinkgeldprognose, wenn z.B. der Tag ein Samstag (`daySat`) im Vergleich zu einer Referenzkategorie ist. Dies ist in R das erste Element des Vektors -- der Faktorlevel. Welcher dies ist, ist über den Befehl `levels()` zu erfahren:
+Die im Modell angegebenen Schätzwerte sind die Änderung der Trinkgeldprognose, wenn z.B. der Tag ein Samstag (`daySat`) im Vergleich zu einer Referenzkategorie ist. Dies ist in R das erste Element des Vektors -- der Faktorlevel. Welcher dies ist, ist über den Befehl `levels()` zu erfahren. Da die Variable eine Zeichenkette-Variable (`chr`) ist^[Dies ist allerdings erst ab R Version 4.0.0 Standard.], muss sie in einen Faktor umgewandelt werden.
 ```{r}
+as.factor(tips$day) %>% levels()
+```
+Hier also `r levels(as.factor(tips$day))[1]` (aufgrund der standardmäßig aufsteigenden alphanumerischen Sortierung). Dies kann über `relevel()` geändert werden. Soll z.B. die Referenz der Donnerstag, `Thur` sein:
+```{r}
+tips$day <- as.factor(tips$day) %>% relevel(ref = "Thur")
 levels(tips$day)
 ```
-Hier also `r levels(tips$day)[1]` (aufgrund der standardmäßig aufsteigenden alphanumerischen Sortierung). Dies kann über `relevel()` geändert werden. Soll z.B. die Referenz der Donnerstag, `Thur` sein:
-```{r}
-tips$day <- relevel(tips$day, ref = "Thur")
-levels(tips$day)
-```
+Durch die Zuweisung `<- as.factor(...)` ist `day` jetzt als Faktor-Variable abgespeichert.
+
 Das Modell ändert sich entsprechend:
 ```{r}
 LinMod.3 <- lm(tip ~ day, data=tips)

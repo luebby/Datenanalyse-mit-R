@@ -180,10 +180,10 @@ eigen(cor(Werte))
 
 Der Eigenwert einer Komponente/ eines Faktors sagt aus, wie viel Varianz dieser Faktor an der Gesamtvarianz aufklärt. Laut dem Eigenwert-Kriterium sollen nur Faktoren mit einem Eigenwert größer 1 extrahiert werden. Dies sind bei den Werte-Daten fünf Komponenten/ Faktoren, da fünf Eigenwerte größer 1 sind. Der Grund ist, dass Komponenten/ Faktoren mit einem Eigenwert kleiner als 1 weniger Erklärungswert haben als die ursprünglichen Variablen. 
 
-Dies kann auch grafisch mit dem `VSS.Scree` geplottet werden. 
+Dies kann auch grafisch mit `VSS.Scree()` aus dem Paket `psych` geplottet werden. 
 
 ```{r}
-library(nFactors)
+library(psych)
 VSS.scree(Werte)
 ```
 
