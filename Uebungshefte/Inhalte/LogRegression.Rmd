@@ -192,7 +192,8 @@ Sie können die Konfusionsmatrix "zu Fuß" berechnen, in dem Sie eine neue Varia
 ```{r}
 # Konfusionsmatrix "zu Fuß" berechnen
 # cutpoint = 0.5 setzen
-# neue Variable predicted anlegen mit 1, wenn modellierte Wahrscheinlichkeit > 1 ist
+# neue Variable predicted anlegen mit 1, wenn modellierte 
+# Wahrscheinlichkeit > 1 ist
 cutpoint = 0.5
 Aktien$predicted <- ((glm1$fitted.values) > cutpoint)*1
 # Kreuztabelle berechnen
@@ -205,7 +206,8 @@ cm[1,1]/sum(cm[,1])
 # mit Hilfe des Pakets caret
 # ggf. install.packages("caret")
 library(caret)
-(cm <- confusionMatrix(Aktien$Aktienkauf %>% as.factor(), Aktien$predicted %>% as.factor())) 
+(cm <- confusionMatrix(Aktien$Aktienkauf %>% as.factor(), 
+                       Aktien$predicted %>% as.factor())) 
 
 # mit Hilfe des Pakets SDMTools (keine offizielle Version für R 4.0.0)
 # ggf. install.packages("SDMTools") ausführen
