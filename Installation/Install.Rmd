@@ -1,7 +1,7 @@
 ---
 title: "Installation von R und RStudio"
 author: "Professor*innen des ifes"
-date: 'SoSe 2020'
+date: 'WiSe 2021'
 lang: de-De
 colorlinks: yes
 template: NULL
