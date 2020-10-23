@@ -62,15 +62,19 @@ Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung,
 Sie müssen i. A. *keine* Administrationsrechte besitzen (Ausnahmen treten teilweise bei Windows 10 Betriebssystemen auf) um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
 
 ### macOS
-Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.11 oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssystem: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
+Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.13 (High Sierra) oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssystem: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
 
 Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. **Nach der Installation muss der Computer neu gestartet werden.**
-
-Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie [`XCode`](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (`Command Line Tool`) installieren wollen dies bitte tun.
 
 1. Installation XQuartz
 2. Neustart Computer
 3. Fortfahren mit der Installation von R
+
+
+Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie [`XCode`](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (`Command Line Tool`) installieren wollen dies bitte tun. Im Normalfall ist die Installation von `XCode` allerdings nicht erforderlich. 
+
+Ebenso wird die Software `git` nicht für die Grundfunktionalitäten von R gebraucht. Sollten Sie gefragt werden, ob Sie diese Installieren wollen, wählen Sie bitte `Abbrechen`.
+
 
 ### Tablet
 Eine Installation auf dem IPad und Co. (Android) ist leider nicht möglich. Es gibt alternativ aber online einen Clouddienst, der auch mit dem Tablet genutzt werden kann:
@@ -121,6 +125,13 @@ install.packages("mosaic", type = "binary")
 eingeben und `Enter` oder `Return` drücken. Es werden noch weitere, abhängige Zusatzpakete installiert, der Vorgang kann also evtl. eine Weile dauern.
 
 **Achtung:** In der R Cloud sowie unter Linux funktioniert es nur **ohne** `type = "binary"`, sprich der Befehl lautet dann nur `install.package("mosaic").`
+
+Wenn die Meldung 
+
+`WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:`
+
+auftaucht, bitte einfach ignorieren! Diese Funktionalitäten werden nicht benötigt.
+
 
 [Hier](https://projectmosaic.github.io/mosaic/) gibt es eine englischsprachige Übersicht zu mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
