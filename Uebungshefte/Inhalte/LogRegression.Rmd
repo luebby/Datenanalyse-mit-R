@@ -127,10 +127,10 @@ download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 Zunächst ein Plot:
 ```{r}
 tips <- read.csv2("tips.csv")
-gf_point(jitter(as.numeric(smoker)) ~ day, data = tips)
+gf_point(smoker %>% as.factor() %>% as.numeric() %>% jitter() ~ day, data = tips)
 ```
 
-**Hinweis:** Um zu sehen, ob es an manchen Tagen mehr Raucher gibt, sollten Sie zumindest eine Variable "verrauschen" ("*jittern*"). Da die Variable `smoker` eine nominale Variable ist und die Funktion `jitter()` nur mit numerischen Variablen arbeitet, muss sie mit `as.numeric()` in eine numerische Variable umgewandelt werden.
+**Hinweis:** Um zu sehen, ob es an manchen Tagen mehr Raucher gibt, sollten Sie zumindest eine Variable "verrauschen" ("*jittern*"). Da die Variable `smoker` eine nominale Variable ist und die Funktion `jitter()` nur mit numerischen Variablen arbeitet, muss sie zunächst mit `as.factor()` in einen Faktor (codiert mit 1, 2, 3, ...) und dann mit `as.numeric()` in eine numerische Variable umgewandelt werden.
 
 Die relativen Häufigkeiten zeigt folgende Tabelle:
 
@@ -140,10 +140,10 @@ Die relativen Häufigkeiten zeigt folgende Tabelle:
 
 Hinweis: Durch die Klammerung wird das Objekt `tab_smoke` direkt ausgegeben.
 
-Probieren wir die logistische Regression aus:
+Probieren wir die logistische Regression aus:^[Auch hier muss `smoker` zumindest ab R-Version 4.0.0 in einen Faktor umgewandelt werden.]
 
 ```{r}
-glmtips <- glm(smoker ~ day, family = binomial("logit"),data = tips)
+glmtips <- glm(as.factor(smoker)  ~ day, family = binomial("logit"),data = tips)
 summary(glmtips)
 ```
 
@@ -187,12 +187,13 @@ Hierzu werden die aus dem Modell ermittelten Wahrscheinlichkeiten ab einem Schwe
 
 Daher sind wichtige Kriterien eines Modells, wie gut diese Zuordnung erfolgt. Dazu werden die Sensitivität (*True Positive Rate, TPR*), also der Anteil der mit $1$ geschätzten an allen mit $1$ beobachteten Werten, und die Spezifität (*True Negative Rate*) berechnet. Ziel ist es, dass beide Werte möglichst hoch sind.
 
-Sie können die Konfusionsmatrix "zu Fuß" berechnen, in dem Sie eine neue Variable einfügen, die ab dem cutpoint $1$ und sonst $0$ ist und mit dem Befehl `tally()` ausgeben. Alternativ können Sie das Paket `SDMTools` verwenden mit der Funktion `confusion.matrix()`. Ein Parameter ist `cutpoint`, der standardmäßig auf $0.5$ steht.
+Sie können die Konfusionsmatrix "zu Fuß" berechnen, in dem Sie eine neue Variable einfügen, die ab dem cutpoint $1$ und sonst $0$ ist und mit dem Befehl `tally()` ausgeben. Alternativ können Sie das Paket `caret` verwenden mit der Funktion `confusionMatrix()`. Dieses benötigt als Input-Variablen Faktoren, daher ist ab R-Version 4.0.0 eine Umwandlung in Faktoren notwendig. Sensitivität und Spezifität werden neben anderen Werten ebenfalls ausgegeben.
 
 ```{r}
 # Konfusionsmatrix "zu Fuß" berechnen
 # cutpoint = 0.5 setzen
-# neue Variable predicted anlegen mit 1, wenn modellierte Wahrscheinlichkeit > 1 ist
+# neue Variable predicted anlegen mit 1, wenn modellierte 
+# Wahrscheinlichkeit > 1 ist
 cutpoint = 0.5
 Aktien$predicted <- ((glm1$fitted.values) > cutpoint)*1
 # Kreuztabelle berechnen
@@ -202,11 +203,19 @@ cm[2,2]/sum(cm[,2])
 # Spezifität (TNR)
 cm[1,1]/sum(cm[,1])
 
-# mit Hilfe des Pakets SDMTools
-# ggf. install.packages("SDMTools")
+# mit Hilfe des Pakets caret
+# ggf. install.packages("caret")
+library(caret)
+(cm <- confusionMatrix(Aktien$Aktienkauf %>% as.factor(), 
+                       Aktien$predicted %>% as.factor())) 
+
+# mit Hilfe des Pakets SDMTools (keine offizielle Version für R 4.0.0)
+# ggf. install.packages("SDMTools") ausführen
+# ab R-Version 4.0.0 devtools::install_github("https://github.com/cran/SDMTools")
+# hier kann zusätzlich die Option cutpoint =
 library(SDMTools)
-# optional noch Parameter cutpoint = 0.5  angeben
-(cm <- confusion.matrix(Aktien$Aktienkauf, glm1$fitted.values)) 
+(cm <- confusion.matrix(Aktien$Aktienkauf, glm1$fitted.values))
+# Spezifität und Sensitivität
 sensitivity(cm)
 specificity(cm)
 ```

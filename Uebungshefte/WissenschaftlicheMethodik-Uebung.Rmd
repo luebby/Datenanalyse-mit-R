@@ -1,7 +1,17 @@
 ---
 title: Wissenschaftliche Methodik -- \newline Übung Quantitative Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: "SoSe 2020"
+date: "WiSe 2020/21"
+lang: de-De
+colorlinks: yes
+template: NULL
+documentclass: scrreprt
+classoption: 
+    - paper=a4
+    - pagesize
+    - DIV=13  # oder 14
+link-citations: yes
+fontsize: 12pt
 output:
   pdf_document:
     includes:
@@ -28,7 +38,7 @@ output:
 \tableofcontents
 \newpage 
 
-\fancyhead[LO,RE]{\textsl{\rightmark}}  
+<!-- \fancyhead[LO,RE]{\textsl{\rightmark}}   -->
 
 
 ```{r setup, include=FALSE}

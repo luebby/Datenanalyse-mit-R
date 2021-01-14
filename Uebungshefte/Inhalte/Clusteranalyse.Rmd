@@ -11,8 +11,10 @@ download.file("https://goo.gl/eUm8PI", destfile = "segment.csv")
 
 Das Einlesen erfolgt, sofern die Daten im Arbeitsverzeichnis liegen, wieder über:
 ```{r}
-segment <- read.csv2("segment.csv")
+segment <- read.csv2("segment.csv", stringsAsFactors = TRUE)
 ```
+
+Zusätzlich wurde hier die Option `stringsAsFactors = TRUE` gesetzt, so dass die Zeichenketten-Variablen (`chr`) als Faktoren eingelesen werden.^[Notwendig ab R-Version 4.0.0.] Dies ist für weitere Funktionen, die in diesem Kapitel angewendet werden, notwendig.
 
 Ein Überblick über die Daten:
 ```{r}

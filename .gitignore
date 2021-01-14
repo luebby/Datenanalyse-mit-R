@@ -16,6 +16,7 @@
 *_files/*
 *_files
 
-typography.log
+*.log
+*.tex
 
 
