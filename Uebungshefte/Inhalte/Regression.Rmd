@@ -146,7 +146,7 @@ LinMod.3Fun(day="Fri")
 4.  Wie viel \% der Variation der Rechnungshöhe können Sie durch die Essenszeit modellieren?
 
 ***
-## Multivariate Regression
+## Multiple Regression
 Aber wie wirken sich die Einflussgrößen *zusammen* auf das Trinkgeld aus?
 ```{r}
 LinMod.4 <- lm(tip ~ total_bill + size + sex  + smoker + day + time, data=tips)
