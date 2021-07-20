@@ -1,7 +1,7 @@
 ---
 title: "Installation von R und RStudio"
 author: "Professor*innen des ifes"
-date: 'SoSe 2021'
+date: 'WiSe 2021/22'
 lang: de-De
 colorlinks: yes
 template: NULL
@@ -50,19 +50,19 @@ knitr::opts_chunk$set(
 
 ## Vorbereitungen und Hinweise
 Während der gesamten Installation sollten Sie eine stabile Internetverbindung haben. Laptops (insbesondere Macbooks) sollten am Stromnetz angeschlossen sein. Für die Installation müssen Sie ein wenig Zeit einplanen, der Aufwand ist aber nur einmalig nötig! Bitte beachten Sie diese Hinweise. 
-Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung, welche die Fehlermeldung (kann per copy & paste direkt aus der Konsole in die E-Mail kopiert werden), sowie die Ausgabe von 'sessionInfo()' bzw. mind. die Angabe des verwendeten Betriebssystems und der R-Version enthält, an <R@fom.de> wenden.
+Bei Problemen können Sie sich, bitte mit einer möglichst genauen Beschreibung, welche die Fehlermeldung (kann per copy$\,$&$\,$paste direkt aus der Konsole in die E-Mail kopiert werden), sowie die Ausgabe von `sessionInfo()` bzw. mind. die Angabe des verwendeten Betriebssystems und der R Version enthält, an <R@fom.de> wenden.
 
 * [**R**](https://www.r-project.org/) ist das Basisprogramm
-* [**RStudio (Desktop)**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z. B. Dokumentenerstellung etc.
-* [**mosaic**](https://cran.r-project.org/web/packages/mosaic/) ist ein Zusatzpaket, welches u. a. eine vereinheitlichte R Syntax bietet
+* [**RStudio (Desktop)**](https://www.rstudio.com/) ist eine komfortable Entwicklungsumgebung für R und bietet zusätzliche Tools, wie z.$\,$B. Dokumentenerstellung etc.
+* [**mosaic**](https://cran.r-project.org/web/packages/mosaic/) ist ein Zusatzpaket, welches u.$\,$a. eine vereinheitlichte R Syntax bietet
 
 
 
 ### Windows
-Sie müssen i. A. *keine* Administrationsrechte besitzen (Ausnahmen treten teilweise bei Windows 10 Betriebssystemen auf) um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z. B. auf einen USB-Stick installieren. 
+Sie müssen i.$\,$A. *keine* Administratorrechte besitzen (Ausnahmen treten teilweise bei Windows 10 Betriebssystemen auf) um R und R Studio installieren zu können. Sie können in Ihr lokales Verzeichnis oder aber auch z.$\,$B. auf einen USB-Stick installieren. 
 
 ### macOS
-Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.13 (High Sierra) oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Version nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssystem: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
+Neuere Versionen von R werden nur noch für OS X/macOS ab Version 10.13 (High Sierra) oder neuer zur Verfügung gestellt. Apple unterstützt (ganz) alte Versionen nicht mehr. Daher lohnt sich auch aus Sicherheitsgründen und aus R-Gründen eine Aktualisierung auf ein aktuelles Betriebssystem: [https://www.apple.com/macos/how-to-upgrade/](https://www.apple.com/macos/how-to-upgrade/). 
 
 Einige Zusatzpakete benötigen das X11 Windows System. Dies muss vorab – sofern noch nicht vorhanden – von der Seite [https://www.xquartz.org/](https://www.xquartz.org/) installiert werden. **Nach der Installation muss der Computer neu gestartet werden.**
 
@@ -89,7 +89,7 @@ Installieren Sie die für Ihr System aktuelle Version von R von der Seite
 
 [https://www.r-project.org/](https://www.r-project.org/). 
 
-Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror von R Studio:
+Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z.$\,$B. den Cloud Mirror von R Studio:
 
 1.  Windows: [https://cran.rstudio.com/bin/windows/base/](https://cran.rstudio.com/bin/windows/base/)
 2.  macOS: [https://cran.rstudio.com/bin/macosx/](https://cran.rstudio.com/bin/macosx/)
@@ -97,18 +97,18 @@ Welchen "Mirror" (Server) Sie verwenden ist dabei egal, z. B. den Cloud Mirror v
 Sie können in der Regel die Standardeinstellungen innerhalb der Installation verwenden.
 
 ### Installation von RStudio (Desktop)
-Sie können R-Studio (Desktop-Version) von der Seite
+Sie können RStudio (Desktop-Version) von der Seite
 
 [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
 
 entsprechend Ihrem Betriebssystem herunterladen und anschließend installieren.
 
-*Hinweis macOS*: Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie `XCode` (`Command Line Tool`) installieren wollen dies bitte tun.
+***Hinweis macOS***: Sollten Sie bei der Installation oder nach Start von R oder RStudio gefragt werden, ob Sie `XCode` (`Command Line Tool`) installieren wollen dies bitte tun.
 
 
 ### Installation von Zusatzpaketen
 
-Die Grundinstallation ist jetzt abgeschlossen. RStudio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von RStudio starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, indem Sie RStudio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
+Die Grundinstallation ist jetzt abgeschlossen. RStudio erkennt in der Regel automatisch R, und Sie können beides durch klicken auf das Programm bzw. das Icon mit dem Logo von RStudio starten. (Die ausführbare Datei finden Sie dabei im Ordner `bin` des Verzeichnisses, in dem Sie RStudio installiert haben.) Wenn Sie nur R starten wollen, klicken Sie entsprechend auf das Icon mit dem R-Logo. 
 
 Auf ihren Bildschirm sollte folgendes Bild zu sehen sein:
 
@@ -118,7 +118,7 @@ knitr::include_graphics("RStudio-Screenshot-3.4.png", error = FALSE)
 
 
 #### mosaic
-Für die Vorlesung werden wir das Zusatzpaket (*package*) `mosaic` verwenden. Installieren Sie dies, in dem Sie in der R-Console den Befehl
+Für die Vorlesung werden wir das Zusatzpaket (*package*) `mosaic` verwenden. Installieren Sie dies, indem Sie in der R Console den Befehl
 ```{r eval=FALSE}
 install.packages("mosaic", type = "binary")
 ```
@@ -135,10 +135,10 @@ auftaucht, bitte einfach ignorieren! Diese Funktionalitäten werden nicht benöt
 
 [Hier](https://projectmosaic.github.io/mosaic/) gibt es eine englischsprachige Übersicht zu mosaic. Eine ausführlichere Beschreibung gibt es [hier](https://github.com/ProjectMOSAIC/LittleBooks/blob/master/StudentGuide/MOSAIC-StudentGuide.pdf).
 
-Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden. 
+Wenn die Installation erfolgreich war, können Sie `mosaic` in R laden: 
 
 ## Pakete verwenden
-In und für R gibt es sehr, sehr viele Zusatzpakete, z. B. `mosaic`. Jedes Zusatzpaket wird über den Befehl `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde wie eben beschrieben. Starten Sie also `mosaic` zunächst mit den folgenden Befehlen:
+In und für R gibt es sehr, sehr viele Zusatzpakete, z.$\,$B. `mosaic`. Jedes Zusatzpaket wird über den Befehl `library()` gestartet -- nachdem es über `install.packages()` einmalig installiert wurde wie eben beschrieben. Starten Sie also `mosaic` zunächst mit den folgenden Befehlen:
 ```{r eval=FALSE}
 library(mosaic)
 ```
@@ -183,14 +183,14 @@ library(mosaic)
 ##Fehler: package or namespace load failed for ‘dplyr’ in 
 ##loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), 
 ##versionCheck = ##vI[[j]]):
-## es gibt kein Paket namens ‘xyz’
+## es gibt kein Paket namens ‘zzz’
 ##Fehler: Paket ‘dplyr’ konnte nicht geladen werden
 ```
-wurde Serverseitig hier das (abhängige) Paket `xyz` (*Beispiel*: `es gibt kein Paket namens ‘xyz’`) nicht installiert. Installieren Sie dies bitte über
+wurde Serverseitig hier das (abhängige) Paket `zzz` (*Beispiel*: `es gibt kein Paket namens ‘zzz’`) nicht installiert. Installieren Sie dies bitte über
 ```{r, eval=FALSE}
-install.packages("xyz", type = "binary")
+install.packages("zzz", type = "binary")
 ```
-entsprechend nach. **Beachten Sie**, dass "xyz" hier nur als Platzhalter dient, welches Paket in diesem Fall tatsächlich noch installiert werden muss, besagt Ihre individuelle Fehlermeldung.
+entsprechend nach. **Beachten Sie**, dass "zzz" hier nur als Platzhalter dient, welches Paket in diesem Fall tatsächlich noch installiert werden muss, besagt Ihre individuelle Fehlermeldung.
 **Beachten Sie** außerdem, dass auch hier wieder der Befehl für die R Cloud oder Linux ohne `type = "binary"` angegeben werden muss.
 
 Auch andere fehlende Pakete können so installiert werden, wie bspw. das Paket `yaml`. Nach folgender Fehlermeldung:
@@ -205,7 +205,7 @@ das Paket nach. Auch hier sehen Sie an Ihrer Fehlermeldung, welches Paket bei Ih
 **Auch hier:** der Befehl für die R Cloud oder Linux lautet `install.packages("yaml")`.
 
 
-Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen, wie im folgenden am Beispiel von 'Rcpp' gezeigt:
+Vereinzelt kann es unter Windows auch dabei zu Fehlermeldungen kommen, wie im folgenden am Beispiel von 'Rcpp' (`unable to move temporary installation` s.$/,$u.) gezeigt:
 ```{r, eval=FALSE}
 install.packages("Rcpp", type = "binary")
 ## Installing package into ‘C:/Users/karsten/Documents/R/win-library/3.5’
@@ -229,22 +229,21 @@ In diesem Fall versuchen Sie bitte folgendes:
 
 1. R schließen, R neu starten
 2. `install.packages("Rcpp", type = "binary")`
-3.  `library(mosaic)`
+3. `library(mosaic)`
 
 Evtl. können weitere Pakete fehlen, die auf die gleiche Art nachinstalliert werden können. Evtl. sind hier leider mehrere Versuche nötig.
 
 **Denken Sie daran:** Unter Linux oder in der R Cloud wird der Befehl `install.packages` **ohne** `type = "binary"` angegeben!
 
-Sollte auch das nicht helfen öffnen Sie R in 1.) als Administrator ("Rechte Maustaste -> Als Administrator ausführen")
+Sollte auch das nicht helfen, öffnen Sie R als Administrator ("Rechte Maustaste -> Als Administrator ausführen").
 
 Sollte wieder die Fehlermeldung erscheinen (`unable to move temporary installation`) verschieben Sie das Paket bitte manuell:
 
-- Suchen/ öffen Sie im Explorer das Paket. Hier unter (siehe Meldung `The downloaded binary packages are in`):
+- Suchen/ Öffnen Sie im Explorer das Paket. Hier unter (siehe Meldung `The downloaded binary packages are in`):
 
-  `C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages`. Sollte der Ordner `AppData` nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, das Versteckte Dateien/ Ordner angezeigt werden sollen.
-- Doppelklick auf die zip-Datei, rechtsklick auf den Ornder (hier `Rcpp`), rechte Maustaste, kopieren
+  `C:\Users\karsten\AppData\Local\Temp\RtmpaYKWjz\downloaded_packages`. Sollte der Ordner `AppData` nicht sichtbar sein, so wählen Sie bitte unter den Optionen des Explorers aus, dass versteckte Dateien/ Ordner angezeigt werden sollen.
+- Doppelklick auf die zip-Datei, rechtsklick auf den Ordner (hier `Rcpp`), rechte Maustaste, kopieren
 - Einfügen in (hier) `C:\Users\karsten\Documents\R\win-library\3.5\` (`unable to move temporary installation [...] to`)
-
 
 
 Sollte dies nicht erfolgreich sein wenden Sie sich bitte an <R@fom.de>. 
