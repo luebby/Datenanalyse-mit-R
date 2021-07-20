@@ -2,31 +2,31 @@
 
 
 ## Hinweise
-[R](https://cran.r-project.org) ist der Name eines Programms für Statistik und Datenanalyse, [RStudio](https://www.rstudio.com) ist eine komfortable Entwicklungsumgebung für R.
+[R](https://cran.r-project.org) ist der Name eines Programms für Statistik und Datenanalyse, [RStudio](https://rstudio.com/products/rstudio/download/) ist eine komfortable Entwicklungsumgebung für R.
 
-Nach dem Start von RStudio erscheint folgender Bildschirm, wobei die Version neuer sein kann.
+Nach dem Start von RStudio erscheint folgender Bildschirm (wobei die Version neuer sein kann - es gibt regelmäßige Weiterentwicklungen und somit Versionsupdates).
 
 
 ```{r echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("Inhalte/images/RStudio-Screenshot-3-4.png", error = FALSE)
 ```
 
-Links, in der *Console* werden die Befehle eingegeben. Rechts oben können Sie z.B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die Historie der Befehle wird dort angezeigt. Rechts unten können Sie u.a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
+Links, im *Console*-Fenster werden die Befehle eingegeben. Rechts oben können Sie z. B. die Daten, aber auch andere Objekte, mit denen Sie arbeiten, betrachten, auch die *History* der Befehle wird dort angezeigt. Rechts unten können Sie u. a. Dateien und Abbildungen auswählen, aber auch Hilfeseiten und Tipps betrachten.
 
 Wir werden zunächst in der Konsole arbeiten.
 
 Ein paar Anmerkungen vorweg:
 
-* R unterscheidet zwischen Groß- und Kleinbuchstaben, d.h., `Oma` und `oma` sind zwei verschiedene Dinge für R!
-* R verwendet den Punkt `.` als Dezimaltrennzeichen,
-* Fehlende Werte werden in R durch `NA` kodiert,
+* R unterscheidet zwischen Groß- und Kleinbuchstaben, d. h., `Oma` und `oma` sind zwei verschiedene Dinge für R!
+* R verwendet den Punkt `.` als Dezimaltrennzeichen.
+* Fehlende Werte werden in R durch `NA` kodiert.
 * Kommentare werden mit dem Rautezeichen `#` eingeleitet; der Rest der Zeile von von R dann ignoriert.
 * R wendet Befehle direkt an.
-* R ist objektorientiert, d.h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte
-* Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`
-* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden,
-* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen,
-* Sofern Sie das Skriptfenster verwenden: einzelne Befehle aus dem Skriptfenster in R Studio können Sie auch mit `Str` und `Enter` an die Console schicken,
+* R ist objektorientiert, d. h., dieselbe Funktion hat evtl. je nach Funktionsargument unterschiedliche Rückgabewerte.
+* Hilfe zu einem Befehl erhält man über ein vorgestelltes Fragezeichen `?`.
+* Zusätzliche Funktionalität kann über Zusatzpakete hinzugeladen werden. Diese müssen ggf. zunächst  installiert werden.
+* Mit der Pfeiltaste nach oben können Sie einen vorherigen Befehl wieder aufrufen.
+* Sofern Sie das Skriptfenster verwenden: einzelne Befehle aus dem Skriptfenster in RStudio können Sie auch mit `Str` und `Enter` an die Console schicken.
 
 
 ## R als Taschenrechner
@@ -56,7 +56,7 @@ Vielleicht fragen Sie sich was die `[1]` vor dem Ergebnis bedeutet. R arbeitet v
 ## R zur Datenanalyse
 Wir wollen R aber als Tool zur Datenanalyse verwenden. Daher müssen wir zunächst Daten einlesen.
 
-Zunächst laden wir die Daten als `csv` Datei herunter
+Laden wir dazu die Daten als `csv` Datei herunter:
 ```{r}
 download.file("https://goo.gl/whKjnl", destfile = "tips.csv")
 ```
@@ -66,8 +66,7 @@ Der Inhalt der Datei ist jetzt als Tabelle `tips` in R verfügbar.
 [Hier](https://github.com/luebby/Datenanalyse-mit-R/blob/master/Daten/tips-help.pdf) können Sie mehr über die Daten erfahren. 
 
 
-
-Das Einlesen von `csv` Dateien aus dem Arbeitsverzeichnis in R kann erfolgen über
+Das Einlesen von `csv`-Dateien aus dem Arbeitsverzeichnis in R kann erfolgen über
 ```{r}
 tips <- read.csv2("tips.csv")
 ```
@@ -91,7 +90,7 @@ Dieser Datensatz aus
 
 *Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing*
 
-enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d.h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl 
+enthält Trinkgelddaten. Diese sind in tabellarischer Form dargestellt, d. h. üblicherweise, dass die Beobachtungen zeilenweise untereinander stehen, die einzelnen Variablen spaltenweise nebeneinander. In R heißen solche Daten *data frame*. Um einen ersten Überblick über die verschiedenen Variablen zu erhalten geben wir den Befehl 
 `str()` ein:
 ```{r}
 str(tips)
@@ -103,7 +102,7 @@ dim(tips)
 ```
 erhalten.
 
-Numerische (metrische) Variablen sind in R in der Regel vom Typ `numeric` (stetig) oder `int` (Ganze Zahlen), kategorielle (nominale, ordinale) Variablen vom Typ `factor` (bei ordinal: Option `ordered = TRUE`) oder `character`, `str()` und `dim()` sind erste Befehle, d.h. Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
+Numerische (metrische) Variablen sind in R in der Regel vom Typ `numeric` (stetig) oder `int` (Ganze Zahlen), kategorielle (nominale, ordinale) Variablen vom Typ `factor` (bei ordinal: Option `ordered = TRUE`) oder `character`, `str()` und `dim()` sind erste Befehle, d. h. Funktionen in R, denen in der Klammer das jeweilige Funktionsargument übergeben wird.
 ```{r eval=FALSE}
 head(tips) # Obere Zeilen
 tail(tips) # Untere Zeilen 
