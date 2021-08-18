@@ -1,7 +1,7 @@
 ---
 title: "Übungen -- Grundlagen Statistik"
 author: "erstellt von Professor*innen des ifes"
-date: "Stand WiSe 2020/21"
+date: "Stand WiSe 2021/22"
 lang: de-De
 colorlinks: yes
 template: NULL
