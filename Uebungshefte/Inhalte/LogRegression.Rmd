@@ -195,9 +195,9 @@ Sie können die Konfusionsmatrix "zu Fuß" berechnen, in dem Sie eine neue Varia
 # neue Variable predicted anlegen mit 1, wenn modellierte 
 # Wahrscheinlichkeit > 1 ist
 cutpoint = 0.5
-Aktien$predicted <- ((glm1$fitted.values) > cutpoint)*1
+Aktien$predicted <- (fitted(glm1) > cutpoint) * 1
 # Kreuztabelle berechnen
-(cm <- tally(~predicted+Aktienkauf, data = Aktien))
+(cm <- tally( ~ predicted + Aktienkauf, data = Aktien))
 # Sensitivität (TPR)
 cm[2,2]/sum(cm[,2])
 # Spezifität (TNR)
@@ -205,19 +205,17 @@ cm[1,1]/sum(cm[,1])
 
 # mit Hilfe des Pakets caret
 # ggf. install.packages("caret")
-library(caret)
-(cm <- confusionMatrix(Aktien$Aktienkauf %>% as.factor(), 
-                       Aktien$predicted %>% as.factor())) 
+caret::confusionMatrix(Aktien$predicted %>% as.factor(), 
+                       Aktien$Aktienkauf %>% as.factor(),
+                       positive = "1")
 
-# mit Hilfe des Pakets SDMTools (keine offizielle Version für R 4.0.0)
-# ggf. install.packages("SDMTools") ausführen
-# ab R-Version 4.0.0 devtools::install_github("https://github.com/cran/SDMTools")
-# hier kann zusätzlich die Option cutpoint =
-library(SDMTools)
-(cm <- confusion.matrix(Aktien$Aktienkauf, glm1$fitted.values))
+# eine Alternative bietet das Paket ModelMetrics
+# hier kann zusätzlich die Option cutoff = ... genutzt werden
+## ggf. install.packages("ModelMetrics")
+ModelMetrics::confusionMatrix(Aktien$Aktienkauf, fitted(glm1))
 # Spezifität und Sensitivität
-sensitivity(cm)
-specificity(cm)
+ModelMetrics::sensitivity(Aktien$Aktienkauf, fitted(glm1))
+ModelMetrics::specificity(Aktien$Aktienkauf, fitted(glm1))
 ```
 
 Wenn die Anteile der $1$ in den beobachteten Daten sehr gering sind (z.B. bei einem medizinischen Test auf eine seltene Krankheit, Klicks auf einen Werbebanner oder Kreditausfall), kommt eine Schwäche der logistischen Regression zum Tragen: Das Modell wird so optimiert, dass die Wahrscheinlichkeiten $p(y=1)$ alle unter $0.5$ liegen. Das würde zu einer Sensitivität von $0$ und einer Spezifität von $1$ führen. Daher kann es sinnvoll sein, den Cutpoint zu variieren. Daraus ergibt sich ein verallgemeinertes Gütemaß, die *ROC*-Kurve (*Return Operating Characteristic*) und den daraus abgeleiteten *AUC*-Wert (*Area Under Curve*). 

@@ -1,7 +1,7 @@
 ---
 title: Wissenschaftliche Methodik -- \newline Übung Quantitative Datenanalyse mit R
 author: "erstellt von Professor*innen des ifes"
-date: "WiSe 2021/22"
+date: "SoSe 2023"
 lang: de-De
 colorlinks: yes
 template: NULL
@@ -46,8 +46,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Initiale Paket Installation
 needed_pkgs <- c("mosaic", "corrplot", 
-                 "lsr", "effects",
-                 "SDMTools","ROCR", "lmtest", "BaylorEdPsych",
+                 "lsr", "effects", "ModelMetrics",
+                 "ROCR", "lmtest", "BaylorEdPsych",
                  "gplots","nFactors", "scatterplot3d",
                  "tidyverse", "stringr", "car", "okcupiddata", 
                  "knitr", "nycflights13")
