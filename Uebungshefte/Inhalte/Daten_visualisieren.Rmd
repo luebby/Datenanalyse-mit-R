@@ -240,7 +240,7 @@ Bleiben wir bei letzterem Beispiel:
 
 
 ```{r tidy.opts=list(width.cutoff=40)}
-data(profiles, package = "okcupiddata")
+profiles <- read.csv("data/profiles.csv")
 
 profiles %>% 
   count(drinks, body_type) %>% 

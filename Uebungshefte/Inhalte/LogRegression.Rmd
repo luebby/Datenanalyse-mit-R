@@ -197,27 +197,23 @@ Sie können die Konfusionsmatrix "zu Fuß" berechnen, in dem Sie eine neue Varia
 cutpoint = 0.5
 Aktien$predicted <- ((glm1$fitted.values) > cutpoint)*1
 # Kreuztabelle berechnen
-(cm <- tally(~predicted+Aktienkauf, data = Aktien))
+(cm <- tally( ~ predicted + Aktienkauf, data = Aktien))
 # Sensitivität (TPR)
 cm[2,2]/sum(cm[,2])
 # Spezifität (TNR)
 cm[1,1]/sum(cm[,1])
 
+
 # mit Hilfe des Pakets caret
 # ggf. install.packages("caret")
 library(caret)
-(cm <- confusionMatrix(Aktien$Aktienkauf %>% as.factor(), 
-                       Aktien$predicted %>% as.factor())) 
+(cm <- confusionMatrix(Aktien$predicted %>% as.factor(), 
+                       Aktien$Aktienkauf %>% as.factor())) 
 
-# mit Hilfe des Pakets SDMTools (keine offizielle Version für R 4.0.0)
-# ggf. install.packages("SDMTools") ausführen
-# ab R-Version 4.0.0 devtools::install_github("https://github.com/cran/SDMTools")
-# hier kann zusätzlich die Option cutpoint =
-library(SDMTools)
-(cm <- confusion.matrix(Aktien$Aktienkauf, glm1$fitted.values))
-# Spezifität und Sensitivität
-sensitivity(cm)
-specificity(cm)
+sensitivity(Aktien$predicted %>% as.factor(), 
+            Aktien$Aktienkauf %>% as.factor())
+specificity(Aktien$predicted %>% as.factor(), 
+            Aktien$Aktienkauf %>% as.factor())
 ```
 
 Wenn die Anteile der $1$ in den beobachteten Daten sehr gering sind (z.B. bei einem medizinischen Test auf eine seltene Krankheit, Klicks auf einen Werbebanner oder Kreditausfall), kommt eine Schwäche der logistischen Regression zum Tragen: Das Modell wird so optimiert, dass die Wahrscheinlichkeiten $p(y=1)$ alle unter $0.5$ liegen. Das würde zu einer Sensitivität von $0$ und einer Spezifität von $1$ führen. Daher kann es sinnvoll sein, den Cutpoint zu variieren. Daraus ergibt sich ein verallgemeinertes Gütemaß, die *ROC*-Kurve (*Return Operating Characteristic*) und den daraus abgeleiteten *AUC*-Wert (*Area Under Curve*). 
@@ -236,7 +232,6 @@ library(ggfortify)
 autoplot(perf) %>% gf_abline(intercept = 0, slope = 1, color = "grey")
 # Area under curve (ROC-Wert)
 performance(pred,"auc")@y.values
-
 ```
 
 AUC liegt zwischen $0.5$, wenn das Modell gar nichts erklärt (im Plot die graue Linie) und $1$. Hier ist der Wert also recht gering. Akzeptable Werte liegen bei $0.7$ und größer, gute Werte sind es ab $0.8$.^[Hosmer/Lemeshow, Applied Logistic Regression, 3rd Ed. (2013), S. 164]
@@ -272,19 +267,19 @@ Ja, die Modelle `glm1` (mit einer erklärenden Variable) und `glm2` unterscheide
 
 
 ### Pseudo-R\textsuperscript2 
-Verschiedene Statistiker haben versucht, aus der Likelihood eine Größe abzuleiten, die dem R\textsuperscript2 der linearen Regression entspricht. Exemplarisch sei hier McFaddens R\textsuperscript2 gezeigt: $${R^2=1-\frac{ln(L_{\beta})}{ln(L_0)}}$$ Wie bei dem R\textsuperscript2 der linearen Regression liegt der Wertebereich zwischen 0 und 1. Ab einem Wert von 0,4 kann die Modellanpassung als gut eingestuft werden. Wo liegen  R\textsuperscript2 der beiden Modelle `glm1` und `glm2?` Sie können es direkt berechnen oder das Paket `BaylorEdPsych` verwenden.
+Verschiedene Statistiker haben versucht, aus der Likelihood eine Größe abzuleiten, die dem R\textsuperscript2 der linearen Regression entspricht. Exemplarisch sei hier McFaddens R\textsuperscript2 gezeigt: $${R^2=1-\frac{ln(L_{\beta})}{ln(L_0)}}$$ Wie bei dem R\textsuperscript2 der linearen Regression liegt der Wertebereich zwischen 0 und 1. Ab einem Wert von 0,4 kann die Modellanpassung als gut eingestuft werden. Wo liegen  R\textsuperscript2 der beiden Modelle `glm1` und `glm2?` Sie können es direkt berechnen oder das Paket `DescTools` verwenden.
 
 ```{r}
 # direkte Berechnung
 1 - glm1$deviance/glm1$null.deviance
 1 - glm2$deviance/glm2$null.deviance
-# ggf. install.packages("BaylorEdPsych")
-library(BaylorEdPsych)
-PseudoR2(glm1)
-PseudoR2(glm2)
+# ggf. install.packages("DescTools")
+library(DescTools)
+PseudoR2(glm1, which = "all")
+PseudoR2(glm2, which = "all")
 ```
 
-Insgesamt ist die Modellanpassung, auch mit allen Variablen, als schlecht zu bezeichnen. **Hinweis:** Die Funktion `PseudoR2(model)` zeigt verschiedene Pseudo-R^2^ Statistiken, die jeweils unter bestimmten Bedingungen vorteilhaft einzusetzen sind. Für weitere Erläuterungen sei auf die Literatur verwiesen.
+Insgesamt ist die Modellanpassung, auch mit allen Variablen, als schlecht zu bezeichnen. **Hinweis:** Die Funktion `PseudoR2(model)` zeigt standardmäßig McFaddens R\textsuperscript2. Mit dem Parameter `which` können verschiedene Pseudo-R\textsuperscript2 Statistiken ausgewählt werden, oder alle über `which = "all"`. Die verschiedenen Maße sind unter jeweils bestimmten Bedingungen vorteilhaft einzusetzen. Für weitere Erläuterungen sei auf die Literatur verwiesen.
 
 
 

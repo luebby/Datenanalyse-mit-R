@@ -43,17 +43,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 # Initiale Paket Installation
-needed_pkgs <- c("mosaic", "corrplot", 
-                 "lsr", "effects",
-                 "SDMTools","ROCR", "lmtest", "BaylorEdPsych",
-                 "gplots","nFactors", "scatterplot3d",
-                 "tidyverse", "stringr", "car", "okcupiddata", 
-                 "knitr", "nycflights13")
-new.pkgs <- needed_pkgs[!(needed_pkgs %in% installed.packages())]
-
-if(length(new.pkgs)) {
-  install.packages(new.pkgs, repos = "https://cran.rstudio.com")
-}
+# needed_pkgs <- c("mosaic", "corrplot", 
+#                  "lsr", "effects",
+#                  "ROCR", "lmtest", "DescTools",
+#                  "gplots","nFactors", "scatterplot3d",
+#                  "tidyverse", "stringr", "car", 
+#                  "knitr", "nycflights13")
+# new.pkgs <- needed_pkgs[!(needed_pkgs %in% installed.packages())]
+# 
+# if(length(new.pkgs)) {
+#   install.packages(new.pkgs, repos = "https://cran.rstudio.com")
+# }
 
 
 require(mosaic)

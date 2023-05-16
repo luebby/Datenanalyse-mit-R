@@ -69,7 +69,7 @@ Merke:
 Schauen wir uns einige Beispiel an; zuerst die Daten laden nicht vergessen. Achtung: "Wohnen" die Daten in einem Paket, muss dieses Paket installiert sein, damit man auf die Daten zugreifen kann.
 
 ```{r}
-data(profiles, package = "okcupiddata")  # Das Paket muss installiert sein
+profiles <- read.csv("data/profiles.csv")
 ```
 
 
