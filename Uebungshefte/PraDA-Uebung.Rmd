@@ -44,7 +44,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Initiale Paket Installation
 # needed_pkgs <- c("mosaic", "corrplot", 
-#                  "lsr", "effects",
+#                  "lsr", "effects", "ModelMetrics",
 #                  "ROCR", "lmtest", "DescTools",
 #                  "gplots","nFactors", "scatterplot3d",
 #                  "tidyverse", "stringr", "car", 
